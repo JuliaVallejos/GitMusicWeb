@@ -7,6 +7,11 @@ const userController=require('../controllers/userController')
 
 //rutas
 //user
+
+router.route('/user/signup')
+.post(userController.newUser)
+router.route('/user/login')
+.post(userController.logIn)
 router.route('/user/test')
 .get(userController.test)
 
