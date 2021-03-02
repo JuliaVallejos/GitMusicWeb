@@ -5,6 +5,7 @@ const passport = require('passport')
 const validator = require('../controllers/validator')
 const userController=require('../controllers/userController')
 const productController = require('../controllers/productController')
+const shoopingCartController = require('../controllers/shoopingCartController')
 
 //rutas
 //user
@@ -16,7 +17,6 @@ router.route('/user/login')
 
 router.route('/user/ls')
 .post(passport.authenticate('jwt', { session: false }), userController.logFromLS)
-//shooping
 
 //product
 router.route('/products')
@@ -36,5 +36,13 @@ router.route('/products/editcomment')
 
 router.route('/products/delcomment')
 .put(productController.delComment)
+
+//shooping
+router.route('/products/shoopingcart')
+.get(shoopingCartController.getShoopingCart)
+.post(shoopingCartController.addShoopingCart)
+
+router.route('/products/editshoopingcart')
+.put(shoopingCartController.editShoopingCart)
 
 module.exports = router
