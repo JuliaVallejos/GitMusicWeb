@@ -101,7 +101,7 @@ const Register = () => {
                     <h6>¿Olvidaste tu contraseña?</h6>
                 </Link>
                 <GoogleLogin
-                    clientId="225799266122-1ec8ttmtjou3vupf7qk9kqdc98lvtjmj.apps.googleusercontent.com"
+                    clientId="225799266122-gmus3gf7k57dp86h5togfcjlni8os3fr.apps.googleusercontent.com"
                     buttonText="Iniciar sesión con Google"
                     // onSuccess={responseGoogle}
                     // onFailure={responseGoogle}
