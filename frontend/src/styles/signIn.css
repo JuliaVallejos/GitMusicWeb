@@ -4,7 +4,7 @@
     box-sizing: border-box;
   }
 
-/*ESTILOS SIGN IN*/
+/*ESTILOS SIGN IN AND SIGN UP*/
   .registro{
     display: flex;
     align-items: center;
@@ -70,6 +70,17 @@
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.356);
     color: rgb(56, 56, 56)!important
     }
+    .formulario select:hover {
+      border: none;
+      outline: none;
+      width: 100%;
+      padding: 1.5vh 2vh ;
+      border: solid 2px rgb(255, 123, 0) !important;
+      border-radius: 25px;
+      margin-bottom: 3vh;
+      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.356);
+      color: rgb(56, 56, 56)!important
+  }
   .eye{
     position: absolute;
     top: 16%;

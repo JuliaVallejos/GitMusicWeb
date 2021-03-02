@@ -6,7 +6,7 @@ import Footer from './components/Footer'
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import CartIcon from './components/CartIcon';
 import signIn from './components/SignIn'
-
+import Register from './components/Register'
 
 
 function App() {
@@ -18,6 +18,7 @@ function App() {
 <Switch>
   <Route exact path='/' component={LandingPage}/>
   <Route path='/signin'component={signIn}/>
+  <Route path='/signup'component={Register}/>
 </Switch>
 </Router>
 <Footer/>
