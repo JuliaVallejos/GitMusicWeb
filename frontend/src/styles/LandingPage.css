@@ -1,0 +1,47 @@
+.hero{
+  background-image: url('../assets/hero.jpg');
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* animation: zoom 40s infinite; */
+}
+
+.logo{
+  position: relative;
+}
+.hero h1{
+  animation: zoom 4s infinite;
+  font-size: 6rem;
+  text-shadow: 5px 5px 8px black;
+  transform: rotateY(3deg);
+
+}
+.github{
+  font-size: 8rem;
+}
+.musicIcon{
+  font-size: 4rem;
+  color: rgb(47, 140, 187);
+  position: absolute;
+  right: 0;
+
+}
+@keyframes zoom {
+  0% {
+    transform: scale(0.9);
+  }
+  35%,
+  50% {
+    transform: scale(1.4) rotateZ(-9deg);
+  }
+  75%,
+  100%{
+    transform: scale(0.9);
+  }
+
+}

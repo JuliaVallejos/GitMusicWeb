@@ -6,22 +6,17 @@ import { Link } from 'react-router-dom'
 import { Alert, Message } from 'rsuite';
 import '../styles/signIn.css'
 
-
-
-
-const Register = () => {
+const SignIn = (props) => {
 
     // const { history, signIn, loggedUser } = props
     const [user, setUser] = useState({})
     const [errores, setErrores] = useState('')
     const [hidden, setHidden] = useState(true)
-
-    const countries = ["Argentina","Bolivia","Peru","Venezuela","Uruguay","Chile","Paraguay","Brasil","Mexico","Ecuador","Colombia"]
     // useEffect(() => {
     //     if (loggedUser !== null)
     //         setTimeout(() => {
     //             history.push('/')
-    //         }, 3000)
+    //         }, 1000)
     // }, [loggedUser])
 
     const readInput = e => {
@@ -48,11 +43,11 @@ const Register = () => {
             // const response = await signIn(user)
             // if (response && !response.success) {
             //     setErrores(response.message)
-            }
-            // if (loggedUser !== null)
-            //     setTimeout(() => {
-            //         props.history.push('/')
-            //     }, 3000)
+        }
+        // if (loggedUser !== null)
+        //     setTimeout(() => {
+        //         props.history.push('/')
+        //     }, 3000)
         // }
     }
     // const responseGoogle = async response => {
@@ -72,23 +67,9 @@ const Register = () => {
     return (
         <div className="registro">
             <div className="formulario">
-                <h2>Registrarse</h2>
-                <p>Creá una nueva cuenta hoy para tener los beneficios de una experiencia de compra personalizada.</p>
+                <h2>Acceder</h2>
+                <p>¡Hola! Iniciá sesión con tu cuenta</p>
                 {errores !== '' && <Message type='info' description={errores} style={{ marginBottom: '2vh' }} />}
-                <div className="inputDiv">
-                    <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="firstname" placeholder="Ingrese su nombre" onChange={readInput} />
-                </div>
-                <div className="inputDiv">
-                    <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="lastname" placeholder="Ingrese su apellido" onChange={readInput} />
-                </div>
-                <div className="inputDiv">
-                    <select name="country" type='text' placeholder='Seleccione su país' onChange={readInput} >
-                        <option value=''>Selecciona un país</option>
-                        {countries.map((country, i) => {
-                            return <option key={"selectCountry" + i} value={country} className="inputDiv">{country}</option>
-                        })}
-                    </select>
-                </div>
                 <div className="inputDiv">
                     <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="email" placeholder="Ingrese su dirección de correo electrónico" onChange={readInput} />
                 </div>
@@ -96,7 +77,7 @@ const Register = () => {
                     <input onKeyPress={enterKeyboard} type={hidden ? "password" : " text"} name="password" placeholder="Ingrese su contraseña" onChange={readInput} />
                     < FaEye className="eye" onClick={() => setHidden(!hidden)} />
                 </div>
-                <button className="enviar" onClick={Validate}>Registrarse</button>
+                <button className="enviar" onClick={Validate}>Acceder</button>
                 <Link to='/forgotpassword' className='navBarLinks' style={{ margin: '2vh' }}>
                     <h6>¿Olvidaste tu contraseña?</h6>
                 </Link>
@@ -119,6 +100,6 @@ const Register = () => {
 // const mapDispatchToProps = {
 //     signIn: userActions.signIn
 // }
-export default Register
+export default SignIn
 
 // client secret google rPSbotRqanmaxXrIsITQ5cwK
