@@ -29,19 +29,77 @@ const productController = {
   },
   // borrar producto //
   deleteProduct:async (req,res) =>{
-      const id= req.params.idProduct
-      try{
-        const removed= await Product.findOneAndRemove({_id:id})
-        if(removed){
-          res.json({success: true, message: "Product removed",product:removed})
-        }else{
-          res.json({success: false, message: "This product don't exist"})
-        }
-      }catch(error){
-        res.json({success: false,error})
-
+    const id= req.params.idProduct
+    try{
+      const removed= await Product.findOneAndRemove({_id:id})
+      if(removed){
+        res.json({success: true, response: "Product removed",product:removed})
+      }else{
+        res.json({success: false, error: "This product don't exist"})
+      }
+    }catch(error){
+      res.json({success: false,error})
+    }
+  },
+  addRating:async (req,res) =>{
+    const {idProduct,idUser,value}=req.body
+    try {
+      const addRating=await Product.findOneAndUpdate(
+        {_id:idProduct},
+        { $push: {'arrayRating': {idUser:idUser,value:value}}},{new:true})
+      if(addRating){
+        res.json({success:true, response:addRating})
+      }else{
+        res.json({success:false, error:"Error while modifying in database."})
+      }
+      } catch (error) {
+      res.json({success: false,error})
+    }
+  },
+  addComment:async (req,res) =>{
+    const {idProduct,idUser,comment}=req.body
+    try {
+      const addComment=await Product.findOneAndUpdate(
+        {_id:idProduct},
+        { $push: {'arrayComments': {idUser:idUser,comment:comment}}},{new:true})
+      if(addComment){
+        res.json({success:true, response:addComment})
+      }else{
+        res.json({success:false, error:"Error while modifying in database."})
+      }
+    } catch (error) {
+      res.json({success: false,error})
+    }
+  },
+  delComment:async(req,res)=>{
+    const {idProduct,idComment}=req.body
+    try {
+      const delComment=await Product.findOneAndUpdate(
+        {_id:idProduct},
+        { $pull: {'arrayComments': {_id:idComment}}},{new:true})
+      if(delComment){
+        res.json({success:true, response:delComment})
+      }else{
+        res.json({success:false, error:"Error while modifying in database."})
+      }
+    } catch (error) {
+      res.json({success: false,error})
+    }
+  },
+  editComment:async(req,res)=>{
+    const {idComment,comment}=req.body
+    try {
+      const editComment=await Product.updateOne(
+        {'arrayComments._id':idComment},
+        { '$set': {'arrayComments.$.comment':comment}},{new:true})
+      if(editComment){
+        res.json({success:true, response:editComment})
+      }else{
+        res.json({success:false, error:"Error while modifying in database."})
+      }
+    } catch (error) {
+      res.json({success: false,error})
+    }
   }
-
-}
 }
 module.exports = productController

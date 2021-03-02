@@ -21,8 +21,19 @@ router.route('/user/ls')
 router.route('/products')
 .get(productController.allProducts)
 .post(productController.addProduct)
-
 router.route('/products/:idProduct')
 .delete(productController.deleteProduct)
+
+router.route('/products/newrating')
+.put(productController.addRating)
+
+router.route('/products/newcomment')
+.put(productController.addComment)
+
+router.route('/products/editcomment')
+.put(productController.editComment)
+
+router.route('/products/delcomment')
+.put(productController.delComment)
 
 module.exports = router
