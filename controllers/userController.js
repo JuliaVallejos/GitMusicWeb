@@ -9,7 +9,7 @@ const userController = {
       console.log(req.body, req.files)
     try {
       const errores = []
-      const { firstName, lastName, email, password } = req.body
+      const { firstName, lastName, email, password, country, rol } = req.body
       // const file = req.files.file //pic que viaja por la action
       const userExists = await User.findOne({ email: email})//buscamos coincidencia
       if (userExists) {
@@ -26,19 +26,19 @@ const userController = {
         const hashedPassword = bcryptjs.hashSync(password, 10) //encriptamos password
         // const profilePictureUbicacion = `/assets/profilePictures/${file.md5}.jpg`
         var newUser = new User({
-          firstName, lastName, email, password: hashedPassword
+          firstName, lastName, email, password: hashedPassword, country, rol
             })
             var newUserSaved = await newUser.save() //intentamos guardar en la db
             var token = jwt.sign({ ...newUserSaved }, process.env.SECRET_KEY, {}) //tokeamos el user
         }
         return res.json({
           success: errores.length === 0 ? true : false,
-            response: {
-              token,
-              firstName: newUserSaved.firstName,
-              email: newUserSaved.email,
-              userId: newUserSaved._id
-            }
+          response: {
+            token,
+            firstName: newUserSaved.firstName,
+            email: newUserSaved.email,
+            userId: newUserSaved._id
+          }
         })
     } catch (error) {
         res.json({ success: false, error })
@@ -87,13 +87,7 @@ logFromLS: (req, res) => {
   } catch (error) {
       res.json({ success: false, error })
   }
-},
-
-  test:(req,res)=>{
-    console.log(req.body)
-    const {id}=req.body
-    res.json({success:true,response:"Estoy en linea "+id})
-  }
+}
 }
 
 module.exports = userController

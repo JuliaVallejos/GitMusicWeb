@@ -1,15 +1,10 @@
 const Product = require('../models/Product')
 
 const productController = {
-  test:(req,res)=>{
-    console.log(req.body)
-    const {id}=req.body
-    res.json({success:true,response:"Estoy en linea "+id})
-  },
   //obtener todos los productos//
   allProducts: async (req, res)=>{
     try{
-        const response= await Product.find().populate('arrayComments.idUser')
+        const response= await Product.find().populate('arrayComments.idUser').populate('arrayRating.idUser')
         if(response) {
             return res.json({success: true, response})
      } 
