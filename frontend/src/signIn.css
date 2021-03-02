@@ -1,0 +1,112 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+/*ESTILOS SIGN IN*/
+  .registro{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(250, 250, 250);
+    padding: 4vh;
+    color: rgb(250, 250, 250);
+    min-height: 89vh;
+    justify-content: center;
+    }
+  .formulario {
+    display: flex;
+    padding: 4vh ;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 6px 6px 16px rgba(0, 0, 0, 0.555);
+    border-radius: 10px;
+    background-color: rgb(16, 16, 16);
+    width: 40vw;
+  }
+  .formulario h2{
+    margin-bottom: 1vw ;
+    padding-left: 3vw;
+    padding-right: 23vw;
+    border-bottom: solid 2px rgb(65, 166, 216);
+    margin-right: 1vw;
+    }
+  .formulario p{
+      padding:10px;
+    }
+
+  .inputDiv{
+    width: 100%;
+    position: relative;
+   
+  }
+  .inputDiv select{
+    margin-bottom: 3vh;
+  }
+  input[type=file]{
+    background-color: #fafafa15;  
+  } 
+  .formulario input,select{
+    /* border: none; */
+    outline: none;
+    width: 100%;
+    padding: 1.5vh 2vh ;
+    border-radius: 8px;
+    margin-bottom: 3vh;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.356);
+    color: rgb(56, 56, 56)!important;
+    border: solid 2px rgba(6, 134, 200, 0.863);
+  }
+  .formulario input:hover{
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 1.5vh 2vh ;
+    border: solid 2px rgb(255, 208, 0);
+    border-radius: 25px;
+    margin-bottom: 3vh;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.356);
+    color: rgb(56, 56, 56)!important
+    }
+  .eye{
+    position: absolute;
+    top: 16%;
+    right: 2%;
+    color:  rgb(56, 56, 56);
+    font-size: 1.4rem;
+    
+  }
+  .enviar {
+    width: 15vw;
+    margin-bottom: 3vh;
+    border-radius: 25px;
+    transition: all 0.2s;
+    padding:15px !important;
+    background-color:rgba(6, 134, 200, 0.863) ;
+    color:rgb(250, 250, 250);
+    font-weight: bold;
+    border: solid 2px rgba(6, 134, 200, 0.863);
+  }
+  .enviar:hover{
+    transform: scale(1.06);
+    background-color:#000000;
+    border: solid 2px rgb(255, 208, 0);
+    color:rgb(255, 208, 0);
+    }
+  .enviar:active{
+    /* border: none; */
+    transform: translateY(7px);
+    box-shadow: 0px 0px rgba(0, 0, 0, 0.555);
+   
+  }
+  button:focus {
+    outline: none;
+  }
+  .navBarLinks {
+    text-decoration: none;
+    font-size: 25px;
+    color: rgba(6, 135, 200, 0.801);
+}
+
+  
