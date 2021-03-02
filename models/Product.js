@@ -20,11 +20,10 @@ const ProductSchema = new mongoose.Schema({
   urlReview:{type: String, required:false},
   arrayPic:[String],
   arrayRating:[ratingSchema],
-  arrayComment:[commentSchema],
+  arrayComments:[commentSchema],
   arrayDescription:[String],
   arrayVisits:[String],
-  outstanding:{type: Boolean,default:false},
-  idShopCart:{type: mongoose.Schema.ObjectId, ref: 'shoppingCart',required: false},
+  outstanding:{type: Boolean,default:false}
 })
 
 const Product = mongoose.model('product',ProductSchema)
