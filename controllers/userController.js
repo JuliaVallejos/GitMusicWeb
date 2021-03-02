@@ -66,10 +66,26 @@ logIn: async (req, res) => {
                   email: userExists.email,
                   userId: userExists._id
               }
-          })
+          })//al confirmar assets para form agregar pic
   } catch (error) {
       res.json({ success: false, error })
       console.log(error)
+  }
+},
+logFromLS: (req, res) => {
+  console.log(req.body, req.user)
+  try {
+    res.json({
+      success: true, response: {
+        token: req.body.token,
+        firstName: req.user.firstName,
+        pic: req.user.pic,
+        email: req.user.email,
+        userId: req.user._id
+        }
+      })
+  } catch (error) {
+      res.json({ success: false, error })
   }
 },
 
