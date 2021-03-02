@@ -6,6 +6,9 @@ import Footer from './components/Footer'
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import CartIcon from './components/CartIcon';
 import signIn from './components/SignIn'
+
+
+
 function App() {
   return (
 <>

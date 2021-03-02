@@ -7,21 +7,24 @@ import { FaMusic } from 'react-icons/fa'
 const NavBar = () => {
   return (
     <nav>
-      <div className='navBarLogo'>
-        <AiFillGithub className="navGithub" />
-        <FaMusic className="navMusicIcon" />
-      </div>
+      <div className="navBar">
+        <div className='navBarLogo'>
+          <AiFillGithub className="navGithub" />
+          <FaMusic className="navMusicIcon" />
+        </div>
 
-      <div className='links'>
-        <NavLink to='/' className='navLinks'>
-          Inicio
-        </NavLink>
-        <NavLink to='/signup' className='navLinks'>
-          Registrate
-        </NavLink>
-        <NavLink to='/signin' className='navLinks'>
-          Inicia sesión
-        </NavLink>
+        <div className='links'>
+          <NavLink to='/' className='navLinks'>
+            Inicio
+          </NavLink>
+          <NavLink to='/signup' className='navLinks'>
+            Registrate
+          </NavLink>
+          <NavLink to='/signin' className='navLinks'>
+            Inicia sesión
+          </NavLink>
+        </div>
+
       </div>
     </nav>
   )

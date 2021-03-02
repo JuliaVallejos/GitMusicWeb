@@ -28,8 +28,6 @@ const SignIn = (props) => {
         })
     }
     const enterKeyboard = e => {
-        //El numero 13 seria la tecla enter, si fue presionada envio la validacion
-        //como si fuera el boton sign in
         if (e.charCode === 13) {
             Validate(e)
         }

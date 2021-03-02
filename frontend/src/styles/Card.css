@@ -1,7 +1,9 @@
 .productSection{
 text-align: center;
-background-color: rgb(27, 27, 27);
+background-image: url('../assets/wp.jpg');
+background-size: cover;
 color: rgb(250, 250, 250);
+background-attachment: fixed;
 }
 .productSection h2{
   font-size: 2.3rem;
@@ -19,8 +21,6 @@ color: rgb(250, 250, 250);
   flex-wrap: wrap;
   
 }
-
-
 .container{
 	box-shadow: 0 15px 30px 1px rgba(128, 128, 128, 0.31);
 	background: rgba(255, 255, 255, 0.90);
@@ -32,8 +32,6 @@ color: rgb(250, 250, 250);
 	width: 25vw;
 	
 }
-
-
 /* 	Product details  */
 .product-details {
 	position: relative;

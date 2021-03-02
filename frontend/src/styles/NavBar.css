@@ -1,14 +1,12 @@
-nav{
-  position: fixed;
+.navBar{
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 3vh ;
+  padding: 2vh ;
   color: whitesmoke;
   border-bottom: solid 2px rgba(245, 245, 245, 0.349);
-  background-color: rgba(255, 255, 255, 0.055);
-  border-radius: 0 0 50% 50%;
+  background-color: rgb(12, 12, 12);
 }
 
 .navLinks{
