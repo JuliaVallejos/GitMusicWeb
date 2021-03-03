@@ -7,7 +7,7 @@
 /*ESTILOS SIGN IN AND SIGN UP*/
   .registro, .registroForm{
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
     padding: 4vh;
     color: rgb(250, 250, 250);
@@ -21,7 +21,7 @@
   .formulario, .formularioSignIn {
     display: flex;
     padding: 4vh ;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
     border-radius: 10px;
     background-color: rgb(16, 16, 16);
@@ -34,7 +34,7 @@
   }
   .formulario{
     margin-right: 3vw;
-    margin-top: 5vh;
+    /* margin-top: 5vh; */
   }
   .formulario h2, .formularioSignIn h2{
     margin-bottom: 1vw ;
