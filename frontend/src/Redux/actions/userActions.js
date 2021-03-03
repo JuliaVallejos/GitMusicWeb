@@ -5,7 +5,7 @@ const userActions = {
     signUp: (fdNewUser) =>{
      return async (dispatch, getState) =>{
        try{
-        const response = await axios.post('http://localhost:4000/api/user/signup', fdNewUser,{
+        const response = await axios.post('https://gitmusicapp.herokuapp.com/api/user/signup', fdNewUser,{
           headers:{
             'Content-Type':'multipart/form-data'
           }
@@ -45,7 +45,7 @@ const userActions = {
    googleSignUp: (newUser) =>{
      return async (dispatch, getState) =>{
        try{
-         const response = await axios.post('http://localhost:4000/api/user/signup', newUser)
+         const response = await axios.post('https://gitmusicapp.herokuapp.com/api/user/signup', newUser)
          console.log(response)
          if(response.data.success===false){
            var errors=[]
@@ -93,7 +93,7 @@ const userActions = {
     const idUser=localStorage.getItem('idUser')
     return async (dispatch, getState) =>{
       try{
-        const response = await axios.post('http://localhost:4000/api/user/ls', {token,idUser}, {
+        const response = await axios.post('https://gitmusicapp.herokuapp.com/api/user/ls', {token,idUser}, {
           headers:{
             Authorization:`Bearer ${token}`
           }
