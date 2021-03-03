@@ -8,11 +8,14 @@ const commentSchema = new mongoose.Schema({
   idUser:{type: mongoose.Schema.ObjectId, ref: 'user',required: true},
   comment:{type: String, required:true}
 })
+const categorySchema = new mongoose.Schema({
+  label:{type: String, required:true},
+  pic:{type: String, required:true}
+})
 
 const ProductSchema = new mongoose.Schema({
   name:{type:String, required:true},
-  category:{type:String, required:true},
-  type:{type: String, required:true},
+  category:[categorySchema],
   mark:{type: String, required:false},
   price:{type: Number, required:true},
   stock:{type: Number, required:true},

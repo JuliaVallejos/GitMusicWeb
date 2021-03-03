@@ -1,0 +1,26 @@
+.productsByCategory{
+    width:80%;
+    margin: auto;
+    display:flex;
+    flex-wrap: wrap;
+    background-color: yellow;
+}
+
+.productContainer{
+   background-color: blue;
+   border: 2px solid red;
+   width:25%;
+   margin:4%;
+   display:flex;
+   flex-direction: column;
+}
+.producTitle{
+    text-align: center;
+}
+.productPic{
+    background-size: cover;
+    background-position: center;
+    width:80px;
+    height:80px;
+    
+}

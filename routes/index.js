@@ -5,6 +5,7 @@ const passport = require('passport')
 const validator = require('../controllers/validator')
 const userController=require('../controllers/userController')
 const productController = require('../controllers/productController')
+const shoopingCartController = require('../controllers/shoopingCartController')
 
 //rutas
 //user
@@ -19,10 +20,13 @@ router.route('/user/ls')
 <<<<<<< HEAD
 =======
 
+<<<<<<< HEAD
 // router.route('/user/test')
 // .get(userController.test)
 >>>>>>> d3f57b417e95350a2e74d9c2064dcd89e83a106f
 
+=======
+>>>>>>> 74fbdeae88a445f283a692ed811f652d7196fbe0
 //shooping
 
 //product
@@ -44,5 +48,13 @@ router.route('/products/editcomment')
 
 router.route('/products/delcomment')
 .put(productController.delComment)
+
+//shooping
+router.route('/products/shoopingcart')
+.get(shoopingCartController.getShoopingCart)
+.post(shoopingCartController.addShoopingCart)
+
+router.route('/products/editshoopingcart')
+.put(shoopingCartController.editShoopingCart)
 
 module.exports = router
