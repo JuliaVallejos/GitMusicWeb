@@ -64,9 +64,13 @@ const SignIn = (props) => {
     // }
     return (
         <div className="registro">
-            <div className="formulario">
+            <div className="formularioSignIn">
                 <h2>Acceder</h2>
-                <p>¡Hola! Iniciá sesión con tu cuenta</p>
+                <div className="text">
+                    <p>¡Hola!</p>
+                    <p >Iniciá sesión con tu cuenta</p>
+                </div>
+
                 {errores !== '' && <Message type='info' description={errores} style={{ marginBottom: '2vh' }} />}
                 <div className="inputDiv">
                     <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="email" placeholder="Ingrese su dirección de correo electrónico" onChange={readInput} />
@@ -80,7 +84,7 @@ const SignIn = (props) => {
                     <h6>¿Olvidaste tu contraseña?</h6>
                 </Link>
                 <GoogleLogin
-                    clientId="225799266122-1ec8ttmtjou3vupf7qk9kqdc98lvtjmj.apps.googleusercontent.com"
+                     clientId="225799266122-gmus3gf7k57dp86h5togfcjlni8os3fr.apps.googleusercontent.com" 
                     buttonText="Iniciar sesión con Google"
                     // onSuccess={responseGoogle}
                     // onFailure={responseGoogle}
