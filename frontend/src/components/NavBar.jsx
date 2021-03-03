@@ -2,6 +2,7 @@ import React from 'react'
 import '../styles/NavBar.css'
 import { NavLink, Link } from 'react-router-dom'
 import { AiFillGithub } from 'react-icons/ai'
+import { FaUserCircle } from 'react-icons/fa'
 import { FaMusic } from 'react-icons/fa'
 
 const NavBar = () => {
@@ -17,11 +18,8 @@ const NavBar = () => {
           <NavLink to='/' className='navLinks'>
             Inicio
           </NavLink>
-          <NavLink to='/signup' className='navLinks'>
-            Registrate
-          </NavLink>
-          <NavLink to='/signin' className='navLinks'>
-            Inicia sesión
+          <NavLink to='/registerUser' className='navLinks'>
+            <FaUserCircle className="iconUser"/>
           </NavLink>
         </div>
 

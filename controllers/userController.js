@@ -6,6 +6,7 @@ const path = require('path')
 
 const userController = {
   newUser: async(req, res) => {
+    console.log("entre al controlador")
       console.log(req.body, req.files)
     try {
       const errores = []
