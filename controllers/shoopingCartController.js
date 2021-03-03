@@ -40,6 +40,8 @@ const shoopingCartController = {
     const {idUser}=req.body
     try {
       const shoopingCartUser=await ShoopingCart.findOne({idUser:idUser})
+      .populate('idUser')
+      .populate('arrayProducts.idProduct')
       if(shoopingCartUser){
         res.json({success:true, response: shoopingCartUser})
       }else{

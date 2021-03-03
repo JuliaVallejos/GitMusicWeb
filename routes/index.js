@@ -17,14 +17,8 @@ router.route('/user/login')
 
 router.route('/user/ls')
 .post(passport.authenticate('jwt', { session: false }), userController.logFromLS)
-<<<<<<< HEAD
-=======
-
-// router.route('/user/test')
-// .get(userController.test)
 
 //shooping
->>>>>>> d3f57b417e95350a2e74d9c2064dcd89e83a106f
 
 //product
 router.route('/products')
