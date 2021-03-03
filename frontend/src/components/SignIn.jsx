@@ -14,12 +14,12 @@ const SignIn = (props) => {
     const [errores, setErrores] = useState('')
     const [hidden, setHidden] = useState(true)
 
-    useEffect(() => {
-        if (loggedUser !== null)
-            setTimeout(() => {
-                history.push('/')
-            }, 1000)
-    }, [loggedUser])
+    // useEffect(() => {
+    //     if (loggedUser !== null)
+    //         setTimeout(() => {
+    //             history.push('/')
+    //         }, 1000)
+    // }, [loggedUser])
 
     const readInput = e => {
         const value = e.target.value

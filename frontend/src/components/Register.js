@@ -28,12 +28,12 @@ const Register = (props) => {
 
     const countries = ["Argentina", "Bolivia", "Peru", "Venezuela", "Uruguay", "Chile", "Paraguay", "Brasil", "Mexico", "Ecuador", "Colombia"]
 
-    useEffect(() => {
-        if (loggedUser !== null)
-            setTimeout(() => {
-                history.push('/')
-            }, 3000)
-    }, [loggedUser])
+    // useEffect(() => {
+    //     if (loggedUser !== null)
+    //         setTimeout(() => {
+    //             history.push('/')
+    //         }, 3000)
+    // }, [loggedUser])
     
     const readInput = e => {
         const value = e.target.value
