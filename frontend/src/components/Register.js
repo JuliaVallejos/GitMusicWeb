@@ -9,9 +9,8 @@ import '../styles/signIn.css'
 
 
 const Register = (props) => {
-
     const { history, signUp, loggedUser,googleSignUp } = props
-    const [newUser, setNewUser] = useState({})
+    const [newUser, setNewUser] = useState({google: 'false'})
     const [errores, setErrores] = useState('')
     const [errorObj, setErrorObj] = useState({})
     const [hidden, setHidden] = useState(true)
@@ -20,38 +19,35 @@ const Register = (props) => {
         firstName: null,
         lastName: null,
         email: null,
-        password: null,
-        urlPic: null,
-        country: null,
-        phone: null
+        password: null
     }
 
-    const countries = ["Argentina", "Bolivia", "Peru", "Venezuela", "Uruguay", "Chile", "Paraguay", "Brasil", "Mexico", "Ecuador", "Colombia"]
-
-    useEffect(() => {
-        if (loggedUser !== null)
-            setTimeout(() => {
-                history.push('/')
-            }, 3000)
-    }, [loggedUser])
-    
     const readInput = e => {
-        const value = e.target.value
+        var value = e.target.value
         const property = e.target.name
+        if (property === 'fileUrlPic') value = e.target.files[0]
         setNewUser({
             ...newUser,
             [property]: value
         })
     }
-    const Validate = async e => {
+    const Validate = async () => {
         setErrores('')
         if (newUser.firstName === '' || newUser.lastName === '' || newUser.email === '' || newUser.password === '' || newUser.country === '') {
             Alert.error('Todos los campos son requeridos')
             return false
         }
-        const res = await signUp(newUser)
-     
+        //llenando el formData con la informacion de los input
+        const fdNewUser = new FormData()
+        fdNewUser.append('firstName', newUser.firstName)
+        fdNewUser.append('lastName', newUser.lastName)
+        fdNewUser.append('fileUrlPic', newUser.fileUrlPic)
+        fdNewUser.append('email', newUser.email)
+        fdNewUser.append('password', newUser.password)
+        fdNewUser.append('google', newUser.google)
 
+        const res = await signUp(fdNewUser)
+        console.log(res)
         if (res && !res.success) {
             setErrores(res.response)
             res.response.map(error => {
@@ -69,11 +65,9 @@ const Register = (props) => {
                 firstName: response.profileObj.givenName,
                 lastName: response.profileObj.familyName,
                 email: response.profileObj.email,
-                // googlePic: response.profileObj.imageUrl,
+                pic: response.profileObj.imageUrl,
                 password: `Aa${response.profileObj.googleId}`,
-                country: 'Argentina',
                 google: 'true'
-
             })
             if (respuesta && !respuesta.success) {
                 setErrores(respuesta.errores)
@@ -92,7 +86,6 @@ const Register = (props) => {
             <div className="formulario">
                 <h2>Registrarse</h2>
                 <p>Creá una nueva cuenta hoy para tener los beneficios de una experiencia de compra personalizada.</p>
-                {errores !== '' && <Message type='info' description={errores} style={{ marginBottom: '2vh' }} />}
                 <div className="inputDiv">
                     <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="firstName" placeholder="Ingrese su nombre" onChange={readInput} />
                     <small>{errorObj.firstName}</small>
@@ -101,10 +94,13 @@ const Register = (props) => {
                     <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="lastName" placeholder="Ingrese su apellido" onChange={readInput} />
                     <small>{errorObj.lastName}</small>
                 </div>
-               
                 <div className="inputDiv">
                     <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="email" placeholder="Ingrese su dirección de correo electrónico" onChange={readInput} />
                     <small>{errorObj.email}</small>
+                </div>
+                <div className="inputDiv"> 
+                <small>Url de foto de perfil</small>
+                    <input name='fileUrlPic' type='file' placeholder='Url de foto de perfil' onChange={readInput} />
                 </div>
                 <div className="inputDiv">
                     <input onKeyPress={enterKeyboard} type={hidden ? "password" : " text"} name="password" placeholder="Ingrese su contraseña" onChange={readInput} />

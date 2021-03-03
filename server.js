@@ -5,10 +5,12 @@ require('./config/database')
 const cors=require('cors')
 const router = require('./routes/index')
 const app = express()
+const fileUpload = require('express-fileupload')
 
 /*Middlewares*/
 app.use(express.json())
 app.use(cors())
+app.use(fileUpload())
 /*Pedido al router*/
 app.use("/api",router)
 

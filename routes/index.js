@@ -5,20 +5,18 @@ const passport = require('passport')
 const validator = require('../controllers/validator')
 const userController=require('../controllers/userController')
 const productController = require('../controllers/productController')
-const shoopingCartController = require('../controllers/shoopingCartController')
+const shoppingCartController = require('../controllers/shoppingCartController')
 
 //rutas
 //user
 router.route('/user/signup')
-.post(userController.newUser)
+.post(validator.validNewUser,userController.newUser)
 
 router.route('/user/login')
 .post(userController.logIn)
 
 router.route('/user/ls')
 .post(passport.authenticate('jwt', { session: false }), userController.logFromLS)
-
-//shooping
 
 //product
 router.route('/products')
@@ -41,11 +39,11 @@ router.route('/products/delcomment')
 .put(productController.delComment)
 
 //shooping
-router.route('/products/shoopingcart')
-.get(shoopingCartController.getShoopingCart)
-.post(shoopingCartController.addShoopingCart)
+router.route('/products/shoppingcart')
+.get(shoppingCartController.getShoppingCart)
+.post(shoppingCartController.addShoppingCart)
 
-router.route('/products/editshoopingcart')
-.put(shoopingCartController.editShoopingCart)
+router.route('/products/editshoppingcart')
+.put(shoppingCartController.editShoppingCart)
 
 module.exports = router

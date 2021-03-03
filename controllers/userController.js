@@ -6,44 +6,52 @@ const path = require('path')
 
 const userController = {
   newUser: async(req, res) => {
-    console.log("entre al controlador")
-      console.log(req.body, req.files)
     try {
-      const errores = []
-      const { firstName, lastName, email, password, country, rol } = req.body
-      // const file = req.files.file //pic que viaja por la action
+      const { firstName, lastName, email, password, pic, rol, google } = req.body
+      console.log(google)
       const userExists = await User.findOne({ email: email})//buscamos coincidencia
       if (userExists) {
         let error = [{ path: ['useremailExist'] }] //si el email ya existe
-        res.json({ success: false, errores: error }) //retorna este error.
+        res.json({ success: false, error: error }) //retorna este error.
       }
-      // file.mv(path.join(__dirname, `../client/build/assets/profilePictures/${file.md5}.jpg`), error => {
-      //     if (error) {
-      //         return res.json({ response: error })
-      //     }
-      // }
-      // ) en caso de que defina las rutas de la pic añadir a newUser
-      if (errores.length === 0) { // si no hay errores en nuestra variable errores.
-        const hashedPassword = bcryptjs.hashSync(password, 10) //encriptamos password
-        // const profilePictureUbicacion = `/assets/profilePictures/${file.md5}.jpg`
-        var newUser = new User({
-          firstName, lastName, email, password: hashedPassword, country, rol
-            })
-            var newUserSaved = await newUser.save() //intentamos guardar en la db
-            var token = jwt.sign({ ...newUserSaved }, process.env.SECRET_KEY, {}) //tokeamos el user
+      const hashedPassword = bcryptjs.hashSync(password, 10) //encriptamos password
+      var newUser = new User({
+        firstName, lastName, email, password: hashedPassword, pic, rol
+          })
+      if(google !== 'true'){
+        const {fileUrlPic}=req.files
+        if(fileUrlPic.mimetype.indexOf('image/jpeg')!==0&&fileUrlPic.mimetype.indexOf('image/png')!==0&&fileUrlPic.mimetype.indexOf('image/bmp')!==0){
+           return res.json({success:false,error:"El formato de la imagen tiene que ser JPG,JPEG,BMP ó PNG."})
         }
+        const extPic=fileUrlPic.name.split('.',2)[1]
+        ///../client/build/usersPics/
+        console.log(__dirname)
+        fileUrlPic.mv(`${__dirname}/../frontend/public/assets/userPics/${newUser._id}.${extPic}`,error =>{
+           if(error){
+              return res.json({success:false,error:"Intente nuevamente..."})
+           }
+        })
+        newUser.pic=`./assets/userPics/${newUser._id}.${extPic}`
+     }else{
+       console.log("google")
+      newUser.pic=pic
+      newUser.accountGoogle=true
+     }
+      var newUserSaved = await newUser.save() //intentamos guardar en la db
+      console.log(newUserSaved)
+      var token = jwt.sign({ ...newUserSaved }, process.env.SECRET_KEY, {}) 
         return res.json({
-          success: errores.length === 0 ? true : false,
+          success: true,
           response: {
             token,
             firstName: newUserSaved.firstName,
             email: newUserSaved.email,
+            pic: newUserSaved.pic,
             userId: newUserSaved._id
           }
         })
     } catch (error) {
         res.json({ success: false, error })
-        console.log(error)
     }
 },
 
@@ -52,11 +60,11 @@ logIn: async (req, res) => {
       const { email, password } = req.body
       const userExists = await User.findOne({ email: email })
       if (!userExists) {
-          return res.json({ success: false, message: 'Incorrect email and / or password.' })//si el email no coincide
+          return res.json({ success: false, error: 'Incorrect email and / or password.' })//si el email no coincide
       }
       const passwordMatches = bcryptjs.compareSync(password, userExists.password)//si la password no coincide
       if (!passwordMatches) {
-          return res.json({ success: false, message: 'Incorrect email and / or password.' })
+          return res.json({ success: false, error: 'Incorrect email and / or password.' })
       }
       var token = jwt.sign({ ...userExists }, process.env.SECRET_KEY, {})
       return res.json(
@@ -65,12 +73,12 @@ logIn: async (req, res) => {
                   token,
                   firstName: userExists.firstName,
                   email: userExists.email,
-                  userId: userExists._id
+                  userId: userExists._id,
+                  pic:userExists.pic
               }
           })//al confirmar assets para form agregar pic
   } catch (error) {
       res.json({ success: false, error })
-      console.log(error)
   }
 },
 logFromLS: (req, res) => {
