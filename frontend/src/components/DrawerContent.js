@@ -1,6 +1,6 @@
 import '../styles/DrawerContent.css'
 import { useState } from 'react'
-import { FaRegWindowClose, FaMusic } from 'react-icons/fa'
+import { FaRegWindowClose } from 'react-icons/fa'
 
 const DrawerContent = ({closeDrawer}) => {
     const [products, setProducts] = useState([

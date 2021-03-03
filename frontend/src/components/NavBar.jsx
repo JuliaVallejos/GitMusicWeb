@@ -3,7 +3,8 @@ import '../styles/NavBar.css'
 import { NavLink, Link } from 'react-router-dom'
 import { AiFillGithub } from 'react-icons/ai'
 import { FaUserCircle } from 'react-icons/fa'
-import { FaMusic } from 'react-icons/fa'
+import { FaMusic} from 'react-icons/fa'
+import ViewCategoryDrawer from './ViewCategoryDrawer'
 
 const NavBar = () => {
   return (
@@ -12,6 +13,7 @@ const NavBar = () => {
         <div className='navBarLogo'>
           <AiFillGithub className="navGithub" />
           <FaMusic className="navMusicIcon" />
+          <ViewCategoryDrawer />
         </div>
 
         <div className='links'>

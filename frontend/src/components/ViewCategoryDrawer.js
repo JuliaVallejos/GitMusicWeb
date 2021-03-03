@@ -1,11 +1,10 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import '../../node_modules/rsuite/dist/styles/rsuite-default.css';
-import '../styles/DrawerContent.css'
+import { FaBars } from 'react-icons/fa'
 import {ButtonToolbar, Drawer, Button} from 'rsuite'
-import DrawerContent from './DrawerContent'
-import CartIcon from './CartIcon';
+import CategoryDrawer from './CategoryDrawer'
 
-class ShowDrawer extends Component {
+class ViewCategoryDrawer extends Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -31,10 +30,10 @@ class ShowDrawer extends Component {
       const { size, placement, show } = this.state;
   
       return (
-        <div >
+        <div>
           <ButtonToolbar>
-            <div node="button" onClick={() => this.toggleDrawer('right')} >
-            <CartIcon/>
+            <div node="button" onClick={() => this.toggleDrawer('left')} >
+            <FaBars style={{marginLeft: '1.2vw', height: '4vh'}} />
             </div>
           </ButtonToolbar>  
           <Drawer
@@ -42,18 +41,14 @@ class ShowDrawer extends Component {
             placement={placement}
             show={show}
             onHide={this.close}
-            className="showDrawerContainer"
           >
             <Drawer.Header>
-              <h4 style={{textAlign: 'center'}}>Shopping Cart</h4>
+              <h4 style={{textAlign: 'center'}}>Explorar</h4>
             </Drawer.Header>
             <Drawer.Body>
-              <DrawerContent/>
+                <CategoryDrawer />
             </Drawer.Body>
             <Drawer.Footer>
-              <Button onClick={this.close} appearance="primary">
-                Comprar
-              </Button>
               <Button onClick={this.close} appearance="subtle">
                 Cerrar
               </Button>
@@ -64,4 +59,4 @@ class ShowDrawer extends Component {
     }
   }
   
-  export default ShowDrawer
+export default ViewCategoryDrawer;
