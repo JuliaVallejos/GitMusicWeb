@@ -16,12 +16,9 @@ router.route('/user/login')
 
 router.route('/user/ls')
 .post(passport.authenticate('jwt', { session: false }), userController.logFromLS)
-<<<<<<< HEAD
 
-router.route('/user/test')
-.get(userController.test)
-=======
->>>>>>> afcee2f0fcdde111354b7e8f5a93f440f84401d8
+// router.route('/user/test')
+// .get(userController.test)
 
 //shooping
 
@@ -29,6 +26,7 @@ router.route('/user/test')
 router.route('/products')
 .get(productController.allProducts)
 .post(productController.addProduct)
+
 router.route('/products/:idProduct')
 .delete(productController.deleteProduct)
 
