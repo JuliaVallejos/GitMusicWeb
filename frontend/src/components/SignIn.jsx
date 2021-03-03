@@ -7,6 +7,7 @@ import { Alert, Message } from 'rsuite';
 import userActions from '../Redux/actions/userActions'
 import '../styles/signIn.css'
 
+
 const SignIn = (props) => {
 
     const { history, signIn, loggedUser } = props
@@ -15,11 +16,13 @@ const SignIn = (props) => {
     const [hidden, setHidden] = useState(true)
 
     useEffect(() => {
-        if (loggedUser !== null)
-            setTimeout(() => {
-                history.push('/')
-            }, 1000)
+     
     }, [loggedUser])
+
+    //   if (loggedUser !== null)
+    // setTimeout(() => {
+    //     history.push('/')
+    // }, 1000)
 
     const readInput = e => {
         const value = e.target.value
@@ -43,10 +46,10 @@ const SignIn = (props) => {
             if (response && !response.success) {
                 setErrores(response.message)
         }
-        if (loggedUser !== null)
-            setTimeout(() => {
-                props.history.push('/')
-            }, 3000)
+        // if (loggedUser !== null)
+        //     setTimeout(() => {
+        //         props.history.push('/')
+        //     }, 3000)
         }
     }
     const responseGoogle = async response => {
