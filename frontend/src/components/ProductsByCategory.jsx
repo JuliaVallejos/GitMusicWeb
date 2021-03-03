@@ -18,9 +18,9 @@ const ProductsByCategory = (props) =>{
     },[])
     return(
         <div className='productsByCategory'>
-        {Array(5)
-            .fill(1)
-            .map((el) =>
+            <h4 className='categoryTitle'>{category}</h4>
+            <div className='productsList'>
+        {Array(7).fill(1).map(() =>
             arrayCategory.map(product =>{
                 return (
                     <Product product={product}/>
@@ -28,7 +28,7 @@ const ProductsByCategory = (props) =>{
             })
               
             )}
-            
+            </div>
         </div>
     )
 }

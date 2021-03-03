@@ -7,9 +7,9 @@ import { AiFillGithub } from 'react-icons/ai'
 import { FaMusic } from 'react-icons/fa'
 import productActions from '../Redux/actions/productActions'
 
-const LandingPage = ({allProducts}) => {
+const LandingPage = ({getProducts}) => {
   useEffect(() => {
-    allProducts()
+    getProducts()
   }, [])
   return (
     <>
@@ -26,6 +26,6 @@ const LandingPage = ({allProducts}) => {
 }
 
 const mapDispatchToProps = {
-  allProducts: productActions.allProducts
+ getProducts: productActions.getProducts
 }
 export default connect(null,mapDispatchToProps)(LandingPage)
