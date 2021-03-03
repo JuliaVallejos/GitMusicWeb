@@ -3,6 +3,7 @@ import '../styles/LandingPage.css'
 import Recommended from './Recommended'
 import { AiFillGithub } from 'react-icons/ai'
 import { FaMusic } from 'react-icons/fa'
+
 const LandingPage = () => {
   return (
     <>
