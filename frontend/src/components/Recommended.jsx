@@ -10,9 +10,9 @@ const Recommended = () => {
       <h2>Productos en Oferta!</h2>
       <h4>Aprovecha nuestros productos recomendados!</h4>
       <div className='cardContainer'>
-        {products.map(product => {
+        {products.map((product,i) => {
           return (
-            <Card product={product} />
+            <Card key={i} product={product} />
           )
         })}
       </div>

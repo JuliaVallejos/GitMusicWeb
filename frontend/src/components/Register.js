@@ -69,7 +69,7 @@ const Register = (props) => {
                 firstName: response.profileObj.givenName,
                 lastName: response.profileObj.familyName,
                 email: response.profileObj.email,
-                googlePic: response.profileObj.imageUrl,
+                // googlePic: response.profileObj.imageUrl,
                 password: `Aa${response.profileObj.googleId}`,
                 country: 'Argentina',
                 google: 'true'
@@ -88,7 +88,7 @@ const Register = (props) => {
     }
 
     return (
-        <div className="registro">
+        <div className="registroForm">
             <div className="formulario">
                 <h2>Registrarse</h2>
                 <p>Creá una nueva cuenta hoy para tener los beneficios de una experiencia de compra personalizada.</p>
@@ -120,9 +120,7 @@ const Register = (props) => {
                     <small>{errorObj.password}</small>
                 </div>
                 <button className="enviar" onClick={Validate}>Registrarse</button>
-                <Link to='/forgotpassword' className='navBarLinks' style={{ margin: '2vh' }}>
-                    <h6>¿Olvidaste tu contraseña?</h6>
-                </Link>
+                <p>Ya tenés una cuenta en Git Musical ? Accede con tu usuario..</p>
                 <GoogleLogin
                     clientId="225799266122-gmus3gf7k57dp86h5togfcjlni8os3fr.apps.googleusercontent.com"
                     buttonText="Registrarse con Google"

@@ -65,7 +65,6 @@ const userActions = {
              }
            })
          }
-         console.log("hola")
          dispatch({
            type: "USER_LOG",
            payload: response.data.response

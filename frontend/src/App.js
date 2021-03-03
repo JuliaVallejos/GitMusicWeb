@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import CartIcon from './components/CartIcon';
 import signIn from './components/SignIn'
 import Register from './components/Register'
+import RegisterUser from './components/RegisterUser'
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
   <Route exact path='/' component={LandingPage}/>
   <Route path='/signin'component={signIn}/>
   <Route path='/signup'component={Register}/>
+  <Route path='/registerUser'component={RegisterUser}/>
 </Switch>
 </Router>
 <Footer/>

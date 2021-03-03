@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 2vh ;
+  /* padding: 2vh ; */
   color: whitesmoke;
   border-bottom: solid 2px rgba(245, 245, 245, 0.349);
   background-color: rgb(12, 12, 12);
@@ -27,4 +27,15 @@
   right: 0;
   color: rgb(47, 140, 187);
 
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconUser {
+  width: 5vw;
+  height: 7vh;
 }
