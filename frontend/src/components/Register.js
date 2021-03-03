@@ -101,15 +101,7 @@ const Register = (props) => {
                     <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="lastName" placeholder="Ingrese su apellido" onChange={readInput} />
                     <small>{errorObj.lastName}</small>
                 </div>
-                <div className="inputDiv">
-                    <small>{errorObj.country}</small>
-                    <select name="country" type='text' placeholder='Seleccione su país' onChange={readInput} >
-                        <option value=''>Selecciona un país</option>
-                        {countries.map((country, i) => {
-                            return <option key={"selectCountry" + i} value={country} className="inputDiv">{country}</option>
-                        })}
-                    </select>
-                </div>
+               
                 <div className="inputDiv">
                     <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="email" placeholder="Ingrese su dirección de correo electrónico" onChange={readInput} />
                     <small>{errorObj.email}</small>

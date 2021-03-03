@@ -54,7 +54,7 @@ background-attachment: fixed;
 	
 }
 
-.container .product-details h1:before{
+/* .container .product-details h1:before{
 	position: absolute;
 	content: '';
 	right: 10px; 
@@ -76,7 +76,7 @@ background-attachment: fixed;
 	from  {content: 'Oportunidad!';}
 	to  {content: 'Oferta!';}
 	
-}
+} */
 
 /*Product Rating  */
 .hint-star {

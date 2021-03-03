@@ -3,7 +3,7 @@ const path = require('path')
 require('dotenv').config()
 require('./config/database')
 const cors=require('cors')
-const router = require ('./routes/index')
+const router = require('./routes/index')
 const app = express()
 
 /*Middlewares*/
