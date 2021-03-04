@@ -24,7 +24,7 @@
     cursor: pointer;
     border-right: solid 2px rgb(65, 166, 216); 
     height: auto;
-    min-width: 10vw;
+    /* min-width: 10vw; */
  }
  .endBtn {
     background-color: rgb(12, 12, 12);
@@ -34,7 +34,7 @@
     border: none;
     cursor: pointer;
     height: auto;
-    min-width: 10vw;
+    /* min-width: 10vw; */
     font-weight: bold;
 }
 .dropdown-content{

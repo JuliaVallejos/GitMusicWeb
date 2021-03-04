@@ -58,8 +58,6 @@ const UserDetails = (props) => {
       props.modifyUser(formData)
       alert ('formato de imagen no permitido')
     }
-
-    console.log(formData)
 }
 
   return (

@@ -6,6 +6,7 @@ const path = require('path')
 
 const userController = {
   newUser: async(req, res) => {
+    
     try {
       const { firstName, lastName, email, password, pic, rol, google } = req.body
       console.log(google)
