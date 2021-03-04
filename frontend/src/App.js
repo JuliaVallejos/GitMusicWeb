@@ -8,6 +8,7 @@ import ShowDrawer from './components/ShowDrawer'
 import signIn from './components/SignIn'
 import Register from './components/Register'
 import RegisterUser from './components/RegisterUser'
+import ProductsByCategory from './components/ProductsByCategory'
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
   <Route path='/signin'component={signIn}/>
   <Route path='/signup'component={Register}/>
   <Route path='/registerUser'component={RegisterUser}/>
+  <Route path='/products/:category' component={ProductsByCategory}/>
 </Switch>
 </Router>
 <Footer/>
