@@ -71,8 +71,7 @@ const SignIn = (props) => {
             <div className="formularioSignIn">
                 <h2>Acceder</h2>
                 <div className="text">
-                    <p>¡Hola!</p>
-                    <p >Iniciá sesión con tu cuenta</p>
+                    <h4>Iniciá sesión con tu cuenta</h4>
                 </div>
 
                 {errores !== '' && <Message type='info' description={errores} style={{ marginBottom: '2vh' }} />}

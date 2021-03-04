@@ -5,8 +5,15 @@ import { AiFillGithub } from 'react-icons/ai'
 import { FaUserCircle } from 'react-icons/fa'
 import { FaMusic} from 'react-icons/fa'
 import ViewCategoryDrawer from './ViewCategoryDrawer'
+import { connect } from 'react-redux'
+import userActions from '../Redux/actions/userActions'
 
-const NavBar = () => {
+const NavBar = ({loggedUser, signOut}) => {
+
+  const byeBye = () =>{
+    localStorage.clear()
+    signOut()
+  }
   return (
     <nav>
       <div className="navBar">
@@ -20,8 +27,13 @@ const NavBar = () => {
           <NavLink to='/' className='navLinks'>
             Mi cuenta
           </NavLink>
+            {loggedUser && <p className='navLinks signOut' onClick={byeBye}>Cerrar sesión</p>}
           <NavLink to='/registerUser' className='navLinks'>
-            <FaUserCircle className="iconUser"/>
+            {!loggedUser ? <FaUserCircle className="iconUser"/> :(
+              
+              <div className="userPic" style={{backgroundImage: `url(.${loggedUser.pic})`, backgroundPosition: 'center', backgroundSize: 'cover'}}>
+              </div>
+            )}
           </NavLink>
         </div>
 
@@ -29,5 +41,12 @@ const NavBar = () => {
     </nav>
   )
 }
-
-export default NavBar
+const mapStateToProps = state => {
+  return {
+      loggedUser: state.userR.loggedUser
+  }
+}
+const mapDispatchToProps ={
+    signOut: userActions.signOut
+}
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar)

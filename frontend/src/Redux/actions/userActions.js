@@ -80,14 +80,14 @@ const userActions = {
      }
    },    
 
-//    signOut: () =>{
-//      return async (dispatch, getState) =>{
-//        dispatch({
-//          type: "SIGN_OUT",
-//        })
-//        Alert.success('Nos vemos pronto!')
-//      }
-//    },
+   signOut: () =>{
+     return async (dispatch, getState) =>{
+       dispatch({
+         type: "SIGN_OUT",
+       })
+       Alert.success('Nos vemos pronto!')
+     }
+   },
   preserveLog: (token) =>{
     console.log(token,"action")
     const idUser=localStorage.getItem('idUser')

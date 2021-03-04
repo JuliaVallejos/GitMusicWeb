@@ -85,7 +85,7 @@ const Register = (props) => {
         <div className="registroForm">
             <div className="formulario">
                 <h2>Registrarse</h2>
-                <p>Creá una nueva cuenta hoy para tener los beneficios de una experiencia de compra personalizada.</p>
+                <h4>Creá una nueva cuenta hoy para tener los beneficios de una experiencia de compra personalizada.</h4>
                 <div className="inputDiv">
                     <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="firstName" placeholder="Ingrese su nombre" onChange={readInput} />
                     <small>{errorObj.firstName}</small>
@@ -108,7 +108,6 @@ const Register = (props) => {
                     <small>{errorObj.password}</small>
                 </div>
                 <button className="enviar" onClick={Validate}>Registrarse</button>
-                <p>Ya tenés una cuenta en Git Musical ? Accede con tu usuario..</p>
                 <GoogleLogin
                     clientId="225799266122-gmus3gf7k57dp86h5togfcjlni8os3fr.apps.googleusercontent.com"
                     buttonText="Registrarse con Google"

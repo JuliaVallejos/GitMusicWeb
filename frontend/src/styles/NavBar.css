@@ -39,3 +39,12 @@
   width: 5vw;
   height: 7vh;
 }
+.userPic{
+  width: 5vw;
+  height: 7vh;
+
+}
+
+.signOut{
+  cursor: pointer;
+}

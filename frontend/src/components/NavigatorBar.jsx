@@ -50,7 +50,7 @@ const [visible, setVisible] =useState(false)
             </NavLink>
         
             </div>
-                   {visible && (<div className="dropdown-content">Tenemos lo que buscas, para toda clase de instrumentos musicales</div>)}
+                   {visible && (<div className="dropdown-content">Tenemos lo que buscas. Toda clase de instrumentos musicales y accesorios!</div>)}
         </nav>
     )
 }
