@@ -19,14 +19,14 @@
 .cartLink{
   position: relative;
 }
-.cartLink small{
+.quantity {
   position: fixed;
   color:  white;
-  background-color: white;
-  right: 2vw;
-  bottom: 8vh;
+  background-color: rgb(0, 0, 0);
+  right: 20px;
+  bottom: 80px;
   font-size: 1.4rem;
-  width: 25px;
   text-align: center;
   border-radius: 100%;
 }
+
