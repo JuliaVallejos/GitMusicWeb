@@ -8,6 +8,7 @@ import ShowDrawer from './components/ShowDrawer'
 import signIn from './components/SignIn'
 import Register from './components/Register'
 import RegisterUser from './components/RegisterUser'
+import UserDetails from './components/UserDetails'
 
 
 function App() {
@@ -18,9 +19,8 @@ function App() {
 <ShowDrawer />
 <Switch>
   <Route exact path='/' component={LandingPage}/>
-  <Route path='/signin'component={signIn}/>
-  <Route path='/signup'component={Register}/>
   <Route path='/registerUser'component={RegisterUser}/>
+  <Route path='/userdetails'component={UserDetails}/>
 </Switch>
 </Router>
 <Footer/>

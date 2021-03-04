@@ -101,7 +101,6 @@ const Register = (props) => {
                     <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="lastName" placeholder="Ingrese su apellido" onChange={readInput} />
                     <small>{errorObj.lastName}</small>
                 </div>
-               
                 <div className="inputDiv">
                     <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="email" placeholder="Ingrese su dirección de correo electrónico" onChange={readInput} />
                     <small>{errorObj.email}</small>

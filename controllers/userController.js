@@ -73,6 +73,28 @@ logIn: async (req, res) => {
       console.log(error)
   }
 },
+
+modifyUser: (req, res) => {
+  const {id, email, firstName, lastName} = req.body
+  const {pic} = req.files
+  const picUser = image.name.split('.')
+  const url = `../assets/${id}.${picUser[1]}`
+  image.mv(`./frontend/public/assets/${id}.${pic[1]}`, errores=> {
+  if(errores) {
+      return res.json({
+          success: false,
+          errores:errores,
+          mensaje:'No se puede actualizar. Intente mas tarde'
+      })
+  }
+  })
+  User.findOneAndUpdate({_id: id},
+  {$set: {firstName, email, lastName, pic: url}},
+  {new: true})
+  .then(data => res.json({ success: true, response: data }))
+  .catch(error => res.json({ success: false, error }))
+},
+
 logFromLS: (req, res) => {
   console.log(req.body, req.user)
   try {
