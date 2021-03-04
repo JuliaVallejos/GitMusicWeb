@@ -85,9 +85,7 @@ const SignIn = (props) => {
                     onFailure={responseGoogle}                            
                     cookiePolicy={'single_host_origin'}
                 />
-            <NavLink to='/userdetails' className='navLinks'>
-            mi usuario
-          </NavLink>
+
             </div>
         </div>
     )
