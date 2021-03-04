@@ -23,8 +23,8 @@ function App(props) {
         <Redirect to ="/"/>
       </Switch>
     </>
-  }else if(localStorage.getItem('token')){
-    props.preserveLog(localStorage.getItem('token'))
+   }else if(localStorage.getItem('token')){
+    props.preserveLog(localStorage.getItem('token')) 
   }else{
      links =
     <>

@@ -1,16 +1,16 @@
 import React from 'react'
 import '../styles/DrawerContent.css'
-import { useState } from 'react'
+import {connect} from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
-const CategoryDrawer = () => {
-    const [categories, setCategories] = useState([
-        {category: 'Accesorios',access: '#', pic: '../assets/puasdrawer.jpg'}, {category: 'Amplificadores',access: '#', pic: '../assets/amplificadordrawer.jpg'}, {category: 'Bajos',access: '#', pic: '../assets/bajodrawer.jpg'}, {category: 'Guitarras',access: '#', pic: '../assets/guitarratest.jpg'}, {category: 'Pedales y pedaleras.',access: '#', pic: '../assets/pedaldrawer.jpg'}, {category: 'Percusión',access: '#', pic: '../assets/bateriadrower.jpg' }, {category: 'Teclados',access: '#', pic: '../assets/tecladodrower.jpg'}, {category: 'Sonidos',access: '#', pic: '../assets/sonidodrawer.jpg'}, {category: 'Cuerda Frotada',access: '#', pic: '../assets/cuerdafrotadadrawer.jpg'}, {category: 'Vientos',access: '#', pic: '../assets/saxodrawer.jpg'}
-    ])
+const CategoryDrawer = ({categories}) => {
+/*     const [categories, setCategories] = useState([
+        {category: 'Accesorios', pic: '../assets/puasdrawer.jpg'}, {category: 'Amplificadores', pic: '../assets/amplificadordrawer.jpg'}, {category: 'Bajos', pic: '../assets/bajodrawer.jpg'}, {category: 'Guitarras', pic: '../assets/guitarratest.jpg'}, {category: 'Pedales y pedaleras', pic: '../assets/pedaldrawer.jpg'}, {category: 'Percusión', pic: '../assets/bateriadrower.jpg' }, {category: 'Teclados',pic: '../assets/tecladodrower.jpg'}, {category: 'Sonidos', pic: '../assets/sonidodrawer.jpg'}, {category: 'Cuerda Frotada', pic: '../assets/cuerdafrotadadrawer.jpg'}, {category: 'Vientos', pic: '../assets/saxodrawer.jpg'}
+    ]) */
     return (
         <div>
             {categories.map(category => 
-                <NavLink to ={`${category.access}`} style={{textDecoration: 'none'}} className="navLinksCategory">
+                <NavLink to ={`/products/${category.category}`} style={{textDecoration: 'none'}} className="navLinksCategory">
                     <img src={`${category.pic}`} className="drawerCategoryImg"></img>
                     <p className="textLinksCategory">{category.category}</p>
                 </NavLink>
@@ -18,5 +18,9 @@ const CategoryDrawer = () => {
         </div>
     )
 }
-
-export default CategoryDrawer;
+const mapStateToProps = state =>{
+    return{
+        categories:state.product.categories
+    }
+}
+export default connect(mapStateToProps)(CategoryDrawer)
