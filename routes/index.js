@@ -18,6 +18,9 @@ router.route('/user/login')
 router.route('/user/ls')
 .post(passport.authenticate('jwt', { session: false }), userController.logFromLS)
 
+router.route('/userDetails')
+.post(userController.modifyUser)
+
 // router.route('/user/test')
 // .get(userController.test)
 

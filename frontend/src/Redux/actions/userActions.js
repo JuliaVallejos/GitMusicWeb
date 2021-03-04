@@ -123,6 +123,20 @@ const userActions = {
            Alert.success("Hola " + respuesta.data.response.firstName + '!')
        }
    },
+
+
+   modifyUser: (formData) => {
+     console.log(formData)
+    return async (dispatch, getState) => {
+        const response = await axios.post(`http://localhost:4000/api/userDetails`, formData, {
+            headers: { 
+                'Content-Type': 'multipart/form-data' 
+            }
+        })
+        dispatch({type: 'MODIFY_USER', payload: response.data})
+        console.log(response.data)
+    }
+},
 //    requestResetPass:(userMail) => {
 //      return async (dispatch, getState) => {
 //        const respuesta = await axios.post(Api+'/user/requestresetpass', userMail)
@@ -157,6 +171,8 @@ const userActions = {
 //        }      
 //      }
 //    },
+
+
    
  }
  

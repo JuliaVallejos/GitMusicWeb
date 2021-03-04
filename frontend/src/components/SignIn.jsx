@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import GoogleLogin from 'react-google-login'
 import { FaEye } from "react-icons/fa";
-import { Link } from 'react-router-dom'
+import { Link, NavLink} from 'react-router-dom'
 import { Alert, Message } from 'rsuite';
 import userActions from '../Redux/actions/userActions'
 import '../styles/signIn.css'
@@ -15,14 +15,7 @@ const SignIn = (props) => {
     const [errores, setErrores] = useState('')
     const [hidden, setHidden] = useState(true)
 
-    useEffect(() => {
-     
-    }, [loggedUser])
 
-    //   if (loggedUser !== null)
-    // setTimeout(() => {
-    //     history.push('/')
-    // }, 1000)
 
     const readInput = e => {
         const value = e.target.value
@@ -46,12 +39,10 @@ const SignIn = (props) => {
             if (response && !response.success) {
                 setErrores(response.message)
         }
-        // if (loggedUser !== null)
-        //     setTimeout(() => {
-        //         props.history.push('/')
-        //     }, 3000)
+
         }
     }
+     
     const responseGoogle = async response => {
         if (response.error) {
         } else {
@@ -66,6 +57,7 @@ const SignIn = (props) => {
             }
         }
     }
+
     return (
         <div className="registro">
             <div className="formularioSignIn">
@@ -93,6 +85,9 @@ const SignIn = (props) => {
                     onFailure={responseGoogle}                            
                     cookiePolicy={'single_host_origin'}
                 />
+            <NavLink to='/userdetails' className='navLinks'>
+            mi usuario
+          </NavLink>
             </div>
         </div>
     )
