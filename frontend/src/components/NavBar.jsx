@@ -24,7 +24,10 @@ const NavBar = ({loggedUser, signOut}) => {
         </div>
 
         <div className='links'>
-          <NavLink to='/userdetails' className='navLinks'>
+        <NavLink exact to='/' className='navLinks'>
+            Home
+          </NavLink>
+          <NavLink to={loggedUser?'/userdetails':'/registerUser'} className='navLinks'>
             Mi cuenta
           </NavLink>
             {loggedUser && <p className='navLinks signOut' onClick={byeBye}>Cerrar sesión</p>}
@@ -44,6 +47,7 @@ const NavBar = ({loggedUser, signOut}) => {
 const mapStateToProps = state => {
   return {
       loggedUser: state.userR.loggedUser
+      
   }
 }
 const mapDispatchToProps ={
