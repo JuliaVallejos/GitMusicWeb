@@ -31,7 +31,7 @@ const Register = (props) => {
     useEffect(() => {
         if (loggedUser !== null)
             setTimeout(() => {
-                history.push('/')
+                // history.push('/')
             }, 3000)
     }, [loggedUser])
     

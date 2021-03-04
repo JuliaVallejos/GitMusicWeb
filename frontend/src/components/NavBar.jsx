@@ -18,7 +18,7 @@ const NavBar = () => {
 
         <div className='links'>
           <NavLink to='/' className='navLinks'>
-            Inicio
+            Mi cuenta
           </NavLink>
           <NavLink to='/registerUser' className='navLinks'>
             <FaUserCircle className="iconUser"/>

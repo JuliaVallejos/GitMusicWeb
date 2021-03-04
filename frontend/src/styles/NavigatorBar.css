@@ -1,0 +1,49 @@
+.containerNavigator{
+    background-color:black;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    border-bottom:solid 2px rgba(245, 245, 245, 0.349) ;
+}
+.dropDown {
+    color:white;
+    background-color: rgb(12, 12, 12);
+    border-radius: none; 
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    display:inline-block;
+}
+.dropBtn{
+    padding: 10px;
+    background-color: rgb(12, 12, 12);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-right: solid 2px rgb(65, 166, 216); 
+    height: auto;
+    min-width: 10vw;
+ }
+ .endBtn {
+    background-color: rgb(12, 12, 12);
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    height: auto;
+    min-width: 10vw;
+    font-weight: bold;
+}
+.dropdown-content{
+    position:absolute;
+    left: 350px;
+    min-width: 160px;
+    z-index: 1;
+    color:white;
+    font-size: 20px;
+    margin-top: 5vh; 
+}
+ 
