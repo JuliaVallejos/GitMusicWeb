@@ -15,7 +15,7 @@ const categorySchema = new mongoose.Schema({
 
 const ProductSchema = new mongoose.Schema({
   name:{type:String, required:true},
-  category:[categorySchema],
+  category:categorySchema,
   mark:{type: String, required:false},
   price:{type: Number, required:true},
   stock:{type: Number, required:true},

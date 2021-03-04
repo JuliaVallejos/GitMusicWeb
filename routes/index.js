@@ -32,6 +32,7 @@ router.route('/products')
 .post(productController.addProduct)
 
 router.route('/products/:idProduct')
+.get(productController.getProductDetail)
 .delete(productController.deleteProduct)
 
 router.route('/products/newrating')
