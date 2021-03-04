@@ -20,6 +20,7 @@ const ProductsByCategory = (props) =>{
         <div className='productsByCategory'>
             <h4 className='categoryTitle'>{category}</h4>
             <div className='productsList'>
+                {arrayCategory.length===0&& <div className='noResults'><h6>No hay productos en esta categoría</h6></div>}
         {Array(7).fill(1).map(() =>
             arrayCategory.map(product =>{
                 return (
