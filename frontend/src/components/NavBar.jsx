@@ -24,7 +24,7 @@ const NavBar = ({loggedUser, signOut}) => {
         </div>
 
         <div className='links'>
-          <NavLink to='/' className='navLinks'>
+          <NavLink to='/userdetails' className='navLinks'>
             Mi cuenta
           </NavLink>
             {loggedUser && <p className='navLinks signOut' onClick={byeBye}>Cerrar sesión</p>}

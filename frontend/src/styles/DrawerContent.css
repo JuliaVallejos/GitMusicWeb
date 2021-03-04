@@ -54,7 +54,8 @@
 .navLinksCategory{
     display:flex;
     align-items: center;
-    padding: 5px;
+    padding: 2vh;
+    border-bottom: solid 1px grey;
 }
 .textLinksCategory{
     color: black;
