@@ -2,8 +2,6 @@ import Register from './Register'
 import SignIn from './SignIn'
 import '../styles/signIn.css'
 
-
-
 const RegisterUser = () => {
 
     return (

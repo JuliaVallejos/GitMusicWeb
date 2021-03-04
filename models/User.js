@@ -4,7 +4,6 @@ const UserSchema = new mongoose.Schema({
   firstName:{type:String, required:true},
   lastName:{type:String, required:true},
   email:{type: String, required:true},
-  country:{type: String, required:false},
   rol:{type: String, required:false, default:"user"},
   pic:{type: String, required:false, default:'../assets/img/logoUser.png'},
   password:{type: String , required: true},

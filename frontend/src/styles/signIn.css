@@ -70,6 +70,7 @@
     border: solid 2px rgba(6, 134, 200, 0.863);
     transition: all ease .3s;
     box-shadow: 5px 5px 12px rgba(113, 234, 255, 0.507);
+    background-color: white;
   }
   .formulario input:hover, .formularioSignIn input:hover{
     border: none;
