@@ -10,6 +10,7 @@ import RegisterUser from './components/RegisterUser'
 import ProductsByCategory from './components/ProductsByCategory'
 import userActions from './Redux/actions/userActions'
 import UserDetails from './components/UserDetails'
+import AddProducts from './components/AddProducts'
 
 function App(props) {
   console.log(props.loggedUser)
@@ -32,6 +33,7 @@ function App(props) {
           <Route exact path='/' component={LandingPage}/>
           <Route path='/products/:category' component={ProductsByCategory}/>
           <Route path='/registerUser' component={RegisterUser}/>
+          <Route path='/addProducts' component={AddProducts}/>
           <Redirect to="/"/>
         </Switch>
     </>
