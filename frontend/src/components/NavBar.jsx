@@ -27,6 +27,9 @@ const NavBar = ({loggedUser, signOut}) => {
           <NavLink to='/userdetails' className='navLinks'>
             Mi cuenta
           </NavLink>
+          <NavLink to='/singleproduct' className='navLinks'>
+            Product
+          </NavLink>
             {loggedUser && <p className='navLinks signOut' onClick={byeBye}>Cerrar sesión</p>}
           <NavLink to='/registerUser' className='navLinks'>
             {!loggedUser ? <FaUserCircle className="iconUser"/> :(
