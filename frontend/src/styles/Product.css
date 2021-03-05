@@ -9,6 +9,7 @@
     margin: auto;
     display:flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 .categoryTitle{
     text-align: center;
@@ -21,13 +22,14 @@
    background-color:white;
    border: 2px solid rgba(6, 135, 200, 0.801);
    border-radius: 8px;
-   padding:3%;
    width:25%;
-   margin:4%;
+   margin:2%;
    display:flex;
    flex-direction: column;
    align-items: center;
    box-shadow: 5px 5px 20px rgba(6, 135, 200, 0.801);
+   transition: all ease 0.3s;
+   height: 50vh;
 }
 .productContainer:hover{
     transform: scale(1.06);
@@ -49,24 +51,22 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    width:80%;
-    height: 15vh;
-    margin-bottom: 5vh;
+    width:100%;
+    height: 60%;
 }
 .productPrice{
-    width:80%;
+    width:100%;
     display:flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     margin-bottom: 5%;
 
 }
 .iconCart{
     display: flex;
-    align-self: center;
+    margin-right: 2vw;
     cursor:pointer;
-  font-size: 1.8em;
- 
+    font-size: 1.8em;
 }
 .iconCart:hover{
     opacity: 0.6;
@@ -93,5 +93,16 @@
     padding:6%;
     margin:auto;
     margin-top: 6%;
+
+}
+.cardBottom{
+    width: 100%;
+    background-color: #1572b4;
+    padding: 1vh 1vw;
+    color: white;
+    height: 40%;
+}
+.toolTip{
+    position:absolute;
 
 }

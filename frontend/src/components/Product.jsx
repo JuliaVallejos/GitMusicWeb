@@ -11,19 +11,21 @@ const Product = ({product}) =>{
             <div className='productPic' style={{backgroundImage:`url(${product.arrayPic[0]})`}}>
             </div>
             {/* -- Price View */}
+            <div className="cardBottom">
+              <h4 className='productTitle'>{product.name}</h4>            
             <div className='productPrice'>
-                    <h4>{`$${product.price}`}</h4>
-                    <div onMouseOver={()=>setAdd(true)} onMouseOut={()=>setAdd(false)} onClick={()=> alert('Agregado al carrito')} className='iconCart'><FaShoppingCart/>
-               
+                <h6>{`$${product.price}`}</h6>
+                <div onMouseOver={()=>setAdd(true)} onMouseOut={()=>setAdd(false)} onClick={()=> alert('Agregado al carrito')} className='iconCart'>
+                  <FaShoppingCart/>
+                  {/* {add&&<div className='toolTip'><p className='add'>Agregar al carrito</p></div>} */}
               </div>
               <div>{add&&<p className='add'>Agregar al carrito</p>}</div>
               
             </div>
             
-            <div className='containerTitle'>
-              <h4 className='productTitle'>{product.name}</h4>
-            </div>
             
+
+            </div>
       
       </div>
     );     

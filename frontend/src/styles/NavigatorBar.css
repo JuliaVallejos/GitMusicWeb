@@ -24,12 +24,8 @@
     cursor: pointer;
     border-right: solid 2px rgb(65, 166, 216); 
     height: auto;
-<<<<<<< HEAD
-    /* min-width: 10vw; */
-=======
     max-width: 10vw;
     
->>>>>>> 45bb705554c6744da70a6bed43df54edcf8d809e
  }
  .endBtn {
     background-color: rgb(12, 12, 12);
@@ -39,11 +35,7 @@
     border: none;
     cursor: pointer;
     height: auto;
-<<<<<<< HEAD
-    /* min-width: 10vw; */
-=======
     max-width: 10vw;
->>>>>>> 45bb705554c6744da70a6bed43df54edcf8d809e
     font-weight: bold;
 }
 .dropdown-content{
