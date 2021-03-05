@@ -22,10 +22,6 @@ const categorySchema = new mongoose.Schema({
 const ProductSchema = new mongoose.Schema({
   name:{type:String, required:true},
   category:categorySchema,
-<<<<<<< HEAD
-  type:{type: String, required:true},
-=======
->>>>>>> 395ed32c7e35599fc63bee42cad2255d34e16e1e
   mark:{type: String, required:false},
   price:{type: Number, required:true},
   stock:{type: Number, required:true},

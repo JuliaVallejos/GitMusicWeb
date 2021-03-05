@@ -7,17 +7,12 @@ import ViewCategoryDrawer from './ViewCategoryDrawer'
 import { connect } from 'react-redux'
 import userActions from '../Redux/actions/userActions'
 
-<<<<<<< HEAD
-
-const NavBar = () => {
-=======
 const NavBar = ({loggedUser, signOut}) => {
 
   const byeBye = () =>{
     localStorage.clear()
     signOut()
   }
->>>>>>> 395ed32c7e35599fc63bee42cad2255d34e16e1e
   return (
     <nav>
       <div className="navBar">
@@ -42,15 +37,11 @@ const NavBar = ({loggedUser, signOut}) => {
           </NavLink>
             {loggedUser && <p className='navLinks signOut' onClick={byeBye}>Cerrar sesión</p>}
           <NavLink to='/registerUser' className='navLinks'>
-<<<<<<< HEAD
-            <FaUserCircle className="iconUser" />
-=======
             {!loggedUser ? <FaUserCircle className="iconUser"/> :(
               
               <div className="userPic" style={{backgroundImage: `url(.${loggedUser.pic})`, backgroundPosition: 'center', backgroundSize: 'cover'}}>
               </div>
             )}
->>>>>>> 395ed32c7e35599fc63bee42cad2255d34e16e1e
           </NavLink>
         </div>
       </div>
