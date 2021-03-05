@@ -1,35 +1,43 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
+import Dropzone from "react-dropzone";
 import { Alert, Message } from 'rsuite';
+import DropFiles from './DropFiles'
 import userActions from '../Redux/actions/userActions'
 import '../styles/addProducts.css'
+import Product from './Product';
+import ItemDescription from './ItemDescription'
 
 
 const AddProducts = (props) => {
 
     const { history, signIn, loggedUser,categories } = props
-    console.log(props)
+const [itemsDescription,setItemsDescription] = useState([])
+const [newItem,setNewItem] = useState()
     const[lines,setLines]= useState(1)
-    const [arrayDescription,setArrayDescription] = useState(['one'])
+    const [arrayDescription,setArrayDescription] = useState([])
+   
     const [product, setProduct] = useState({
         name:'',
         mark:'',
         price:'',
         warranty:'',
         stock:'',
-        category:'',
-        outstanding:'',
+        category:{},
+        outstanding:false,
+        arrayPic:[],
         arrayDescription:[]
 
     })
     const [errores, setErrores] = useState('')
+    const [fileNames, setFileNames] = useState([]);
+    
 
     useEffect(() => {
         
       
     }, [])
-
-
+    
     const readInput = e => {
         const value = e.target.value
         const property = e.target.name
@@ -38,23 +46,49 @@ const AddProducts = (props) => {
             [property]: value
         })
     }
-   
+
+    const addItemDescription = (e) =>{
+        const value=e.target.value
+        const property=e.target.name
+        /* setNewItem({
+            [property]:value}) */
+            setNewItem(value)
+    }
+  
     const addLine = () =>{
         setLines(lines+1)
+       setItemsDescription([...itemsDescription,newItem])
+        
+    }
+    const removeLine = e => {
+        setLines(lines-1)
+        console.log(e.target.name)
+        setItemsDescription(itemsDescription.filter(item => item!==e.target.name))
+   
+
     }
 
     const Validate = async e => {
-        alert('Mandar')
-       /*  setErrores('')
-        if (!user.email || !user.password) {
-            setErrores('Todos los campos son requeridos')
-        } else {
-            const response = await signIn(user)
+        console.log(newItem)
+     
+        
+        const arrayFinal= [...itemsDescription,newItem]
+     
+        console.log(arrayFinal)
+
+        const fdNewProduct = new FormData()
+        fdNewProduct.append('name', product.name)
+        fdNewProduct.append('mark', product.mark)
+        fdNewProduct.append('price', product.price)
+        fdNewProduct.append('warranty', product.warranty)
+        fdNewProduct.append('stock', product.stock)
+        fdNewProduct.append('category', product.category)
+          /*   const response = await signIn(user)
             if (response && !response.success) {
                 setErrores(response.message)
         }
-
-        } */
+ */
+        
     }
  
 
@@ -79,35 +113,39 @@ const AddProducts = (props) => {
                 <div className="inputDiv addProductInput">
                     <input type="number" name="stock" placeholder="Cantidad en stock" onChange={readInput} />
                 </div>
-               <select label='category' name='category'>
+               <select  onChange={readInput} label='category' name='category'>
                 <option value='' name='category' selected disabled='true'>Selecciona categoría</option>
                    {categories.length !== 0 && categories.map(category =>{
-                      
+                     
                        return( 
+                           
                            <option value={category.category} name='category'>{category.category}</option>
                        )
                    })}
                </select>
-               <label className='outstanding' name='outstanding'>¿Es producto destacado?
+               <label className='outstanding' onChange={readInput} name='outstanding'>¿Es producto destacado?
                    <div className='radios'>
                        <div className="inputRadio"><input name='outstanding' type='radio' value={true}/>Si</div>
                         <div className="inputRadio"><input name='outstanding' type='radio' value={false}/>No</div>
                    </div>
                 
-                    
                 </label>
+                   <DropFiles product={product} setProduct={setProduct}/>
+          
                 <div className="inputDiv">
-                {[...Array(lines)].map((item, idx) =>{
-                return (
-                    <div className='addDescription'>
-                    <input key={idx+"i"}type="text" name="description" placeholder="Descripción(una oración por línea)" onChange={readInput} />
-                    {lines >= 2 && <button onClick={()=>setLines(lines-1)} className="removeLine">Borrar</button>}
-                    </div>
+              
+                         {[...Array(lines)].map((item, idx) =>{
+                        return (
+                            <ItemDescription addItemDescription={addItemDescription} newItem={newItem} removeLine={removeLine} lines={lines}/>
+                           /*  <div className='addDescription'>
+                                ``
+                            <input key={idx+"i"}type="text" name={`description`} placeholder="Descripción(una oración por línea)" onChange={addItemDescription}/>
+                            {lines >= 2 && <button name={newItem} onClick={removeLine} className="removeLine">Borrar</button>}
+                            </div> */
                 )
             })
-            }       
-                    <button onClick={addLine} className='enviar'>Agregar otra descripción</button>
-                </div>
+            } </div>  
+             <button onClick={addLine} className='enviar'>Agregar otra descripción</button>
             
                 <button className="enviar" onClick={Validate}>Aceptar</button>
                 
@@ -117,6 +155,7 @@ const AddProducts = (props) => {
         </div>
     )
 }
+
 const mapStateToProps = state => {
     return {
         loggedUser: state.userR.loggedUser,
