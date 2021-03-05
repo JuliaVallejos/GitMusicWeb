@@ -1,11 +1,17 @@
 import React from 'react'
 import '../styles/LandingPage.css'
 import Recommended from './Recommended'
+import {useEffect} from 'react'
+import {connect} from 'react-redux'
 import { AiFillGithub } from 'react-icons/ai'
 import { FaMusic } from 'react-icons/fa'
 import Navigator from "./NavigatorBar"
+import productActions from '../Redux/actions/productActions'
 
-const LandingPage = () => {
+const LandingPage = ({getProducts}) => {
+  useEffect(() => {
+    getProducts()
+  }, [])
   return (
     <>
         <Navigator />
@@ -21,4 +27,7 @@ const LandingPage = () => {
   )
 }
 
-export default LandingPage
+const mapDispatchToProps = {
+ getProducts: productActions.getProducts
+}
+export default connect(null,mapDispatchToProps)(LandingPage)

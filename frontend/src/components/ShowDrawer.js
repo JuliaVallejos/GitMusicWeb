@@ -45,10 +45,10 @@ class ShowDrawer extends Component {
             className="showDrawerContainer"
           >
             <Drawer.Header>
-              <Drawer.Title>Shopping Cart</Drawer.Title>
+              <h4 style={{textAlign: 'center'}}>Shopping Cart</h4>
             </Drawer.Header>
             <Drawer.Body>
-              <DrawerContent closeDrawer={this.close} />
+              <DrawerContent/>
             </Drawer.Body>
             <Drawer.Footer>
               <Button onClick={this.close} appearance="primary">

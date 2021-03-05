@@ -6,26 +6,27 @@
   font-size: 2.4rem;
   color: white;
   border-radius: 100%;
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: solid 3px white;
   box-shadow: 5px 5px 12px rgba(255, 255, 255, 0.507);
   text-decoration: none;
+  margin-bottom: 8vh;
 }
 .cartLink{
   position: relative;
 }
-.cartLink small{
+.quantity {
   position: fixed;
-  color:  black;
-  background-color: white;
-  right: 2vw;
-  bottom: 8vh;
+  color:  white;
+  background-color: rgb(0, 0, 0);
+  right: 20px;
+  bottom: 80px;
   font-size: 1.4rem;
-  width: 25px;
   text-align: center;
   border-radius: 100%;
 }
+

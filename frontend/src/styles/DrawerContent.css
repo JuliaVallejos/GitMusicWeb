@@ -14,10 +14,6 @@
     margin-bottom: -1vh !important;
 }
 
-.rs-drawer-body{
-    border-top: 1px solid whitesmoke;
-}
-
 .drawerProductContainer {
     display: flex;
     flex-direction: row;
@@ -51,4 +47,25 @@
     color: rgba(0, 0, 0, 0.795);
     width: 1.5vw;
     height: 3vh;
+}
+
+/*------------- CategoryDrawer ------------*/
+
+.navLinksCategory{
+    display:flex;
+    align-items: center;
+    padding: 2vh;
+    border-bottom: solid 1px grey;
+}
+.textLinksCategory{
+    color: black;
+    font-size: 1.5vw;
+    padding: 1vh;
+    margin-left: 1vw;
+}
+
+.drawerCategoryImg{
+    width: 4vw;
+    height: 4vw;
+    border-radius: 50%;
 }

@@ -29,7 +29,22 @@
     cursor: pointer;
     height: auto;
     max-width: 10vw;
+<<<<<<< HEAD
     text-align: center;
+=======
+    
+ }
+ .endBtn {
+    background-color: rgb(12, 12, 12);
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    height: auto;
+    max-width: 10vw;
+    font-weight: bold;
+>>>>>>> 395ed32c7e35599fc63bee42cad2255d34e16e1e
 }
 .dropdown-content{
     position:absolute;

@@ -1,0 +1,108 @@
+.productsByCategory{
+    width:100%;
+    background-image: url(../assets/fondo.jpeg);
+    min-height: 70vh;
+
+}
+.productsList{
+    width:80%;
+    margin: auto;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.categoryTitle{
+    text-align: center;
+    font-size: 3em;
+    padding:2%;
+    color:white
+}
+.productContainer{
+    position:relative;
+   background-color:white;
+   border: 2px solid rgba(6, 135, 200, 0.801);
+   border-radius: 8px;
+   width:25%;
+   margin:2%;
+   display:flex;
+   flex-direction: column;
+   align-items: center;
+   box-shadow: 5px 5px 20px rgba(6, 135, 200, 0.801);
+   transition: all ease 0.3s;
+   height: 50vh;
+}
+.productContainer:hover{
+    transform: scale(1.06);
+    border: solid 2px rgb(255, 123, 0);
+    color:rgb(255, 123, 0);
+    box-shadow: 5px 5px 20px rgba(255, 213, 77, 0.507);
+    }
+.containerTitle{
+    height: 6em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.productTitle{
+    font-size: 1em;
+
+}
+.productPic{
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width:100%;
+    height: 60%;
+}
+.productPrice{
+    width:100%;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5%;
+
+}
+.iconCart{
+    display: flex;
+    margin-right: 2vw;
+    cursor:pointer;
+    font-size: 1.8em;
+}
+.iconCart:hover{
+    opacity: 0.6;
+}
+.add{
+    background-color: #1572b4;
+    color:white;
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    padding: 1% 3%;
+    position:absolute;
+    width:10vw;
+    min-height:3.5em;
+
+}
+.add:hover{
+    opacity:1!important
+}
+.noResults{
+    background-color:white;
+    border: 2px solid rgba(6, 135, 200, 0.801);
+    border-radius: 8px;
+    padding:6%;
+    margin:auto;
+    margin-top: 6%;
+
+}
+.cardBottom{
+    width: 100%;
+    background-color: #1572b4;
+    padding: 1vh 1vw;
+    color: white;
+    height: 40%;
+}
+.toolTip{
+    position:absolute;
+
+}

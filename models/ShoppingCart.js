@@ -5,11 +5,11 @@ const cartSchema = new mongoose.Schema({
   quantity:{type:Number,required:false}
 })
 
-const ShoopingCartSchema = new mongoose.Schema({
+const ShoppingCartSchema = new mongoose.Schema({
   idUser:{type: mongoose.Schema.ObjectId, ref: 'user',required: true},
   arrayProducts:[cartSchema],
 })
 
-const ShoopingCart = mongoose.model('shoopingcart',ShoopingCartSchema)
+const ShoppingCart = mongoose.model('shoppingcart',ShoppingCartSchema)
 
-module.exports = ShoopingCart
+module.exports = ShoppingCart

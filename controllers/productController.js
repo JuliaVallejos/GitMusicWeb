@@ -4,7 +4,7 @@ const productController = {
   //obtener todos los productos//
   allProducts: async (req, res)=>{
     try{
-        const response= await Product.find().populate('arrayComments.idUser').populate('arrayRating.idUser')
+        const response= await Product.find().populate('arrayComments.idUser')
         if(response) {
             return res.json({success: true, response})
      } 
@@ -41,18 +41,29 @@ const productController = {
       res.json({success: false,error})
     }
   },
-  addRating:async (req,res) =>{
-    const {idProduct,idUser,value}=req.body
+  addRating:async(req,res) =>{
+    const {idProduct,idUser,value,edit}=req.body
     try {
-      const addRating=await Product.findOneAndUpdate(
-        {_id:idProduct},
-        { $push: {'arrayRating': {idUser:idUser,value:value}}},{new:true})
-      if(addRating){
-        res.json({success:true, response:addRating})
+      if(edit){
+        const editRating=await Product.findOneAndUpdate(
+          {_id:idProduct,'arrayRating.idUser':idUser},
+          { '$set': {'arrayRating.$.value':value}},{new:true}).populate('arrayComments.idUser')
+          if(editRating){
+            res.json({success:true, response:editRating})
+          }else{
+            res.json({success:false, error:"Error while modifying in database."})
+          }
       }else{
-        res.json({success:false, error:"Error while modifying in database."})
+        const addRating=await Product.findOneAndUpdate(
+          {_id:idProduct},
+          { $push: {'arrayRating': {idUser:idUser,value:value}}},{new:true})
+        if(addRating){
+          res.json({success:true, response:addRating})
+        }else{
+          res.json({success:false, error:"Error while modifying in database."})
+        }
       }
-      } catch (error) {
+    } catch (error) {
       res.json({success: false,error})
     }
   },
@@ -96,6 +107,19 @@ const productController = {
         res.json({success:true, response:editComment})
       }else{
         res.json({success:false, error:"Error while modifying in database."})
+      }
+    } catch (error) {
+      res.json({success: false,error})
+    }
+  },
+  getProductDetail:async(req,res)=>{
+    const {idProduct}=req.params
+    try {
+      const getProductById=await Product.findOne({_id:idProduct}).populate('arrayComments.idUser')
+      if(getProductById){
+        res.json({success:true,response:getProductById})
+      }else{
+        res.json({success:false,error:"This product don't exist"})
       }
     } catch (error) {
       res.json({success: false,error})

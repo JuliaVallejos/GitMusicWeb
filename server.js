@@ -5,10 +5,12 @@ require('./config/database')
 const cors=require('cors')
 const router = require('./routes/index')
 const app = express()
+const fileUpload = require('express-fileupload')
 
 /*Middlewares*/
 app.use(express.json())
 app.use(cors())
+app.use(fileUpload())
 /*Pedido al router*/
 app.use("/api",router)
 
@@ -22,4 +24,4 @@ if (process.env.NODE_ENV === 'production') {
 const port = process.env.PORT || 4000
 const host = process.env.HOST || '0.0.0.0'
 
-app.listen(port, host,  console.log('app listening'))
+app.listen(port, () => console.log(`App listening on port ${port}`))

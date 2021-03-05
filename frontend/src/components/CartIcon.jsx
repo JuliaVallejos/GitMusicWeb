@@ -9,7 +9,7 @@ const CartIcon = () => {
         <div className='cartContainer'>
           <FaShoppingCart className='cartIcon' />
         </div>
-        <small>0</small>
+        <small className="quantity">0</small>
       </div>
     </Link>
   )
