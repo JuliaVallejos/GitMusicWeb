@@ -27,6 +27,9 @@ const NavBar = ({loggedUser, signOut}) => {
         <NavLink exact to='/' className='navLinks'>
             Home
           </NavLink>
+           <NavLink exact to='/addProducts' className='navLinks'>
+            Agregar Productos
+          </NavLink>
           <NavLink to={loggedUser?'/userdetails':'/registerUser'} className='navLinks'>
             Mi cuenta
           </NavLink>
