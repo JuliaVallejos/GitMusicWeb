@@ -13,12 +13,6 @@ const categorySchema = new mongoose.Schema({
   pic:{type: String, required:true}
 })
 
-const categorySchema = new mongoose.Schema({
-  label:{type: String, required:true},
-  pic:{type: String, required:true}
-})
-
-
 const ProductSchema = new mongoose.Schema({
   name:{type:String, required:true},
   category:categorySchema,
