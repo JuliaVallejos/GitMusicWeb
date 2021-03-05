@@ -9,9 +9,15 @@ const commentSchema = new mongoose.Schema({
   comment:{type: String, required:true}
 })
 
+const categorySchema = new mongoose.Schema({
+  label:{type: String, required:true},
+  pic:{type: String, required:true}
+})
+
+
 const ProductSchema = new mongoose.Schema({
   name:{type:String, required:true},
-  category:{type:String, required:true},
+  category:categorySchema,
   type:{type: String, required:true},
   mark:{type: String, required:false},
   price:{type: Number, required:true},

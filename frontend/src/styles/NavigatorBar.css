@@ -1,9 +1,11 @@
 .containerNavigator{
-    background-color:black;
+    background-color: rgb(12, 12, 12);
     display: flex;
     align-items: center;
     justify-content: center; 
-    border-bottom:solid 2px rgba(245, 245, 245, 0.349) ;
+    text-align: center;
+    border-bottom:solid 2px rgba(245, 245, 245, 0.349);
+
 }
 .dropDown {
     color:white;
@@ -13,7 +15,10 @@
     cursor: pointer;
     position: relative;
     display:inline-block;
-}
+    width:100%;
+    border-right: solid 0.5px rgb(65, 166, 216); 
+    border-left: solid 0.5px rgb(65, 166, 216); 
+ }
 .dropBtn{
     padding: 10px;
     background-color: rgb(12, 12, 12);
@@ -22,20 +27,9 @@
     font-weight: bold;
     border: none;
     cursor: pointer;
-    border-right: solid 2px rgb(65, 166, 216); 
     height: auto;
-    min-width: 10vw;
- }
- .endBtn {
-    background-color: rgb(12, 12, 12);
-    color: white;
-    padding: 10px;
-    font-size: 14px;
-    border: none;
-    cursor: pointer;
-    height: auto;
-    min-width: 10vw;
-    font-weight: bold;
+    max-width: 10vw;
+    text-align: center;
 }
 .dropdown-content{
     position:absolute;
@@ -45,5 +39,30 @@
     color:white;
     font-size: 20px;
     margin-top: 5vh; 
+}
+/*RESPONSIVE*/
+@media only screen and (max-width:920px) {
+    .containerNavigator{
+        display: flex;  
+    }
+    .dropDown {
+        border-right: solid 0.5px rgb(65, 166, 216); 
+        border-left: solid 0.5px rgb(65, 166, 216); 
+    }
+    .dropBtn{
+        padding: 0.8vw;
+        font-size: 13px;
+        min-width:2.5vw;   
+        max-width:none;
+    }
+    .dropdown-content{
+        position:absolute;
+        left: 350px;
+        min-width: 16px;
+        z-index: 1;
+        color:white;
+        font-size: 10px;
+        margin-top: 5vh; 
+    } 
 }
  
