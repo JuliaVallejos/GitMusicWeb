@@ -29,6 +29,7 @@ router.route('/products')
 .post(productController.addProduct)
 
 router.route('/products/:idProduct')
+.get(productController.getProductDetail)
 .delete(productController.deleteProduct)
 
 router.route('/products/newrating')
@@ -46,9 +47,7 @@ router.route('/products/delcomment')
 //shooping
 router.route('/products/shoppingcart')
 .get(shoppingCartController.getShoppingCart)
-.post(shoppingCartController.addShoppingCart)
+.put(shoppingCartController.shoppingCart)
 
-router.route('/products/editshoppingcart')
-.put(shoppingCartController.editShoppingCart)
 
 module.exports = router

@@ -5,16 +5,17 @@ import Product from './Product'
 import productActions from '../Redux/actions/productActions'
 
 const ProductsByCategory = (props) =>{
+
     const [arrayAll,setArrayAll] = useState([])
-    const {allProducts} =props
+    const {allProducts,shoppingCart} =props
     const category = props.match.params.category
-   const arrayCategory = allProducts.filter(product => product.category.label === category)
-    console.log(arrayCategory)
+    const arrayCategory = allProducts.filter(product => product.category.label === category)
 
     useEffect(()=>{
         props.getProducts()
         .then(setArrayAll(allProducts))
     },[])
+    console.log(shoppingCart)
     return(
         <div className='productsByCategory'>
             <h4 className='categoryTitle'>{category}</h4>
@@ -26,16 +27,16 @@ const ProductsByCategory = (props) =>{
                     <Product product={product}/>
                 )
             })
-              
-            )}
+        )}
             </div>
         </div>
     )
 }
 const mapStateToProps = state => {
     return {
-        allProducts: state.product.allProducts
-}
+        allProducts: state.product.allProducts,
+        shoppingCart:state.shoppingR.shoppingCart
+    }
 }
 const mapDispatchToProps = {
     getProducts : productActions.getProducts

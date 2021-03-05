@@ -9,7 +9,7 @@ const [visible, setVisible] =useState(false)
     return (
         <nav>
             <div  className='containerNavigator' >
-                   {categories.map(category => 
+                   {categories && categories.map(category => 
             <NavLink to={`/products/${category.category}`} className="dropDown">
                    <button className="dropBtn" onMouseOver={()=>setVisible(true)}
                         onMouseOut={()=>setVisible(false)}>{category.category}</button >

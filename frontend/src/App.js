@@ -11,6 +11,7 @@ import ProductsByCategory from './components/ProductsByCategory'
 import userActions from './Redux/actions/userActions'
 import UserDetails from './components/UserDetails'
 import AddProducts from './components/AddProducts'
+import SingleProduct from '../src/components/SingleProduct'
 
 function App(props) {
   console.log(props.loggedUser)
@@ -34,6 +35,7 @@ function App(props) {
           <Route path='/products/:category' component={ProductsByCategory}/>
           <Route path='/registerUser' component={RegisterUser}/>
           <Route path='/addProducts' component={AddProducts}/>
+          <Route path='/singleproduct' component={SingleProduct}/>
           <Redirect to="/"/>
         </Switch>
     </>
