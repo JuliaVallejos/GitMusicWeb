@@ -8,6 +8,7 @@ import '../styles/addProducts.css'
 const AddProducts = (props) => {
 
     const { history, signIn, loggedUser,categories } = props
+    console.log(props)
     const[lines,setLines]= useState(1)
     const [arrayDescription,setArrayDescription] = useState(['one'])
     const [product, setProduct] = useState({
@@ -80,7 +81,7 @@ const AddProducts = (props) => {
                 </div>
                <select label='category' name='category'>
                 <option value='' name='category' selected disabled='true'>Selecciona categoría</option>
-                   {categories.map(category =>{
+                   {categories.length !== 0 && categories.map(category =>{
                       
                        return( 
                            <option value={category.category} name='category'>{category.category}</option>
@@ -100,7 +101,7 @@ const AddProducts = (props) => {
                 return (
                     <div className='addDescription'>
                     <input key={idx+"i"}type="text" name="description" placeholder="Descripción(una oración por línea)" onChange={readInput} />
-                    <button onClick={()=>setLines(lines-1)} className="removeLine">Borrar</button>
+                    {lines >= 2 && <button onClick={()=>setLines(lines-1)} className="removeLine">Borrar</button>}
                     </div>
                 )
             })
