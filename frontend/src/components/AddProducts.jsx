@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import GoogleLogin from 'react-google-login'
-import { FaEye } from "react-icons/fa";
-import { Link, NavLink} from 'react-router-dom'
 import { Alert, Message } from 'rsuite';
 import userActions from '../Redux/actions/userActions'
 import '../styles/addProducts.css'
@@ -26,7 +23,10 @@ const AddProducts = (props) => {
     })
     const [errores, setErrores] = useState('')
 
-
+    useEffect(() => {
+        
+      
+    }, [])
 
 
     const readInput = e => {
@@ -38,6 +38,10 @@ const AddProducts = (props) => {
         })
     }
    
+    const addLine = () =>{
+        setLines(lines+1)
+    }
+
     const Validate = async e => {
         alert('Mandar')
        /*  setErrores('')
@@ -59,19 +63,19 @@ const AddProducts = (props) => {
                 <h2>Cargue sus productos</h2>
 
                 {errores !== '' && <Message type='info' description={errores} style={{ marginBottom: '2vh' }} />}
-                <div className="inputDiv">
+                <div className="inputDiv addProductInput">
                     <input type="text" name="name" placeholder="Nombre del producto" onChange={readInput} />
                 </div>
-                <div className="inputDiv">
+                <div className="inputDiv addProductInput">
                     <input type="text" name="mark" placeholder="Marca" onChange={readInput} />
                 </div>
-                <div className="inputDiv">
+                <div className="inputDiv addProductInput">
                     <input type="number" name="price" placeholder="Precio" onChange={readInput} />
                 </div>
-                <div className="inputDiv">
+                <div className="inputDiv addProductInput">
                     <input type="number" name="warranty" placeholder="Garantía(cantidad de meses)" onChange={readInput} />
                 </div>
-                <div className="inputDiv">
+                <div className="inputDiv addProductInput">
                     <input type="number" name="stock" placeholder="Cantidad en stock" onChange={readInput} />
                 </div>
                <select label='category' name='category'>
@@ -92,16 +96,16 @@ const AddProducts = (props) => {
                     
                 </label>
                 <div className="inputDiv">
-                {Array({lines}).fill(1).map(() =>
-            arrayDescription.map(item =>{
+                {[...Array(lines)].map((item, idx) =>{
                 return (
-                    <input type="text" name="description" placeholder="Descripción(una oración por línea)" onChange={readInput} />
+                    <div className='addDescription'>
+                    <input key={idx+"i"}type="text" name="description" placeholder="Descripción(una oración por línea)" onChange={readInput} />
+                    <button onClick={()=>setLines(lines-1)} className="removeLine">Borrar</button>
+                    </div>
                 )
             })
-              
-            )}
-                  
-                    <button onClick={()=>setLines(lines+1)}>+</button>
+            }       
+                    <button onClick={addLine} className='enviar'>Agregar otra descripción</button>
                 </div>
             
                 <button className="enviar" onClick={Validate}>Aceptar</button>
