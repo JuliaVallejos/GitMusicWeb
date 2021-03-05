@@ -10,10 +10,14 @@ import RegisterUser from './components/RegisterUser'
 import ProductsByCategory from './components/ProductsByCategory'
 import userActions from './Redux/actions/userActions'
 import UserDetails from './components/UserDetails'
+import shoppingCartActions from './Redux/actions/shoppingCartActions';
 
 function App(props) {
   console.log(props.loggedUser)
   if(props.loggedUser){
+    if(localStorage.getItem('shoppingCart')){
+      props.preservedShoppingCart(localStorage.getItem('shoppingCart'))
+    }
     var links =
     <>
       <Switch>
@@ -26,6 +30,9 @@ function App(props) {
   }else if(localStorage.getItem('token')){
     props.preserveLog(localStorage.getItem('token'))
   }else{
+    if(localStorage.getItem('shoppingCart')){
+      props.preservedShoppingCart(localStorage.getItem('shoppingCart'))
+    }
      links =
     <>
         <Switch>
@@ -53,6 +60,8 @@ const mapStateToProps =state=>{
   }
 }
 const mapDispatchToProps = {
-  preserveLog: userActions.preserveLog
+  preserveLog: userActions.preserveLog,
+  preservedShoppingCart:shoppingCartActions.preservedShoppingCart
+
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);

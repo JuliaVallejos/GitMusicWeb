@@ -6,9 +6,10 @@ import shoppingCartActions from '../Redux/actions/shoppingCartActions'
 const Product = ({product,addProductShoppingCart}) =>{
  const [add,setAdd]= useState(false)
     
- const addProductCart = () =>{
+ const addProductCart = async() =>{
   alert('Agregado al carrito')
-  addProductShoppingCart({idProduct:product._id,quantity:1})
+  const respuesta=await addProductShoppingCart({idProduct:product._id,quantity:1})
+  console.log(respuesta.response)
  }
   if(product) {
        return(
