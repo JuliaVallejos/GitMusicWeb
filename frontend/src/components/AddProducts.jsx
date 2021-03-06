@@ -57,12 +57,10 @@ const AddProducts = (props) => {
         } */
     }
  
-
     return (
         <div className="containerAddProducts">
             <div className="formulario">
                 <h2>Cargue sus productos</h2>
-
                 {errores !== '' && <Message type='info' description={errores} style={{ marginBottom: '2vh' }} />}
                 <div className="inputDiv addProductInput">
                     <input type="text" name="name" placeholder="Nombre del producto" onChange={readInput} />
@@ -82,7 +80,6 @@ const AddProducts = (props) => {
                <select label='category' name='category'>
                 <option value='' name='category' selected disabled='true'>Selecciona categoría</option>
                    {categories.length !== 0 && categories.map(category =>{
-                      
                        return( 
                            <option value={category.category} name='category'>{category.category}</option>
                        )
@@ -93,8 +90,6 @@ const AddProducts = (props) => {
                        <div className="inputRadio"><input name='outstanding' type='radio' value={true}/>Si</div>
                         <div className="inputRadio"><input name='outstanding' type='radio' value={false}/>No</div>
                    </div>
-                
-                    
                 </label>
                 <div className="inputDiv">
                 {[...Array(lines)].map((item, idx) =>{

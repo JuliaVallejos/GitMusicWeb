@@ -3,13 +3,14 @@ import {useState} from 'react'
 import { FaShoppingCart } from 'react-icons/fa'
 import {connect} from 'react-redux'
 import shoppingCartActions from '../Redux/actions/shoppingCartActions'
+
 const Product = ({product,addProductShoppingCart}) =>{
  const [add,setAdd]= useState(false)
     
- const addProductCart = () =>{
-  alert('Agregado al carrito')
-  addProductShoppingCart({idProduct:product._id,quantity:1})
- }
+    const addProductCart = () =>{
+      alert('Agregado al carrito')
+      addProductShoppingCart({idProduct:product._id,quantity:1})
+    }
   if(product) {
        return(
         <div className='productContainer'>
