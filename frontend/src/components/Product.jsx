@@ -9,7 +9,7 @@ const Product = ({product,addProductShoppingCart}) =>{
     
  const addProductCart = async() =>{
   alert('Agregado al carrito')
-  const respuesta=await addProductShoppingCart({idProduct:product._id,quantity:1})
+  const respuesta=await addProductShoppingCart({idProduct:product._id,quantity:1, product})
   console.log(respuesta.response)
  }
   if(product) {

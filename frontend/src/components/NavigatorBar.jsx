@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {connect} from 'react-redux'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import '../styles/NavigatorBar.css'
 
 const NavigatorBar = ({categories}) => {

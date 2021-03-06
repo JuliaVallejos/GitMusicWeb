@@ -18,7 +18,6 @@ import Payment from './components/Payment'
 import PaymentPanel from './components/PaymentPanel'
 
 function App(props) {
-  console.log(props.loggedUser)
   if(props.loggedUser){
     if(localStorage.getItem('shoppingCart')){
       props.preservedShoppingCart(localStorage.getItem('shoppingCart'))

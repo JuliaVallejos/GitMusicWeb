@@ -89,7 +89,6 @@ const userActions = {
      }
    },
   preserveLog: (token) =>{
-    console.log(token,"action")
     const idUser=localStorage.getItem('idUser')
     return async (dispatch, getState) =>{
       try{

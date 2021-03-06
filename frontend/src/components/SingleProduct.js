@@ -7,7 +7,6 @@ const SingleProduct = () => {
         {name: "Paquete de guitarra acústica Music Alley MA-34-PNK",
         warranty: 12, arrayPic: ["https://i.ibb.co/MSD89TS/guitarra1.jpg", "https://i.ibb.co/fQR6rcq/guitarra3.jpg", "https://i.ibb.co/b7wVGjt/guitarra2.jpg"], mark: "Music Alley", arrayDescription: ["soy una buena guitarra", "comprame vo"], price: 8300, stock: 6, arrayRating: [{value: 5}], arrayVisits:[{visits: 100}], arrayComments:["hola, me gustan las guitarras"]}
     ])
-
     return(
         <div className="mainSingleProduct">
             <div className="lateralSection">
@@ -20,7 +19,6 @@ const SingleProduct = () => {
                         )
                     })
                 )}
-
             </div>
             <div className="middleSection">
                 {products.map(product => {
