@@ -14,7 +14,7 @@ const productController = {
 },
 
   //agregar producto//
-  addProduct: async (req,res) =>{
+  addProductAdmin: async (req,res) =>{
     const {name,category,type,mark,price,stock,warranty,urlReview,arrayPic,arrayRating,arrayComments,arrayDescription,arrayVisits,outstanding} = req.body
     const newProduct = new Product({name,category,type,mark,price,stock,warranty,urlReview,arrayPic,arrayRating,arrayComments,arrayDescription,arrayVisits,outstanding})
     try{
