@@ -10,7 +10,7 @@ const shoppingCartController = {
           const productSearch = await Product.findOne({_id:product.idProduct})
           if(productSearch){
             const subtract=productSearch.stock-product.quantity
-            const subtractProduct=await Product.findOneAndUpdate(
+            await Product.findOneAndUpdate(
               {_id:product.idProduct},{stock:subtract})
           }
         })

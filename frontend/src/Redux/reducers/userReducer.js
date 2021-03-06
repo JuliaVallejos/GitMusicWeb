@@ -15,6 +15,10 @@ const initState = {
             loggedUser: action.payload
           }
         case "SIGN_OUT":
+          localStorage.removeItem('token')
+          localStorage.removeItem('firstName')
+          localStorage.removeItem('pic')
+          localStorage.removeItem('userId')
           return{
             ...state,
             loggedUser: null

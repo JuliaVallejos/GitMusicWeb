@@ -1,6 +1,5 @@
 const initState = {
-  shoppingCart:[],
-  save:null
+  shoppingCart:[]
 }
 
 const shoppingCartReducer= (state = initState, action) =>{
@@ -14,51 +13,37 @@ const shoppingCartReducer= (state = initState, action) =>{
             action.payload]
         }}
       case "ADD_PRODUCT_SHOPPING_CART":{
-        console.log("El nuevo valor",action.payload)
-        console.log("state actual",state)
-          const {idProduct,quantity}=action.payload
-          if(state.shoppingCart.length!==0){
-            state.shoppingCart.map((productCart,i)=>{
-              if(productCart.idProduct===idProduct){
-                console.log("1")
-                console.log(state)
-                const newQuantity={...productCart,quantity:productCart.quantity+quantity}
-                //state.shoppingCart[i]=productCart
-                console.log(newQuantity)
-                console.log(state.shoppingCart)
-                return {
-                  ...state,
-                  shoppingCart:[action.payload],
-                  save:[state]
-                };
-              }else if(i===(state.shoppingCart.length-1)){
-                const arrayNew=[]
-                console.log("2")
-                //estoy guardando mal en el car
-                state.shoppingCart.map(product=>{
-                  arrayNew.push(product)
-                })
-                arrayNew.push({idProduct,quantity})
-                console.log("arrayNew",arrayNew)
-                console.log(state)
-                return {...state,shoppingCart:[{"laber":"sankjsankjsa"}]}
-              }
-            })
-          }else{
-            console.log("3")
-            return {
-              ...state,
-              shoppingCart:[action.payload],
-              save:[state]}
+        var cartCopy = []
+        const {idProduct} = action.payload
+        const existingProd = state.shoppingCart.find(item => item.idProduct === idProduct)
+        if(existingProd){
+          cartCopy=[...state.shoppingCart]
+          const cartFiltered=cartCopy.filter(product=>product.idProduct!==existingProd.idProduct)
+          existingProd.quantity += action.payload.quantity
+          cartFiltered.push(existingProd)
+          return{
+            ...state,
+            shoppingCart: cartFiltered
           }
+        }else{
+          return {
+            ...state,
+            shoppingCart:[...state.shoppingCart,action.payload]
+          }
+        }
       }
       case "PRESERVED_SHOPPING_CART":{
         return{
           ...state,
           shoppingCart:action.payload
         }}
+      case "CLEAR_CART":{
+        localStorage.removeItem('shoppingCart')
+        return{
+          ...state,
+          shoppingCart:[]
+        };}
       default :{
-        console.log("pase")
           return state}
       }
 }

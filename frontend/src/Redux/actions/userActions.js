@@ -128,7 +128,7 @@ const userActions = {
    modifyUser: (formData) => {
      console.log(formData)
     return async (dispatch, getState) => {
-        const response = await axios.post(`http://localhost:4000/api/userDetails`, formData, {
+        const response = await axios.post(`https://gitmusicapp.herokuapp.com/api/userDetails`, formData, {
             headers: { 
                 'Content-Type': 'multipart/form-data' 
             }

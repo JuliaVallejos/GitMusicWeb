@@ -11,7 +11,6 @@ import userActions from '../Redux/actions/userActions'
 const NavBar = ({loggedUser, signOut}) => {
 
   const byeBye = () =>{
-    localStorage.clear()
     signOut()
   }
   return (
