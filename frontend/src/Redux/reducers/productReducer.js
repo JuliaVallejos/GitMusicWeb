@@ -20,6 +20,11 @@ const productReducer = (state=initState,action) =>{
                 ...state,
                 productDetail:action.payload
             }
+        case 'NEW_PRODUCT':
+            return{
+                ...state,
+                allProducts:[...state.allProducts,action.payload]
+            }
         default:
             return state
         
