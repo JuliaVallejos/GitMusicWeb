@@ -9,13 +9,14 @@ import Product from './Product';
 
 
 const ItemDescription = ({addItemDescription,newItem,removeLine,lines}) => {
-
+   
  
 
     return (
         <div className='addDescription'>
         <input type="text" name='description' placeholder="Descripción(una oración por línea)" onChange={addItemDescription}/>
-        {lines >= 2 && <button name={newItem} onClick={removeLine} className="removeLine">Borrar</button>}
+     
+        {lines >= 2 && <button  name={newItem} onClick={removeLine} className="removeLine">Borrar</button>}
         </div>
     )
 }

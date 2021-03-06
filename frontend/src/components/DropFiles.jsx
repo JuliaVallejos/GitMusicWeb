@@ -38,10 +38,8 @@ function DropFiles({product,setProduct}) {
         <ul>{acceptedFileItems}</ul>
         {fileRejectionItems.length!==0&&<h4>Archivos rechazados</h4>}
         <ul>{fileRejectionItems}</ul>
-        {acceptedFileItems.map(file=>{
-            files.push(file.key)
-        })}
-        <button style={{color:'black',backgroundColor:'green'}} onClick={(acceptedFiles)=> setProduct({...product,arrayPic:files})}>Enviar</button>
+      
+        <button style={{color:'black',backgroundColor:'whitesmoke',padding:'0 4%',marginBottom:'12px'}} onClick={()=> setProduct({...product,arrayPic:acceptedFiles})}>Aceptar</button>
       </aside>
     </section>
   );

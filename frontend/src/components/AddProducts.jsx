@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import Dropzone from "react-dropzone";
-import { Alert, Message } from 'rsuite';
+import {  Message } from 'rsuite';
 import DropFiles from './DropFiles'
-import userActions from '../Redux/actions/userActions'
 import '../styles/addProducts.css'
-import Product from './Product';
+
 import ItemDescription from './ItemDescription'
+import productActions from '../Redux/actions/productActions';
 
 
 const AddProducts = (props) => {
 
-    const { history, signIn, loggedUser,categories } = props
+const {addProduct,categories } = props
 const [itemsDescription,setItemsDescription] = useState([])
 const [newItem,setNewItem] = useState()
     const[lines,setLines]= useState(1)
@@ -23,7 +22,7 @@ const [newItem,setNewItem] = useState()
         price:'',
         warranty:'',
         stock:'',
-        category:{},
+        category:'',
         outstanding:false,
         arrayPic:[],
         arrayDescription:[]
@@ -49,45 +48,61 @@ const [newItem,setNewItem] = useState()
 
     const addItemDescription = (e) =>{
         const value=e.target.value
-        const property=e.target.name
-        /* setNewItem({
-            [property]:value}) */
             setNewItem(value)
     }
   
     const addLine = () =>{
         setLines(lines+1)
-       setItemsDescription([...itemsDescription,newItem])
+        setItemsDescription([...itemsDescription,newItem])
+      
         
     }
     const removeLine = e => {
-        setLines(lines-1)
-        console.log(e.target.name)
-        setItemsDescription(itemsDescription.filter(item => item!==e.target.name))
    
-
+        const nameItem=e.target.name
+        setItemsDescription(itemsDescription.filter(item => item!==nameItem))
+        console.log(itemsDescription)
+        setLines(lines-1)
+    
     }
 
     const Validate = async e => {
-        console.log(newItem)
-     
         
-        const arrayFinal= [...itemsDescription,newItem]
-     
-        console.log(arrayFinal)
-
-        const fdNewProduct = new FormData()
-        fdNewProduct.append('name', product.name)
-        fdNewProduct.append('mark', product.mark)
-        fdNewProduct.append('price', product.price)
-        fdNewProduct.append('warranty', product.warranty)
-        fdNewProduct.append('stock', product.stock)
-        fdNewProduct.append('category', product.category)
-          /*   const response = await signIn(user)
-            if (response && !response.success) {
-                setErrores(response.message)
+        const {name,mark,price,warranty,urlReview,stock,category,arrayPic} = product
+        if(name===''||mark===''||price===''||warranty===''||stock===''||category===''||arrayPic.length===0){
+            setErrores(['Debe completar todos los campos'])
+            return false
         }
- */
+        var arrayFinal=[...itemsDescription]
+        if(newItem!==''&&itemsDescription.indexOf(newItem)===-1){
+           arrayFinal= [...itemsDescription,newItem]
+        }
+    
+        const fdNewProduct = new FormData()
+        fdNewProduct.append('name', name)
+        fdNewProduct.append('mark', mark)
+        fdNewProduct.append('price', price)
+        fdNewProduct.append('warranty', warranty)
+        fdNewProduct.append('urlReview',urlReview)
+        fdNewProduct.append('stock', stock)
+        fdNewProduct.append('category', category)
+        arrayPic.map((pic,i) =>{
+            fdNewProduct.append('arrayPic',arrayPic[i])
+        })
+        arrayFinal.map((item,i)=>{
+            fdNewProduct.append('arrayDescription',arrayFinal[i])
+        })
+        
+        const response = await addProduct(fdNewProduct)
+         console.log(response)
+        if (response && !response.success) {
+                setErrores(response.message)
+        }else{
+            
+            alert('Producto grabado')
+            e.preventDefault()
+        }
+ 
         
     }
  
@@ -130,25 +145,26 @@ const [newItem,setNewItem] = useState()
                    </div>
                 
                 </label>
+                <div className="inputDiv addProductInput">
+                    <input type="uri" name="urlReview" placeholder="Ingrese un link de alguna reseña o video relacionado(opcional)" onChange={readInput} />
+                </div>
                    <DropFiles product={product} setProduct={setProduct}/>
-          
-                <div className="inputDiv">
-              
-                         {[...Array(lines)].map((item, idx) =>{
-                        return (
-                            <ItemDescription addItemDescription={addItemDescription} newItem={newItem} removeLine={removeLine} lines={lines}/>
-                           /*  <div className='addDescription'>
-                                ``
-                            <input key={idx+"i"}type="text" name={`description`} placeholder="Descripción(una oración por línea)" onChange={addItemDescription}/>
-                            {lines >= 2 && <button name={newItem} onClick={removeLine} className="removeLine">Borrar</button>}
-                            </div> */
-                )
-            })
-            } </div>  
-             <button onClick={addLine} className='enviar'>Agregar otra descripción</button>
-            
-                <button className="enviar" onClick={Validate}>Aceptar</button>
                 
+                <div className="inputDiv">
+                    <h3 style={{color:'white'}}>Descripción</h3>
+                       {[...Array(lines)].map((item, idx) =>{
+                        return (
+                            <ItemDescription id={idx}  addItemDescription={addItemDescription} newItem={newItem} removeLine={removeLine} lines={lines}/>
+                        
+                ) 
+            })
+            }  </div>  
+             <button onClick={addLine} style={{alignSelf:'flex-start'}}className='enviar'>Agregar otra descripción</button>
+            
+                <button className="enviar" onClick={Validate}>Confirmar producto</button>
+                {errores&& errores.map(error =>{
+                    <p>{error}</p>
+                })}
                 
 
             </div>
@@ -158,12 +174,11 @@ const [newItem,setNewItem] = useState()
 
 const mapStateToProps = state => {
     return {
-        loggedUser: state.userR.loggedUser,
         categories:state.product.categories
     }
 }
 const mapDispatchToProps = {
-    signIn: userActions.logIn
+    addProduct:productActions.addProduct
 }
 export default connect(mapStateToProps,mapDispatchToProps)(AddProducts)
 
