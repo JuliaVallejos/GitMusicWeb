@@ -1,49 +1,88 @@
 .mainSingleProduct{
-    width: 100%;
-    height: 90vh;
-    display: flex;
-    padding-top: 2vw;
+    background-color: rgba(128, 128, 128, 0.61);
+    padding: 2vw;
 }
 
-.lateralSection{ /* columna */
-    width: 15%;
+.mainSingleContainer{
+    background-color: white;
+    border-radius: 4px;
+    display: flex;
+    width: 100%;
     height: 100%;
+    padding: 1vw;
+}
+
+.leftSection{
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.lateralColumn{
-    margin-top: 1vw;
-    padding: 0.3vw;
+    width: 12%;
+    height: 80%;
 }
 
 .lateralPic{
-    width: 5vw;
-    border-radius: 0.5vw;
+    width: 7vw;
+    margin: 0.2vw;
+    border-radius: 4px;
+    border: 1px solid blue;
 }
 
-.middleSection{ /* columna */
+.middleSection{
+    width: 58%;
     padding: 1vw;
-    width: 55%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
 }
 
 .mainPic{
-    width: 85%;
-    height: 100%;
-    background-size: cover;
+    width: 90%;
 }
 
 .rightSection{
+    padding: 1vw;
+    background-color: rgba(128, 128, 128, 0.185);
+    border-radius: 3px;
     width: 30%;
-    padding: 2.5vw;
+    height: 97vh;
 }
 
-.infoProductContainer{
-    background: rgb(209, 205, 205);
+.singleProductName{
+    font-size: 2vw;
+}
+.singleTextBlue{
+    color: blue;
+    font-size: 1.3vw;
+    font-weight: 500
+}
+
+.singleHeart{
+    height: 2vw;
+    width: 2vw;
+    margin: 0.5vw
+}
+
+.singleButtons{
+    padding: 2vw;
+}
+
+.singleButton{
+    align-self: center;
+}
+
+.singleSimpleText{
+    text-decoration: underline;
+    font-size: 1.3vw;
+}
+
+.descriptionContainer{
+    background: yellow;
     width: 100%;
+    padding: 1vw;
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.liDescription{
+    padding: 1vw;
+    background-color: yellowgreen;
 }
 
