@@ -16,7 +16,8 @@ import ShippingAddress from './components/ShippingAddress'
 import BillingAddress from './components/BillingAddress'
 import Payment from './components/Payment'
 import PaymentPanel from './components/PaymentPanel'
-import ListCart from './components/ListCart'
+import CartList from './components/CartList'
+
 
 function App(props) {
   if(props.loggedUser){
@@ -30,6 +31,7 @@ function App(props) {
         <Route path='/products/:category' component={ProductsByCategory}/>
         <Route path='/userdetails'component={UserDetails}/>
         <Route path='/shippingAddress'component={ShippingAddress}/>
+        <Route path='/cartlist'component={CartList}/>
         <Redirect to ="/"/>
       </Switch>
     </>
@@ -51,7 +53,7 @@ function App(props) {
           <Route path='/billingAddress'component={BillingAddress}/>
           <Route path='/payment'component={Payment}/>
           <Route path='/paymentPanel'component={PaymentPanel}/>
-          <Route path='/listCart'component={ListCart}/>
+          <Route path='/cartlist'component={CartList}/>
           <Redirect to="/"/>
         </Switch>
     </>
