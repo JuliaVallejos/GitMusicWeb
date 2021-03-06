@@ -12,7 +12,6 @@ const productController = {
         return res.json({success: false, error})
     }
 },
-
   //agregar producto//
   addProductAdmin: async (req,res) =>{
     const {name,category,type,mark,price,stock,warranty,urlReview,arrayPic,arrayRating,arrayComments,arrayDescription,arrayVisits,outstanding} = req.body
@@ -38,8 +37,6 @@ const productController = {
         {
            return res.json({success:false,error:"El formato de la imagen tiene que ser JPG,JPEG,BMP ó PNG."})
         }
-      
-       
         const extPic=pic.name.split('.',2)[1]
       
         ///../client/build/usersPics/
