@@ -16,9 +16,9 @@ const NavBar = ({loggedUser, signOut}) => {
     <nav>
       <div className="navBar">
         <div className='navBarLogo'>
-          <AiFillGithub className="navGithub" />
-          <FaMusic className="navMusicIcon" />
           <ViewCategoryDrawer />
+          <AiFillGithub className="navGithub" />
+          <FaMusic className="navMusicIcon"  />
         </div>
 
         <div className='links'>
@@ -35,9 +35,8 @@ const NavBar = ({loggedUser, signOut}) => {
             Product
           </NavLink> */}
             {loggedUser && <p className='navLinks signOut' onClick={byeBye}>Cerrar sesión</p>}
-          <NavLink to='/registerUser' className='navLinks'>
+          <NavLink to={loggedUser ? 'userdetails' : '/registerUser'} className='navLinks'>
             {!loggedUser ? <FaUserCircle className="iconUser"/> :(
-              
               <div className="userPic" style={{backgroundImage: `url(.${loggedUser.pic})`, backgroundPosition: 'center', backgroundSize: 'cover'}}>
               </div>
             )}

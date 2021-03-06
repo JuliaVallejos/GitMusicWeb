@@ -20,7 +20,6 @@ import CartList from './components/CartList'
 
 
 function App(props) {
-  console.log(props.loggedUser)
   if(props.loggedUser){
     if(localStorage.getItem('shoppingCart')){
       props.preservedShoppingCart(localStorage.getItem('shoppingCart'))
