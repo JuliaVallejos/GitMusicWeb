@@ -3,9 +3,8 @@ import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
 import {  Message } from 'rsuite';
 import DropFiles from './DropFiles'
-import '../styles/addProducts.css'
+import '../styles/addProducts.css' 
 
-import ItemDescription from './ItemDescription'
 import productActions from '../Redux/actions/productActions';
 
 
@@ -107,7 +106,7 @@ const AddProducts = (props) => {
  
     return (
         <div className="containerAddProducts">
-            <div className="formulario">
+            <div className="formularioProd">
                 <h2>Cargue sus productos</h2>
                 {errores !== '' && <Message type='info' description={errores} style={{ marginBottom: '2vh' }} />}
                 <div className="inputDiv addProductInput">
