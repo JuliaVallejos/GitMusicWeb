@@ -5,9 +5,9 @@ import Product from './Product'
 import productActions from '../Redux/actions/productActions'
 
 const ProductsByCategory = (props) =>{
+    const {allProducts,shoppingCart} =props
 
     const [arrayAll,setArrayAll] = useState([])
-    const {allProducts,shoppingCart} =props
     console.log(allProducts)
     const category = props.match.params.category
     const arrayCategory = allProducts.filter(product => product.category === category)
@@ -29,6 +29,7 @@ const ProductsByCategory = (props) =>{
         {
             arrayCategory.map(product =>{
                 return (
+                    
                     <Product product={product}/>
                 )
             })

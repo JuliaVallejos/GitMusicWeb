@@ -1,48 +1,100 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import "../styles/SingleProduct.css"
+import { AiOutlineHeart } from 'react-icons/ai'
+import { Button, ButtonToolbar } from 'rsuite';
+import { connect } from 'react-redux';
+import { BsTypeH1 } from 'react-icons/bs';
+import Comment from './Comment';
+import { MdSend } from "react-icons/md";
 
-const SingleProduct = () => {
-    const [products] = useState([
-        {name: "Paquete de guitarra acústica Music Alley MA-34-PNK",
-        warranty: 12, arrayPic: ["https://i.ibb.co/MSD89TS/guitarra1.jpg", "https://i.ibb.co/fQR6rcq/guitarra3.jpg", "https://i.ibb.co/b7wVGjt/guitarra2.jpg"], mark: "Music Alley", arrayDescription: ["soy una buena guitarra", "comprame vo"], price: 8300, stock: 6, arrayRating: [{value: 5}], arrayVisits:[{visits: 100}], arrayComments:["hola, me gustan las guitarras"]}
-    ])
+const SingleProduct = (props) => {
+    const id = props.match.params.id
+    const {allProducts} = props
+    const [thisProduct, setThisProduct] = useState({})
+    const [visible, setVisible] = useState(false)
+    const [newComment, setComment] = useState('')
+    const [index, setIndex] = useState(0)
 
+    useEffect(()=>{
+        console.log(allProducts)
+        const product = allProducts.filter(product => product._id === id)
+        setThisProduct(product[0])
+        console.log(thisProduct)
+    },[allProducts, thisProduct])
+
+
+
+
+    if(!thisProduct._id){
+        return <h1>Vas a tener q ir a donde hace el fetch</h1>
+    }
+
+
+    const handleComments = (e) => {
+        setComment(e.target.value)
+      }
+
+      const sendComment = () =>{
+          //mando comment
+      }
+      const enterKey = (e) => {
+        if (e.key === 'Enter') {
+            //action de mandar nuevo comment
+        }
+      }
     return(
         <div className="mainSingleProduct">
-            <div className="lateralSection">
-                {products.map(product => 
-                    product.arrayPic.map(pic => {
-                        return(
-                            <div className="lateralColumn">
-                                <img src={pic} className="lateralPic" alt=""></img>
-                            </div>
-                        )
-                    })
-                )}
-
-            </div>
-            <div className="middleSection">
-                {products.map(product => {
+     
+            <div className="mainSingleContainer">
+                <div className="leftSection">
+                    {thisProduct.arrayPic.map((pic, i) => {
                     return(
-                            <div style={{backgroundImage:`url(${product.arrayPic[0]})`}} className="mainPic">
+                            <img src={pic} className="lateralPic" alt='' onClick={()=>setIndex(i)}></img> 
+                        )}
+                    )}
+                </div>
+                <div className="middleSection">
+                    <img src={thisProduct.arrayPic[index]} className="mainPic" alt=""/>
+                    <div className="descriptionContainer">
+                    <h5>Sobre este producto.</h5>
+                        <div className="liDescription">
+                            {thisProduct.arrayDescription.map(desc =>{
+                                return <p>{desc}</p>
+                            })}
+                        </div>
+                    </div>
+                </div>
+                <div className="rightSection">
+                    <p className="singleProductName">{thisProduct.name}</p>
+                    <p className="singleTextBlue">Marca: {thisProduct.mark}</p>
+                    <p className="singleTextBlue">Hay {thisProduct.stock} unidades disponibles!</p>
+                    <p>Valoración: {Array(3).fill(<i className="fa fa-star"></i>)}</p>
+                    <p style={{}}>Garantía de {thisProduct.warranty} meses!</p>
+                    <p style={{fontSize: '1.8vw', fontWeight: 'bolder'}}>$ {thisProduct.price}</p>
+                    {thisProduct.arrayComments.length !== 0 ? <p className="singleSimpleText cursor" onClick={()=>setVisible(!visible)}>{visible ? 'Ocultar comentarios': 'Ver comentarios'} ({thisProduct.arrayComments.length})</p> : <p className="singleSimpleText">Aún no hay comentarios</p>}
+                    {visible &&(
+                        <div>
+                        <div className="comments">
+                            {thisProduct.arrayComments.map(comment => <Comment comment={comment}/>)}
+                        </div>
+                            <div className="inputDiv">
+                                <input type="text" name="content" onKeyDown={enterKey} placeholder={'condicionar el placeholder u ocultar el input'} className="commentInput" onChange={handleComments} value={newComment}  autoComplete="off" />
+                                <MdSend className="commentIcon" onClick={sendComment}  />
                             </div>
-                    )
-                })}
-            </div>
-            <div className="rightSection">
-                {products.map(product => {
-                    return(
-                            <div className="infoProductContainer">
-                                <p>{product.name}</p>
-                                <p>{product.mark}</p>
-                                <p>{product.stock}</p> 
-                            </div>
-                    )
-                })}
-            </div>
+                        </div>
+                    )}
+                    <ButtonToolbar className="singleButtons">
+                        <Button color="cyan" className="singleButton" block >Añadir al carrito</Button>
+                    </ButtonToolbar>
+                </div>
+            </div> 
         </div>
     )
 }
-
-export default SingleProduct
+const mapStateToProps = state =>{
+    return{
+        allProducts: state.product.allProducts,
+    }
+}
+export default connect(mapStateToProps)( SingleProduct)

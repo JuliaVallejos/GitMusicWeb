@@ -18,7 +18,6 @@ import Payment from './components/Payment'
 import PaymentPanel from './components/PaymentPanel'
 
 function App(props) {
-  console.log(props.loggedUser)
   if(props.loggedUser){
     if(localStorage.getItem('shoppingCart')){
       props.preservedShoppingCart(localStorage.getItem('shoppingCart'))
@@ -46,7 +45,7 @@ function App(props) {
           <Route path='/products/:category' component={ProductsByCategory}/>
           <Route path='/registerUser' component={RegisterUser}/>
           <Route path='/addProducts' component={AddProducts}/>
-          <Route path='/singleproduct' component={SingleProduct}/>
+          <Route path='/product/:id' component={SingleProduct}/>
           <Route path='/shippingAddress'component={ShippingAddress}/>
           <Route path='/billingAddress'component={BillingAddress}/>
           <Route path='/payment'component={Payment}/>

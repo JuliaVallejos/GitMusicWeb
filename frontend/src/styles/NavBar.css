@@ -18,9 +18,17 @@
   margin: 2vw;
   text-decoration: none;
 }
+.rs-btn-toolbar{
+  margin-right: 12px;
+}
+#root > nav > div > div.navBarLogo > div > div > div > svg{
+  width: 1.4rem;
+}
 .navBarLogo{
   margin-left: 4vw;
   position: relative;
+  display: flex;
+  align-items: center;
 }
 .navGithub{
   font-size: 3rem;
@@ -29,6 +37,7 @@
   font-size: 1.2rem;
   position: absolute;
   right: 0;
+  top: 0;
   color: rgb(47, 140, 187);
   
 }
