@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import "../styles/SingleProduct.css"
-import { AiOutlineHeart } from 'react-icons/ai'
 import { Button, ButtonToolbar } from 'rsuite';
 import { connect } from 'react-redux';
-import { BsTypeH1 } from 'react-icons/bs';
 import Comment from './Comment';
 import { MdSend } from "react-icons/md";
+import shoppingCartActions from '../Redux/actions/shoppingCartActions';
 
 const SingleProduct = (props) => {
+    const { allProducts, addProductShoppingCart } = props
     const id = props.match.params.id
-    const {allProducts} = props
+    
     const [thisProduct, setThisProduct] = useState({})
     const [visible, setVisible] = useState(false)
     const [newComment, setComment] = useState('')
@@ -43,6 +43,11 @@ const SingleProduct = (props) => {
             //action de mandar nuevo comment
         }
       }
+
+    const addToCart = async ()=>{
+        const res = await addProductShoppingCart({idProduct: id,quantity:1, thisProduct})
+    }
+
     return(
         <div className="mainSingleProduct">
      
@@ -85,7 +90,7 @@ const SingleProduct = (props) => {
                         </div>
                     )}
                     <ButtonToolbar className="singleButtons">
-                        <Button color="cyan" className="singleButton" block >Añadir al carrito</Button>
+                        <Button color="cyan" className="singleButton" block onClick={addToCart}>Añadir al carrito</Button>
                     </ButtonToolbar>
                 </div>
             </div> 
@@ -97,4 +102,7 @@ const mapStateToProps = state =>{
         allProducts: state.product.allProducts,
     }
 }
-export default connect(mapStateToProps)( SingleProduct)
+const mapDispatchToProps={
+    addProductShoppingCart:shoppingCartActions.addProductShoppingCart
+}
+export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct)
