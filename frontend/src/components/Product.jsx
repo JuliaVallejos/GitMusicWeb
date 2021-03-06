@@ -3,6 +3,7 @@ import {useState} from 'react'
 import { FaShoppingCart } from 'react-icons/fa'
 import {connect} from 'react-redux'
 import shoppingCartActions from '../Redux/actions/shoppingCartActions'
+
 const Product = ({product,addProductShoppingCart}) =>{
  const [add,setAdd]= useState(false)
     

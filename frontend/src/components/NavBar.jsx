@@ -23,7 +23,7 @@ const NavBar = ({loggedUser, signOut}) => {
         </div>
 
         <div className='links'>
-        <NavLink exact to='/' className='navLinks'>
+        {/* <NavLink exact to='/' className='navLinks'>
             Home
           </NavLink>
            <NavLink exact to='/addProducts' className='navLinks'>
@@ -34,7 +34,7 @@ const NavBar = ({loggedUser, signOut}) => {
           </NavLink>
           <NavLink to='/singleproduct' className='navLinks'>
             Product
-          </NavLink>
+          </NavLink> */}
             {loggedUser && <p className='navLinks signOut' onClick={byeBye}>Cerrar sesión</p>}
           <NavLink to='/registerUser' className='navLinks'>
             {!loggedUser ? <FaUserCircle className="iconUser"/> :(

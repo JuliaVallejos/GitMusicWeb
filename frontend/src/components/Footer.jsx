@@ -7,7 +7,7 @@ import '../styles/Footer.css'
 const Footer = () => {
   return (
     <div className="footer">
-      <div className="iconos">
+      {/* <div className="iconos"> */}
         <div className="iconGrupo">
         <p>©GitMusic 2021 - Desarrollado por</p>
         <div className="imagSettings"></div>
@@ -20,7 +20,7 @@ const Footer = () => {
         </div> */}
         
       </div>
-    </div>
+    // </div>
   )
 }
 

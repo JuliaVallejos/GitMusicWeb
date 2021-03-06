@@ -17,7 +17,7 @@ const [visible, setVisible] =useState(false)
              )}
             
             </div>
-                   {visible && (<div className="dropdown-content">Tenemos lo que buscas. Toda clase de instrumentos musicales y accesorios!</div>)}
+                   {visible && (<div className="dropdown-content">Click para saber más!</div>)}
         </nav>
     )
 }
