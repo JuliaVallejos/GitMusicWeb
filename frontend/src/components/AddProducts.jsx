@@ -69,10 +69,10 @@ const [newItem,setNewItem] = useState()
     const Validate = async e => {
         
         const {name,mark,price,warranty,urlReview,stock,category,arrayPic} = product
-        if(name===''||mark===''||price===''||warranty===''||stock===''||category===''||arrayPic.length===0){
+       /*  if(name===''||mark===''||price===''||warranty===''||stock===''||category===''||arrayPic.length===0){
             setErrores(['Debe completar todos los campos'])
             return false
-        }
+        } */
         var arrayFinal=[...itemsDescription]
         if(newItem!==''&&itemsDescription.indexOf(newItem)===-1){
            arrayFinal= [...itemsDescription,newItem]

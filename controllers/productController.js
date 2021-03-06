@@ -18,12 +18,26 @@ const productController = {
   
  const {name,category,type,mark,price,stock,warranty,urlReview,arrayRating,arrayComments,arrayDescription,arrayVisits,outstanding} = req.body
  const {arrayPic}=req.files
-
-
+      console.log(arrayPic)
+    console.log(arrayPic.name)
     const newProduct = new Product({name,category,type,mark,price,stock,warranty,urlReview,arrayPic,arrayRating,arrayComments,arrayDescription,arrayVisits,outstanding})
     try{
-      
-      arrayPic.map(pic =>{
+        if(arrayPic.name){
+          if(arrayPic.mimetype.indexOf('image/jpeg')!==0&&arrayPic.mimetype.indexOf('image/png')!==0&&arrayPic.mimetype.indexOf('image/bmp')!==0)
+        {
+           return res.json({success:false,error:"El formato de la imagen tiene que ser JPG,JPEG,BMP ó PNG."})
+        }
+        const extPic=arrayPic.name.split('.',2)[1]
+        arrayPic.mv(`${__dirname}/../frontend/public/assets/productsPics/${arrayPic.md5}.${extPic}`,error =>{
+          if(error){
+            console.log(error)
+             return res.json({success:false,error:"Intente nuevamente..."})
+          }
+       })
+       newProduct.arrayPic=[...newProduct.arrayPic,`./assets/productsPics/${arrayPic.md5}.${extPic}`]
+
+        }else{
+        arrayPic.map(pic =>{
         if(pic.mimetype.indexOf('image/jpeg')!==0&&pic.mimetype.indexOf('image/png')!==0&&pic.mimetype.indexOf('image/bmp')!==0)
         {
            return res.json({success:false,error:"El formato de la imagen tiene que ser JPG,JPEG,BMP ó PNG."})
@@ -50,7 +64,7 @@ const productController = {
       }else{
      
         res.json({success:false,response:'Error in save'})
-      }
+      } }
     }catch(error){ 
       console.log(error) 
       res.json({success:false,error})} 
