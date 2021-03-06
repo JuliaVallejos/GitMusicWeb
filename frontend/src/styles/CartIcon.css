@@ -15,6 +15,7 @@
   box-shadow: 5px 5px 12px rgba(255, 255, 255, 0.507);
   text-decoration: none;
   margin-bottom: 8vh;
+  z-index: 9;
 }
 .cartLink{
   position: relative;
@@ -22,13 +23,14 @@
 .cartLink small {
   position: fixed;
   color:  rgb(0, 0, 0);
-  right: 1rem;
-  bottom: 9.5rem;
+  right: 1.5vw;
+  bottom: 15.5vh;
   font-size: 1.4rem;
   text-align: center;
   background-color: rgb(255, 255, 255);
   padding: .8rem;
   border-radius: 1rem;
   border: solid 2px rgb(0, 0, 0);
+z-index: 99;
 }
 
