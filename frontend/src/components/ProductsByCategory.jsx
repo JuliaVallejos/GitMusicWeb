@@ -29,6 +29,7 @@ const ProductsByCategory = (props) =>{
         {
             arrayCategory.map(product =>{
                 return (
+                    
                     <Product product={product}/>
                 )
             })

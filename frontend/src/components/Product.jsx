@@ -3,6 +3,7 @@ import {useState} from 'react'
 import { FaShoppingCart } from 'react-icons/fa'
 import {connect} from 'react-redux'
 import shoppingCartActions from '../Redux/actions/shoppingCartActions'
+import { Link } from 'react-router-dom'
 
 const Product = ({product,addProductShoppingCart}) =>{
  const [add,setAdd]= useState(false)
@@ -14,7 +15,7 @@ const Product = ({product,addProductShoppingCart}) =>{
  }
   if(product) {
        return(
-        <div className='productContainer'>
+        <Link className='productContainer' to={'/product/'+ product._id}>
              {/* Product Image View */}
             <div className='productPic' style={{backgroundImage:`url(${product.arrayPic[0]})`}}>
             </div>
@@ -32,7 +33,7 @@ const Product = ({product,addProductShoppingCart}) =>{
             </div>
             </div>
       
-      </div>
+      </Link>
     );     
     }else{
         return(
