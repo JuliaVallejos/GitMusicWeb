@@ -1,9 +1,10 @@
-import React from 'react';
+import {React,useState} from 'react';
+
 
 import {useDropzone} from 'react-dropzone';
 
 function DropFiles({product,setProduct}) {
-    const files=[]
+    const [checked,setChecked] = useState(false)
     const {acceptedFiles,fileRejections, getRootProps, getInputProps} = useDropzone({maxFiles:3});
   
   const acceptedFileItems = acceptedFiles.map(file => (
@@ -28,7 +29,7 @@ function DropFiles({product,setProduct}) {
   return (
     <section className="dropContainer">
       <div {...getRootProps({ className: 'dropzone' })}>
-        <input {...getInputProps()} />
+        <input {...getInputProps()} onClick={()=>setChecked(false)}/>
         <p>Arrastra las fotos del producto aquí, o haz click para seleccionar</p>
         <em>3 archivos como máximo</em>
       </div>
@@ -39,7 +40,11 @@ function DropFiles({product,setProduct}) {
         {fileRejectionItems.length!==0&&<h4>Archivos rechazados</h4>}
         <ul>{fileRejectionItems}</ul>
       
-        <button style={{color:'black',backgroundColor:'whitesmoke',padding:'0 4%',marginBottom:'12px'}} onClick={()=> setProduct({...product,arrayPic:acceptedFiles})}>Aceptar</button>
+        <button className='aceptarPics' onClick={()=> {
+          setProduct({...product,arrayPic:acceptedFiles})
+          setChecked(true)
+        }}>Aceptar</button>
+        {(checked&&acceptedFiles.length!==0) &&<p>Fotos cargadas</p>}
       </aside>
     </section>
   );
