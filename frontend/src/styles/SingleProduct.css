@@ -43,10 +43,11 @@
 
 .rightSection{
     padding: 1vw;
-    background-color: rgba(128, 128, 128, 0.185);
+    background-color: rgba(192, 192, 192, 0.185);
     border-radius: 3px;
     width: 30%;
-    height: 97vh;
+    height: 77vh;
+    border-radius: 8px;
 }
 
 .singleProductName{
@@ -106,6 +107,8 @@
     padding:  1vh 0 1vh 0;
     overflow: auto;
     max-height: 24vh ;
+    background-color: rgba(0, 0, 0, 0.137);
+    border-radius: 8px;
   }
   .insideComment{
     display: flex;
@@ -142,7 +145,7 @@
     width: 90%;
     text-align: left;
     padding: 1vh 1vh;
-    border-radius: 5px 18px 18px 18px;
+    border-radius: 12px;
     font-size: .9rem;
     display: flex;
     justify-content: space-between;
