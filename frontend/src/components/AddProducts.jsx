@@ -106,12 +106,10 @@ const [newItem,setNewItem] = useState()
         
     }
  
-
     return (
         <div className="containerAddProducts">
             <div className="formulario">
                 <h2>Cargue sus productos</h2>
-
                 {errores !== '' && <Message type='info' description={errores} style={{ marginBottom: '2vh' }} />}
                 <div className="inputDiv addProductInput">
                     <input type="text" name="name" placeholder="Nombre del producto" onChange={readInput} />

@@ -16,7 +16,11 @@ const ProductsByCategory = (props) =>{
         props.getProducts()
         .then(setArrayAll(allProducts))
     },[])
+
+    useEffect(()=>{
     console.log(shoppingCart)
+    },[shoppingCart])
+
     return(
         <div className='productsByCategory'>
             <h4 className='categoryTitle'>{category}</h4>
