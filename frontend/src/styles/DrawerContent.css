@@ -89,3 +89,18 @@
     height: 4vw;
     border-radius: 50%;
 }
+
+/*Manage Product*/
+.manageProduct{
+    max-width: 95%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #a3a3a3;
+},
+.manageQuantityProduct{
+    background-color: aquamarine;
+}
+.manageQuantityProduct span{
+    font-size: 16px;
+}
