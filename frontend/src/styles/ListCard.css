@@ -1,0 +1,36 @@
+.containerCart {
+    background-image: url(../assets/descarga.jpg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.containerImgInfo {
+    display: flex;
+    background-color: rgb(245, 245, 245);
+    padding: 2vh;
+    border-radius: 25px;
+    margin-top: 5vh;
+}
+.productImg {
+    background-size: cover;
+    background-position: center;
+    width: 25vw;
+    height: 22vh;
+    border-top-right-radius: 0.8vh;
+    border-bottom-right-radius: 0.8vh;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.containerInfo {
+    display: flex;
+    align-items: center;
+    width: 30vw;
+    justify-content: space-between;
+}

@@ -21,9 +21,6 @@ router.route('/user/ls')
 router.route('/userDetails')
 .post(userController.modifyUser)
 
-// router.route('/user/test')
-// .get(userController.test)
-
 //shooping
 
 //product

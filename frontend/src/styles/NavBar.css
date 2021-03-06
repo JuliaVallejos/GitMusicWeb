@@ -1,8 +1,12 @@
 .navBar{
+  background-image: url('../assets/guithoriz.jpg');
+  background-size: cover;
+  background-position: center;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  height: 15vh;
   /* padding: 2vh ; */
   color: whitesmoke;
   border-bottom: solid 2px rgba(245, 245, 245, 0.349);
@@ -14,9 +18,17 @@
   margin: 2vw;
   text-decoration: none;
 }
+.rs-btn-toolbar{
+  margin-right: 12px;
+}
+#root > nav > div > div.navBarLogo > div > div > div > svg{
+  width: 1.4rem;
+}
 .navBarLogo{
   margin-left: 4vw;
   position: relative;
+  display: flex;
+  align-items: center;
 }
 .navGithub{
   font-size: 3rem;
@@ -25,14 +37,17 @@
   font-size: 1.2rem;
   position: absolute;
   right: 0;
+  top: 0;
   color: rgb(47, 140, 187);
-
+  
 }
 
 .links {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: bold;
+  font-size: 1.1rem;
 }
 
 .iconUser {
@@ -47,4 +62,16 @@
 
 .signOut{
   cursor: pointer;
+
+}
+@media only screen and  (max-width:600px){
+  .links {
+    float: none;
+    width:100%
+  }
+  .iconUser {
+    width: 5vw;
+    height: 7vh;
+    background-color: violet;
+  }
 }

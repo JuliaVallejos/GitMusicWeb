@@ -32,6 +32,8 @@ const Register = (props) => {
         })
     }
     const Validate = async () => {
+        console.log(newUser)
+
         setErrores('')
         if (newUser.firstName === '' || newUser.lastName === '' || newUser.email === '' || newUser.password === '' || newUser.country === '') {
             Alert.error('Todos los campos son requeridos')

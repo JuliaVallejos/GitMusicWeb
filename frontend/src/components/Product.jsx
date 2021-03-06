@@ -3,29 +3,38 @@ import {useState} from 'react'
 import { FaShoppingCart } from 'react-icons/fa'
 import {connect} from 'react-redux'
 import shoppingCartActions from '../Redux/actions/shoppingCartActions'
+import productActions from '../Redux/actions/productActions'
+
 const Product = ({product,addProductShoppingCart}) =>{
+  console.log({product})
  const [add,setAdd]= useState(false)
     
  const addProductCart = async() =>{
   alert('Agregado al carrito')
-  const respuesta=await addProductShoppingCart({idProduct:product._id,quantity:1})
+  const respuesta=await addProductShoppingCart({idProduct:product._id,quantity:1, product})
   console.log(respuesta.response)
  }
   if(product) {
        return(
-      <div className='productContainer'>
-        {/* Product Image View */}
-          <div className='productPic' style={{backgroundImage:`url(${product.arrayPic[0]})`}}></div>
-          {/* -- Price View */}
-          <div className='productPrice'>
-            <h4>{`$${product.price}`}</h4>
-            <div onMouseOver={()=>setAdd(true)} onMouseOut={()=>setAdd(false)} onClick={addProductCart} className='iconCart'><FaShoppingCart/></div>
-            <div>{add&&<p className='add'>Agregar al carrito</p>}</div> 
-          </div>
-          <div className='containerTitle'>
-            <h4 className='productTitle'>{product.name}</h4>
-          </div>
-      </div>
+        <Link className='productContainer' to={'/product/'+ product._id}>
+             {/* Product Image View */}
+            <div className='productPic' style={{backgroundImage:`url(${product.arrayPic[0]})`}}>
+            </div>
+            {/* -- Price View */}
+            <div className="cardBottom">
+              <h4 className='productTitle'>{product.name}</h4>            
+            <div className='productPrice'>
+                <h6>{`$${product.price}`}</h6>
+                <div onMouseOver={()=>setAdd(true)} onMouseOut={()=>setAdd(false)} onClick={addProductCart} className='iconCart'>
+                  <FaShoppingCart/>
+                  {/* {add&&<div className='toolTip'><p className='add'>Agregar al carrito</p></div>} */}
+              </div>
+              <div>{add&&<p className='add'>Agregar al carrito</p>}</div>
+              
+            </div>
+            </div>
+      
+      </Link>
     );     
     }else{
         return(

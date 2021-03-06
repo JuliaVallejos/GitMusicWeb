@@ -1,4 +1,3 @@
-import React from 'react'
 import '../styles/NavBar.css'
 import { NavLink, Link } from 'react-router-dom'
 import { AiFillGithub } from 'react-icons/ai'
@@ -17,25 +16,32 @@ const NavBar = ({loggedUser, signOut}) => {
     <nav>
       <div className="navBar">
         <div className='navBarLogo'>
-          <AiFillGithub className="navGithub" />
-          <FaMusic className="navMusicIcon" />
           <ViewCategoryDrawer />
+          <AiFillGithub className="navGithub" />
+          <FaMusic className="navMusicIcon"  />
         </div>
 
         <div className='links'>
-          <NavLink to='/userdetails' className='navLinks'>
+        {/* <NavLink exact to='/' className='navLinks'>
+            Home
+          </NavLink>
+           <NavLink exact to='/addProducts' className='navLinks'>
+            Agregar Productos
+          </NavLink>
+          <NavLink to={loggedUser?'/userdetails':'/registerUser'} className='navLinks'>
             Mi cuenta
           </NavLink>
+          <NavLink to='/singleproduct' className='navLinks'>
+            Product
+          </NavLink> */}
             {loggedUser && <p className='navLinks signOut' onClick={byeBye}>Cerrar sesión</p>}
-          <NavLink to='/registerUser' className='navLinks'>
+          <NavLink to={loggedUser ? 'userdetails' : '/registerUser'} className='navLinks'>
             {!loggedUser ? <FaUserCircle className="iconUser"/> :(
-              
               <div className="userPic" style={{backgroundImage: `url(.${loggedUser.pic})`, backgroundPosition: 'center', backgroundSize: 'cover'}}>
               </div>
             )}
           </NavLink>
         </div>
-
       </div>
     </nav>
   )
@@ -43,6 +49,7 @@ const NavBar = ({loggedUser, signOut}) => {
 const mapStateToProps = state => {
   return {
       loggedUser: state.userR.loggedUser
+      
   }
 }
 const mapDispatchToProps ={
