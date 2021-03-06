@@ -16,10 +16,10 @@ const Product = ({product,addProductShoppingCart}) =>{
  }
   if(product) {
        return(
-        <Link className='productContainer' to={'/product/'+ product._id}>
+        <div className='productContainer'>
+          <Link to={'/product/'+ product._id} className='productPic' style={{backgroundImage:`url(${product.arrayPic[0]})`}}>
              {/* Product Image View */}
-            <div className='productPic' style={{backgroundImage:`url(${product.arrayPic[0]})`}}>
-            </div>
+            </Link>
             {/* -- Price View */}
             <div className="cardBottom">
               <h4 className='productTitle'>{product.name}</h4>            
@@ -33,8 +33,8 @@ const Product = ({product,addProductShoppingCart}) =>{
               
             </div>
             </div>
+      </div>
       
-      </Link>
     );     
     }else{
         return(
