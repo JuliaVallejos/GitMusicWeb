@@ -67,10 +67,10 @@ const AddProducts = (props) => {
     const Validate = async e => {
         e.preventDefault()
         const {name,mark,price,warranty,urlReview,stock,category,arrayPic} = product
-       /*  if(name===''||mark===''||price===''||warranty===''||stock===''||category===''||arrayPic.length===0){
+        if(name===''||mark===''||price===''||warranty===''||stock===''||category===''||arrayPic.length===0){
             setErrores(['Debe completar todos los campos'])
             return false
-        }  */
+        }  
         var arrayFinal=[...itemsDescription]
         if(newItem.trim()!==''&&itemsDescription.indexOf(newItem.trim())===-1){
            arrayFinal= [...itemsDescription,newItem.trim()]
@@ -92,7 +92,7 @@ const AddProducts = (props) => {
             fdNewProduct.append('arrayDescription',arrayFinal[i])
         })
         
-       /*  const response = await addProduct(fdNewProduct)
+        const response = await addProduct(fdNewProduct)
          console.log(response)
         if (response && !response.success) {
                 setErrores(response.message)
@@ -100,7 +100,7 @@ const AddProducts = (props) => {
             
             alert('Producto grabado')
           
-        } */
+        }
  
         
     }
@@ -174,7 +174,7 @@ const AddProducts = (props) => {
             </Link>
            
                 {errores&& errores.map(error =>{
-                    <p>{error}</p>
+                    <p style={{color:'black'}}>{error}</p>
                 })}
                 
 
