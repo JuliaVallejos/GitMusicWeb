@@ -56,7 +56,7 @@ const productController = {
         })
         newProduct.arrayPic=[...newProduct.arrayPic,`./assets/productsPics/${pic.md5}.${extPic}`]
       })
-     
+     }
       const addedProduct = await newProduct.save()
       if(addedProduct){
     
@@ -64,7 +64,7 @@ const productController = {
       }else{
      
         res.json({success:false,response:'Error in save'})
-      } }
+      } 
     }catch(error){ 
       console.log(error) 
       res.json({success:false,error})} 

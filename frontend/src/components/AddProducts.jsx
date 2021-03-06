@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
+import {Link} from 'react-router-dom'
 import {  Message } from 'rsuite';
 import DropFiles from './DropFiles'
 import '../styles/addProducts.css'
@@ -67,12 +68,12 @@ const [newItem,setNewItem] = useState()
     }
 
     const Validate = async e => {
-        
+        e.preventDefault()
         const {name,mark,price,warranty,urlReview,stock,category,arrayPic} = product
-       /*  if(name===''||mark===''||price===''||warranty===''||stock===''||category===''||arrayPic.length===0){
+        if(name===''||mark===''||price===''||warranty===''||stock===''||category===''||arrayPic.length===0){
             setErrores(['Debe completar todos los campos'])
             return false
-        } */
+        } 
         var arrayFinal=[...itemsDescription]
         if(newItem!==''&&itemsDescription.indexOf(newItem)===-1){
            arrayFinal= [...itemsDescription,newItem]
@@ -100,7 +101,7 @@ const [newItem,setNewItem] = useState()
         }else{
             
             alert('Producto grabado')
-            e.preventDefault()
+          
         }
  
         
@@ -156,10 +157,15 @@ const [newItem,setNewItem] = useState()
                         
                 ) 
             })
-            }  </div>  
-             <button onClick={addLine} style={{alignSelf:'flex-start'}}className='enviar'>Agregar otra descripción</button>
-            
-                <button className="enviar" onClick={Validate}>Confirmar producto</button>
+            }  </div>
+            <div className='buttons'>
+                <button onClick={addLine} className='btn'>Agregar otra descripción</button>
+                <button className="btn" onClick={Validate}>Confirmar producto</button>
+            </div>
+            <Link to='/'>
+            <button className='btn'>Volver al Inicio</button>
+            </Link>
+           
                 {errores&& errores.map(error =>{
                     <p>{error}</p>
                 })}
