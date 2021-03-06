@@ -3,13 +3,15 @@ import {useState} from 'react'
 import { FaShoppingCart } from 'react-icons/fa'
 import {connect} from 'react-redux'
 import shoppingCartActions from '../Redux/actions/shoppingCartActions'
+import productActions from '../Redux/actions/productActions'
 
 const Product = ({product,addProductShoppingCart}) =>{
+  console.log({product})
  const [add,setAdd]= useState(false)
     
  const addProductCart = async() =>{
   alert('Agregado al carrito')
-  const respuesta=await addProductShoppingCart({idProduct:product._id,quantity:1})
+  const respuesta=await addProductShoppingCart({idProduct:product._id,quantity:1, price:product.price,pic:product.arrayPic[0],name:productActions.name})
   console.log(respuesta.response)
  }
   if(product) {
