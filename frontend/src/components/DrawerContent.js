@@ -3,47 +3,12 @@ import { useEffect, useState } from 'react'
 import { FaRegWindowClose } from 'react-icons/fa'
 import { connect } from 'react-redux'
 
-const DrawerContent = ({closeDrawer, shoppingCart, allProducts}) => {
+const DrawerContent = ({ shoppingCart}) => {
     console.log(shoppingCart)
-
-
-
-
-    const [products, setProducts] = useState([
-        {
-        producto: 'guitarra',
-        marca: 'yamaha',
-        precio: '6000',
-        pic: '../assets/guitarratest.jpg',
-        id: 1
-    },
-    {
-        producto: 'guitarra',
-        marca: 'yamaha',
-        precio: '6000',
-        pic: '../assets/guitarratest.jpg',
-        id: 2
-    },
-    {
-        producto: 'guitarra',
-        marca: 'yamaha',
-        precio: '6000',
-        pic: '../assets/guitarratest.jpg',
-        id: 3
-    },
-    {
-        producto: 'guitarra',
-        marca: 'yamaha',
-        precio: '6000',
-        pic: '../assets/guitarratest.jpg',
-        id: 4
-    }
-])
-
     const deleteProduct = id => {
         console.log('Has borrado un producto')
         const filterProduct = shoppingCart.filter(product => product.product.id !== id)
-        setProducts(filterProduct)
+        console.log(filterProduct)
     }
 
     return (
@@ -70,6 +35,7 @@ const mapStateToProps = state =>{
     return{
         shoppingCart:state.shoppingR.shoppingCart,
         allProducts: state.product.allProducts,
+        loggedUSer: state.userR.loggedUSer
 
     }
 }

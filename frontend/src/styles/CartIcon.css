@@ -21,14 +21,14 @@
 }
 .cartLink small {
   position: fixed;
-  color:  white;
+  color:  rgb(0, 0, 0);
   right: 1rem;
   bottom: 9.5rem;
   font-size: 1.4rem;
   text-align: center;
-  background-color: rgb(0, 0, 0);
-  padding: 1rem;
+  background-color: rgb(255, 255, 255);
+  padding: .8rem;
   border-radius: 1rem;
-  border: solid 2px white;
+  border: solid 2px rgb(0, 0, 0);
 }
 
