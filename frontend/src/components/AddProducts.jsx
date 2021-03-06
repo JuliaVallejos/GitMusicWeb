@@ -11,12 +11,9 @@ import productActions from '../Redux/actions/productActions';
 
 const AddProducts = (props) => {
 
-const {addProduct,categories } = props
-const [itemsDescription,setItemsDescription] = useState([])
-const [newItem,setNewItem] = useState()
-    const[lines,setLines]= useState(1)
-    const [arrayDescription,setArrayDescription] = useState([])
-   
+    const {addProduct,categories } = props
+    const [itemsDescription,setItemsDescription] = useState([])
+    const [newItem,setNewItem] = useState('')
     const [product, setProduct] = useState({
         name:'',
         mark:'',
@@ -24,6 +21,7 @@ const [newItem,setNewItem] = useState()
         warranty:'',
         stock:'',
         category:'',
+        urlReview:'',
         outstanding:false,
         arrayPic:[],
         arrayDescription:[]
@@ -53,19 +51,18 @@ const [newItem,setNewItem] = useState()
     }
   
     const addLine = () =>{
-        setLines(lines+1)
-        setItemsDescription([...itemsDescription,newItem])
+        
+        if(newItem!==''){
+            setItemsDescription([...itemsDescription,newItem.trim()])
+            setNewItem('')
+        }else{
+            alert('Escriba algo antes de agregar otro item')
+        }
+       
       
         
     }
-    const removeLine = e => {
-   
-        const nameItem=e.target.name
-        setItemsDescription(itemsDescription.filter(item => item!==nameItem))
-        console.log(itemsDescription)
-        setLines(lines-1)
-    
-    }
+
 
     const Validate = async e => {
         e.preventDefault()
@@ -73,11 +70,12 @@ const [newItem,setNewItem] = useState()
         if(name===''||mark===''||price===''||warranty===''||stock===''||category===''||arrayPic.length===0){
             setErrores(['Debe completar todos los campos'])
             return false
-        } 
+        }  
         var arrayFinal=[...itemsDescription]
-        if(newItem!==''&&itemsDescription.indexOf(newItem)===-1){
-           arrayFinal= [...itemsDescription,newItem]
+        if(newItem.trim()!==''&&itemsDescription.indexOf(newItem.trim())===-1){
+           arrayFinal= [...itemsDescription,newItem.trim()]
         }
+        console.log(arrayFinal)
     
         const fdNewProduct = new FormData()
         fdNewProduct.append('name', name)
@@ -151,13 +149,22 @@ const [newItem,setNewItem] = useState()
                 
                 <div className="inputDiv">
                     <h3 style={{color:'white'}}>Descripción</h3>
-                       {[...Array(lines)].map((item, idx) =>{
-                        return (
-                            <ItemDescription id={idx}  addItemDescription={addItemDescription} newItem={newItem} removeLine={removeLine} lines={lines}/>
-                        
-                ) 
-            })
-            }  </div>
+            
+                <div className='addDescription'>
+                 <input type="text" value={newItem} name='description' placeholder="Descripción(una oración por línea)" onChange={addItemDescription}/>
+                 </div>
+            {itemsDescription.map(item =>{
+                   return( 
+                   <div className='itemsDescription'>
+                       <div>
+                       <h5>{item}</h5>
+                       </div>
+                       <button className='removeLine' name={item} onClick={(e)=>setItemsDescription(itemsDescription.filter(item=> item!==e.target.name))}>Borrar</button>
+                       </div>)
+                })
+            }
+                
+            </div>
             <div className='buttons'>
                 <button onClick={addLine} className='btn'>Agregar otra descripción</button>
                 <button className="btn" onClick={Validate}>Confirmar producto</button>
@@ -167,7 +174,7 @@ const [newItem,setNewItem] = useState()
             </Link>
            
                 {errores&& errores.map(error =>{
-                    <p>{error}</p>
+                    <p style={{color:'black'}}>{error}</p>
                 })}
                 
 

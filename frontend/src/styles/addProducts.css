@@ -124,7 +124,6 @@ input[type=radio],input[type=radio]:hover{
   margin-bottom:12px
 }
 .removeLine{
-  width: 5vw;
   border-radius: 10px;
   transition: all 0.2s;
   padding:8px !important;
@@ -142,4 +141,20 @@ input[type=radio],input[type=radio]:hover{
 }
 .addDescription input,.addDescription input:hover{
   margin:4px
+}
+.itemsDescription{
+  display:flex;
+  justify-content: space-between;
+  margin-bottom: 2vh;
+  width: 100%;
+ 
+ 
+}
+.itemsDescription div{
+  color:whitesmoke;
+  max-width: 70%;
+
+}
+.itemsDescription h5{
+  width:100%
 }

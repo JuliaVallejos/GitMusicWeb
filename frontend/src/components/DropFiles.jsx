@@ -45,6 +45,7 @@ function DropFiles({product,setProduct}) {
           setChecked(true)
         }}>Aceptar</button>
         {(checked&&acceptedFiles.length!==0) &&<p>Fotos cargadas</p>}
+        {console.log(acceptedFiles)}
       </aside>
     </section>
   );

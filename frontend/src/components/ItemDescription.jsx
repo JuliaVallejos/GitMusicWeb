@@ -8,15 +8,15 @@ import '../styles/addProducts.css'
 import Product from './Product';
 
 
-const ItemDescription = ({addItemDescription,newItem,removeLine,lines}) => {
+const ItemDescription = ({addItemDescription,newItem,removeLine,id,lines}) => {
    
  
 
     return (
-        <div className='addDescription'>
-        <input type="text" name='description' placeholder="Descripción(una oración por línea)" onChange={addItemDescription}/>
+        <div id={id} className='addDescription'>
+        <input type="text" value={newItem} name='description' placeholder="Descripción(una oración por línea)" onChange={addItemDescription}/>
      
-        {lines >= 2 && <button  name={newItem} onClick={removeLine} className="removeLine">Borrar</button>}
+        {lines.length >= 2 && <button id={id} name={newItem} onClick={removeLine} className="removeLine">Borrar</button>}
         </div>
     )
 }
