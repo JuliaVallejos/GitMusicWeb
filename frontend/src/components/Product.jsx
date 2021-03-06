@@ -7,10 +7,11 @@ import shoppingCartActions from '../Redux/actions/shoppingCartActions'
 const Product = ({product,addProductShoppingCart}) =>{
  const [add,setAdd]= useState(false)
     
-    const addProductCart = () =>{
-      alert('Agregado al carrito')
-      addProductShoppingCart({idProduct:product._id,quantity:1})
-    }
+ const addProductCart = async() =>{
+  alert('Agregado al carrito')
+  const respuesta=await addProductShoppingCart({idProduct:product._id,quantity:1})
+  console.log(respuesta.response)
+ }
   if(product) {
        return(
         <div className='productContainer'>
@@ -22,7 +23,7 @@ const Product = ({product,addProductShoppingCart}) =>{
               <h4 className='productTitle'>{product.name}</h4>            
             <div className='productPrice'>
                 <h6>{`$${product.price}`}</h6>
-                <div onMouseOver={()=>setAdd(true)} onMouseOut={()=>setAdd(false)} onClick={()=> alert('Agregado al carrito')} className='iconCart'>
+                <div onMouseOver={()=>setAdd(true)} onMouseOut={()=>setAdd(false)} onClick={addProductCart} className='iconCart'>
                   <FaShoppingCart/>
                   {/* {add&&<div className='toolTip'><p className='add'>Agregar al carrito</p></div>} */}
               </div>

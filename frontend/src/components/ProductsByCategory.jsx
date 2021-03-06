@@ -9,13 +9,17 @@ const ProductsByCategory = (props) =>{
     const [arrayAll,setArrayAll] = useState([])
     const {allProducts,shoppingCart} =props
     const category = props.match.params.category
-    const arrayCategory = allProducts.filter(product => product.category.label === category)
+    const arrayCategory =  allProducts.filter(product => product.category === category) 
 
     useEffect(()=>{
         props.getProducts()
         .then(setArrayAll(allProducts))
     },[])
+
+    useEffect(()=>{
     console.log(shoppingCart)
+    },[shoppingCart])
+
     return(
         <div className='productsByCategory'>
             <h4 className='categoryTitle'>{category}</h4>
