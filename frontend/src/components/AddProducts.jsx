@@ -15,7 +15,7 @@ const {addProduct,categories } = props
 const [itemsDescription,setItemsDescription] = useState([])
 const [newItem,setNewItem] = useState()
     const[lines,setLines]= useState(1)
-    const [arrayDescription,setArrayDescription] = useState([])
+    // const [arrayDescription,setArrayDescription] = useState([])
    
     const [product, setProduct] = useState({
         name:'',
@@ -30,7 +30,7 @@ const [newItem,setNewItem] = useState()
 
     })
     const [errores, setErrores] = useState('')
-    const [fileNames, setFileNames] = useState([]);
+    // const [fileNames, setFileNames] = useState([]);
     
 
     useEffect(() => {
@@ -89,9 +89,11 @@ const [newItem,setNewItem] = useState()
         fdNewProduct.append('category', category)
         arrayPic.map((pic,i) =>{
             fdNewProduct.append('arrayPic',arrayPic[i])
+            return false
         })
         arrayFinal.map((item,i)=>{
             fdNewProduct.append('arrayDescription',arrayFinal[i])
+            return false
         })
         
         const response = await addProduct(fdNewProduct)
@@ -128,12 +130,10 @@ const [newItem,setNewItem] = useState()
                     <input type="number" name="stock" placeholder="Cantidad en stock" onChange={readInput} />
                 </div>
                <select  onChange={readInput} label='category' name='category'>
-                <option value='' name='category' selected disabled='true'>Selecciona categoría</option>
+                <option value='' name='category' selected >Selecciona categoría</option>
                    {categories.length !== 0 && categories.map(category =>{
-                     
                        return( 
-                           
-                           <option value={category.category} name='category'>{category.category}</option>
+                           <option value={category.category} name='category' key={category.category}>{category.category}</option>
                        )
                    })}
                </select>
@@ -167,7 +167,7 @@ const [newItem,setNewItem] = useState()
             </Link>
            
                 {errores&& errores.map(error =>{
-                    <p>{error}</p>
+                    return <p>{error}</p>
                 })}
                 
 

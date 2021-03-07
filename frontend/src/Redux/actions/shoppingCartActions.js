@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {Alert, Checkbox} from 'rsuite'
+import {Alert} from 'rsuite'
 
 const shoppingCartActions={
   addShoppingCart:(shoppingCart)=>{
