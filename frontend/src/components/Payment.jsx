@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { Steps, Alert } from 'rsuite';
-import { NavLink, Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import {  Alert } from 'rsuite';
+import { NavLink } from 'react-router-dom'
 import '../styles/ShippingAddress.css'
 import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
 
 const Payment = () => {
 
-    const [dataCard, setdataCard] = useState([])
     const [cardFields, setCardFields] = useState({
         cvc: '',
         expiry: '',
@@ -35,7 +34,7 @@ const Payment = () => {
         if (cardFields.number === '' || cardFields.name === '' || cardFields.cvc === '' || cardFields.expiry === '') {
             Alert.error('Todos los campos son requeridos')
         }
-        
+
         // const fdDataCard = new FormData()
         // fdDataCard.append('numCard', dataCard.numCard)
         // fdDataCard.append('altura', dataCard.NombreTitular)

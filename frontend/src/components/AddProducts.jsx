@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
-import {  Message } from 'rsuite';
+import {  Alert, Message } from 'rsuite';
 import DropFiles from './DropFiles'
 import '../styles/addProducts.css' 
 
@@ -13,7 +13,6 @@ const AddProducts = (props) => {
 const {addProduct,categories } = props
 const [itemsDescription,setItemsDescription] = useState([])
 const [newItem,setNewItem] = useState()
-    const[lines,setLines]= useState(1)
     // const [arrayDescription,setArrayDescription] = useState([])
    
     const [product, setProduct] = useState({
@@ -101,9 +100,7 @@ const [newItem,setNewItem] = useState()
         if (response && !response.success) {
                 setErrores(response.message)
         }else{
-            
-            alert('Producto grabado')
-          
+            Alert.success('Producto almacenado exitosamente')
         }
  
         
@@ -175,8 +172,8 @@ const [newItem,setNewItem] = useState()
             <button className='btn'>Volver al Inicio</button>
             </Link>
            
-                {errores&& errores.map(error =>{
-                    return <p>{error}</p>
+                {errores&& errores.map((error, i) =>{
+                    return <p key={i+'e'}>{error}</p>
                 })}
                 
 
