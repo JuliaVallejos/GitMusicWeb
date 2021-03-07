@@ -13,7 +13,7 @@
 }
 
 .leftSection{
-  padding: 1vw;
+  padding: 1vw 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -47,9 +47,9 @@
     background-color: rgba(192, 192, 192, 0.185);
     border-radius: 3px;
     width: 30%;
-    height: 77vh;
     border-radius: 8px;
     margin-top: 1vw;
+    height: fit-content;
 }
 
 .singleProductName{
