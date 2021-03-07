@@ -5,7 +5,6 @@ const initState = {
   const userReducer = (state = initState, action) =>{
       switch(action.type){
         case "USER_LOG":
-        console.log(action.payload)
           localStorage.setItem('token', action.payload.token)
           localStorage.setItem('firstName', action.payload.firstName)
           localStorage.setItem('pic', action.payload.pic)
@@ -15,6 +14,10 @@ const initState = {
             loggedUser: action.payload
           }
         case "SIGN_OUT":
+          localStorage.removeItem('token')
+          localStorage.removeItem('firstName')
+          localStorage.removeItem('pic')
+          localStorage.removeItem('userId')
           return{
             ...state,
             loggedUser: null

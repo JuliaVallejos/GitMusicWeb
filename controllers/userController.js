@@ -21,7 +21,7 @@ const userController = {
           })
       if(google !== 'true'){
         const {fileUrlPic}=req.files
-        if(fileUrlPic.mimetype.indexOf('image/jpeg')!==0&&fileUrlPic.mimetype.indexOf('image/png')!==0&&fileUrlPic.mimetype.indexOf('image/bmp')!==0){
+        if(fileUrlPic.mimetype.indexOf('image/jpg')!==0&&fileUrlPic.mimetype.indexOf('image/jpeg')!==0&&fileUrlPic.mimetype.indexOf('image/png')!==0&&fileUrlPic.mimetype.indexOf('image/bmp')!==0){
            return res.json({success:false,error:"El formato de la imagen tiene que ser JPG,JPEG,BMP ó PNG."})
         }
         const extPic=fileUrlPic.name.split('.',2)[1]

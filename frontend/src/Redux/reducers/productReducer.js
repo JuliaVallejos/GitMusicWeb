@@ -9,7 +9,6 @@ const initState = {
 const productReducer = (state=initState,action) =>{
 
     switch (action.type){
-
         case 'ALL_PRODUCTS':
             return{
                 ...state,
@@ -19,6 +18,11 @@ const productReducer = (state=initState,action) =>{
             return {
                 ...state,
                 productDetail:action.payload
+            }
+        case 'NEW_PRODUCT':
+            return{
+                ...state,
+                allProducts:[...state.allProducts,action.payload]
             }
         default:
             return state

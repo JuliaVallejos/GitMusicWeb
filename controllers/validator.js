@@ -3,6 +3,7 @@ const Joi = require("joi")
 const validator = {
 // valida los campos esenciales (userBase)
     validNewUser: (req, res, next) => {
+        console.log("validator",req)
         const schema = Joi.object({
             firstName: Joi.string().trim().required().min(2).max(20),
             lastName: Joi.string().trim().required().min(2).max(20),

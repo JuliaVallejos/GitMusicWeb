@@ -1,9 +1,9 @@
 .rs-drawer-content{ /* panel del drawer */
-    background-color: rgba(225, 225, 225, 0.9);
+    background-color: rgb(155, 177, 182);
 }
 
 .rs-btn-primary{ /* boton primario */
-   background-color: rgba(0, 0, 0, 0.747) !important;
+   background-color: rgba(20, 149, 172, 0.788) !important;
 }
 .rs-btn-subtle{ /* boton secundario */
     color: black;
@@ -13,7 +13,21 @@
     font-size: 2vw !important;
     margin-bottom: -1vh !important;
 }
-
+.rs-drawer-body::-webkit-scrollbar{
+    width: 10px;
+}
+.rs-drawer-body::-webkit-scrollbar-track{
+    background: #a3a3a3;  
+    border-radius: 5px;
+  }
+  .rs-drawer-body::-webkit-scrollbar-thumb{
+    background: rgb(88, 88, 88);
+    border-radius: 5px;
+  }
+  
+  .rs-drawer-body::-webkit-scrollbar-thumb:hover {
+    background: rgb(78, 114, 119);
+  }
 .drawerProductContainer {
     display: flex;
     flex-direction: row;
@@ -55,11 +69,19 @@
     display:flex;
     align-items: center;
     padding: 2vh;
-    border-bottom: solid 1px grey;
+    margin: 1vh 1vh;
+    border-radius: 8px;
+    box-shadow: -6px -6px 18px rgba(0, 0, 0, 0.342);
+    transform: scale(0.9);
+    transition: all ease 0.3s;
+    
+}
+.navLinksCategory:hover{
+    transform: scale(1);
 }
 .textLinksCategory{
     color: black;
-    font-size: 1.5vw;
+    font-size: 1.2vw;
     padding: 1vh;
     margin-left: 1vw;
 }
@@ -68,4 +90,40 @@
     width: 4vw;
     height: 4vw;
     border-radius: 50%;
+}
+
+/*Manage Product*/
+.manageProduct{
+    max-width: 95%;
+    min-height: 3.5vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 2vh;
+}
+.manageQuantityProduct{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.manageQuantityProduct span{
+    margin: 0 .5vw;
+}
+.manageQuantityProduct span .rs-input{
+    font-size: 16px;
+    font-weight: bold;
+    color: green;
+    text-align: center;
+    max-width: 4vw;
+    max-height: 3vh;
+}
+.bottonManage{
+    cursor:pointer;
+    font-size: 16px;
+}
+.bottonManage.edit{
+    color: #E0CD22;
+}
+.bottonManage.delete{
+    color: #d62915;
 }

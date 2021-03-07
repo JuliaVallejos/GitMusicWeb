@@ -29,7 +29,10 @@ const userActions = {
                case 'country':
                  errors.push({label:error.context.label,message:"Debes seleccionar algun país."})
                  break;
+                default:
+                return false
              }
+             return false
            })
          }
          dispatch({
@@ -66,7 +69,10 @@ const userActions = {
                case 'country':
                  errors.push({label:error.context.label,message:"Debes seleccionar algun país."})
                  break;
+                default:
+                return false
              }
+             return false
            })
          }
          dispatch({
@@ -89,7 +95,6 @@ const userActions = {
      }
    },
   preserveLog: (token) =>{
-    console.log(token,"action")
     const idUser=localStorage.getItem('idUser')
     return async (dispatch, getState) =>{
       try{
@@ -128,7 +133,7 @@ const userActions = {
    modifyUser: (formData) => {
      console.log(formData)
     return async (dispatch, getState) => {
-        const response = await axios.post(`http://localhost:4000/api/userDetails`, formData, {
+        const response = await axios.post(`https://gitmusicapp.herokuapp.com/api/userDetails`, formData, {
             headers: { 
                 'Content-Type': 'multipart/form-data' 
             }

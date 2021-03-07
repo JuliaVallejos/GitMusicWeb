@@ -1,40 +1,42 @@
 import React, {Component} from 'react'
 import '../../node_modules/rsuite/dist/styles/rsuite-default.css';
 import '../styles/DrawerContent.css'
-import {ButtonToolbar, Drawer, Button} from 'rsuite'
+import {ButtonToolbar, Drawer, Button, Alert} from 'rsuite'
 import DrawerContent from './DrawerContent'
 import CartIcon from './CartIcon';
+import {Link} from 'react-router-dom'
+import { connect } from 'react-redux';
 
 class ShowDrawer extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        size: 'xs',
-        show: false
-      };
-      this.close = this.close.bind(this);
-      this.toggleDrawer = this.toggleDrawer.bind(this);
+    state = {
+      size: 'xs',
+      show: false
+    };
+    close = this.close.bind(this);
+    toggleDrawer = this.toggleDrawer.bind(this);
+  close() {
+    this.setState({
+      show: false
+    });
+  }
+  toggleDrawer(placement) {
+    this.setState({
+      placement,
+      show: true
+    });
+  }
+  render() {
+  const goToCart =()=>{
+      if(!this.props.loggedUser){
+        Alert.error('Debes iniciar sesión para terminar tu compra')
+      }
     }
-    close() {
-      this.setState({
-        show: false
-      });
-    }
-    toggleDrawer(placement) {
-      this.setState({
-        placement,
-        show: true
-      });
-    }
-
-    render() {
-      const { size, placement, show } = this.state;
-  
-      return (
+    const { size, placement, show } = this.state;
+    return (
         <div >
           <ButtonToolbar>
             <div node="button" onClick={() => this.toggleDrawer('right')} >
-            <CartIcon/>
+            <CartIcon />
             </div>
           </ButtonToolbar>  
           <Drawer
@@ -51,9 +53,9 @@ class ShowDrawer extends Component {
               <DrawerContent/>
             </Drawer.Body>
             <Drawer.Footer>
-              <Button onClick={this.close} appearance="primary">
+              <Link onClick={goToCart} appearance="primary" to='/cartlist'>
                 Comprar
-              </Button>
+              </Link>
               <Button onClick={this.close} appearance="subtle">
                 Cerrar
               </Button>
@@ -63,5 +65,12 @@ class ShowDrawer extends Component {
       );
     }
   }
+  const mapStateToProps = state => {
+    return {
+        allProducts: state.product.allProducts,
+        shoppingCart:state.shoppingR.shoppingCart,
+        loggedUser: state.userR.loggedUser
+    }
+}
   
-  export default ShowDrawer
+  export default connect(mapStateToProps)(ShowDrawer)
