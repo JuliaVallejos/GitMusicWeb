@@ -28,6 +28,9 @@ router.route('/products')
 .get(productController.allProducts)
 .post(productController.addProduct)
 
+router.route('/productsAdmin')
+.post(productController.addProductAdmin)
+
 router.route('/products/:idProduct')
 .get(productController.getProductDetail)
 .delete(productController.deleteProduct)
