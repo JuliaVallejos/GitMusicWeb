@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import "../styles/SingleProduct.css"
-import { Alert, Button, ButtonToolbar, InputNumber } from 'rsuite';
+import { Alert, Button, ButtonToolbar } from 'rsuite';
 import { connect } from 'react-redux';
 import Comment from './Comment';
 import { MdSend } from "react-icons/md";
@@ -91,7 +91,7 @@ console.log(props)
                             })}
                         </div>
                     </div>
-                    {thisProduct.urlReview &&
+                    {thisProduct.urlReview !== undefined &&
                     <div className="video-responsive">
                             <iframe
                             width="853"
