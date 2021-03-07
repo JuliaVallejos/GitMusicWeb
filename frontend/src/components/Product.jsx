@@ -3,6 +3,7 @@ import {useState} from 'react'
 import { FaShoppingCart } from 'react-icons/fa'
 import {connect} from 'react-redux'
 import shoppingCartActions from '../Redux/actions/shoppingCartActions'
+import { NavLink, Link } from 'react-router-dom'
 import productActions from '../Redux/actions/productActions'
 
 const Product = ({product,addProductShoppingCart}) =>{
