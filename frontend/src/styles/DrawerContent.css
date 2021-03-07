@@ -93,14 +93,35 @@
 /*Manage Product*/
 .manageProduct{
     max-width: 95%;
+    min-height: 3.5vh;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: #a3a3a3;
-},
+    margin-top: 2vh;
+}
 .manageQuantityProduct{
-    background-color: aquamarine;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 .manageQuantityProduct span{
+    margin: 0 .5vw;
+}
+.manageQuantityProduct span .rs-input{
     font-size: 16px;
+    font-weight: bold;
+    color: green;
+    text-align: center;
+    max-width: 4vw;
+    max-height: 3vh;
+}
+.bottonManage{
+    cursor:pointer;
+    font-size: 16px;
+}
+.bottonManage.edit{
+    color: #E0CD22;
+}
+.bottonManage.delete{
+    color: #d62915;
 }

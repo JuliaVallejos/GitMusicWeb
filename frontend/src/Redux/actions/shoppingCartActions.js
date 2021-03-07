@@ -56,5 +56,25 @@ const shoppingCartActions={
       Alert.success('Carrito Vacio')
     }
   },
+  editProductCart:(value,product)=>{
+    return async (dispatch, getState)=>{
+      dispatch({
+        type: "EDIT_PRODUCT_CART",
+        payload:{value:value,product:product}
+      })
+      localStorage.setItem('shoppingCart',JSON.stringify(getState().shoppingR.shoppingCart))
+      Alert.success('Producto actualizado')
+    }
+  },
+  deleteProductCart:(idProduct)=>{
+    return async (dispatch, getState)=>{
+      dispatch({
+        type: "DELETE_PRODUCT_CART",
+        payload:{idProduct:idProduct}
+      })
+      localStorage.setItem('shoppingCart',JSON.stringify(getState().shoppingR.shoppingCart))
+      Alert.error('Se elimino el articulo del carrito.')
+    }
+  }
 }
 export default shoppingCartActions
