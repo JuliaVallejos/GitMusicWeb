@@ -271,3 +271,12 @@
   margin: 1vh;
   color: #1f8ee9;
 }
+.star{
+  cursor: pointer;
+  transition: color 200ms;
+  margin: 3px;
+  font-size: 1.6rem;
+}
+.starInput{
+  display: none;
+}

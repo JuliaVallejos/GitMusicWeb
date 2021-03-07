@@ -7,6 +7,8 @@ import Comment from './Comment';
 import { MdSend } from "react-icons/md";
 import shoppingCartActions from '../Redux/actions/shoppingCartActions';
 import { AiOutlineCheckCircle } from "react-icons/ai";
+import { BsFillStarFill } from 'react-icons/bs'
+
 const SingleProduct = (props) => {
     const { allProducts, addProductShoppingCart } = props
     const id = props.match.params.id
@@ -16,11 +18,17 @@ const SingleProduct = (props) => {
     const [newComment, setComment] = useState('')
     const [index, setIndex] = useState(0)
     const [quantity, setquantity] = useState(1)
+    const [rating, setRating] = useState(0)
+
     useEffect(()=>{
         console.log(allProducts)
         const product = allProducts.filter(product => product._id === id)
         setThisProduct(product[0])
         console.log(thisProduct)
+        if(thisProduct._id && thisProduct.arrayRating.length !== 0){
+            const stars = Math.round(thisProduct.arrayRating.reduce((a, b) => (a.value + b.value)) / thisProduct.arrayRating.length)
+            setRating(stars)
+        } 
     },[allProducts, thisProduct, id])
 console.log(props)    
 
@@ -48,10 +56,17 @@ console.log(props)
         addProductShoppingCart({idProduct: id,quantity, thisProduct})
     }
     
+    const rankProduct = (e) => {
+            setRating(e.target.value)
+            Alert.success('Calificaste con ' + e.target.value + ' estrellas!', 4000)
+        
+    }
     
         if(!thisProduct._id){
             return <h1>Vas a tener q ir a donde hace el fetch</h1>
         }
+
+
     return(
         <div className="mainSingleProduct">
      
@@ -95,7 +110,22 @@ console.log(props)
                     <p className="singleProductName">{thisProduct.name}</p>
                     <p className="singleTextBlue">Marca: {thisProduct.mark}</p>
                     <p className="singleTextBlue">Hay {thisProduct.stock} unidades disponibles!</p>
-                    <p>Valoración: {Array(3).fill(<i className="fa fa-star"></i>)}</p>
+                    <p>Valoración:</p>
+                    <div>{[...Array(5)].map((m, i) => {
+                                const ratingValue = i + 1
+                                return (
+                                    <label key={i}>
+                                        <input
+                                            className="starInput"
+                                            type="radio"
+                                            name="rating"
+                                            value={ratingValue}
+                                            onClick={rankProduct}
+                                        />
+                                        <BsFillStarFill className="star" color={(ratingValue <= rating) ? '#ffc107' : '#8C8C8C'} />
+                                    </label>
+                                )
+                            })}</div>
                     <p style={{}}>Garantía de {thisProduct.warranty} meses!</p>
                     <p style={{fontSize: '1.8vw', fontWeight: 'bolder'}}>$ {thisProduct.price}</p>
                     <div className='numberInput'>
