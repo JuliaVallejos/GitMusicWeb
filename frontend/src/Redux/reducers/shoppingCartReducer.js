@@ -43,6 +43,26 @@ const shoppingCartReducer= (state = initState, action) =>{
           ...state,
           shoppingCart:[]
         };}
+      case "EDIT_PRODUCT_CART":{
+        var cartCopy = []
+        cartCopy=[...state.shoppingCart]
+        const cartFiltered=cartCopy.filter(product=>product.idProduct!==action.payload.product.idProduct)
+        action.payload.product.quantity = action.payload.value
+        cartFiltered.push(action.payload.product)
+        return{
+          ...state,
+          shoppingCart: cartFiltered
+        }
+      };
+      case "DELETE_PRODUCT_CART":{
+        var cartCopy = []
+        cartCopy=[...state.shoppingCart]
+        const cartFiltered=cartCopy.filter(product=>product.idProduct!==action.payload.idProduct)
+        return{
+          ...state,
+          shoppingCart: cartFiltered
+        }
+      };
       default :{
           return state}
       }
