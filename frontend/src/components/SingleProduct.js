@@ -33,7 +33,8 @@ const SingleProduct = (props) => {
 console.log(props)    
 
     const setNumber = (e) =>{
-        setquantity(e.target.value)
+        const number = parseInt(e.target.value)
+        setquantity(number)
         if(e.target.value > thisProduct.stock){
             setquantity(thisProduct.stock)
             Alert.error('El número de unidades no puede superar al stock')
