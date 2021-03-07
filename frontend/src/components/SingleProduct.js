@@ -63,7 +63,7 @@ console.log(props)
         
     }
     
-        if(!thisProduct._id){
+        if(!thisProduct){
             return <h1>Vas a tener q ir a donde hace el fetch</h1>
         }
 

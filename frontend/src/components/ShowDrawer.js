@@ -4,6 +4,7 @@ import '../styles/DrawerContent.css'
 import {ButtonToolbar, Drawer, Button} from 'rsuite'
 import DrawerContent from './DrawerContent'
 import CartIcon from './CartIcon';
+import {Link} from 'react-router-dom'
 import { connect } from 'react-redux';
 
 class ShowDrawer extends Component {
@@ -27,6 +28,7 @@ class ShowDrawer extends Component {
       show: true
     });
   }
+  
   render() {
     
     const { size, placement, show } = this.state;
@@ -51,9 +53,9 @@ class ShowDrawer extends Component {
               <DrawerContent/>
             </Drawer.Body>
             <Drawer.Footer>
-              <Button onClick={this.close} appearance="primary">
+              <Link onClick={this.goToCart} appearance="primary" to='/cartlist'>
                 Comprar
-              </Button>
+              </Link>
               <Button onClick={this.close} appearance="subtle">
                 Cerrar
               </Button>

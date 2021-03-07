@@ -10,18 +10,12 @@ import productActions from '../Redux/actions/productActions';
 
 const AddProducts = (props) => {
 
-<<<<<<< HEAD
 const {addProduct,categories } = props
 const [itemsDescription,setItemsDescription] = useState([])
 const [newItem,setNewItem] = useState()
     const[lines,setLines]= useState(1)
     // const [arrayDescription,setArrayDescription] = useState([])
    
-=======
-    const {addProduct,categories } = props
-    const [itemsDescription,setItemsDescription] = useState([])
-    const [newItem,setNewItem] = useState('')
->>>>>>> 258a591ac73eb98cc971f5405cdb4e2e9f1709ce
     const [product, setProduct] = useState({
         name:'',
         mark:'',
@@ -182,11 +176,7 @@ const [newItem,setNewItem] = useState()
             </Link>
            
                 {errores&& errores.map(error =>{
-<<<<<<< HEAD
                     return <p>{error}</p>
-=======
-                    <p style={{color:'black'}}>{error}</p>
->>>>>>> 258a591ac73eb98cc971f5405cdb4e2e9f1709ce
                 })}
                 
 
