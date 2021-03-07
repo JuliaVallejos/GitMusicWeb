@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {  Alert } from 'rsuite';
 import { NavLink } from 'react-router-dom'
 import '../styles/ShippingAddress.css'
-import Cards from 'react-credit-cards';
+import Cards from 'react-credit-cards'
 import 'react-credit-cards/es/styles-compiled.css';
 
 const Payment = () => {
