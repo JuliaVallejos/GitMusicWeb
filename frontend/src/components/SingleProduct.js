@@ -10,10 +10,9 @@ import { AiOutlineCheckCircle } from "react-icons/ai";
 import { BsFillStarFill } from 'react-icons/bs'
 
 const SingleProduct = (props) => {
-    const { allProducts, addProductShoppingCart } = props
+    const { allProducts, addProductShoppingCart, shoppingCart } = props
     const id = props.match.params.id
-    
-    const [thisProduct, setThisProduct] = useState({})
+    const [thisProduct, setThisProduct] = useState([])
     const [visible, setVisible] = useState(false)
     const [newComment, setComment] = useState('')
     const [index, setIndex] = useState(0)
@@ -21,16 +20,13 @@ const SingleProduct = (props) => {
     const [rating, setRating] = useState(0)
 
     useEffect(()=>{
-        console.log(allProducts)
         const product = allProducts.filter(product => product._id === id)
         setThisProduct(product[0])
-        console.log(thisProduct)
         if(thisProduct._id && thisProduct.arrayRating.length !== 0){
             const stars = Math.round(thisProduct.arrayRating.reduce((a, b) => (a.value + b.value)) / thisProduct.arrayRating.length)
             setRating(stars)
         } 
-    },[allProducts, thisProduct, id])
-console.log(props)    
+    },[allProducts, thisProduct, id])  
 
     const setNumber = (e) =>{
         const number = parseInt(e.target.value)
@@ -52,22 +48,24 @@ console.log(props)
             //action de mandar nuevo comment
         }
     }
-    
     const addToCart = async ()=>{
-        addProductShoppingCart({idProduct: id,quantity, thisProduct})
-    }
-    
-    const rankProduct = (e) => {
-            setRating(e.target.value)
-            Alert.success('Calificaste con ' + e.target.value + ' estrellas!', 4000)
-        
-    }
-    
-        if(!thisProduct){
-            return <h1>Vas a tener q ir a donde hace el fetch</h1>
+        const filterProductCart = shoppingCart.filter(product => product.idProduct === thisProduct._id)
+        if(filterProductCart.length!==0 && (filterProductCart[0].product.stock<filterProductCart[0].quantity+1)){
+          Alert.warning(`No podes exceder el stock(${thisProduct.stock}) de este articulo.`,3000)
+        }else{
+          Alert.success('Agregado al carrito.',3500)
+          addProductShoppingCart({idProduct: id,quantity, product:thisProduct})
         }
+    }
+    const rankProduct = (e) => {
+        setRating(e.target.value)
+        Alert.success('Calificaste con ' + e.target.value + ' estrellas!', 4000)
+    }
+    if(!thisProduct){
+        return <h1>Vas a tener q ir a donde hace el fetch</h1>
+    }
 
-
+    if(thisProduct.length!==0){
     return(
         <div className="mainSingleProduct">
      
@@ -105,8 +103,6 @@ console.log(props)
                         </div>
                     }
                 </div>
-
-                
                 <div className="rightSection">
                     <p className="singleProductName">{thisProduct.name}</p>
                     <p className="singleTextBlue">Marca: {thisProduct.mark}</p>
@@ -128,7 +124,7 @@ console.log(props)
                                 )
                             })}</div>
                     <p style={{}}>Garantía de {thisProduct.warranty} meses!</p>
-                    <p style={{fontSize: '1.8vw', fontWeight: 'bolder'}}>$ {thisProduct.price}</p>
+                    <p style={{fontSize: '2vw', fontWeight: 'bolder' , color:'rgb(20 170 52)'}}>$ {thisProduct.price}</p>
                     <div className='numberInput'>
                         <input type='number'className='number' min='1' onChange={setNumber} value={quantity}/>
                     </div>
@@ -150,11 +146,14 @@ console.log(props)
                 </div>
             </div> 
         </div>
-    )
+    )}else{
+        return(<h1>loading</h1>)
+    }
 }
 const mapStateToProps = state =>{
     return{
         allProducts: state.product.allProducts,
+        shoppingCart:state.shoppingR.shoppingCart
     }
 }
 const mapDispatchToProps={

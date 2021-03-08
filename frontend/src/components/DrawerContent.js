@@ -49,10 +49,10 @@ const DrawerContent = ({shoppingCart,editProductCart,deleteProductCart}) => {
         <>
             {shoppingCart.length !== 0 ? shoppingCart.map(product => 
                 <div className="drawerProductContainer" >
-                    <div>
+                    <div className="descriptionProduct">
                         <p className="textProduct"><strong>Producto:</strong> {product.product.name}</p>
                         <p className="textProduct"><strong>Marca:</strong> {product.product.mark}</p>
-                        <p className="textProduct"><strong>Precio:</strong> {product.product.price}</p>
+                        <p className="textProduct"><strong>Precio:</strong> <span className="totalPrice">${product.product.price}</span></p>
                         <div className="manageProduct">
                             <div className="manageQuantityProduct">
                                 <FaMinus onClick={(e) =>manageQuantityForStock("subtract",product)} className="bottonManage arrow minus"/>
@@ -62,9 +62,7 @@ const DrawerContent = ({shoppingCart,editProductCart,deleteProductCart}) => {
                             <FaTrashAlt onClick={() => deleteProduct(product.idProduct)} className="bottonManage delete"/>
                         </div>
                     </div>
-                    <div className="drawerProductImg" style={{backgroundImage: `url(${product.product.arrayPic[0]})`}}>
-                        
-                    </div>
+                    <div className="drawerProductImg" style={{backgroundImage: `url(${product.product.arrayPic[0]})`}}></div>
                 </div>
             ) :(
                 <h4>Aún no tenés productos en el carrito</h4>

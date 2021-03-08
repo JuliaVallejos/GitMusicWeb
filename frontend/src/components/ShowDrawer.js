@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 
 class ShowDrawer extends Component {
     state = {
-      size: 'xs',
+      size: 'sm',
       show: false
     };
     close = this.close.bind(this);
@@ -33,6 +33,7 @@ class ShowDrawer extends Component {
       }
     }
     const { size, placement, show } = this.state;
+    var total=0
     return (
         <div >
           <ButtonToolbar>
@@ -45,7 +46,7 @@ class ShowDrawer extends Component {
             placement={placement}
             show={show}
             onHide={this.close}
-            className="showDrawerContainer "
+            className="showDrawerContainer"
           >
             <Drawer.Header>
               <h4>Shopping Cart</h4>
@@ -54,12 +55,24 @@ class ShowDrawer extends Component {
               <DrawerContent/>
             </Drawer.Body>
             <Drawer.Footer>
-              <Link onClick={goToCart} to='/cartlist'>
-                <Button className="button success" appearance="primary">Comprar</Button>
-              </Link>
-              <Button onClick={this.close} className="button close" appearance="subtle">
-                Cerrar
-              </Button>
+              <div className="footerShoppingCart">
+                <div>
+                  {
+                    this.props.shoppingCart.length!==0 && this.props.shoppingCart.map((product)=>{
+                      total+=(product.quantity*product.product.price)
+                    })
+                  }
+                  <span className="totalCart">Total: <span className="totalPrice">${total}</span></span>
+                </div>
+                <div>
+                  <Link onClick={goToCart} to='/cartlist'>
+                    <Button className="button success" appearance="primary">Comprar</Button>
+                  </Link>
+                  <Button onClick={this.close} className="button close" appearance="subtle">
+                    Cerrar
+                  </Button>
+                </div>
+              </div>
             </Drawer.Footer>
           </Drawer>
         </div>
