@@ -1,6 +1,6 @@
 
 .containerCartAndPagination {
-    background-image: url(../assets/descarga.jpg);
+    background-image: url('../assets/descarga.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -181,4 +181,22 @@
     justify-content: center;
     align-items: center;
     border-radius: 25px;
+}
+
+.bottonManage.cartTrash:hover{
+    color: #d62915 !important;
+    transition: .5s ease;
+}
+.button.clearCart{
+    display: flex;
+    align-items: center;
+    color:white;
+    font-weight: bold;
+    background-color: rgba(214, 41, 21,.2) !important;
+}
+.button.clearCart:hover{
+    color:white;
+    font-weight: bold;
+    background-color: rgba(214, 41, 21, .8) !important;
+    transition: .75s ease;
 }

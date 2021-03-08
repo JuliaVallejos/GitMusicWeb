@@ -6,15 +6,12 @@ import { connect } from 'react-redux';
 import '../styles/ListCard.css'
 
 const ListCartAndPaginate = ({shoppingCart})=> {
-
 const [currentPage, setCurrentPage] = useState(1)
 const [postPerPage] = useState(3)
-
 const indexOfLastPost = currentPage * postPerPage;
 const indexOfFirstPost = indexOfLastPost - postPerPage;
 const currentPost = shoppingCart.slice(indexOfFirstPost, indexOfLastPost);
 const paginate = pageNumber => setCurrentPage(pageNumber)
-console.log(shoppingCart)
 
     return(
         <div className="containerCartAndPagination">
