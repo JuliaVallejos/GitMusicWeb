@@ -8,6 +8,7 @@ import { MdSend } from "react-icons/md";
 import shoppingCartActions from '../Redux/actions/shoppingCartActions';
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { BsFillStarFill } from 'react-icons/bs'
+import { useHistory } from "react-router-dom";
 
 const SingleProduct = (props) => {
     const { allProducts, addProductShoppingCart, shoppingCart } = props
@@ -18,7 +19,8 @@ const SingleProduct = (props) => {
     const [index, setIndex] = useState(0)
     const [quantity, setquantity] = useState(1)
     const [rating, setRating] = useState(0)
-
+    let history = useHistory();
+    
     useEffect(()=>{
         const product = allProducts.filter(product => product._id === id)
         setThisProduct(product[0])
@@ -28,6 +30,7 @@ const SingleProduct = (props) => {
         } 
     },[allProducts, thisProduct, id])  
 
+    console.log(thisProduct)
     const setNumber = (e) =>{
         const number = parseInt(e.target.value)
         setquantity(number)
@@ -68,7 +71,8 @@ const SingleProduct = (props) => {
     if(thisProduct.length!==0){
     return(
         <div className="mainSingleProduct">
-     
+            <Button onClick={() => history.go(-2)}>>Volver al Inicio</Button>
+            <Button onClick={() => history.goBack()}>{`> Volver a ${thisProduct.category}`}</Button>
             <div className="mainSingleContainer">
                 <div className="leftSection">
                     {thisProduct.arrayPic.map((pic, i) => {

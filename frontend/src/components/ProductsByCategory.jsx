@@ -19,14 +19,14 @@ const ProductsByCategory = (props) =>{
     },[])
     return(
         <div className='productsByCategory'>
-            <Button onClick={() => history.goBack()}>Go Back</Button>
-            <h4 className='categoryTitle'>{category}</h4>
+            <Button onClick={() => history.goBack()}>Volver al Inicio</Button>
+            <h4 className='categoryTitle'>{category} a</h4>
             <div className='productsList'>
                 {arrayCategory.length===0&& <div className='noResults'><h6>No hay productos en esta categoría</h6></div>}
         {
             arrayCategory.map(product =>{
                 return (
-                    <Product product={product}/>
+                    <Product category={category} product={product}/>
                 )
             })
         }
