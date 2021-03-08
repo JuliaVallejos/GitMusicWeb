@@ -12,17 +12,18 @@ const emailController = {
     try{
         const userAwait = await User.findOne({email:email})
         if(!userAwait){ 
-            console.log('no usuario')
+        
             res.json({success: false, errors:[{message:"User don't exist"}]})
         }
         else{    
-            console.log('hay usuario') 
+       
         var transporter = nodemailer.createTransport({
             port: 465,
             host: 'smtp.gmail.com',
             auth: {
-                user: process.env.MAIL_USER,
-                pass: process.env.MAIL_PASS
+                user: process.env.MAIL_USER,//gitmusic.team@gmail.com
+                pass: process.env.MAIL_PASS //gitmusic2021
+               
             },
             tls: {
                   rejectedUnauthorized:false
@@ -35,11 +36,12 @@ const emailController = {
             to: email,
             subject:"¡Bienvenido a GitMusic! Gracias por su compra",
             html: `<div style="text-align:center; padding:20px; min-heigth: 250px; background-color:#11050F">
-                        <h1 style="color:#FFB5FF">Estos son los datos de su compra</h1>  
+                        <h1 style="color:#0687c8">Estos son los datos de su compra</h1>  
                     </div>`
         }
         transporter.sendMail(mailOptions, (error, info) =>{
             if(error){
+                console.log(error)
                 res.status(500).send(error.message)
             }else {
                 console.log("Email enviado.")
