@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
-import {  Message } from 'rsuite';
+import {  Alert, Message } from 'rsuite';
 import DropFiles from './DropFiles'
 import '../styles/addProducts.css' 
 
@@ -10,9 +10,11 @@ import productActions from '../Redux/actions/productActions';
 
 const AddProducts = (props) => {
 
-    const {addProduct,categories } = props
-    const [itemsDescription,setItemsDescription] = useState([])
-    const [newItem,setNewItem] = useState('')
+const {addProduct,categories } = props
+const [itemsDescription,setItemsDescription] = useState([])
+const [newItem,setNewItem] = useState()
+    // const [arrayDescription,setArrayDescription] = useState([])
+   
     const [product, setProduct] = useState({
         name:'',
         mark:'',
@@ -27,7 +29,7 @@ const AddProducts = (props) => {
 
     })
     const [errores, setErrores] = useState('')
-    const [fileNames, setFileNames] = useState([]);
+    // const [fileNames, setFileNames] = useState([]);
     
 
     useEffect(() => {
@@ -86,9 +88,11 @@ const AddProducts = (props) => {
         fdNewProduct.append('category', category)
         arrayPic.map((pic,i) =>{
             fdNewProduct.append('arrayPic',arrayPic[i])
+            return false
         })
         arrayFinal.map((item,i)=>{
             fdNewProduct.append('arrayDescription',arrayFinal[i])
+            return false
         })
         
         const response = await addProduct(fdNewProduct)
@@ -96,9 +100,7 @@ const AddProducts = (props) => {
         if (response && !response.success) {
                 setErrores(response.message)
         }else{
-            
-            alert('Producto grabado')
-          
+            Alert.success('Producto almacenado exitosamente')
         }
  
         
@@ -125,12 +127,10 @@ const AddProducts = (props) => {
                     <input type="number" name="stock" placeholder="Cantidad en stock" onChange={readInput} />
                 </div>
                <select  onChange={readInput} label='category' name='category'>
-                <option value='' name='category' selected disabled='true'>Selecciona categoría</option>
+                <option value='' name='category' selected >Selecciona categoría</option>
                    {categories.length !== 0 && categories.map(category =>{
-                     
                        return( 
-                           
-                           <option value={category.category} name='category'>{category.category}</option>
+                           <option value={category.category} name='category' key={category.category}>{category.category}</option>
                        )
                    })}
                </select>
@@ -172,8 +172,8 @@ const AddProducts = (props) => {
             <button className='btn'>Volver al Inicio</button>
             </Link>
            
-                {errores&& errores.map(error =>{
-                    <p style={{color:'black'}}>{error}</p>
+                {errores&& errores.map((error, i) =>{
+                    return <p key={i+'e'}>{error}</p>
                 })}
                 
 

@@ -6,9 +6,7 @@ import productActions from '../Redux/actions/productActions'
 
 const ProductsByCategory = (props) =>{
     const {allProducts,shoppingCart} =props
-
     const [arrayAll,setArrayAll] = useState([])
-    console.log(allProducts)
     const category = props.match.params.category
     const arrayCategory = allProducts.filter(product => product.category === category)
 
@@ -16,11 +14,6 @@ const ProductsByCategory = (props) =>{
         props.getProducts()
         .then(setArrayAll(allProducts))
     },[])
-
-    useEffect(()=>{
-    console.log(shoppingCart)
-    },[shoppingCart])
-
     return(
         <div className='productsByCategory'>
             <h4 className='categoryTitle'>{category}</h4>
@@ -29,7 +22,6 @@ const ProductsByCategory = (props) =>{
         {
             arrayCategory.map(product =>{
                 return (
-                    
                     <Product product={product}/>
                 )
             })

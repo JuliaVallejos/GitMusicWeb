@@ -1,21 +1,19 @@
 import React, {Component} from 'react'
 import '../../node_modules/rsuite/dist/styles/rsuite-default.css';
 import '../styles/DrawerContent.css'
-import {ButtonToolbar, Drawer, Button} from 'rsuite'
+import {ButtonToolbar, Drawer, Button, Alert} from 'rsuite'
 import DrawerContent from './DrawerContent'
 import CartIcon from './CartIcon';
+import {Link} from 'react-router-dom'
 import { connect } from 'react-redux';
 
 class ShowDrawer extends Component {
-  constructor() {
-    super();
-    this.state = {
+    state = {
       size: 'xs',
       show: false
     };
-    this.close = this.close.bind(this);
-    this.toggleDrawer = this.toggleDrawer.bind(this);
-  }
+    close = this.close.bind(this);
+    toggleDrawer = this.toggleDrawer.bind(this);
   close() {
     this.setState({
       show: false
@@ -28,7 +26,11 @@ class ShowDrawer extends Component {
     });
   }
   render() {
-    
+  const goToCart =()=>{
+      if(!this.props.loggedUser){
+        Alert.error('Debes iniciar sesión para terminar tu compra')
+      }
+    }
     const { size, placement, show } = this.state;
     return (
         <div >
@@ -51,9 +53,9 @@ class ShowDrawer extends Component {
               <DrawerContent/>
             </Drawer.Body>
             <Drawer.Footer>
-              <Button onClick={this.close} appearance="primary">
+              <Link onClick={goToCart} appearance="primary" to='/cartlist'>
                 Comprar
-              </Button>
+              </Link>
               <Button onClick={this.close} appearance="subtle">
                 Cerrar
               </Button>
@@ -66,7 +68,8 @@ class ShowDrawer extends Component {
   const mapStateToProps = state => {
     return {
         allProducts: state.product.allProducts,
-        shoppingCart:state.shoppingR.shoppingCart
+        shoppingCart:state.shoppingR.shoppingCart,
+        loggedUser: state.userR.loggedUser
     }
 }
   

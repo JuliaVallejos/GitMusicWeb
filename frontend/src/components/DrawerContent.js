@@ -1,12 +1,11 @@
 import '../styles/DrawerContent.css'
 import { useEffect, useState } from 'react'
-import { FaRegWindowClose, FaEdit, FaTrashAlt, FaArrowLeft, FaArrowRight} from 'react-icons/fa'
+import { FaRegWindowClose, FaTrashAlt, FaMinus, FaPlus} from 'react-icons/fa'
 import { connect } from 'react-redux'
 import {Alert,Input} from 'rsuite'
 import shoppingCartActions from '../Redux/actions/shoppingCartActions'
 
 const DrawerContent = ({shoppingCart,editProductCart,deleteProductCart}) => {
-    console.log(shoppingCart)
     const deleteProduct = id => {
         const filterProduct = shoppingCart.filter(product => product.idProduct !== id)
         deleteProductCart(id)
@@ -30,17 +29,22 @@ const DrawerContent = ({shoppingCart,editProductCart,deleteProductCart}) => {
         }
     }
     const inputModifyQuantity=(value,e,product)=>{
-        if(value>product.product.stock){
+        if((e.nativeEvent.data===null)){ 
+            Alert.error(`No podes dejar vacio este campo.`,3000)
+            e.target.value=product.quantity
+        }else if(!(e.nativeEvent.data.charAt() > 48 || e.nativeEvent.data.charAt() < 57)){
+            Alert.error(`Este campo es solo numerico.`,3000)
+            e.target.value=product.quantity
+        }else if(value>product.product.stock){
             Alert.warning(`No podes exceder el stock(${product.product.stock}) del articulo.`,3000)
             e.target.value=product.quantity
         }else if(value<1){
-            Alert.warning("Selecciona un numero distinto a 0 ó numeros negativos.",3000)
+            Alert.error("Selecciona un numero distinto a 0 ó numeros negativos.",3000)
             e.target.value=product.quantity
         }else{
             editProductCart(parseInt(value),product)
         }
     }
-    console.log(shoppingCart)
     return (
         <>
             {shoppingCart.length !== 0 ? shoppingCart.map(product => 
@@ -51,9 +55,9 @@ const DrawerContent = ({shoppingCart,editProductCart,deleteProductCart}) => {
                         <p className="textProduct"><strong>Precio:</strong> {product.product.price}</p>
                         <div className="manageProduct">
                             <div className="manageQuantityProduct">
-                                <FaArrowLeft onClick={(e) =>manageQuantityForStock("subtract",product)} className="bottonManage arrow"/>
+                                <FaMinus onClick={(e) =>manageQuantityForStock("subtract",product)} className="bottonManage arrow"/>
                                 <span><Input id={`input${product.idProduct}`} class="quantityValue" onChange={(value,e)=>inputModifyQuantity(value,e,product)} defaultValue={product.quantity}/></span>
-                                <FaArrowRight onClick={(e) =>manageQuantityForStock("add",product)} className="bottonManage arrow"/>
+                                <FaPlus onClick={(e) =>manageQuantityForStock("add",product)} className="bottonManage arrow"/>
                             </div>
                             <FaTrashAlt onClick={() => deleteProduct(product.idProduct)} className="bottonManage delete"/>
                         </div>

@@ -65,7 +65,7 @@ const ShippingAddress = () => {
                         <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="contacto" placeholder="Telefono" onChange={readInput} />
                     </div>
                     <div className="botonShippin">
-                        <NavLink exact to='/shippingAddress' className="enviar">Volver</NavLink>
+                        <NavLink exact to='/cartList' className="enviar">Volver</NavLink>
                         <button className="enviar" onClick={Validate}>Guardar datos</button>
                         <NavLink exact to='/billingAddress' className="enviar">Siguiente</NavLink>
                     </div>

@@ -127,8 +127,8 @@ box-shadow: 5px 5px 12px rgba(255, 213, 77, 0.507);
     /* border: none; */
     transform: translateY(7px);
     box-shadow: 0px 0px rgba(0, 0, 0, 0.555);
-    
     }
+
     button:focus {
     outline: none;
     }

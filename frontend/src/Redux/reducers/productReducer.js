@@ -9,7 +9,6 @@ const initState = {
 const productReducer = (state=initState,action) =>{
 
     switch (action.type){
-
         case 'ALL_PRODUCTS':
             return{
                 ...state,

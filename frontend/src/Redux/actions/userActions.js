@@ -29,7 +29,10 @@ const userActions = {
                case 'country':
                  errors.push({label:error.context.label,message:"Debes seleccionar algun país."})
                  break;
+                default:
+                return false
              }
+             return false
            })
          }
          dispatch({
@@ -66,7 +69,10 @@ const userActions = {
                case 'country':
                  errors.push({label:error.context.label,message:"Debes seleccionar algun país."})
                  break;
+                default:
+                return false
              }
+             return false
            })
          }
          dispatch({
