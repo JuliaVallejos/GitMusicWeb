@@ -1,88 +1,103 @@
 import { connect } from 'react-redux';
-import React from 'react'
-import {  useState, useEffect } from 'react'
-import {FaArrowLeft,FaArrowRight} from 'react-icons/fa'
-import {Alert,Input} from 'rsuite'
-import shoppingCartActions from '../Redux/actions/shoppingCartActions'
+import React, { useState, useEffect } from 'react'
+import { NavLink, Link } from 'react-router-dom'
+import { FaTrashAlt, FaShoppingCart} from 'react-icons/fa'
 import '../styles/ListCard.css'
+import Pagination from "./Pagination"
+import shoppingCartActions from '../Redux/actions/shoppingCartActions'
+import {Alert, Button} from 'rsuite'
 
+const ListCart = ({shoppingCart,editProductCart,deleteProductCart,clearCart})=> {
+    const [currentPage, setCurrentPage] = useState(1)
+    const [postPerPage] = useState(3)
+    const paginate = pageNumber => setCurrentPage(pageNumber)
 
-
-const ListCart = ({currentPost,editProductCart,deleteProductCart})=> {
-
-    console.log(currentPost)
-    const [price, setPrice] = useState()
-
-    useEffect(() => {
-            const filterProductPrice = currentPost.filter(productPrice => productPrice.product.price)
-            setPrice(filterProductPrice[0].product.price)
-      }, [])
-
+    const indexOfLastPost = currentPage * postPerPage;
+    const indexOfFirstPost = indexOfLastPost - postPerPage;
+    const currentPots = shoppingCart.slice(indexOfFirstPost, indexOfLastPost);
+    var total=0
+    const deleteProduct = id => {
+        const filterProduct = shoppingCart.filter(product => product.idProduct !== id)
+        deleteProductCart(id)
+    }
     const manageQuantityForStock=(operation,product)=>{
-        const inputProduct=document.querySelector(`#input${product.idProduct}`)
+        const inputProduct=document.querySelector(`#act${product.idProduct}`)
         if(operation==='subtract'){
-            if((parseInt(inputProduct.value)-1)<1){
+            if((parseInt(inputProduct.innerHTML)-1)<1){
                 Alert.warning("Debes tener almenos 1.",3000)
             }else{
-                inputProduct.value=parseInt(inputProduct.value)-1
-                editProductCart(parseInt(inputProduct.value),product)
-                const priceProduct = product.product.price * parseInt(inputProduct.value);
-                setPrice(priceProduct)
+                inputProduct.innerHTML=parseInt(inputProduct.innerHTML)-1
+                editProductCart(parseInt(inputProduct.innerHTML),product)
             }
         }else if(operation==='add'){
-            if((parseInt(inputProduct.value)+1)>product.product.stock){
+            if((parseInt(inputProduct.innerHTML)+1)>product.product.stock){
             Alert.warning(`No podes exceder el stock(${product.product.stock}) del articulo.`,3000)
             }else{
-                inputProduct.value=parseInt(inputProduct.value)+1
-                editProductCart(parseInt(inputProduct.value),product)
-                const priceProduct = product.product.price * parseInt(inputProduct.value);
-                setPrice(priceProduct)
+                inputProduct.innerHTML=parseInt(inputProduct.innerHTML)+1
+                editProductCart(parseInt(inputProduct.innerHTML),product)
             }
         }
     }
-    const inputModifyQuantity=(value,e,product)=>{
-        if(value>product.product.stock){
-            Alert.warning(`No podes exceder el stock(${product.product.stock}) del articulo.`,3000)
-            e.target.value=product.quantity
-        }else if(value<1){
-            Alert.warning("Selecciona un numero distinto a 0 ó numeros negativos.",3000)
-            e.target.value=product.quantity
-        }else{
-            editProductCart(parseInt(value),product)
-        }
-    }
-
     return (
-        <div className="containerCart">
-            <div className="containerImgInfo">
-                {currentPost.map(product =>{
-                    return (
+        <div className="containerCartAndPagination">
+        {shoppingCart.length !== 0 ? 
+        <div className="CartAndPagination">
+            <div className="containerCart ">
+                <div className="containerImgInfo">
+                    {shoppingCart.map(productCart =>{
+                        total+=(productCart.quantity*productCart.product.price)
+                        const totalPrice=productCart.product.price*productCart.quantity
+                        return (
                             <div className="containerProduct">
-                                <div className="productImg" style={{backgroundImage: `url(${product.product.arrayPic[0]})`}}></div>
-                                    <div className="containerInfo">
-                                        <h6>{product.product.name}</h6>
-                                        <div className="containerPriceButton">
-                                        <FaArrowLeft onClick={(e) =>manageQuantityForStock("subtract",product)} className="bottonManage arrow"/>
-                                        <span><Input id={`input${product.idProduct}`} class="quantityValue" onChange={(value,e)=>inputModifyQuantity(value,e,product)} defaultValue={product.quantity}/></span>
-                                        <FaArrowRight onClick={(e) =>manageQuantityForStock("add",product)} className="bottonManage arrow"/>
+                                <div className="productImg" style={{backgroundImage: `url(${productCart.product.arrayPic[0]})`}}></div>
+                                <div className="containerInfo">
+                                    <h6>{productCart.product.name}</h6>
+                                    <div className="containerPriceButton">
+                                        <button onClick={(e) =>manageQuantityForStock("subtract",productCart)}><h6>-</h6></button>
+                                        <h6 id={`act${productCart.product._id}`}>{productCart.quantity}</h6>
+                                        <button onClick={(e) =>manageQuantityForStock("add",productCart)}><h6>+</h6></button>
                                         <h6>x</h6>
-                                        <h6>${product.product.price}</h6>
+                                        <h6>{productCart.product.price}</h6>
                                         <h6>=</h6>
-                                        <h6>${price}</h6>
+                                        <h6 style={{color:'rgb(65, 235, 22)'}}>${totalPrice}</h6>
+                                    </div>
+                                    <div style={{width:'100%',textAlign:'right'}}>
+                                    <FaTrashAlt onClick={() => deleteProduct(productCart.idProduct)} className="bottonManage cartTrash"/>
                                     </div>
                                 </div>
                             </div>
                         )
                     })}
+                    <div style={{display:'flex',justifyContent:'space-between',width:'70%', alignItems:'center'}}>
+                        <Button onClick={clearCart} className="button clearCart" appearance="subtle">
+                            Vaciar <FaShoppingCart style={{paddingLeft:'.5vw',fontSize:'30px'}} />
+                        </Button>
+                        <div style={{fontSize:'2vw',fontWeight:'bold',color:'white'}}>Total: <span style={{color:'rgb(65, 235, 22)',fontWeight:'bold'}}>${total}</span></div>
+                    </div>
+                </div>
+            </div>
+            <div className="buttonNav" style={{marginTop:'4vh'}}>
+                <NavLink className="navLink" exact to='/' ><button className="enviar">Salir</button></NavLink>
+                <Pagination postPerPage={postPerPage} totalPost={shoppingCart.length} paginate={paginate}/>
+                <NavLink className="navLink" exact to='/shippingAddress' ><button className="enviar">Confirmar</button></NavLink>
+            </div>
         </div>
-        </div>
+        : (
+            <div>
+                <div className="ProductNone"><h4>Aún no tenés productos en el carrito</h4></div>
+            </div>
+        )}
+    </div>
     )
 }
-
-
+const mapStateToProps = state => {
+    return {
+        shoppingCart:state.shoppingR.shoppingCart
+    }
+}
 const mapDispatchToProps={
     editProductCart:shoppingCartActions.editProductCart,
-    deleteProductCart:shoppingCartActions.deleteProductCart
+    deleteProductCart:shoppingCartActions.deleteProductCart,
+    clearCart:shoppingCartActions.clearCart
 }
-
-export default connect(null,mapDispatchToProps)(ListCart)
+export default connect (mapStateToProps,mapDispatchToProps) (ListCart)

@@ -8,6 +8,7 @@ import CartIcon from './CartIcon';
 import {Link} from 'react-router-dom'
 import { connect } from 'react-redux';
 import shoppingCartActions from '../Redux/actions/shoppingCartActions'
+import {FaShoppingCart} from 'react-icons/fa'
 
 class ShowDrawer extends Component {
     state = {
@@ -31,6 +32,9 @@ class ShowDrawer extends Component {
   const goToCart =()=>{
       if(!this.props.loggedUser){
         Alert.error('Debes iniciar sesión para terminar tu compra')
+        console.log(this.props)
+      }else{
+        this.close()
       }
     }
     const { size, placement, show } = this.state;
@@ -57,19 +61,19 @@ class ShowDrawer extends Component {
             </Drawer.Body>
             <Drawer.Footer>
               <div className="footerShoppingCart">
-                <div>
+                <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:'60%'}}>
                   {
                     this.props.shoppingCart.length!==0 && this.props.shoppingCart.map((product)=>{
                       total+=(product.quantity*product.product.price)
                     })
                   }
-                  <span className="totalCart">Total: <span className="totalPrice">${total}</span></span>
                   <Button onClick={this.props.clearCart} className="button clearCart" appearance="subtle">
-                    Vaciar
+                  Vaciar <FaShoppingCart style={{paddingLeft:'.5vw',fontSize:'30px'}} />
                   </Button>
+                  <span className="totalCart">Total:<span className="totalPrice">${total}</span></span>
                 </div>
                 <div>
-                  <Link onClick={goToCart} to='/cartslist'>
+                  <Link onClick={goToCart} to='/cartlist'>
                     <Button className="button success" appearance="primary">Comprar</Button>
                   </Link>
                   <Button onClick={this.close} className="button close" appearance="subtle">

@@ -7,9 +7,8 @@ import shoppingCartActions from '../Redux/actions/shoppingCartActions'
 
 const DrawerContent = ({shoppingCart,editProductCart,deleteProductCart}) => {
     const deleteProduct = id => {
-        console.log(id)
-        // const filterProduct = shoppingCart.filter(product => product.idProduct !== id)
-        // deleteProductCart(id)
+        const filterProduct = shoppingCart.filter(product => product.idProduct !== id)
+        deleteProductCart(id)
     }
     const manageQuantityForStock=(operation,product)=>{
         const inputProduct=document.querySelector(`#input${product.idProduct}`)
