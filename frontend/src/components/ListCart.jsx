@@ -5,12 +5,11 @@ import '../styles/ListCard.css'
 import shoppingCartActions from '../Redux/actions/shoppingCartActions'
 
 const ListCart = ({shoppingCart,editProductCart,deleteProductCart})=> {
-    var totalPrice=0
     return (
         <div className="containerCart">
             <div className="containerImgInfo">
                 {shoppingCart.map(productoCart =>{
-                    totalPrice+=productoCart.product.price*productoCart.quantity
+                    const totalPrice=productoCart.product.price*productoCart.quantity
                     return (
                         <div className="containerProduct">
                             <div className="productImg" style={{backgroundImage: `url(${productoCart.product.arrayPic[0]})`}}></div>
