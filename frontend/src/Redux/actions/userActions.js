@@ -110,10 +110,10 @@ const userActions = {
       }
       catch(error){
         console.log(error)
-        if(error.response.status === 401){
-          localStorage.clear()
-          return false
-        }
+        // if(error.response.status === 401){
+        //   localStorage.clear()
+        //   return false
+        // }
       }
     }
   },

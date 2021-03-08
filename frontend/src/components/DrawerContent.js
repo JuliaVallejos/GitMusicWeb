@@ -59,7 +59,6 @@ const DrawerContent = ({shoppingCart,editProductCart,deleteProductCart}) => {
                         </div>
                     </div>
                     <div className="drawerProductImg" style={{backgroundImage: `url(${product.product.arrayPic[0]})`}}>
-                        
                     </div>
                 </div>
             ) :(
