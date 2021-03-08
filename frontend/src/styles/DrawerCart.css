@@ -1,0 +1,194 @@
+.showDrawerContainer .rs-drawer-content{ /* panel del drawer */
+  background: linear-gradient(to bottom, rgba(0,0,0,.80), rgba(20, 149, 172, 0.788));
+  box-shadow: 5px 5px 80px rgb(6 135 200 / 80%);
+  border-radius: 2vw;
+}
+
+.showDrawerContainer{
+  padding: 3vw;
+  background-color: rgba(0, 0, 0, 0.932);
+  box-shadow: 2px 5px 20px rgb(0, 0, 0);
+}
+.showDrawerContainer .rs-btn-primary{ /* boton primario */
+ background-color: rgba(20, 149, 172, 0.788) !important;
+}
+.showDrawerContainer .rs-btn-subtle{ /* boton secundario */
+  color: black;
+}
+.showDrawerContainer .rs-drawer-title{ /* titulo drower */
+  text-align: center;
+  font-size: 2vw !important;
+  margin-bottom: -1vh !important;
+}
+.showDrawerContainer .rs-drawer-body{
+  color:white
+}
+.showDrawerContainer .rs-drawer-body::-webkit-scrollbar{
+  width: 10px;
+}
+.showDrawerContainer .rs-drawer-body::-webkit-scrollbar-track{
+  background: #a3a3a3;  
+  border-radius: 5px;
+}
+.showDrawerContainer .rs-drawer-body::-webkit-scrollbar-thumb{
+background: rgb(88, 88, 88);
+border-radius: 5px;
+}
+
+.showDrawerContainer .rs-drawer-body::-webkit-scrollbar-thumb:hover {
+background: rgb(78, 114, 119);
+}
+.showDrawerContainer .rs-drawer-header{
+  color:rgba(255, 164, 89,.95);
+  text-align:center !important;
+}
+.showDrawerContainer .rs-drawer-header-close{
+  font-size: 18px !important;
+  font-weight: bold !important;
+  color:rgba(255, 164, 89,.95) !important;
+}
+.showDrawerContainer .drawerProductContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.45);
+  color: white;
+  margin: 2vh;
+  padding: 1vw;
+  border-radius: 0.8vh;
+  box-shadow: 1px 2px 15px 2px rgba(6, 135, 200, 0.801);
+}
+.showDrawerContainer .footerShoppingCart{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.showDrawerContainer .totalCart{
+  padding-top: 1vh;
+  font-size: 20px;
+  font-weight: bold;
+  color: white
+}
+
+.showDrawerContainer .totalPrice{
+  color: rgb(65, 235, 22);
+  font-weight: bold;
+}
+
+.showDrawerContainer .descriptionProduct{
+  max-width: 55%;
+  padding: .5vw;
+}
+
+.showDrawerContainer .textProduct{
+  color: whitesmoke;
+  font-size: 1.15vw;
+}
+
+.showDrawerContainer .drawerProductImg{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 45%;
+  min-height: 25vh;
+  border-radius:.8vw;
+}
+
+.showDrawerContainer .rs-drawer-footer button{
+  color: white !important;
+  font-weight: bold;
+  text-decoration:none !important;
+  margin-left: 1vw;
+}
+.showDrawerContainer .rs-drawer-footer button:hover{
+  background-color: red;
+  transition: 1s ease;
+}
+.showDrawerContainer .rs-drawer-footer .success{
+  background-color: rgb(10, 94, 4) !important;
+}
+.showDrawerContainer .rs-drawer-footer .success:hover{
+  background-color: green !important;
+  transition: 1s ease;
+}
+/*------------- CategoryDrawer ------------*/
+
+.showDrawerContainer .navLinksCategory{
+  display:flex;
+  align-items: center;
+  padding: 2vh;
+  margin: 1vh 1vh;
+  border-radius: 8px;
+  box-shadow: -6px -6px 18px rgba(0, 0, 0, 0.342);
+  transform: scale(0.9);
+  transition: all ease 0.3s;
+  
+}
+.showDrawerContainer .navLinksCategory:hover{
+  transform: scale(1);
+}
+.showDrawerContainer .textLinksCategory{
+  color: black;
+  font-size: 1.2vw;
+  padding: 1vh;
+  margin-left: 1vw;
+}
+
+.showDrawerContainer .drawerCategoryImg{
+  width: 4vw;
+  height: 4vw;
+  border-radius: 50%;
+}
+
+/*Manage Product*/
+.showDrawerContainer .manageProduct{
+  max-width: 95%;
+  min-height: 3.5vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 2vh;
+}
+.showDrawerContainer .manageQuantityProduct{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.showDrawerContainer .manageQuantityProduct span{
+  margin: 0 .5vw;
+}
+.showDrawerContainer .manageQuantityProduct span .rs-input{
+  font-size: 16px;
+  font-weight: bold;
+  color: green;
+  text-align: center;
+  max-width: 4vw;
+  max-height: 3vh;
+}
+.showDrawerContainer .bottonManage{
+  color: white;
+  cursor:pointer;
+  font-size: 16px;
+  background-color: rgba(6, 135, 200, 0.38);
+  box-shadow: 1px 2px 15px 2px rgba(6, 135, 200, 0.801);
+  border-radius: .35vw;
+}
+.showDrawerContainer .bottonManage.minus:hover,.bottonManage.delete:hover{
+  background-color: rgba(6, 135, 200, 0.38);
+  color: #d62915;
+  transition: .5s ease;
+}
+.showDrawerContainer .bottonManage.plus:hover{
+  background-color: rgba(6, 135, 200, 0.38);
+  color: rgb(26, 228, 26);
+  transition: .5s ease;
+}
+.showDrawerContainer .clearCart{
+  background-color: rgba(163, 17, 17,.2) !important;
+}
+.showDrawerContainer .clearCart:hover{
+  background-color: rgb(163, 17, 17) !important;
+  transition: .5s ease;
+}

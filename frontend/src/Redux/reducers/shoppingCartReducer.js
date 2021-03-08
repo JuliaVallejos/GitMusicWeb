@@ -46,9 +46,15 @@ const shoppingCartReducer= (state = initState, action) =>{
       case "EDIT_PRODUCT_CART":{
         var cartCopy = []
         cartCopy=[...state.shoppingCart]
-        const cartFiltered=cartCopy.filter(product=>product.idProduct!==action.payload.product.idProduct)
-        action.payload.product.quantity = action.payload.value
-        cartFiltered.push(action.payload.product)
+        const cartFiltered=[]
+        cartCopy.forEach(product=>{
+          if(product.idProduct!==action.payload.product.idProduct){
+          cartFiltered.push(product)
+        }else{
+          product.quantity = action.payload.value
+          cartFiltered.push(product)
+        }
+        })
         return{
           ...state,
           shoppingCart: cartFiltered

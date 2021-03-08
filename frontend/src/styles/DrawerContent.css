@@ -1,5 +1,5 @@
 .rs-drawer-content{ /* panel del drawer */
-    background-color: rgb(155, 177, 182);
+    background-color: rgb(155, 177, 182) !important;
 }
 
 .rs-btn-primary{ /* boton primario */
@@ -72,12 +72,10 @@
     margin: 1vh 1vh;
     border-radius: 8px;
     box-shadow: -6px -6px 18px rgba(0, 0, 0, 0.342);
-    transform: scale(0.9);
     transition: all ease 0.3s;
-    
 }
 .navLinksCategory:hover{
-    transform: scale(1);
+    transform: scale(1.05);
 }
 .textLinksCategory{
     color: black;

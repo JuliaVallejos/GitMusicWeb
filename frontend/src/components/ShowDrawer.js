@@ -1,15 +1,17 @@
 import React, {Component} from 'react'
 import '../../node_modules/rsuite/dist/styles/rsuite-default.css';
 import '../styles/DrawerContent.css'
+import '../styles/DrawerCart.css'
 import {ButtonToolbar, Drawer, Button, Alert} from 'rsuite'
 import DrawerContent from './DrawerContent'
 import CartIcon from './CartIcon';
 import {Link} from 'react-router-dom'
 import { connect } from 'react-redux';
+import shoppingCartActions from '../Redux/actions/shoppingCartActions'
 
 class ShowDrawer extends Component {
     state = {
-      size: 'xs',
+      size: 'sm',
       show: false
     };
     close = this.close.bind(this);
@@ -32,6 +34,7 @@ class ShowDrawer extends Component {
       }
     }
     const { size, placement, show } = this.state;
+    var total=0
     return (
         <div >
           <ButtonToolbar>
@@ -47,18 +50,33 @@ class ShowDrawer extends Component {
             className="showDrawerContainer"
           >
             <Drawer.Header>
-              <h4 style={{textAlign: 'center'}}>Shopping Cart</h4>
+              <h4>Mi carrito</h4>
             </Drawer.Header>
             <Drawer.Body>
               <DrawerContent/>
             </Drawer.Body>
             <Drawer.Footer>
-              <Link onClick={goToCart} appearance="primary" to='/cartlist'>
-                Comprar
-              </Link>
-              <Button onClick={this.close} appearance="subtle">
-                Cerrar
-              </Button>
+              <div className="footerShoppingCart">
+                <div>
+                  {
+                    this.props.shoppingCart.length!==0 && this.props.shoppingCart.map((product)=>{
+                      total+=(product.quantity*product.product.price)
+                    })
+                  }
+                  <span className="totalCart">Total: <span className="totalPrice">${total}</span></span>
+                  <Button onClick={this.props.clearCart} className="button clearCart" appearance="subtle">
+                    Vaciar
+                  </Button>
+                </div>
+                <div>
+                  <Link onClick={goToCart} to='/cartlist'>
+                    <Button className="button success" appearance="primary">Comprar</Button>
+                  </Link>
+                  <Button onClick={this.close} className="button close" appearance="subtle">
+                    Cerrar
+                  </Button>
+                </div>
+              </div>
             </Drawer.Footer>
           </Drawer>
         </div>
@@ -72,5 +90,7 @@ class ShowDrawer extends Component {
         loggedUser: state.userR.loggedUser
     }
 }
-  
-  export default connect(mapStateToProps)(ShowDrawer)
+const mapDispatchToProps={
+  clearCart:shoppingCartActions.clearCart
+} 
+  export default connect(mapStateToProps,mapDispatchToProps)(ShowDrawer)
