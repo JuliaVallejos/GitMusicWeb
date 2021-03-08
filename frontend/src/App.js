@@ -17,6 +17,7 @@ import BillingAddress from './components/BillingAddress'
 import Payment from './components/Payment'
 import PaymentPanel from './components/PaymentPanel'
 import CartList from './components/ListCart'
+import ListCartAndPaginate from './components/ListCartAndPaginate'
 
 
 function App(props) {
@@ -34,9 +35,13 @@ function App(props) {
         <Route path='/billingAddress'component={BillingAddress}/>
         <Route path='/payment'component={Payment}/>
         <Route path='/paymentPanel'component={PaymentPanel}/>
+<<<<<<< HEAD
         <Route path='/cartlist'component={CartList}/>
         <Route path='/product/:id' component={SingleProduct}/>
 
+=======
+        <Route path='/cartslist'component={ListCartAndPaginate}/>
+>>>>>>> 448a60284945dc056b16a171ee62fa2b143fdd96
         <Redirect to ="/"/>
       </Switch>
     </>

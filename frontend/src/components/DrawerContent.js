@@ -1,10 +1,7 @@
 import '../styles/DrawerContent.css'
-<<<<<<< HEAD
 import {  FaTrashAlt, FaArrowLeft, FaArrowRight} from 'react-icons/fa'
-=======
 import { useEffect, useState } from 'react'
-import { FaRegWindowClose, FaTrashAlt, FaMinus, FaPlus} from 'react-icons/fa'
->>>>>>> 1b1d4b6d7c590c225ad2970bc286fea9c9b9971d
+import { FaRegWindowClose, FaMinus, FaPlus} from 'react-icons/fa'
 import { connect } from 'react-redux'
 import {Alert,Input} from 'rsuite'
 import shoppingCartActions from '../Redux/actions/shoppingCartActions'
