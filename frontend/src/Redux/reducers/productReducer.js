@@ -24,6 +24,11 @@ const productReducer = (state=initState,action) =>{
                 ...state,
                 allProducts:[...state.allProducts,action.payload]
             }
+        case 'COMMENT_OPTIONS':
+            return {
+                ...state, 
+                allProducts: state.allProducts.map(product => product._id === action.payload._id ? action.payload : product)
+            }
         default:
             return state
         

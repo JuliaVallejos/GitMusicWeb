@@ -5,6 +5,16 @@
 }
 
 /*ESTILOS SIGN IN AND SIGN UP*/
+.backBtnSignIn{
+  width: 7vw;
+  background-color: #1572b4;
+  color: whitesmoke;
+  margin: 0.2vw;
+  box-shadow: 5px 5px 20px rgba(6, 135, 200, 0.801);
+  border: 2px solid rgba(6, 135, 200, 0.801);
+  position: fixed;
+}
+
 .registro, .registroForm{
   display: flex;
   align-items: center;
