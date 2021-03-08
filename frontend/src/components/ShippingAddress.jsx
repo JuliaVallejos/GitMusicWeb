@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { Steps, Alert } from 'rsuite';
-import { NavLink, Link } from 'react-router-dom'
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import '../styles/ShippingAddress.css'
+import userActions from '../Redux/actions/userActions'
 
 
-const ShippingAddress = () => {
+const ShippingAddress = (props) => {
 
-    const [address, setaddress] = useState([])
+    const [next,setNext] = useState(false)
+    const [address, setaddress] = useState({
+        calle:'',
+        altura:'',
+        barrio:'',
+        pisoDpto:'',
+        encargadoDeRecibir:'',
+        contactoReceptor:''
+    })
 
     const readInput = e => {
         var value = e.target.value
@@ -17,8 +27,6 @@ const ShippingAddress = () => {
         })
     }
 
-    console.log(address)
-
     const enterKeyboard = e => {
         if (e.charCode === 13) {
             Validate(e)
@@ -27,18 +35,17 @@ const ShippingAddress = () => {
 
     const Validate = async () => {
 
-        if (address.calle === '' || address.altura === '' || address.barrio === '' || address.pisoDpto === '' || address.encargadoDeRecibir === '' || address.contacto === '') {
-            Alert.error('Todos los campos son requeridos')
+        if (address.calle === '' || address.altura === ''  || address.encargadoDeRecibir===''|| address.contactoReceptor === '') {
+            Alert.error('Complete los campos requeridos(*)')
             return false
         }
+       const data = await props.completeUserData("adress",address)
+       console.log(data)
+       if(data.saved){
+           Alert.success('Datos guardados')
+           setNext(true)
+       }
 
-        const fdAddress = new FormData()
-        fdAddress.append('calle', address.calle)
-        fdAddress.append('altura', address.altura)
-        fdAddress.append('barrio', address.barrio)
-        fdAddress.append('pisoDpto', address.pisoDpto)
-        fdAddress.append('encargadoDeRecibir', address.encargadoDeRecibir)
-        fdAddress.append('contacto', address.contacto)
     }
 
     return (
@@ -47,10 +54,10 @@ const ShippingAddress = () => {
                 <div className="formularioAddress">
                     <h2 className="tittleShipping">Datos de envio</h2>
                     <div className="inputDiv">
-                        <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="calle" placeholder="Calle" onChange={readInput} />
+                        <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="calle" placeholder="Calle*" onChange={readInput} />
                     </div>
                     <div className="inputDiv">
-                        <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="altura" placeholder="Altura" onChange={readInput} />
+                        <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="altura" placeholder="Altura*" onChange={readInput} />
                     </div>
                     <div className="inputDiv">
                         <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="barrio" placeholder="Barrio" onChange={readInput} />
@@ -59,15 +66,15 @@ const ShippingAddress = () => {
                         <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="pisoDpto" placeholder="Piso/Dpto" onChange={readInput} />
                     </div>
                     <div className="inputDiv">
-                        <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="encargadoDeRecibir" placeholder="Quien lo recibe?" onChange={readInput} />
+                        <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="encargadoDeRecibir" placeholder="¿Quien lo recibe?*" onChange={readInput} />
                     </div>
                     <div className="inputDiv">
-                        <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="contacto" placeholder="Telefono" onChange={readInput} />
+                        <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="contactoReceptor" placeholder="Teléfono de quien recibe*" onChange={readInput} />
                     </div>
                     <div className="botonShippin">
-                        <NavLink exact to='/cartList' className="enviar">Volver</NavLink>
+                        <Link to='/cartList' className="enviar">Volver</Link>
                         <button className="enviar" onClick={Validate}>Guardar datos</button>
-                        <NavLink exact to='/billingAddress' className="enviar">Siguiente</NavLink>
+                        <Link onClick={()=>!next&&Alert.error('Complete los datos y guarde')}to={next&&'/billingAddress'} className="enviar">Siguiente</Link>
                     </div>
                     </div>
 
@@ -76,5 +83,7 @@ const ShippingAddress = () => {
         </div>
     )
 }
-
-export default ShippingAddress
+const mapDispatchToProps={
+    completeUserData:userActions.completeUserData
+}
+export default connect(null,mapDispatchToProps)(ShippingAddress)
