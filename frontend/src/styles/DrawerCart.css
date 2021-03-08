@@ -66,6 +66,7 @@ background: rgb(78, 114, 119);
 }
 
 .showDrawerContainer .totalCart{
+  padding-top: 1vh;
   font-size: 20px;
   font-weight: bold;
   color: white
@@ -182,5 +183,12 @@ background: rgb(78, 114, 119);
 .showDrawerContainer .bottonManage.plus:hover{
   background-color: rgba(6, 135, 200, 0.38);
   color: rgb(26, 228, 26);
+  transition: .5s ease;
+}
+.showDrawerContainer .clearCart{
+  background-color: rgba(163, 17, 17,.2) !important;
+}
+.showDrawerContainer .clearCart:hover{
+  background-color: rgb(163, 17, 17) !important;
   transition: .5s ease;
 }

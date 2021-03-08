@@ -7,6 +7,7 @@ import DrawerContent from './DrawerContent'
 import CartIcon from './CartIcon';
 import {Link} from 'react-router-dom'
 import { connect } from 'react-redux';
+import shoppingCartActions from '../Redux/actions/shoppingCartActions'
 
 class ShowDrawer extends Component {
     state = {
@@ -49,7 +50,7 @@ class ShowDrawer extends Component {
             className="showDrawerContainer"
           >
             <Drawer.Header>
-              <h4>Shopping Cart</h4>
+              <h4>Mi carrito</h4>
             </Drawer.Header>
             <Drawer.Body>
               <DrawerContent/>
@@ -63,6 +64,9 @@ class ShowDrawer extends Component {
                     })
                   }
                   <span className="totalCart">Total: <span className="totalPrice">${total}</span></span>
+                  <Button onClick={this.props.clearCart} className="button clearCart" appearance="subtle">
+                    Vaciar
+                  </Button>
                 </div>
                 <div>
                   <Link onClick={goToCart} to='/cartlist'>
@@ -86,5 +90,7 @@ class ShowDrawer extends Component {
         loggedUser: state.userR.loggedUser
     }
 }
-  
-  export default connect(mapStateToProps)(ShowDrawer)
+const mapDispatchToProps={
+  clearCart:shoppingCartActions.clearCart
+} 
+  export default connect(mapStateToProps,mapDispatchToProps)(ShowDrawer)
