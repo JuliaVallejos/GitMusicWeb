@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import GoogleLogin from 'react-google-login'
 import { FaEye } from "react-icons/fa";
-import { Link } from 'react-router-dom'
-import { Alert, Message } from 'rsuite';
+import { Alert } from 'rsuite';
 import userActions from "../Redux/actions/userActions"
 import '../styles/signIn.css'
 
 
 const Register = (props) => {
-    const { history, signUp, loggedUser,googleSignUp } = props
+    const { signUp,googleSignUp } = props
     const [newUser, setNewUser] = useState({google: 'false'})
-    const [errores, setErrores] = useState('')
     const [errorObj, setErrorObj] = useState({})
     const [hidden, setHidden] = useState(true)
 
@@ -34,7 +32,6 @@ const Register = (props) => {
     const Validate = async () => {
         console.log(newUser)
 
-        setErrores('')
         if (newUser.firstName === '' || newUser.lastName === '' || newUser.email === '' || newUser.password === '' || newUser.country === '') {
             Alert.error('Todos los campos son requeridos')
             return false
@@ -51,7 +48,6 @@ const Register = (props) => {
         const res = await signUp(fdNewUser)
         console.log(res)
         if (res && !res.success) {
-            setErrores(res.response)
             res.response.map(error => {
                 failedInputs[error.label] = error.message
                 return false
@@ -71,9 +67,7 @@ const Register = (props) => {
                 password: `Aa${response.profileObj.googleId}`,
                 google: 'true'
             })
-            if (respuesta && !respuesta.success) {
-                setErrores(respuesta.errores)
-            }
+          
         }
     }
     

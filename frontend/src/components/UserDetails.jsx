@@ -16,7 +16,7 @@ const UserDetails = (props) => {
     setEmail(props.loggedUser.email)
     setFirstname(props.loggedUser.firstName)
     setLastname(props.loggedUser.lastName)
-  },[])
+  },[props.loggedUser.email, props.loggedUser.firstName, props.loggedUser.lastName])
 
   const processImage = () => {
     const imagen= document.getElementById('pic').files[0]

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { Steps, Alert } from 'rsuite';
-import { NavLink, Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import {  Alert } from 'rsuite';
+import { NavLink } from 'react-router-dom'
 import '../styles/ShippingAddress.css'
 
 

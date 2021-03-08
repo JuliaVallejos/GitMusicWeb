@@ -1,6 +1,4 @@
 import {React,useState} from 'react';
-
-
 import {useDropzone} from 'react-dropzone';
 
 function DropFiles({product,setProduct}) {

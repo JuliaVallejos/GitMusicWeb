@@ -35,6 +35,8 @@ function App(props) {
         <Route path='/payment'component={Payment}/>
         <Route path='/paymentPanel'component={PaymentPanel}/>
         <Route path='/cartlist'component={CartList}/>
+        <Route path='/product/:id' component={SingleProduct}/>
+
         <Redirect to ="/"/>
       </Switch>
     </>

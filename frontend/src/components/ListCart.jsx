@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
-import React, { useState, useEffect } from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import '../styles/ListCard.css'
 
 

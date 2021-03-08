@@ -7,7 +7,7 @@ import { AiFillGithub } from 'react-icons/ai'
 import { FaMusic } from 'react-icons/fa'
 import Navigator from "./NavigatorBar"
 import productActions from '../Redux/actions/productActions'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const LandingPage = ({ getProducts,loggedUser }) => {
   useEffect(() => {

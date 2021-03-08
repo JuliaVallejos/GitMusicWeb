@@ -1,6 +1,5 @@
 import '../styles/DrawerContent.css'
-import { useEffect, useState } from 'react'
-import { FaRegWindowClose, FaEdit, FaTrashAlt, FaArrowLeft, FaArrowRight} from 'react-icons/fa'
+import {  FaTrashAlt, FaArrowLeft, FaArrowRight} from 'react-icons/fa'
 import { connect } from 'react-redux'
 import {Alert,Input} from 'rsuite'
 import shoppingCartActions from '../Redux/actions/shoppingCartActions'
@@ -8,8 +7,9 @@ import shoppingCartActions from '../Redux/actions/shoppingCartActions'
 const DrawerContent = ({shoppingCart,editProductCart,deleteProductCart}) => {
     console.log(shoppingCart)
     const deleteProduct = id => {
-        const filterProduct = shoppingCart.filter(product => product.idProduct !== id)
-        deleteProductCart(id)
+        console.log(id)
+        // const filterProduct = shoppingCart.filter(product => product.idProduct !== id)
+        // deleteProductCart(id)
     }
     const manageQuantityForStock=(operation,product)=>{
         const inputProduct=document.querySelector(`#input${product.idProduct}`)

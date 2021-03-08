@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import ShippingAddress from './ShippingAddress'
-import BillingAddress from './BillingAddress'
-import Payment from './Payment'
-import { Steps, Panel, } from 'rsuite';
+import React, { useState } from 'react'
+import { Steps } from 'rsuite';
 
 const PaymentPanel = () => {
 

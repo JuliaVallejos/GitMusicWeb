@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import GoogleLogin from 'react-google-login'
 import { FaEye } from "react-icons/fa";
-import { Link, NavLink} from 'react-router-dom'
+import { Link} from 'react-router-dom'
 import { Alert, Message } from 'rsuite';
 import userActions from '../Redux/actions/userActions'
 import '../styles/signIn.css'
@@ -10,7 +10,7 @@ import '../styles/signIn.css'
 
 const SignIn = (props) => {
 
-    const { history, signIn, loggedUser } = props
+    const {  signIn } = props
     const [user, setUser] = useState({})
     const [errores, setErrores] = useState('')
     const [hidden, setHidden] = useState(true)

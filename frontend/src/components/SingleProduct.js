@@ -63,7 +63,7 @@ console.log(props)
         
     }
     
-        if(!thisProduct){
+        if(!thisProduct._id){
             return <h1>Vas a tener q ir a donde hace el fetch</h1>
         }
 
@@ -91,7 +91,7 @@ console.log(props)
                             })}
                         </div>
                     </div>
-                    {thisProduct.urlReview !== undefined &&
+                    {thisProduct.urlReview &&
                     <div className="video-responsive">
                             <iframe
                             width="853"

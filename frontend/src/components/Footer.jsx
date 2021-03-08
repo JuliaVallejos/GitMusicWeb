@@ -1,7 +1,4 @@
 import React from 'react'
-import {FaFacebookSquare} from 'react-icons/fa'
-import { IoLogoWhatsapp} from 'react-icons/io'
-import { AiFillInstagram} from 'react-icons/ai'
 import '../styles/Footer.css'
 
 const Footer = () => {

@@ -2,9 +2,6 @@ import {Dropdown,ButtonToolbar} from "rsuite"
 import '../../node_modules/rsuite/dist/styles/rsuite-default.css'
 
 const DropDownCategories =(props)=>{
-
-  
-  const {categoryProduct} = props
   
 const CustomDropdown = ({ ...props }) => (
     <Dropdown {...props}>
