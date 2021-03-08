@@ -16,6 +16,8 @@ import ShippingAddress from './components/ShippingAddress'
 import BillingAddress from './components/BillingAddress'
 import Payment from './components/Payment'
 import PaymentPanel from './components/PaymentPanel'
+import ForgotPassword from './components/ForgotPassword'
+import ResetPassword from './components/ResetPassword'
 // import CartList from './components/ListCart'
 import ListCartAndPaginate from './components/ListCartAndPaginate'
 
@@ -55,6 +57,9 @@ function App(props) {
           <Route path='/registerUser' component={RegisterUser}/>
           <Route path='/addProducts' component={AddProducts}/>
           <Route path='/product/:id' component={SingleProduct}/>
+          <Route path='/forgotpassword' component={ForgotPassword}/>
+          <Route path='/resetpassword/:token' component={ResetPassword}/>
+
           <Redirect to="/"/>
         </Switch>
     </>
