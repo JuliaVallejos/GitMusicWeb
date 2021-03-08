@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React from 'react'
-import {  useState } from 'react'
+import {  useState, useEffect } from 'react'
 import {FaArrowLeft,FaArrowRight} from 'react-icons/fa'
 import {Alert,Input} from 'rsuite'
 import shoppingCartActions from '../Redux/actions/shoppingCartActions'
@@ -13,10 +13,10 @@ const ListCart = ({currentPost,editProductCart,deleteProductCart})=> {
     console.log(currentPost)
     const [price, setPrice] = useState()
 
-    // useEffect(() => {
-    //         const filterProductPrice = currentPost.filter(productPrice => productPrice.product.price)
-    //         setPrice(filterProductPrice[0].product.price)
-    //   }, [])
+    useEffect(() => {
+            const filterProductPrice = currentPost.filter(productPrice => productPrice.product.price)
+            setPrice(filterProductPrice[0].product.price)
+      }, [])
 
     const manageQuantityForStock=(operation,product)=>{
         const inputProduct=document.querySelector(`#input${product.idProduct}`)
