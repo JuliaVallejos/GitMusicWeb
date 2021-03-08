@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Steps, Alert } from 'rsuite';
+import React, { useState } from 'react'
+import {  Alert } from 'rsuite';
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import '../styles/ShippingAddress.css'
@@ -72,7 +72,7 @@ const ShippingAddress = (props) => {
                         <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="contactoReceptor" placeholder="Teléfono de quien recibe*" onChange={readInput} />
                     </div>
                     <div className="botonShippin">
-                        <Link to='/cartList' className="enviar">Volver</Link>
+                        <Link to='/cartslist' className="enviar">Volver</Link>
                         <button className="enviar" onClick={Validate}>Guardar datos</button>
                         <Link onClick={()=>!next&&Alert.error('Complete los datos y guarde')}to={next&&'/billingAddress'} className="enviar">Siguiente</Link>
                     </div>

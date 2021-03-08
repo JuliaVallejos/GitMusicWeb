@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom'
 import React from 'react'
-import { useEffect, useState } from 'react'
+import {  useState } from 'react'
 import {FaArrowLeft,FaArrowRight} from 'react-icons/fa'
 import {Alert,Input} from 'rsuite'
 import shoppingCartActions from '../Redux/actions/shoppingCartActions'

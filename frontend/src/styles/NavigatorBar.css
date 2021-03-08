@@ -4,6 +4,7 @@
     justify-content: center; 
     text-align: center;
     line-height: 1em;
+    background-color: black;
     /* border-bottom:solid 2px rgba(245, 245, 245, 0.349); */
 }
 .dropDown {

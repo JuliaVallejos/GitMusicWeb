@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Steps, Alert } from 'rsuite';
+import React, { useState } from 'react'
+import {  Alert } from 'rsuite';
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import userActions from '../Redux/actions/userActions'

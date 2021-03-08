@@ -14,6 +14,7 @@ const indexOfLastPost = currentPage * postPerPage;
 const indexOfFirstPost = indexOfLastPost - postPerPage;
 const currentPost = shoppingCart.slice(indexOfFirstPost, indexOfLastPost);
 const paginate = pageNumber => setCurrentPage(pageNumber)
+console.log(shoppingCart)
 
     return(
         <div className="containerCartAndPagination">
@@ -21,9 +22,9 @@ const paginate = pageNumber => setCurrentPage(pageNumber)
             <div className="CartAndPagination">
                 <ListCart currentPost={currentPost}/>
                 <div className="buttonNav">
-                    <button className="enviar"><NavLink className="navLink" exact to='/' >Salir</NavLink></button>
+                <NavLink className="navLink" exact to='/' ><button className="enviar">Salir</button></NavLink>
                     <Pagination postPerPage={postPerPage} totalPost={shoppingCart.length} paginate={paginate}/>
-                    <button className="enviar"><NavLink className="navLink" exact to='/shippingAddress' >Confirmar</NavLink></button>
+                    <NavLink className="navLink" exact to='/shippingAddress' ><button className="enviar">Confirmar</button></NavLink>
                 </div>
             </div>
             : (
