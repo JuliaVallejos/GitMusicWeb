@@ -5,8 +5,12 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import shoppingCartActions from '../Redux/actions/shoppingCartActions'
 import {Alert} from 'rsuite'
+import { useHistory } from "react-router-dom";
 
 const Product = ({product,addProductShoppingCart,shoppingCart}) =>{
+
+  console.log({product})
+  let history = useHistory();
  const [add,setAdd]= useState(false)
     
  const addProductCart = async(product) =>{
