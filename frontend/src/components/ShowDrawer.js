@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import '../../node_modules/rsuite/dist/styles/rsuite-default.css';
 import '../styles/DrawerContent.css'
+import '../styles/DrawerCart.css'
 import {ButtonToolbar, Drawer, Button, Alert} from 'rsuite'
 import DrawerContent from './DrawerContent'
 import CartIcon from './CartIcon';
@@ -44,19 +45,19 @@ class ShowDrawer extends Component {
             placement={placement}
             show={show}
             onHide={this.close}
-            className="showDrawerContainer"
+            className="showDrawerContainer "
           >
             <Drawer.Header>
-              <h4 style={{textAlign: 'center'}}>Shopping Cart</h4>
+              <h4>Shopping Cart</h4>
             </Drawer.Header>
             <Drawer.Body>
               <DrawerContent/>
             </Drawer.Body>
             <Drawer.Footer>
-              <Link onClick={goToCart} appearance="primary" to='/cartlist'>
-                Comprar
+              <Link onClick={goToCart} to='/cartlist'>
+                <Button className="button success" appearance="primary">Comprar</Button>
               </Link>
-              <Button onClick={this.close} appearance="subtle">
+              <Button onClick={this.close} className="button close" appearance="subtle">
                 Cerrar
               </Button>
             </Drawer.Footer>
