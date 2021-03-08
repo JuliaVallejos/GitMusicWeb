@@ -16,7 +16,7 @@ import ShippingAddress from './components/ShippingAddress'
 import BillingAddress from './components/BillingAddress'
 import Payment from './components/Payment'
 import PaymentPanel from './components/PaymentPanel'
-import CartList from './components/ListCart'
+// import CartList from './components/ListCart'
 import ListCartAndPaginate from './components/ListCartAndPaginate'
 
 
@@ -35,7 +35,7 @@ function App(props) {
         <Route path='/billingAddress'component={BillingAddress}/>
         <Route path='/payment'component={Payment}/>
         <Route path='/paymentPanel'component={PaymentPanel}/>
-        <Route path='/cartlist'component={CartList}/>
+        {/* <Route path='/cartlist'component={CartList}/> */}
         <Route path='/product/:id' component={SingleProduct}/>
         <Route path='/cartslist'component={ListCartAndPaginate}/>
         <Redirect to ="/"/>

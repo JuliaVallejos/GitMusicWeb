@@ -69,7 +69,7 @@ class ShowDrawer extends Component {
                   </Button>
                 </div>
                 <div>
-                  <Link onClick={goToCart} to='/cartlist'>
+                  <Link onClick={goToCart} to='/cartslist'>
                     <Button className="button success" appearance="primary">Comprar</Button>
                   </Link>
                   <Button onClick={this.close} className="button close" appearance="subtle">

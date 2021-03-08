@@ -8,10 +8,7 @@ import { Button } from 'rsuite'
 
 const ProductsByCategory = (props) =>{
     const {allProducts,shoppingCart} =props
-<<<<<<< HEAD
-=======
     let history = useHistory();
->>>>>>> 1cc9536424f6568e96800e5fa3a776f9bfa4e846
     const [arrayAll,setArrayAll] = useState([])
     const category = props.match.params.category
     const arrayCategory = allProducts.filter(product => product.category === category)

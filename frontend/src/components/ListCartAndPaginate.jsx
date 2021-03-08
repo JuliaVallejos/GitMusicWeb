@@ -18,7 +18,7 @@ console.log(shoppingCart)
 
     return(
         <div className="containerCartAndPagination">
-            {shoppingCart.length ==! 0 ? 
+            {shoppingCart.length !== 0 ? 
             <div className="CartAndPagination">
                 <ListCart currentPost={currentPost}/>
                 <div className="buttonNav">

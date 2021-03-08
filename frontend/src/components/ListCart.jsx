@@ -65,7 +65,7 @@ const ListCart = ({currentPost,editProductCart,deleteProductCart})=> {
                                         <FaArrowLeft onClick={(e) =>manageQuantityForStock("subtract",product)} className="bottonManage arrow"/>
                                         <span><Input id={`input${product.idProduct}`} class="quantityValue" onChange={(value,e)=>inputModifyQuantity(value,e,product)} defaultValue={product.quantity}/></span>
                                         <FaArrowRight onClick={(e) =>manageQuantityForStock("add",product)} className="bottonManage arrow"/>
-                                        <h6><h6>x</h6></h6>
+                                        <h6>x</h6>
                                         <h6>${product.product.price}</h6>
                                         <h6>=</h6>
                                         <h6>${price}</h6>
@@ -78,6 +78,7 @@ const ListCart = ({currentPost,editProductCart,deleteProductCart})=> {
         </div>
     )
 }
+
 
 const mapDispatchToProps={
     editProductCart:shoppingCartActions.editProductCart,
