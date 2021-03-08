@@ -4,9 +4,11 @@ import { FaShoppingCart } from 'react-icons/fa'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import shoppingCartActions from '../Redux/actions/shoppingCartActions'
+import { useHistory } from "react-router-dom";
 
 const Product = ({product,addProductShoppingCart}) =>{
   console.log({product})
+  let history = useHistory();
  const [add,setAdd]= useState(false)
     
  const addProductCart = async() =>{
@@ -17,6 +19,7 @@ const Product = ({product,addProductShoppingCart}) =>{
   if(product) {
        return(
         <div className='productContainer'>
+          <button onClick={() => history.goBack()}>Back</button>
           <Link to={'/product/'+ product._id} className='productPic' style={{backgroundImage:`url(${product.arrayPic[0]})`}}>
              {/* Product Image View */}
           </Link>
