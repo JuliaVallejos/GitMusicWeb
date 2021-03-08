@@ -4,6 +4,7 @@
     border-top: solid 2px rgba(245, 245, 245, 0.349);
     background-color: #0c0c0c;
     padding: 3vh;
+    min-height: 5vh;
 }
 
 /* .iconos {

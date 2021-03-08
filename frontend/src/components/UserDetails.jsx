@@ -84,7 +84,7 @@ const UserDetails = (props) => {
           <div className="enviar" onClick={send}><span>Confirmar cambios</span></div>
         </div>
       </div>
-      <div className="userImage" style={{width: '20vw', height: '50vh', backgroundColor:"black", backgroundImage: `url('${fileUrl}')`}}></div>
+      <div className="userImage" style={{backgroundColor:"black", backgroundImage: `url('${fileUrl}')`}}></div>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 .productsByCategory{
     width:100%;
     background-image: url(../assets/fondo.jpeg);
-    min-height: 70vh;
+    min-height: 80vh;
 
 }
 .productsList{
@@ -106,3 +106,58 @@
     position:absolute;
 
 }
+/*RESPONSIVE*/
+@media only screen and (max-width:600px) {
+     .productsList{
+        width:80%;
+    }
+    .categoryTitle{
+        font-size: 3em;
+        padding:2%;
+        margin-bottom: 2.5vh;
+    }
+    .productContainer{
+      min-width:40%;
+       margin:2%;
+       height: 45vh;
+    }
+    .containerTitle{
+        height: 6em;
+    }
+    .productTitle{
+        font-size: 1em;
+    
+    }
+    .productPic{
+        width:100%;
+        height: 60%;
+    }
+    .productPrice{
+        width:100%;
+        margin-bottom: 5%;
+    
+    }
+    .iconCart{
+        margin-right: 2vw;
+        font-size: 1.8em;
+    }
+    .add{
+        font-size: 1em;
+        padding: 1% 3%;
+        width:10vw;
+        min-height:3.5em;
+    
+    }
+    .noResults{
+        border-radius: 8px;
+        padding:6%;
+        margin-top: 6%;
+    
+    }
+    .cardBottom{
+        width: 100%;
+        padding: 1vh 1vw;
+        height: 40%;
+    }
+
+  }
