@@ -6,6 +6,7 @@ const validator = require('../controllers/validator')
 const userController=require('../controllers/userController')
 const productController = require('../controllers/productController')
 const shoppingCartController = require('../controllers/shoppingCartController')
+const emailController = require('../controllers/emailController')
 
 //rutas
 //user
@@ -52,5 +53,6 @@ router.route('/products/shoppingcart')
 .get(shoppingCartController.getShoppingCart)
 .put(shoppingCartController.shoppingCart)
 
-
+router.route('/confirmPurchase')
+.post(emailController.sendEmailCart)
 module.exports = router

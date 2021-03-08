@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import {  Alert } from 'rsuite';
-import { NavLink } from 'react-router-dom'
+import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import userActions from '../Redux/actions/userActions'
 import '../styles/ShippingAddress.css'
-import Cards from 'react-credit-cards';
+import Cards from 'react-credit-cards'
 import 'react-credit-cards/es/styles-compiled.css';
 
-const Payment = () => {
+const Payment = ({userData,shoppingCart,loggedUser,completeUserData,emailShopCart}) => {
+    
 
     const [cardFields, setCardFields] = useState({
         cvc: '',
@@ -14,6 +17,7 @@ const Payment = () => {
         number: '',
         focused:''
     })
+
     const readInput = e => {
         var value = e.target.value
         const property = e.target.name
@@ -33,14 +37,21 @@ const Payment = () => {
 
         if (cardFields.number === '' || cardFields.name === '' || cardFields.cvc === '' || cardFields.expiry === '') {
             Alert.error('Todos los campos son requeridos')
+            return false
         }
-
-        // const fdDataCard = new FormData()
-        // fdDataCard.append('numCard', dataCard.numCard)
-        // fdDataCard.append('altura', dataCard.NombreTitular)
-        // fdDataCard.append('barrio', dataCard.fechaExpiracion)
-        // fdDataCard.append('pisoDpto', dataCard.codigo)
+        const data = await completeUserData("cardFields",cardFields)
+       console.log(data)
+       if(data.saved){
+           Alert.success('Compra confirmada')
+           const email= await emailShopCart(loggedUser.email,{userData,shoppingCart})
+           if(email){
+            Alert.success('Recibirá un mail con los datos de su compra')
+           }
+      
+       }
+       
     }
+
 
     return (
         <div className="containerFormAdreessPayment">
@@ -59,7 +70,7 @@ const Payment = () => {
         </div>
                     <div className="inputDiv">
                         <label>Numero</label>
-                        <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="number" placeholder="Ej: 4912 1234 1234 1234" onChange={readInput} onFocus={(e)=>{setCardFields({...cardFields, focused: e.target.name})}} />
+                        <input onKeyPress={enterKeyboard} type="number" autoComplete="nope" name="number" placeholder="Ej: 4912 1234 1234 1234" onChange={readInput} onFocus={(e)=>{setCardFields({...cardFields, focused: e.target.name})}} />
                     </div>
                     <div className="inputDiv">
                         <label>Nombre y Apellido</label>
@@ -67,16 +78,16 @@ const Payment = () => {
                     </div>
                     <div className="inputDiv">
                     <label>Fecha de expiracion</label>
-                        <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="expiry" placeholder="MM/AA" onChange={readInput} onFocus={(e)=>{setCardFields({...cardFields, focused: e.target.name})}}/>
+                        <input onKeyPress={enterKeyboard} type="number" autoComplete="nope" name="expiry" placeholder="MM/AA" onChange={readInput} onFocus={(e)=>{setCardFields({...cardFields, focused: e.target.name})}}/>
                     </div>
                     <div className="inputDiv">
                     <label>Codigo de seguridad</label>
-                        <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="cvc" placeholder="Ej: 123" onChange={readInput} onFocus={(e)=>{setCardFields({...cardFields, focused: e.target.name})}}/>
+                        <input onKeyPress={enterKeyboard} type="number" autoComplete="nope" name="cvc" placeholder="Ej: 123" onChange={readInput} onFocus={(e)=>{setCardFields({...cardFields, focused: e.target.name})}}/>
                     </div>
                     <div class="finalizar">
-                        <NavLink exact to='/billingAddress' className="enviar">
+                        <Link exact to='/billingAddress' className="enviar">
                             Volver
-                        </NavLink>
+                        </Link>
                         <button className="enviar" onClick={Validate}>Finalizar</button>
                     </div>
                 </div>
@@ -84,5 +95,15 @@ const Payment = () => {
         </div>
     )
 }
-
-export default Payment
+const mapStateToProps = state =>{
+    return{
+        userData:state.userR.userData,
+        shoppingCart:state.shoppingR.shoppingCart,
+        loggedUser:state.userR.loggedUser
+    }
+}
+const mapDispatchToProps={
+    completeUserData:userActions.completeUserData,
+    emailShopCart:userActions.emailShopCart
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Payment)

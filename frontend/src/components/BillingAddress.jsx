@@ -1,10 +1,19 @@
-import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Steps, Alert } from 'rsuite';
+import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import userActions from '../Redux/actions/userActions'
 import '../styles/ShippingAddress.css'
 
 
-const BillingAddress = () => {
-    const [billingAddress, setBillingAddress] = useState([])
+const BillingAddress = (props) => {
+    const [next,setNext] = useState(false)
+    const [billingAddress, setBillingAddress] = useState({
+        nombre:'',
+        tipoFactura:'',
+        cuitCuilDni:'',
+        contacto:''
+    })
 
     const readInput = e => {
         var value = e.target.value
@@ -23,16 +32,17 @@ const BillingAddress = () => {
 
     const Validate = async () => {
 
-        // if (billingAddress.nombre === '' || billingAddress.cuitCuilDni === '' || billingAddress.contacto === '') {
-        //     Alert.error('Todos los campos son requeridos')
-        //     return false
-        // }
-
-        const billingAddress = new FormData()
-        billingAddress.append('nombre', billingAddress.nombre)
-        billingAddress.append('cuitCuilDni', billingAddress.cuitCuilDni)
-        billingAddress.append('bills', billingAddress.bills)
-        billingAddress.append('contacto', billingAddress.contacto)
+     if (billingAddress.nombre === '' || billingAddress.cuitCuilDni === '' ||  billingAddress.tipoFactura === '' ||billingAddress.contacto === '') {
+             Alert.error('Todos los campos son requeridos')
+            return false
+         }
+        const data = await props.completeUserData("billingAdress",billingAddress)
+       console.log(data)
+       if(data.saved){
+        Alert.success('Datos guardados')
+        setNext(true)
+       }
+        
     }
 
     return (
@@ -42,29 +52,29 @@ const BillingAddress = () => {
                 <div className="formularioAddress">
                     <h2 className="tittle">Datos de facturacion</h2>
                     <div className="inputDiv">
-                        <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="nombre" placeholder="Nombre/Apellido" onChange={readInput} />
+                        <input onKeyPress={enterKeyboard} value={billingAddress.nombre} type="text" autoComplete="nope" name="nombre" placeholder="Nombre/Apellido" onChange={readInput} />
                     </div>
                     <div className="inputDiv">
-                        <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="cuitCuilDni" placeholder="CUIT/CUIL/DNI" onChange={readInput} />
+                        <input onKeyPress={enterKeyboard} value={billingAddress.cuitCuilDni} type="number" autoComplete="nope" name="cuitCuilDni" placeholder="CUIT/CUIL/DNI" onChange={readInput} />
                     </div>
                     <div className="inputDiv">
-                        <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="contacto" placeholder="Telefono" onChange={readInput} />
+                        <input onKeyPress={enterKeyboard} value={billingAddress.contacto} type="number" autoComplete="nope" name="contacto" placeholder="Telefono" onChange={readInput} />
                     </div>
                     <div className="inputDiv">
-                        <select name="bills" onChange={readInput} onKeyPress={enterKeyboard}>
-                            <option selected disabled >Tipo de factura</option>
-                            <option  name="facturaA">Factura A</option>
-                            <option name="facturaB">Factura B</option>
+                        <select name="tipoFactura" onChange={readInput} onKeyPress={enterKeyboard}>
+                            <option value='' selected disabled >Tipo de factura</option>
+                            <option value='facturaA'>Factura A</option>
+                            <option value="facturaB">Factura B</option>
                         </select>
                     </div>
                     <div className="botonShippin">
-                        <NavLink exact to='/shippingAddress' className="enviar">
+                        <Link to='/shippingAddress' className="enviar">
                             Volver
-                        </NavLink>
+                        </Link>
                         <button className="enviar" onClick={Validate}>Guardar Datos</button>
-                        <NavLink exact to='/payment' className="enviar" onClick={Validate}>
+                        <Link  onClick={()=>!next&&Alert.error('Complete los datos y guarde')} to={next&&'/payment'} className="enviar">
                             Siguiente
-                        </NavLink>
+                        </Link>
                     </div>
                 </div>
 
@@ -74,5 +84,7 @@ const BillingAddress = () => {
         </div>
     )
 }
-
-export default BillingAddress
+const mapDispatchToProps={
+    completeUserData:userActions.completeUserData
+}
+export default connect(null,mapDispatchToProps)(BillingAddress)

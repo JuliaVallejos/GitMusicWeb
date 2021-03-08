@@ -142,6 +142,33 @@ const userActions = {
         console.log(response.data)
     }
 },
+    completeUserData:(property,newData) =>{
+     
+      return async (dispatch, getState) => {
+        
+        dispatch({type: 'ADD_DATA', payload: {property,newData}})
+        const data ={saved:true}
+        return data
+      }
+    },
+    emailShopCart:(email,dataCart)=>{
+    return async (dispatch,getstate)=>{
+      try{
+        const data = await axios.post('http://localhost:4000/api/confirmPurchase',{email,dataCart})
+        
+        if(data.data.success){
+          dispatch({type:'PURCHASE_CONFIRMATION', payload:data.data.response})
+          return data.data.response
+        }else{
+          return data.data
+        }
+      }catch(error){
+        const data ={errors:['An error occurred']}
+        return data
+      }
+
+    }
+  }
 //    requestResetPass:(userMail) => {
 //      return async (dispatch, getState) => {
 //        const respuesta = await axios.post(Api+'/user/requestresetpass', userMail)

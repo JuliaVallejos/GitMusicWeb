@@ -1,5 +1,6 @@
 const initState = {
     loggedUser: null,
+    userData:[]
   }
   
   const userReducer = (state = initState, action) =>{
@@ -22,6 +23,13 @@ const initState = {
             ...state,
             loggedUser: null
           }
+          case "ADD_DATA":
+           const newData = state.userData.filter(field => field.property!== action.payload.property)
+           return{
+             ...state,
+            userData:[...newData,action.payload]
+           } 
+
         default :
             return state
         }
