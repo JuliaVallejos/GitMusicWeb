@@ -131,7 +131,8 @@ addProduct: async (req,res) =>{
     try {
       const delComment=await Product.findOneAndUpdate(
         {_id:idProduct},
-        { $pull: {'arrayComments': {_id:idComment}}},{new:true})
+        { $pull: {'arrayComments': {_id:idComment}}},{new:true}).populate('arrayComments.idUser')
+        console.log(delComment)
       if(delComment){
         res.json({success:true, response:delComment})
       }else{
@@ -147,6 +148,7 @@ addProduct: async (req,res) =>{
       const editComment=await Product.updateOne(
         {'arrayComments._id':idComment},
         { '$set': {'arrayComments.$.comment':comment}},{new:true}).populate('arrayComments.idUser')
+        console.log(editComment)
       if(editComment){
         res.json({success:true, response:editComment})
       }else{
