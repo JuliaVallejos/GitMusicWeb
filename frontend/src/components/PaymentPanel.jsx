@@ -33,7 +33,7 @@ const PaymentPanel = () => {
         <div>
           <div className="custom-timeline">
               {step && step === 1 ?
-                <div className="stateTimeLine" >
+                <div className="state1" >
                     <ShippingAddress/>
                     <div className="buttonNav" style={{marginTop:'4vh'}}>
                       <button className="enviar navLink" onClick={onPrevious}>Volver</button>
