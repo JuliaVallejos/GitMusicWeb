@@ -67,7 +67,6 @@ const Register = (props) => {
                 password: `Aa${response.profileObj.googleId}`,
                 google: 'true'
             })
-          
         }
     }
     
