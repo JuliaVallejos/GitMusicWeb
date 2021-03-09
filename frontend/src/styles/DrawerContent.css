@@ -73,9 +73,10 @@
     border-radius: 8px;
     box-shadow: -6px -6px 18px rgba(0, 0, 0, 0.342);
     transition: all ease 0.3s;
+    transform: scale(0.9);
 }
 .navLinksCategory:hover{
-    transform: scale(1.05);
+    transform: scale(1);
 }
 .textLinksCategory{
     color: black;

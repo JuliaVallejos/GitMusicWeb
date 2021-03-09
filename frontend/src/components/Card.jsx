@@ -15,7 +15,7 @@ const Card = ({ product }) => {
       <div className="product-details">
         <h1>{product.name}</h1>
         <span className="hint-star star">
-          <BsFillStarFill />
+          <BsFillStarFill className='startIcon'/>
           <BsFillStarFill />
           <BsFillStarFill />
         </span>
@@ -30,7 +30,7 @@ const Card = ({ product }) => {
       </div>
       <div className="product-image">
         <img src={product.pic} alt="" />
-        <div className="info">
+        {/* <div className="info">
           <h2>Descripción</h2>
           <ul>
             <li>69 teclas</li>
@@ -38,7 +38,7 @@ const Card = ({ product }) => {
             <li>Compatible contodos los DAW</li>
             <li>Software Arturia incluido</li>
           </ul>
-        </div>
+        </div> */}
 
 
 

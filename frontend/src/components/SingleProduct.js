@@ -76,7 +76,6 @@ const SingleProduct = (props) => {
     if(thisProduct.length!==0){
     return(
         <div className="mainSingleProduct">
-            <Button onClick={() => history.go(-2)} className="backNavButton" >{`Ir al Inicio`}</Button>
             <Button onClick={() => history.goBack()} className="backNavButton" >{`Ir a ${thisProduct.category}`}</Button>
             <div className="mainSingleContainer">
                 <div className="leftSection">

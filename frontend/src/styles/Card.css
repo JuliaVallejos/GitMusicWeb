@@ -29,18 +29,18 @@ background-attachment: fixed;
 	overflow: hidden;
 	margin:1vw;
 	height: 350px;
-	width: 25vw;
-	
+	width: 30vw;
+	min-width: 300px;
 }
 /* 	Product details  */
 .product-details {
 	position: relative;
 	text-align: left;
 	overflow: hidden;
-	padding: 2vh;
+	padding: 1vh;
 	height: 100%;
 	float: left;
-	width: 40%;
+	width: 60%;
 
 }
 
@@ -85,6 +85,7 @@ background-attachment: fixed;
 	color: gold;
 	width: 50%;
   margin-top: 6px;
+  
 }
 
 

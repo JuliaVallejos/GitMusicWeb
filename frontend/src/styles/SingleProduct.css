@@ -19,6 +19,8 @@
     width: 100%;
     height: 80%;
     padding: 1vw;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .leftSection{
@@ -28,6 +30,7 @@
     align-items: center;
     width: 12%;
     height: 80%;
+    min-width: 5rem;
 }
 
 .lateralPic{
@@ -44,6 +47,7 @@
 .middleSection{
     width: 58%;
     padding: 1vw;
+    min-width: 300px;
 }
 .middleSection div{
   width: 100%;
@@ -63,6 +67,7 @@
     border-radius: 8px;
     margin-top: 1vw;
     height: fit-content;
+    min-width: 300px;
 }
 
 .singleProductName{
@@ -306,15 +311,15 @@
 }
 }
 @media only screen and (max-width:600px) {
-.middleSection div{
-  width: 80%;
-  height: 25vh;
+/* .mainSingleProduct{
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}*/
+
+.mainSingleContainer{
+  align-items: center;
 }
-.descriptionContainer{
-  overflow: auto;
-}
-.rightSection{
-  width: 60%;
 }
 
-}
+

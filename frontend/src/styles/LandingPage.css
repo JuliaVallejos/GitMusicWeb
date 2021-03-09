@@ -73,52 +73,6 @@
     font-size: 1.5em;
     margin-top: 15vh;
   }
-<<<<<<< HEAD
-  #root{
-    overflow-x: hidden;
-  }
-  .burger {
-    display: block;
-    font-size: 2rem;
-    margin: 3px 0;
-    position: absolute;
-    /* top: 100px; */
-    left: 10px;
-    color:white;
-  }
-  .navMenu{
-    position: relative;
-    top: 6vh;
-    right: 0;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(24, 24, 24);
-    align-items: center;
-    padding: 2vh;
-    transform: translateX(-100%);
-    transition: all ease 0.3s;
-  }
-  .links{
-    flex-direction: column;
-  }
-  .activeNav{
-    transform: translateX(0%);
-  }
-
-  /* .navMenu div{
-    flex-direction: column-reverse;
-  }
-  */
-  /* nav {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 10vh;
-    z-index: 2;
-  } */
-=======
->>>>>>> 7055dad8487db32a857ab0f2f79fd4a310e159ea
 }
 
 

@@ -1,4 +1,7 @@
 
+.sectionBody{
+    min-height: 61vh;
+}
 .containerCartAndPagination {
     background-image: url('../assets/descarga.jpg');
     background-repeat: no-repeat;

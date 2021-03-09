@@ -37,7 +37,7 @@ const ListCart = ({shoppingCart,editProductCart,deleteProductCart,clearCart})=> 
         }
     }
     return (
-        <div >
+        <div className='sectionBody'>
         {shoppingCart.length !== 0 ? 
         <div className="CartAndPagination">
             <div className="containerCart ">
