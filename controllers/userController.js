@@ -12,7 +12,8 @@ const userController = {
       const userExists = await User.findOne({ email: email})//buscamos coincidencia
       if (userExists) {
         let error = [{ path: ['useremailExist'] }] //si el email ya existe
-        res.json({ success: false, error: error }) //retorna este error.
+        console.log("0.5")
+        return res.json({ success: false, error: error }) //retorna este error.
       }
       const hashedPassword = bcryptjs.hashSync(password, 10) //encriptamos password
       var newUser = new User({
@@ -21,13 +22,15 @@ const userController = {
       if(google !== 'true'){
         const {fileUrlPic}=req.files
         if(fileUrlPic.mimetype.indexOf('image/jpg')!==0&&fileUrlPic.mimetype.indexOf('image/jpeg')!==0&&fileUrlPic.mimetype.indexOf('image/png')!==0&&fileUrlPic.mimetype.indexOf('image/bmp')!==0){
-           return res.json({success:false,error:"El formato de la imagen tiene que ser JPG,JPEG,BMP ó PNG."})
+          console.log("1")
+          return res.json({success:false,error:"El formato de la imagen tiene que ser JPG,JPEG,BMP ó PNG."})
         }
         const extPic=fileUrlPic.name.split('.',2)[1]
         ///../client/build/usersPics/
         console.log(__dirname)
         fileUrlPic.mv(`${__dirname}/../frontend/public/assets/userPics/${newUser._id}.${extPic}`,error =>{
            if(error){
+            console.log("2")
               return res.json({success:false,error:"Intente nuevamente..."})
            }
         })
@@ -39,7 +42,10 @@ const userController = {
       var newUserSaved = await newUser.save() //intentamos guardar en la db
       console.log(newUserSaved)
       var token = jwt.sign({ ...newUserSaved }, process.env.SECRET_KEY, {}) 
-        return res.status(200).send({
+      res.statusCode=200;
+      res.setHeader('Content-Type', 'text/plain');
+      res.end('success:true');
+        return res.json({
           success: true,
           response: {
             token,
@@ -50,7 +56,10 @@ const userController = {
           }
         })
     } catch (error) {
-        res.status(500).send({ success: false, error })
+      res.statusCode=500;
+      res.setHeader('Content-Type', 'text/plain');
+      res.end('success:false');
+      return res.json({success: false, error })
     }
 },
 

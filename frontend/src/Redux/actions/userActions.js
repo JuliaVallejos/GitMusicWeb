@@ -74,6 +74,7 @@ const userActions = {
              return false
            })
          }
+         console.log(response)
          dispatch({
            type: "USER_LOG",
            payload: response.data.response
