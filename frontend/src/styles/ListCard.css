@@ -7,6 +7,11 @@
     min-height: 71vh;
     height:100%;
     width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-right: 15vw;
 }
 
 .CartAndPagination{
@@ -41,7 +46,7 @@
     background-color:rgba(0, 0, 0, 0.699);
     border: solid 2px rgba(6, 135, 200, 0.801);
     border-radius: 8px;
-    width:70%;
+    width:80%;
     margin:2%;
     display:flex;
     align-items: center;
@@ -126,9 +131,9 @@
 
     .buttonNav {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-evenly;
         align-items: center;
-        width: 40%;
+        width: 90%;
     }
 
 .navPagination {
@@ -136,9 +141,10 @@
 }
 
 .pagination{
-    width: 90%;
+    width: 40%;
     display: flex;
     justify-content: space-evenly;
+    margin-left: 20vw;
 }
 
 .pagination li {
@@ -201,3 +207,27 @@
     background-color: rgba(214, 41, 21, .8) !important;
     transition: .75s ease;
 }
+
+.rs-timeline-item-dot::before{
+    background-color: transparent !important;
+    height: 0 !important;
+    width: 0;
+}
+
+.rs-timeline-item .stateTimeLine .rs-timeline-item-last {
+    list-style: none !important;
+}
+
+.steps {
+    width: 60%;
+    padding-top: 4vh;
+    padding-right: 8%;
+}
+
+.stateTimeLine{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+

@@ -46,7 +46,7 @@ const BillingAddress = (props) => {
     }
 
     return (
-        <div className="containerFormAdreess">
+        <div>
             <div className="formAdreess">
             
                 <div className="formularioAddress">
@@ -68,13 +68,7 @@ const BillingAddress = (props) => {
                         </select>
                     </div>
                     <div className="botonShippin">
-                        <Link to='/shippingAddress' className="enviar">
-                            Volver
-                        </Link>
                         <button className="enviar" onClick={Validate}>Guardar Datos</button>
-                        <Link  onClick={()=>!next&&Alert.error('Complete los datos y guarde')} to={next&&'/payment'} className="enviar">
-                            Siguiente
-                        </Link>
                     </div>
                 </div>
 

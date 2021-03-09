@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import React, { useState, useEffect } from 'react'
-import { NavLink, Link } from 'react-router-dom'
 import { FaTrashAlt, FaShoppingCart} from 'react-icons/fa'
 import '../styles/ListCard.css'
 import Pagination from "./Pagination"
@@ -14,10 +13,6 @@ const ListCart = ({shoppingCart,editProductCart,deleteProductCart,clearCart})=> 
     const indexOfFirstPost = indexOfLastPost - postPerPage;
     const currentPost = shoppingCart.slice(indexOfFirstPost, indexOfLastPost);
     const paginate = pageNumber => setCurrentPage(pageNumber)
-
-    const indexOfLastPost = currentPage * postPerPage;
-    const indexOfFirstPost = indexOfLastPost - postPerPage;
-    const currentPots = shoppingCart.slice(indexOfFirstPost, indexOfLastPost);
     var total=0
     const deleteProduct = id => {
         const filterProduct = shoppingCart.filter(product => product.idProduct !== id)
@@ -42,7 +37,7 @@ const ListCart = ({shoppingCart,editProductCart,deleteProductCart,clearCart})=> 
         }
     }
     return (
-        <div className="containerCartAndPagination">
+        <div >
         {shoppingCart.length !== 0 ? 
         <div className="CartAndPagination">
             <div className="containerCart ">
@@ -80,9 +75,7 @@ const ListCart = ({shoppingCart,editProductCart,deleteProductCart,clearCart})=> 
                 </div>
             </div>
             <div className="buttonNav" style={{marginTop:'4vh'}}>
-                <NavLink className="navLink" exact to='/' ><button className="enviar">Salir</button></NavLink>
                 <Pagination postPerPage={postPerPage} totalPost={shoppingCart.length} paginate={paginate}/>
-                <NavLink className="navLink" exact to='/shippingAddress' ><button className="enviar">Confirmar</button></NavLink>
             </div>
         </div>
         : (

@@ -49,7 +49,7 @@ const ShippingAddress = (props) => {
     }
 
     return (
-        <div className="containerFormAdreess">
+        <div>
             <div className="formAdreess">
                 <div className="formularioAddress">
                     <h2 className="tittleShipping">Datos de envio</h2>
@@ -72,13 +72,9 @@ const ShippingAddress = (props) => {
                         <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="contactoReceptor" placeholder="Teléfono de quien recibe*" onChange={readInput} />
                     </div>
                     <div className="botonShippin">
-                        <Link to='/cartslist' className="enviar">Volver</Link>
                         <button className="enviar" onClick={Validate}>Guardar datos</button>
-                        <Link onClick={()=>!next&&Alert.error('Complete los datos y guarde')}to={next&&'/billingAddress'} className="enviar">Siguiente</Link>
                     </div>
-                    </div>
-
-
+                </div>
             </div>
         </div>
     )
