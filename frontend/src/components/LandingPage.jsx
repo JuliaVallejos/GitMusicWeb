@@ -7,7 +7,7 @@ import { AiFillGithub } from 'react-icons/ai'
 import { FaMusic } from 'react-icons/fa'
 import Navigator from "./NavigatorBar"
 import productActions from '../Redux/actions/productActions'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { FiMenu } from 'react-icons/fi';
 
 const LandingPage = ({ getProducts, loggedUser }) => {
@@ -36,9 +36,7 @@ const LandingPage = ({ getProducts, loggedUser }) => {
             <NavLink onClick={openNav} to={loggedUser ? '/userdetails' : '/registerUser'} className='navLinks'>
               Mi cuenta
           </NavLink>
-            <NavLink onClick={openNav} to='/singleproduct' className='navLinks'>
-              Product
-          </NavLink>
+
           </div>
         </div> 
 

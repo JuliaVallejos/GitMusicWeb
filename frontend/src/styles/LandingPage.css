@@ -119,9 +119,6 @@
     left: 10px;
     color:white;
   }
-  .activeNav{
-    transform: translateX(0%);
-  }
   .navMenu{
     position: relative;
     top: 6vh;
@@ -129,10 +126,17 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    background-color: rgb(24, 24, 24);
     align-items: center;
     padding: 2vh;
     transform: translateX(-100%);
     transition: all ease 0.3s;
+  }
+  .links{
+    flex-direction: column;
+  }
+  .activeNav{
+    transform: translateX(0%);
   }
 
   /* .navMenu div{
