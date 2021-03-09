@@ -11,7 +11,7 @@ const Card = ({ product }) => {
 
 
   return (
-    <div className="container">
+    <div className="containerCard">
       <div className="product-details">
         <h1>{product.name}</h1>
         <span className="hint-star star">
@@ -21,7 +21,7 @@ const Card = ({ product }) => {
         </span>
         <p className="information">Perfecto para tu home-studio!</p>
         <div className="control" onClick={addToCart}>
-          <button className="btn">
+          <button className="btnCard">
             <span className="price">${product.price}</span>
             <span className="shopping-cart"><FaCartPlus /></span>
             <span className="buy">Agregar al carrito!</span>

@@ -80,7 +80,7 @@ const SingleProduct = (props) => {
                     )}
                 </div>
                 <div className="middleSection">
-                    <div style={{width: '100%', height: '50vh',backgroundImage: `url(${thisProduct.arrayPic[index]})`, backgroundPosition:'center', backgroundSize:'cover', borderRadius: '8px' }}></div>
+                    <div style={{backgroundImage: `url(${thisProduct.arrayPic[index]})`, backgroundPosition:'center', backgroundSize:'cover', borderRadius: '8px' }}></div>
                     <div className="descriptionContainer">
                     <h5>Sobre este producto:</h5>
                         <div className="liDescription">

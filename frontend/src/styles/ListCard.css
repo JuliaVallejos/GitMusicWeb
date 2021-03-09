@@ -88,7 +88,7 @@
 }
 
 .enviar {
-    width: 10vw;
+    /* width: 10vw; */
     margin-bottom: 3vh;
     border-radius: 25px;
     transition: all 0.2s;
