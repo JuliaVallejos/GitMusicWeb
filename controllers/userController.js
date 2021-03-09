@@ -8,7 +8,7 @@ const userController = {
   newUser: async(req, res) => {
     
     try {
-      const { firstName, lastName, email, password, pic, rol, google, accountGoogle} = req.body
+      const { firstName, lastName, email, password, pic, rol, google} = req.body
       console.log(google)
       const userExists = await User.findOne({ email: email})//buscamos coincidencia
       if (userExists) {
@@ -34,9 +34,8 @@ const userController = {
         })
         newUser.pic=`./assets/userPics/${newUser._id}.${extPic}`
      }else{
-       console.log("google")
+      console.log("google")
       newUser.pic=pic
-      newUser.accountGoogle=true
      }
       var newUserSaved = await newUser.save() //intentamos guardar en la db
       console.log(newUserSaved)
