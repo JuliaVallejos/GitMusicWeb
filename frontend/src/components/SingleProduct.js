@@ -27,7 +27,6 @@ const SingleProduct = (props) => {
             setRating(stars)
         } 
     },[allProducts, thisProduct, id])  
-
     const setNumber = (e) =>{
         const number = parseInt(e.target.value)
         setquantity(number)

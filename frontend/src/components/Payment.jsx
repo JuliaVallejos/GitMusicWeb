@@ -54,7 +54,7 @@ const Payment = ({userData,shoppingCart,loggedUser,completeUserData,emailShopCar
 
 
     return (
-        <div className="containerFormAdreessPayment">
+        <div>
             <div className="formAdreess">
                 <div className="formularioAddress">
                     <h2 className="tittle">Pago con Tarjeta</h2>
@@ -85,9 +85,6 @@ const Payment = ({userData,shoppingCart,loggedUser,completeUserData,emailShopCar
                         <input onKeyPress={enterKeyboard} type="number" autoComplete="nope" name="cvc" placeholder="Ej: 123" onChange={readInput} onFocus={(e)=>{setCardFields({...cardFields, focused: e.target.name})}}/>
                     </div>
                     <div class="finalizar">
-                        <Link exact to='/billingAddress' className="enviar">
-                            Volver
-                        </Link>
                         <button className="enviar" onClick={Validate}>Finalizar</button>
                     </div>
                 </div>
