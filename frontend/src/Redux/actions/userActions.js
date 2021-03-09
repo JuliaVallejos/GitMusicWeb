@@ -154,7 +154,7 @@ const userActions = {
     emailShopCart:(email,dataCart)=>{
     return async (dispatch,getstate)=>{
       try{
-        const data = await axios.post('http://localhost:4000/api/confirmPurchase',{email,dataCart})
+        const data = await axios.post('https://gitmusicapp.herokuapp.com/api/confirmPurchase',{email,dataCart})
         
         if(data.data.success){
           dispatch({type:'PURCHASE_CONFIRMATION', payload:data.data.response})
@@ -204,8 +204,6 @@ const userActions = {
 //      }
 //    },
 
-
-   
- }
+}
  
  export default userActions
