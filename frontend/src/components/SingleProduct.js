@@ -6,8 +6,10 @@ import { connect } from 'react-redux';
 import Comment from './Comment';
 import { MdSend } from "react-icons/md";
 import shoppingCartActions from '../Redux/actions/shoppingCartActions';
+import productActions from '../Redux/actions/productActions'
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { BsFillStarFill } from 'react-icons/bs'
+import { useHistory } from "react-router-dom";
 
 const SingleProduct = (props) => {
     const { allProducts, addProductShoppingCart, shoppingCart } = props
@@ -18,7 +20,8 @@ const SingleProduct = (props) => {
     const [index, setIndex] = useState(0)
     const [quantity, setquantity] = useState(1)
     const [rating, setRating] = useState(0)
-
+    let history = useHistory();
+    
     useEffect(()=>{
         const product = allProducts.filter(product => product._id === id)
         setThisProduct(product[0])
@@ -38,8 +41,14 @@ const SingleProduct = (props) => {
     const handleComments = (e) => {
         setComment(e.target.value)
     }
-    
-    const sendComment = () =>{
+
+    const sendComment = e =>{
+        e.preventDefault()
+        props.commentProduct({
+            comment: newComment,
+            idProduct: thisProduct._id,
+            idUser: props.loggedUser.userId
+        })
         //mando comment
     }
     const enterKey = (e) => {
@@ -67,7 +76,8 @@ const SingleProduct = (props) => {
     if(thisProduct.length!==0){
     return(
         <div className="mainSingleProduct">
-     
+            <Button onClick={() => history.go(-2)} className="backNavButton" >{`Ir al Inicio`}</Button>
+            <Button onClick={() => history.goBack()} className="backNavButton" >{`Ir a ${thisProduct.category}`}</Button>
             <div className="mainSingleContainer">
                 <div className="leftSection">
                     {thisProduct.arrayPic.map((pic, i) => {
@@ -131,7 +141,7 @@ const SingleProduct = (props) => {
                     {visible &&(
                         <div>
                         <div className="comments">
-                            {thisProduct.arrayComments.map(comment => <Comment comment={comment}/>)}
+                            {thisProduct.arrayComments.map(comment => <Comment idProduct={thisProduct._id} comment={comment}/>)}
                         </div>
                             <div className="inputDiv">
                                 <input type="text" name="content" onKeyDown={enterKey} placeholder={'condicionar el placeholder u ocultar el input'} className="commentInput" onChange={handleComments} value={newComment}  autoComplete="off" />
@@ -152,10 +162,12 @@ const SingleProduct = (props) => {
 const mapStateToProps = state =>{
     return{
         allProducts: state.product.allProducts,
-        shoppingCart:state.shoppingR.shoppingCart
+        shoppingCart:state.shoppingR.shoppingCart,
+        loggedUser: state.userR.loggedUser
     }
 }
 const mapDispatchToProps={
-    addProductShoppingCart:shoppingCartActions.addProductShoppingCart
+    addProductShoppingCart:shoppingCartActions.addProductShoppingCart,
+    commentProduct: productActions.commentProduct
 }
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct)

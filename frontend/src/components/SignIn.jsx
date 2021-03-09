@@ -6,10 +6,11 @@ import { Link} from 'react-router-dom'
 import { Alert, Message } from 'rsuite';
 import userActions from '../Redux/actions/userActions'
 import '../styles/signIn.css'
-
+import { useHistory } from "react-router-dom";
+import { Button } from 'rsuite'
 
 const SignIn = (props) => {
-
+    let history = useHistory();
     const {  signIn } = props
     const [user, setUser] = useState({})
     const [errores, setErrores] = useState('')
@@ -59,6 +60,8 @@ const SignIn = (props) => {
     }
 
     return (
+        <>
+        <Button onClick={() => history.goBack()} className="backBtnSignIn">Ir al Inicio</Button>
         <div className="registro">
             <div className="formularioSignIn">
                 <h2>Acceder</h2>
@@ -88,6 +91,7 @@ const SignIn = (props) => {
 
             </div>
         </div>
+        </>
     )
 }
 const mapStateToProps = state => {

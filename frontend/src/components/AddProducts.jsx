@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
 import {  Alert, Message } from 'rsuite';
+import { useHistory } from "react-router-dom";
 import DropFiles from './DropFiles'
 import '../styles/addProducts.css' 
 
@@ -9,7 +10,7 @@ import productActions from '../Redux/actions/productActions';
 
 
 const AddProducts = (props) => {
-
+let history = useHistory();
 const {addProduct,categories } = props
 const [itemsDescription,setItemsDescription] = useState([])
 const [newItem,setNewItem] = useState()
@@ -108,6 +109,7 @@ const [newItem,setNewItem] = useState()
  
     return (
         <div className="containerAddProducts">
+            <button onClick={() => history.goBack()} className="backBtnCategory">Volver al Inicio</button>
             <div className="formularioProd">
                 <h2>Cargue sus productos</h2>
                 {errores !== '' && <Message type='info' description={errores} style={{ marginBottom: '2vh' }} />}

@@ -3,6 +3,15 @@
     padding: 2vw;
 }
 
+.backNavButton{
+  width: 12.5vw;
+  background-color: #1572b4;
+  color: whitesmoke;
+  margin: 0.2vw;
+  box-shadow: 1px 1px 1px 1px rgba(6, 135, 200, 0.801);
+  border: 1px solid rgba(6, 135, 200, 0.801);
+}
+
 .mainSingleContainer{
     background-color: white;
     border-radius: 4px;
