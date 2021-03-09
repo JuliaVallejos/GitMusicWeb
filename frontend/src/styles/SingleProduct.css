@@ -106,9 +106,10 @@
     flex-direction: column;
     border-radius: 8px;
     margin-top: 2vh;
-}
 
-.liDescription{
+  }
+  
+  .liDescription{
     padding: 1vw;
     background-color: rgba(201, 218, 169, 0);
 }

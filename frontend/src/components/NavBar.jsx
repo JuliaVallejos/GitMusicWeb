@@ -33,6 +33,8 @@ const NavBar = ({ loggedUser, signOut }) => {
           <NavLink onClick={openNav} to={loggedUser ? '/userdetails' : '/registerUser'} className='navLinks'>
             Mi cuenta
           </NavLink>
+          {loggedUser && <p className='navLinks signOut' onClick={byeBye}>Cerrar sesión</p>}
+
         </div>
       </div>
       <div className="navBar">
@@ -45,7 +47,6 @@ const NavBar = ({ loggedUser, signOut }) => {
             Product
           </NavLink> */}
         <div className='links'>
-          {loggedUser && <p className='navLinks signOut' onClick={byeBye}>Cerrar sesión</p>}
           <NavLink to={loggedUser ? 'userdetails' : '/registerUser'} className='navLinks'>
             {!loggedUser ? <FaUserCircle className="iconUser" /> :
               (<div className="userPic" style={{ backgroundImage: `url(.${loggedUser.pic})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
