@@ -57,7 +57,6 @@ const userController = {
       return res.json({success: false, error })
     }
 },
-
 logIn: async (req, res) => {
   try {
       const { email, password } = req.body
