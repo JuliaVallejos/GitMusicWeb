@@ -101,7 +101,7 @@ box-shadow: 5px 5px 12px rgba(255, 213, 77, 0.507);
 
 
 .enviar {
-    width: 10vw;
+    /* width: 10vw; */
     margin-bottom: 3vh;
     border-radius: 25px;
     transition: all 0.2s;

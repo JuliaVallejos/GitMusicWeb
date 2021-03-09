@@ -17,7 +17,7 @@
     border-radius: 4px;
     display: flex;
     width: 100%;
-    height: 100%;
+    height: 80%;
     padding: 1vw;
 }
 
@@ -44,6 +44,10 @@
 .middleSection{
     width: 58%;
     padding: 1vw;
+}
+.middleSection div{
+  width: 100%;
+  height: 70vh;
 }
 
 .mainPic{
@@ -288,4 +292,29 @@
 }
 .starInput{
   display: none;
+}
+@media only screen and (max-width:780px) {
+  .lateralPic{
+  display: none;
+}
+.middleSection div{
+  width: 100%;
+  height: 50vh;
+}
+.descriptionContainer{
+  overflow: auto;
+}
+}
+@media only screen and (max-width:600px) {
+.middleSection div{
+  width: 80%;
+  height: 25vh;
+}
+.descriptionContainer{
+  overflow: auto;
+}
+.rightSection{
+  width: 60%;
+}
+
 }

@@ -5,7 +5,7 @@
 
 }
 .productsList{
-    width:80%;
+    min-width:100%;
     margin: auto;
     display:flex;
     flex-wrap: wrap;
@@ -96,11 +96,11 @@
 
 }
 .cardBottom{
-    width: 100%;
+    min-width: 100%;
     background-color: #1572b4;
     padding: 1vh 1vw;
     color: white;
-    height: 40%;
+    min-height: 40%;
 }
 .toolTip{
     position:absolute;
@@ -118,7 +118,7 @@
 /*RESPONSIVE*/
 @media only screen and (max-width:600px) {
      .productsList{
-        width:80%;
+        width:90%;
     }
     .categoryTitle{
         font-size: 3em;
@@ -126,9 +126,9 @@
         margin-bottom: 2.5vh;
     }
     .productContainer{
-      min-width:40%;
+      min-width:50%;
        margin:2%;
-       height: 45vh;
+       height: 50vh;
     }
     .containerTitle{
         height: 6em;
