@@ -1,0 +1,326 @@
+.mainSingleProduct{
+    background-color: rgba(128, 128, 128, 0.61);
+    padding: 2vw;
+}
+
+.backNavButton{
+  width: 12.5vw;
+  background-color: #1572b4;
+  color: whitesmoke;
+  margin: 0.2vw;
+  box-shadow: 1px 1px 1px 1px rgba(6, 135, 200, 0.801);
+  border: 1px solid rgba(6, 135, 200, 0.801);
+}
+
+.mainSingleContainer{
+    background-color: white;
+    border-radius: 4px;
+    display: flex;
+    width: 100%;
+    height: 80%;
+    padding: 1vw;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.leftSection{
+  padding: 1vw 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 12%;
+    height: 80%;
+    min-width: 5rem;
+}
+
+.lateralPic{
+    margin: 0.2vw;
+    border-radius: 4px;
+    border: 1px solid blue;
+    cursor: pointer;
+    filter: grayscale(.8);
+    transition: all ease .2s;
+}
+.lateralPic:hover{
+    filter: grayscale(0);
+}
+.middleSection{
+    width: 58%;
+    padding: 1vw;
+    min-width: 300px;
+}
+.middleSection div{
+  width: 100%;
+  height: 70vh;
+}
+
+.mainPic{
+    width: 90%;
+    background-size: cover;
+}
+
+.rightSection{
+    padding: 1vw;
+    background-color: rgba(192, 192, 192, 0.185);
+    border-radius: 3px;
+    width: 30%;
+    border-radius: 8px;
+    margin-top: 1vw;
+    height: fit-content;
+    min-width: 300px;
+}
+
+.singleProductName{
+    font-size: 2vw;
+}
+.singleTextBlue{
+    color: blue;
+    font-size: 1.3vw;
+    font-weight: 500
+}
+
+.singleHeart{
+    height: 2vw;
+    width: 2vw;
+    margin: 0.5vw
+}
+
+.singleButtons{
+    padding: 2vw;
+}
+
+.singleButton{
+    align-self: center;
+}
+
+.singleSimpleText{
+    text-decoration: underline;
+    font-size: 1.3vw;
+}
+
+.descriptionContainer{
+    background: rgba(134, 134, 134, 0.301);
+    width: 100%;
+    padding: 1vw;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    margin-top: 2vh;
+
+  }
+  
+  .liDescription{
+    padding: 1vw;
+    background-color: rgba(201, 218, 169, 0);
+}
+
+.commentContainer{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    border-radius: 10px;
+    padding-bottom: 2vh;
+  }
+  
+  
+  .comments{
+    margin:1vh ;
+    padding:  1vh 0 1vh 0;
+    overflow: auto;
+    max-height: 24vh ;
+    background-color: rgba(0, 0, 0, 0.137);
+    border-radius: 8px;
+  }
+  .insideComment{
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+  }
+  
+  .comments::-webkit-scrollbar{
+    width: 8px;
+  }
+  .comments::-webkit-scrollbar-track{
+    background: #f1f1f1;  
+    border-radius: 5px;
+  }
+  .comments::-webkit-scrollbar-thumb{
+    background: rgb(150, 190, 190);
+    border-radius: 5px;
+  }
+  
+  .comments::-webkit-scrollbar-thumb:hover {
+    background: rgb(78, 114, 119);
+  }
+  .commentContainer h3{
+    border-radius: 10px 10px 0 0;
+    width: 100%;
+    background-color: rgba(16, 15, 16, 0.863);
+    color: white;
+    padding: 1vh;
+    
+  }
+  .comment{
+    background-color: rgb(236, 240, 240);
+    margin: 1vh;
+    width: 90%;
+    text-align: left;
+    padding: 1vh 1vh;
+    border-radius: 12px;
+    font-size: .9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .commentIcons{
+    display: flex;
+    align-self: flex-end;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0 0 0 3vh;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  .comment .user{
+    font-weight: 600;
+    margin-right: 8px;
+  }
+
+  .inputDiv{
+    position: relative;
+  }
+  .update{
+    width: 40vw;
+  }
+  .updateIcon{
+    position: absolute;
+    bottom: 6px;
+    right: 1.2rem;
+    font-size: 1.7rem;
+    color: rgb(69, 69, 76);
+    cursor: pointer;
+  }
+  .cancelBtn{
+    font-size: 1.5rem;
+    top: 16px;
+    right: 3rem;
+  }
+  .commentInput{
+    width: 98%;
+    padding: 1vh .5vh;
+    border-radius: 8px;
+    margin-top: 1vh ;
+    outline: none;
+  }
+  .commentIcon{
+    position: absolute;
+    top: 30%;
+    right: 2.8%;
+    font-size: 1.7rem;
+    color: rgb(69, 69, 76);
+    cursor: pointer;
+  
+  }
+  .commentIcon:active{
+    color: rgb(43, 43, 133);
+  }
+  .editComment{
+    margin: 4px;
+    color: rgb(68, 68, 68);
+    cursor: pointer;
+  }
+  .editComment:hover{
+    color: rgb(212, 152, 39);
+  }
+  .trash:hover{
+    color: rgb(214, 4, 4);
+  }
+  .cursor{
+    cursor: pointer;
+  }
+  .video-responsive {
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+    border-radius: 12px;
+  }
+  
+  .video-responsive iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    margin-top: 2vh;
+    border-radius: 12px;
+  }
+
+  .number {
+    margin: 1vh 0;
+    box-sizing: border-box;
+    font-variant: tabular-nums;
+ 
+    position: relative;
+    width: 100%;
+    height: 32px;
+    padding: 4px 0 4px 10px;
+    color: rgba(0,0,0,0.65);
+    font-size: 14px;
+    background-image: none;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    display: inline-block;
+    width: 20%;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    outline: none;
+  }
+  
+  .number:hover {
+    border-color: #40a9ff;
+    border-right-width: 1px !important;
+  }
+.description{
+  display: flex;
+  align-items: center;
+}
+.descriptionItem{
+  margin: 1vh;
+  color: #1f8ee9;
+}
+.star{
+  cursor: pointer;
+  transition: color 200ms;
+  margin: 3px;
+  font-size: 1.6rem;
+}
+.starInput{
+  display: none;
+}
+@media only screen and (max-width:780px) {
+  .lateralPic{
+  display: none;
+}
+.middleSection div{
+  width: 100%;
+  height: 50vh;
+}
+.descriptionContainer{
+  overflow: auto;
+}
+}
+@media only screen and (max-width:600px) {
+/* .mainSingleProduct{
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}*/
+
+.mainSingleContainer{
+  align-items: center;
+}
+}
+
+

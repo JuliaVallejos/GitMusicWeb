@@ -4,18 +4,55 @@ require('../config/passport')
 const passport = require('passport')
 const validator = require('../controllers/validator')
 const userController=require('../controllers/userController')
+const productController = require('../controllers/productController')
+const shoppingCartController = require('../controllers/shoppingCartController')
+const emailController = require('../controllers/emailController')
 
 //rutas
 //user
-
 router.route('/user/signup')
-.post(userController.newUser)
+.post(validator.validNewUser,userController.newUser)
+
 router.route('/user/login')
 .post(userController.logIn)
-router.route('/user/test')
-.get(userController.test)
+
+router.route('/user/ls')
+.post(passport.authenticate('jwt', { session: false }), userController.logFromLS)
+
+router.route('/userDetails')
+.post(userController.modifyUser)
 
 //shooping
 
 //product
+router.route('/products')
+.get(productController.allProducts)
+.post(productController.addProduct)
+
+router.route('/productsAdmin')
+.post(productController.addProductAdmin)
+
+router.route('/products/:idProduct')
+.get(productController.getProductDetail)
+.delete(productController.deleteProduct)
+
+router.route('/products/newrating')
+.put(productController.addRating)
+
+router.route('/products/newcomment')
+.put(productController.addComment)
+
+router.route('/products/editcomment')
+.put(productController.editComment)
+
+router.route('/products/delcomment')
+.put(productController.delComment)
+
+//shooping
+router.route('/products/shoppingcart')
+.get(shoppingCartController.getShoppingCart)
+.put(shoppingCartController.shoppingCart)
+
+router.route('/confirmPurchase')
+.post(emailController.sendEmailCart)
 module.exports = router

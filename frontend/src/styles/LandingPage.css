@@ -1,0 +1,78 @@
+.hero{
+  background-image: url('../assets/herocolors3.png');
+  background-size: cover;
+  height: 85vh;
+  width: 100%;
+  color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  /* animation: zoom 40s infinite; */
+}
+.hero h1{
+  margin-top: 40vh;
+  animation: zoom 4s infinite;
+  font-size: 4rem;
+  text-shadow: 5px 5px 8px black;
+  transform: rotateY(3deg);
+}
+@keyframes zoom {
+  0% {
+    transform: scale(0.9);
+  }
+  35%,
+  50% {
+    transform: scale(1.4) rotateZ(-9deg);
+  }
+  75%,
+  100%{
+    transform: scale(0.9);
+  }  
+}
+.burger {
+  display: none;
+}
+/*RESPONSIVE*/
+@media only screen and(min-width:1050px) and  (max-width:1350px) {
+  .hero{
+    height: 80vh;
+    width: 100%;
+  }
+  .hero h1{
+    font-size: 4.5em;
+    margin-top: 35vh;
+  }
+}
+@media only screen and (min-width:890px) and (max-width: 992px) {
+    .hero{
+    height: 80vh;
+    width: 100%;
+  }
+   .hero h1{
+    font-size: 2.5em;
+    margin-top: 25vh;
+   }
+}
+@media only screen and (min-width:678px) and (max-width: 1048px) {
+  .hero{
+    height: 80vh;
+    width: 100%;
+  }
+  .hero h1{
+    font-size: 3.5em;
+    margin-top: 35vh;
+    margin-left: 5vw;
+  }
+}
+@media only screen and (max-width:600px) {
+  .hero{
+    height: 40vh;
+  }
+  .hero h1{
+    font-size: 1.5em;
+    margin-top: 15vh;
+  }
+}
+
+

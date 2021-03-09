@@ -9,22 +9,21 @@ const commentSchema = new mongoose.Schema({
   comment:{type: String, required:true}
 })
 
+
 const ProductSchema = new mongoose.Schema({
   name:{type:String, required:true},
-  category:{type:String, required:true},
-  type:{type: String, required:true},
+  category:{type:String,required:true},
   mark:{type: String, required:false},
   price:{type: Number, required:true},
   stock:{type: Number, required:true},
   warranty:{type: Number, required:false, default:1},
-  urlReview:{type: String, required:false},
+  urlReview:{type: String, required:true, default:'https://www.youtube.com/embed/-e_3Cg9GZFU'},
   arrayPic:[String],
   arrayRating:[ratingSchema],
-  arrayComment:[commentSchema],
+  arrayComments:[commentSchema],
   arrayDescription:[String],
   arrayVisits:[String],
-  outstanding:{type: Boolean,default:false},
-  idShopCart:{type: mongoose.Schema.ObjectId, ref: 'shoppingCart',required: false},
+  outstanding:{type: Boolean,default:false}
 })
 
 const Product = mongoose.model('product',ProductSchema)
