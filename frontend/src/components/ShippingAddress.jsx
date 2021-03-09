@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-import {  Alert } from 'rsuite';
+import {Alert } from 'rsuite';
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import '../styles/ShippingAddress.css'
 import userActions from '../Redux/actions/userActions'
 
 
-const ShippingAddress = (props) => {
+const ShippingAddress = ({next,setNext,completeUserData}) => {
 
-    const [next,setNext] = useState(false)
+
     const [address, setaddress] = useState({
         calle:'',
         altura:'',
@@ -39,11 +39,11 @@ const ShippingAddress = (props) => {
             Alert.error('Complete los campos requeridos(*)')
             return false
         }
-       const data = await props.completeUserData("adress",address)
+       const data = await completeUserData("adress",address)
        console.log(data)
        if(data.saved){
            Alert.success('Datos guardados')
-           setNext(true)
+        setNext(true) 
        }
 
     }

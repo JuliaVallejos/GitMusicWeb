@@ -18,8 +18,9 @@ import Payment from './components/Payment'
 import PaymentPanel from './components/PaymentPanel'
 import ForgotPassword from './components/ForgotPassword'
 import ResetPassword from './components/ResetPassword'
-// import CartList from './components/ListCart'
 import ListCartAndPaginate from './components/ListCartAndPaginate'
+import CartList from './components/ListCart'
+
 
 
 function App(props) {
@@ -36,6 +37,7 @@ function App(props) {
         <Route path='/shippingAddress'component={ShippingAddress}/>
         <Route path='/billingAddress'component={BillingAddress}/>
         <Route path='/payment'component={Payment}/>
+        <Route path='/addProducts' component={AddProducts}/>
         <Route path='/paymentPanel'component={PaymentPanel}/>
         <Route path='/cartlist'component={ListCartAndPaginate}/> 
         <Route path='/product/:id' component={SingleProduct}/>

@@ -22,7 +22,7 @@ const ListCart = ({shoppingCart,editProductCart,deleteProductCart,clearCart})=> 
         const inputProduct=document.querySelector(`#act${product.idProduct}`)
         if(operation==='subtract'){
             if((parseInt(inputProduct.innerHTML)-1)<1){
-                Alert.warning("Debes tener almenos 1.",3000)
+                Alert.warning("Debes tener al menos 1.",3000)
             }else{
                 inputProduct.innerHTML=parseInt(inputProduct.innerHTML)-1
                 editProductCart(parseInt(inputProduct.innerHTML),product)
