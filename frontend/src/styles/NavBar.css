@@ -5,7 +5,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 15vh;
+  height: 20vh;
   color: whitesmoke;
   border-bottom: solid 2px rgba(245, 245, 245, 0.349);
   background-color: rgb(12, 12, 12);
@@ -45,6 +45,16 @@
   font-weight: bold;
   font-size: 1.1rem;
 }
+.header{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+  background-color:rgba(12, 12, 12) ;
+  height: 5vh;
+  border-bottom: solid 2px rgba(245, 245, 245, 0.349);
+}
 .iconUser {
   width: 5vw;
   height: 7vh;
@@ -56,4 +66,57 @@
 .signOut{
   cursor: pointer;
 }
+@media only screen and (max-width:600px) {
+  .hero{
+    height: 40vh;
+  }
+  #root{
+    overflow-x: hidden;
+  }
+  .burger {
+    display: block;
+    font-size: 2rem;
+    /* margin: 3px 0; */
+    position: absolute;
+    top: 35%;
+    right: 3rem;
+    color:white;
+  }
+  .navHeader {
+    position: relative;
+    background-color: rgba(12, 12, 12);
+    width: 100%;
+    height: 20vh;
+    z-index: 2;
+  } 
+  .navMenu{
+    position: absolute;
+    top: auto;
+    left: 25%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* padding: 2vh; */
+    transform: translateX(-150%);
+    transition: all ease 0.3s;
+  }
+  .navMenu div{
+    flex-direction: column-reverse;
+  }
+  .activeNav{
+    transform: translateX(0%);
+  }
+ .header{
+  /* flex-direction: row!important; */
+  justify-content: center;
+  height: 20vh;
+  width: auto;
+  }
+  .hero h1{
+    font-size: 1.5em;
+  }
+
+}
+
 

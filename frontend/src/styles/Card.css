@@ -21,31 +21,31 @@ background-attachment: fixed;
   flex-wrap: wrap;
   
 }
-.container{
+.containerCard{
 	box-shadow: 0 15px 30px 1px rgba(128, 128, 128, 0.31);
 	background: rgba(255, 255, 255, 0.90);
 	text-align: center;
 	border-radius: 5px;
 	overflow: hidden;
 	margin:1vw;
-	height: 350px;
-	width: 25vw;
-	
+	height: 280px;
+	width: 30vw;
+	min-width: 300px;
 }
 /* 	Product details  */
 .product-details {
 	position: relative;
 	text-align: left;
 	overflow: hidden;
-	padding: 2vh;
+	padding: 1vh;
 	height: 100%;
 	float: left;
-	width: 40%;
+	width: 60%;
 
 }
 
 /* 	Product Name */
-.container .product-details h1{
+.containerCard .product-details h1{
 	display: inline-block;
 	position: relative;
 	font-size: 1.3rem;
@@ -54,7 +54,7 @@ background-attachment: fixed;
 	
 }
 
-/* .container .product-details h1:before{
+/* .containerCard .product-details h1:before{
 	position: absolute;
 	content: '';
 	right: 10px; 
@@ -85,11 +85,12 @@ background-attachment: fixed;
 	color: gold;
 	width: 50%;
   margin-top: 6px;
+  
 }
 
 
 /* The most important information about the product */
-.container .product-details > p {
+.containerCard .product-details > p {
 	
 	font-size: 16px;
 	color: #7d7d7d;
@@ -106,7 +107,7 @@ background-attachment: fixed;
 	
 }
 /* the Button */
-.btn {
+.btnCard {
 	transform: translateY(0px);
 	transition: 0.3s linear;
 	background: #202020;
@@ -123,7 +124,7 @@ background-attachment: fixed;
 }
 
 
-.btn span {
+.btnCard span {
 	transition: transform 0.3s;
 	display: inline-block;
   padding: 10px 20px;
@@ -132,7 +133,7 @@ background-attachment: fixed;
 	
 }
 /* shopping cart icon */
-.btn .price, .shopping-cart{
+.btnCard .price, .shopping-cart{
 	background: #333;
 	border: 0;
 	margin: 0;
@@ -141,7 +142,7 @@ background-attachment: fixed;
 
 
 /* the Icon */
-.btn .shopping-cart {
+.btnCard .shopping-cart {
 	transform: translateX(-100%);
   position: absolute;
 	background: #333;
@@ -151,11 +152,11 @@ background-attachment: fixed;
 }
 
 /* buy */
-.btn .buy {z-index: 3; font-weight: bolder;}
+.btnCard .buy {z-index: 3; font-weight: bolder;}
 
-.btn:hover .price {transform: translateX(-110%);}
+.btnCard:hover .price {transform: translateX(-110%);}
 
-.btn:hover .shopping-cart {transform: translateX(0%);}
+.btnCard:hover .shopping-cart {transform: translateX(0%);}
 
 
 

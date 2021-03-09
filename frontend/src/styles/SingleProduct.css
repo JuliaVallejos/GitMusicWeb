@@ -3,13 +3,24 @@
     padding: 2vw;
 }
 
+.backNavButton{
+  width: 12.5vw;
+  background-color: #1572b4;
+  color: whitesmoke;
+  margin: 0.2vw;
+  box-shadow: 1px 1px 1px 1px rgba(6, 135, 200, 0.801);
+  border: 1px solid rgba(6, 135, 200, 0.801);
+}
+
 .mainSingleContainer{
     background-color: white;
     border-radius: 4px;
     display: flex;
     width: 100%;
-    height: 100%;
+    height: 80%;
     padding: 1vw;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .leftSection{
@@ -19,6 +30,7 @@
     align-items: center;
     width: 12%;
     height: 80%;
+    min-width: 5rem;
 }
 
 .lateralPic{
@@ -35,6 +47,11 @@
 .middleSection{
     width: 58%;
     padding: 1vw;
+    min-width: 300px;
+}
+.middleSection div{
+  width: 100%;
+  height: 70vh;
 }
 
 .mainPic{
@@ -50,6 +67,7 @@
     border-radius: 8px;
     margin-top: 1vw;
     height: fit-content;
+    min-width: 300px;
 }
 
 .singleProductName{
@@ -88,9 +106,10 @@
     flex-direction: column;
     border-radius: 8px;
     margin-top: 2vh;
-}
 
-.liDescription{
+  }
+  
+  .liDescription{
     padding: 1vw;
     background-color: rgba(201, 218, 169, 0);
 }
@@ -280,3 +299,28 @@
 .starInput{
   display: none;
 }
+@media only screen and (max-width:780px) {
+  .lateralPic{
+  display: none;
+}
+.middleSection div{
+  width: 100%;
+  height: 50vh;
+}
+.descriptionContainer{
+  overflow: auto;
+}
+}
+@media only screen and (max-width:600px) {
+/* .mainSingleProduct{
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}*/
+
+.mainSingleContainer{
+  align-items: center;
+}
+}
+
+

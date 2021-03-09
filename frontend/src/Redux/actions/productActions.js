@@ -44,6 +44,42 @@ const productActions = {
           return({success: false, response: error})
         }
       }
+    },
+    commentProduct: newComment =>{
+      const {comment, idProduct, idUser} = newComment
+      return async(dispatch, getState) =>{
+        try{
+        const response = await axios.put(`https://gitmusicapp.herokuapp.com/api/products/newcomment`, {comment, idUser, idProduct})
+
+        dispatch({type: 'COMMENT_OPTIONS', payload: response.data.response })
+        }catch(error){
+          return({success:false, response: error})
+        }
+      }
+    },
+    delComment: del => {
+      const {idProduct, idComment} = del
+      return async (dispatch,getState) => {
+        try{
+        const response = await axios.put(`https://gitmusicapp.herokuapp.com/api/products/delcomment`,
+        {idProduct, idComment})
+        dispatch({type: 'COMMENT_OPTIONS', payload: response.data.response})
+      } catch(error){
+        return({success: false, response: error})
+      }
+      }
+    },
+    updateComment: update => {
+      const {idComment, comment} = update
+      return async (dispatch, getState) => {
+        try{
+          const response = await axios.put(`https://gitmusicapp.herokuapp.com/api/products/editcomment`,
+          {idComment, comment})
+          dispatch({type: 'COMMENT_OPTIONS', payload: response.data.response})
+        }catch(error){
+          return({success: false, response: error})
+        }
+      }
     }
   }
    
