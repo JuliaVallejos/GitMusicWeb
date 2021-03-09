@@ -53,8 +53,9 @@ const emailController = {
         const message=`
 
         <h1 style="margin:1% 2%;color:#0687c8">¡Hola ${userAwait.firstName}! Estos son los datos de tu compra</h1>
-        <div class="products">${products}</div>
+        <div class="products">${products}
         <h2 class="total">Total $${total}</h2>
+        </div>
         <p class="firma">Tienda de instrumentos<br>Git Music Team</p>`
         const html= 
         `
@@ -123,10 +124,10 @@ const emailController = {
             }
             .total{
                 width:100%;
+                text-align:center;
                 background-color:rgb(12,12,12);
-                margin:1% 2%;
                 color:#0687c8;
-                padding:1%
+                padding:0.5%
             }
             .footer h2{
                 font-size:1.5vw
