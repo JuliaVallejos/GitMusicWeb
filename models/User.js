@@ -7,8 +7,7 @@ const UserSchema = new mongoose.Schema({
   rol:{type: String, required:false, default:"user"},
   pic:{type: String, required:false, default:'../assets/img/logoUser.png'},
   password:{type: String , required: true},
-  accountGoogle:{type: Boolean,default:false},
-  idShopCart:{type: mongoose.Schema.ObjectId, ref: 'shoppingCart',required: false},
+  idShopCart:{type: mongoose.Schema.ObjectId, ref: 'shoppingCart',required: false}
 })
 
 const User = mongoose.model('user',UserSchema)

@@ -8,7 +8,7 @@ const userController = {
   newUser: async(req, res) => {
     
     try {
-      const { firstName, lastName, email, password, pic, rol, google } = req.body
+      const { firstName, lastName, email, password, pic, rol, google, accountGoogle} = req.body
       console.log(google)
       const userExists = await User.findOne({ email: email})//buscamos coincidencia
       if (userExists) {

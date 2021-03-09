@@ -49,7 +49,6 @@ const userActions = {
      return async (dispatch, getState) =>{
        try{
          const response = await axios.post('https://gitmusicapp.herokuapp.com/api/user/signup', newUser)
-         console.log(response)
          if(response.data.success===false){
            var errors=[]
            response.data.errores && response.data.errores.details.map(error=>{
