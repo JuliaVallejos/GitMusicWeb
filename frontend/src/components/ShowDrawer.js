@@ -73,7 +73,7 @@ class ShowDrawer extends Component {
                   <span className="totalCart">Total:<span className="totalPrice">${total}</span></span>
                 </div>
                 <div>
-                  <Link onClick={goToCart} to='/cartlist'>
+                  <Link onClick={goToCart} to='/paymentPanel'>
                     <Button className="button success" appearance="primary">Comprar</Button>
                   </Link>
                   <Button onClick={this.close} className="button close" appearance="subtle">

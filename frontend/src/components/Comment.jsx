@@ -10,20 +10,21 @@ const Comment = ({comment, idProduct, delComment, editComment}) => {
 const [visible, setVisible] = useState(false)
 const [updatedComment, setUpdatedComment] = useState('')
 
-    const sendUpdate = () =>{
+    const sendUpdate =async () =>{
         //action de editar comment
-      editComment({
+      await editComment({
         comment: updatedComment,
         idComment: comment._id
       })
+      setVisible(false)
     }
 
     const updateComment = () =>{
         setVisible(true)
     }
-    const deleteComment = e =>{
+    const deleteComment = async e =>{
       e.preventDefault()
-      delComment({
+      await delComment({
         idProduct,
         idComment: comment._id
       })

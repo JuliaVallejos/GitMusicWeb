@@ -70,13 +70,16 @@ const productActions = {
       }
     },
     updateComment: update => {
+      console.log(update)
       const {idComment, comment} = update
       return async (dispatch, getState) => {
         try{
           const response = await axios.put(`https://gitmusicapp.herokuapp.com/api/products/editcomment`,
           {idComment, comment})
+    
           dispatch({type: 'COMMENT_OPTIONS', payload: response.data.response})
         }catch(error){
+        
           return({success: false, response: error})
         }
       }
