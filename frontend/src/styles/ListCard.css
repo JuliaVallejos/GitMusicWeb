@@ -1,6 +1,7 @@
 
 .sectionBody{
-    min-height: 61vh;
+    min-height: 100vh;
+    width: 100%;
 }
 .containerCartAndPagination {
     background-image: url('../assets/descarga.jpg');
@@ -42,6 +43,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-left: 5vw;
 }
 
 .containerProduct {
@@ -144,7 +146,7 @@
 }
 
 .pagination{
-    width: 40%;
+    width: 25%;
     display: flex;
     justify-content: space-evenly;
     margin-left: 20vw;
@@ -233,4 +235,14 @@
     justify-content: center;
     align-items: center;
 }
+
+.gif {
+    width: 50%;
+    height: 40%;
+    border-radius:30px;
+    margin-bottom: 5vh;
+    box-shadow: 5px 5px 20px rgb(146, 146, 146);
+ 
+}
+
 
