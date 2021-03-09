@@ -6,7 +6,6 @@ const path = require('path')
 
 const userController = {
   newUser: async(req, res) => {
-    
     try {
       const { firstName, lastName, email, password, pic, rol, google} = req.body
       console.log(google)
@@ -40,7 +39,7 @@ const userController = {
       var newUserSaved = await newUser.save() //intentamos guardar en la db
       console.log(newUserSaved)
       var token = jwt.sign({ ...newUserSaved }, process.env.SECRET_KEY, {}) 
-        return res.status(200).json({
+        return res.status(200).send({
           success: true,
           response: {
             token,
@@ -51,7 +50,7 @@ const userController = {
           }
         })
     } catch (error) {
-        res.status(500).json({ success: false, error })
+        res.status(500).send({ success: false, error })
     }
 },
 
