@@ -1,9 +1,7 @@
 .containerFormAdreess {
 display: flex;
-justify-content: center;
-background-repeat: no-repeat;
-background-size: cover;
 min-height: 80vh;
+margin-right: 10vw;
 }
 
 .containerFormAdreessPayment {
@@ -11,7 +9,7 @@ min-height: 80vh;
     justify-content: center;
     background-repeat: no-repeat;
     background-size: cover;
-    }
+}
 
 .formAdreess  { 
 display: flex;
@@ -23,14 +21,13 @@ width: 100%;
 
 .formularioAddress {
     display: flex;
-    padding: 4vh ;
     align-items: center;
     flex-direction: column;
-    width: 90%;
+    width: 100%;
     background: transparent;
     display: flex;
     justify-content: space-between;
-    margin-right: 20vh;
+
 }
 .tittleShipping{
     margin-bottom: 1vw ;
@@ -139,12 +136,12 @@ box-shadow: 5px 5px 12px rgba(255, 213, 77, 0.507);
         background-size: cover;
     }
 
-.finalizar {
+/* .finalizar {
     width: 35vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
+} */
 
 .imagBat {
     background-image: url(../assets/imageonline-co-whitebackgroundremoved.png);
@@ -159,4 +156,15 @@ box-shadow: 5px 5px 12px rgba(255, 213, 77, 0.507);
     margin-bottom: 1vw ;
     padding-right: 10vw;
     border-bottom: solid 2px rgb(65, 166, 216);
+}
+
+
+
+.stateTimeLine{
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 30vw;
 }

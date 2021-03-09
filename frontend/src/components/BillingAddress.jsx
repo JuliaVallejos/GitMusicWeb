@@ -48,7 +48,6 @@ const BillingAddress = (props) => {
     return (
         <div>
             <div className="formAdreess">
-            
                 <div className="formularioAddress">
                     <h2 className="tittle">Datos de facturacion</h2>
                     <div className="inputDiv">
