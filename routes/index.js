@@ -55,4 +55,13 @@ router.route('/products/shoppingcart')
 
 router.route('/confirmPurchase')
 .post(emailController.sendEmailCart)
+
+//recupero contraseña
+router.route('/user/requestresetpass')
+.post(emailController.requestResetPass)
+router.route('/user/resetpassword')
+.post(emailController.validateResetPassword)
+router.route('/user/requestresetuser')
+.post(emailController.validateResetUser)
+
 module.exports = router

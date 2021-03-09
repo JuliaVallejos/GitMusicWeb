@@ -168,41 +168,49 @@ const userActions = {
       }
 
     }
-  }
-//    requestResetPass:(userMail) => {
-//      return async (dispatch, getState) => {
-//        const respuesta = await axios.post(Api+'/user/requestresetpass', userMail)
-//        if (!respuesta.data.success) {
-//            Alert.error(`${respuesta.data.response}`,5000)
-//        }else{
-//          Alert.success(`${respuesta.data.response}`,5000)
-//          return true
-//        }
-//      }
-//    },
-//    validateResetPassword:(newPasswordData) => {
-//      return async (dispatch, getState) => {
-//        const respuesta = await axios.post(Api+'/user/resetpassword', newPasswordData)
-//        if (!respuesta.data.success) {
-//          Alert.error(`${respuesta.data.response}`,5000)
-//        }else{
-//          Alert.success(`${respuesta.data.response}`,5000)
-//          return true
-//        }
+  },
+     requestResetPass:(email) => {   
+         return async (dispatch, getState) => {
+     try{
+       const respuesta = await axios.post('http://localhost:4000/api/user/requestresetpass',{email})
+      console.log(respuesta)
+       if (!respuesta.data.success) {
+           Alert.error(`${respuesta.data.response}`,5000)
+           return respuesta
+        }else{
+         Alert.success(`${respuesta.data.response}`,5000)
+         return respuesta
+       }
+    }catch(error){
+      Alert.error('Ups! Algo pasó,intente nuevamente más tarde')
+      return error
+    }
+     }      
        
-//      }
-//    },
-//    validateResetUser:(token) => {
-//      return async (dispatch, getState) => {
-//        const respuesta = await axios.post(Api+'/user/requestresetuser', {token})
+   },
+    validateResetPassword:(newPasswordData) => {
+      return async (dispatch, getState) => {
+        const respuesta = await axios.post('http://localhost:4000/api/user/resetpassword', newPasswordData)
+        if (!respuesta.data.success) {
+          Alert.error(`${respuesta.data.response}`,5000)
+        }else{
+          Alert.success(`${respuesta.data.response}`,5000)
+          return true
+        }
        
-//        if (respuesta.data.success===false){
-//          return respuesta.data
-//        }else{
-//          return respuesta.data
-//        }      
-//      }
-//    },
+      }
+    },
+    validateResetUser:(token) => {
+      return async (dispatch, getState) => {
+        const respuesta = await axios.post('http://localhost:4000/api/user/requestresetuser', {token})
+       
+        if (respuesta.data.success===false){
+          return respuesta.data
+        }else{
+         return respuesta.data
+       }      
+      }
+   },
 
 }
  
