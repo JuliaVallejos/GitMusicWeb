@@ -145,7 +145,7 @@ addProduct: async (req,res) =>{
   editComment:async(req,res)=>{
     const {idComment,comment}=req.body
     try {
-      const editComment=await Product.updateOne(
+      const editComment=await Product.findOneAndUpdate(
         {'arrayComments._id':idComment},
         { '$set': {'arrayComments.$.comment':comment}},{new:true}).populate('arrayComments.idUser')
         console.log(editComment)
