@@ -161,7 +161,9 @@ box-shadow: 5px 5px 12px rgba(255, 213, 77, 0.507);
 
 
 .stateTimeLine{
-    width: 95%;
+    width: 90%;
+    margin-top: 5vh;
+    max-height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;

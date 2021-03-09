@@ -9,7 +9,6 @@ import { useHistory } from "react-router-dom";
 
 const Product = ({product,addProductShoppingCart,shoppingCart}) =>{
 
-  console.log({product})
   let history = useHistory();
  const [add,setAdd]= useState(false)
     

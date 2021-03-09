@@ -59,6 +59,7 @@ const PaymentPanel = () => {
                 :step && step === 4 ?
                   <div className="stateTimeLine" >
                     <img className="gif" src={gif} alt=""/>
+                    <NavLink to="/" className="enviar navLink ">Inicio</NavLink>
                   </div>
                   : 
                   <div className="stateTimeLine">

@@ -9,7 +9,6 @@ const Card = ({ product }) => {
     alert('Agregaste al carrito un ' + product.name)
   }
 
-
   return (
     <div className="containerCard">
       <div className="product-details">
@@ -29,7 +28,7 @@ const Card = ({ product }) => {
         </div>
       </div>
       <div className="product-image">
-        <img src={product.pic} alt="" />
+        <img src={product.arrayPic[0]} alt="" />
         {/* <div className="info">
           <h2>Descripción</h2>
           <ul>
