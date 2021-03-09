@@ -9,6 +9,9 @@ const UserSchema = new mongoose.Schema({
   password:{type: String , required: true},
   accountGoogle:{type: Boolean,default:false},
   idShopCart:{type: mongoose.Schema.ObjectId, ref: 'shoppingCart',required: false},
+  requestResetPassword:{type:Number,require:false,default:0},
+  tokenResetPassword:{type:String,require:false,default:''}
+
 })
 
 const User = mongoose.model('user',UserSchema)
