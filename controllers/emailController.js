@@ -6,11 +6,30 @@ const emailController = {
 
    sendEmailCart: async (req, res) =>{
 
-       const {email,dataCart} =req.body
-     
-       const {userData,shoppingCart} = dataCart
-       console.log(userData)
-       console.log(shoppingCart)
+    const {email,dataCart} =req.body
+    const {userData,shoppingCart} = dataCart
+
+    var total=0
+    shoppingCart.map(product =>{
+        total=total+(product.quantity*product.product.price)
+        return total
+    })
+
+      const singleProduct= (shoppingCart.map(product =>{
+           const productName= `<h3>${product.product.name}</h3>`
+           const productQuantity=`<p>Cantidad:${product.quantity}</p>`
+           const productPrice=`<p>$${product.product.price}</p>`
+           const productImg=`<div style="background-image:url('${product.product.arrayPic[0]}');height:150px;width:150px;background-size:contain;background-repeat:no-repeat;background-position:center;"></div>`
+           const singleProduct=`<div class="singleProduct">
+           <div style="width:70%">${productName}${productQuantity} ${productPrice}</div>
+           ${productImg}
+           </div>`
+           
+           return singleProduct
+
+       }))
+       const products=singleProduct.join(' ')
+
     try{
         const userAwait = await User.findOne({email:email})
         if(!userAwait){ 
@@ -31,15 +50,112 @@ const emailController = {
                   rejectedUnauthorized:false
                 } 
         })
-       
-                
+        const message=`
+
+        <h1 style="margin:1% 2%;color:#0687c8">¡Hola ${userAwait.firstName}! Estos son los datos de tu compra</h1>
+        <div class="products">${products}</div>
+        <h2 class="total">Total $${total}</h2>
+        <p class="firma">Tienda de instrumentos<br>Git Music Team</p>`
+        const html= 
+        `
+        <html lang="es">
+        <head>
+            <style>
+            .contenedor,.cabecera,.footer{
+                width: 100%;
+            }
+            .cabecera{
+                background-color: rgb(12, 12, 12);
+                font-weight: bold;
+            }
+            
+            .footer{
+                background-color: rgba(6, 134, 200, 0.863) ;
+                font-weight: bold;
+            }
+            .cuerpo{
+                background-color: rgb(250, 250, 250);
+                padding: 2vw;
+                color:rgb(12,12,12)
+            } 
+            .cuerpo span{
+                font-weight:bold;
+            }
+            .cabecera h1,.footer h2{
+                color:rgb(250, 250, 250);
+                text-align:center;
+                padding: 1.5vh 0
+            }
+            .cabecera h1{
+                font-size:2.5vw
+            }
+            .cabecera{
+                display:flex;
+                justify-content:space-around;
+                align-items:center
+            }
+            .cajaLogo{
+                min-width:8vw;
+                min-height:8vw;
+                padding:1vw;
+                border-radius:2vw
+            }
+            .logoPic{
+                background-image:url("https://i.ibb.co/hy5jcgy/gitLogo.png"); 
+                background-repeat:no-repeat;
+                background-position:center;
+                background-size:cover;
+                width:100%;
+                height:100%;
+             
+            }
+            .products{
+                background-color:rgb(250,250,250);
+                width:100%;
+                color:rgb(12,12,12)
+            }
+            .singleProduct{
+                background-color:rgba(207, 210, 212,0.552);
+                border-radius:10px;
+                display:flex;
+                margin:1% 2%;
+                padding:2%;
+            }
+            .total{
+                width:100%;
+                background-color:rgb(12,12,12);
+                margin:1% 2%;
+                color:#0687c8;
+                padding:1%
+            }
+            .footer h2{
+                font-size:1.5vw
+            }
+            .firma{
+                text-align:right;
+                color:rgb(12,12,12)
+            }
+            </style>
+        </head>
+        <body>
+        <section class="contenedor">
+            <div class="cabecera">
+                <div class="cajaLogo"><div class="logoPic"></div></div>
+                <div><h1>Git Music</h1></div>
+            </div>
+        <div class="cuerpo">${message}</div>
+        <div class="footer">
+            <h2>¡Gracias por elegirnos!</h2>
+        </div>
+        </section>
+        </body>
+        </html>`
         var mailOptions = {
-            from: 'Git Music" <gitmusic.team@gmail.com>',
+
+            from: 'Git Music <gitmusic.team@gmail.com>',
             to: email,
             subject:"¡Bienvenido a GitMusic! Gracias por su compra",
-            html: `<div style="text-align:center;padding:20px; min-heigth: 250px; background-color:#11050F">
-                        <h1 style="color:#0687c8">Estos son los datos de su compra</h1>
-                    </div>`
+            html: html
         }
         transporter.sendMail(mailOptions, (error, info) =>{
             if(error){
