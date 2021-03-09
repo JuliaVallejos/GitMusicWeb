@@ -3,20 +3,30 @@ import { BsTrash } from "react-icons/bs";
 import { BsPencilSquare } from "react-icons/bs";
 import { MdSend } from "react-icons/md";
 import { ImCancelCircle } from "react-icons/im";
+import { connect } from 'react-redux'
+import productActions from '../Redux/actions/productActions'
 
-const Comment = ({comment}) => {
+const Comment = ({comment, idProduct, delComment, editComment}) => {
 const [visible, setVisible] = useState(false)
 const [updatedComment, setUpdatedComment] = useState('')
 
     const sendUpdate = () =>{
         //action de editar comment
+      editComment({
+        comment: updatedComment,
+        idComment: comment._id
+      })
     }
 
     const updateComment = () =>{
         setVisible(true)
     }
-    const deleteComment = () =>{
-        alert('mando edit')
+    const deleteComment = e =>{
+      e.preventDefault()
+      delComment({
+        idProduct,
+        idComment: comment._id
+      })
     }
 
     const enterKey = (e) => {
@@ -56,5 +66,16 @@ const [updatedComment, setUpdatedComment] = useState('')
       </div>
     )
 }
+const mapStateToProps = state => {
+  return {
+    allProducts: state.product.allProducts,
+    loggedUser: state.userR.loggedUser
+  }
+}
 
-export default Comment
+const mapDispatchToProps = {
+  delComment: productActions.delComment,
+  editComment: productActions.updateComment
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Comment)

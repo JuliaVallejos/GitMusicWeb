@@ -16,10 +16,14 @@ import ShippingAddress from './components/ShippingAddress'
 import BillingAddress from './components/BillingAddress'
 import Payment from './components/Payment'
 import PaymentPanel from './components/PaymentPanel'
+<<<<<<< HEAD
 import ForgotPassword from './components/ForgotPassword'
 import ResetPassword from './components/ResetPassword'
 // import CartList from './components/ListCart'
 import ListCartAndPaginate from './components/ListCartAndPaginate'
+=======
+import CartList from './components/ListCart'
+>>>>>>> 4c003328aaf35e1d095c17d28f89349265f87242
 
 
 function App(props) {
@@ -37,9 +41,8 @@ function App(props) {
         <Route path='/billingAddress'component={BillingAddress}/>
         <Route path='/payment'component={Payment}/>
         <Route path='/paymentPanel'component={PaymentPanel}/>
-        {/* <Route path='/cartlist'component={CartList}/> */}
+        <Route path='/cartlist'component={CartList}/> 
         <Route path='/product/:id' component={SingleProduct}/>
-        <Route path='/cartslist'component={ListCartAndPaginate}/>
         <Redirect to ="/"/>
       </Switch>
     </>
@@ -68,7 +71,7 @@ function App(props) {
 <>
 <Router>
 <NavBar/>
-<ShowDrawer />
+<ShowDrawer history={props}/>
   {links}
 </Router>
 <Footer/>

@@ -10,8 +10,8 @@ const CategoryDrawer = (props) => {
     ]) 
     return (
         <div>
-            {categories.length !== 0 && categories.map(category => 
-                <NavLink to ={`/products/${category.category}`} style={{textDecoration: 'none'}} className="navLinksCategory">
+            {categories.length !== 0 && categories.map((category,i) => 
+                <NavLink key={i}to ={`/products/${category.category}`} style={{textDecoration: 'none'}} className="navLinksCategory">
                     <img src={category.pic} className="drawerCategoryImg" alt=""/>
                     <p className="textLinksCategory">{category.category}</p>
                 </NavLink>

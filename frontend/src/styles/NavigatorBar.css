@@ -27,9 +27,7 @@
     border: none;
     cursor: pointer;
     height: auto;
-    max-width: 10vw;
-
-    
+    max-width: 10vw;  
  }
 .dropdown-content{
     position:absolute;
