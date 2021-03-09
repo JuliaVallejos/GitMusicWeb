@@ -8,11 +8,9 @@ const userController = {
   newUser: async(req, res) => {
     try {
       const { firstName, lastName, email, password, pic, rol, google} = req.body
-      console.log(google)
       const userExists = await User.findOne({ email: email})//buscamos coincidencia
       if (userExists) {
         let error = [{ path: ['useremailExist'] }] //si el email ya existe
-        console.log("0.5")
         return res.json({ success: false, error: error }) //retorna este error.
       }else{
         const hashedPassword = bcryptjs.hashSync(password, 10) //encriptamos password
@@ -22,7 +20,6 @@ const userController = {
         if(google !== 'true'){
           const {fileUrlPic}=req.files
           if(fileUrlPic.mimetype.indexOf('image/jpg')!==0&&fileUrlPic.mimetype.indexOf('image/jpeg')!==0&&fileUrlPic.mimetype.indexOf('image/png')!==0&&fileUrlPic.mimetype.indexOf('image/bmp')!==0){
-            console.log("1")
             return res.json({success:false,error:"El formato de la imagen tiene que ser JPG,JPEG,BMP ó PNG."})
           }
           const extPic=fileUrlPic.name.split('.',2)[1]
@@ -36,7 +33,6 @@ const userController = {
           })
           newUser.pic=`./assets/userPics/${newUser._id}.${extPic}`
        }else{
-        console.log("google")
         newUser.pic=pic
        }
         var newUserSaved = await newUser.save() //intentamos guardar en la db
