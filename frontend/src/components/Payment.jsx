@@ -85,7 +85,7 @@ const Payment = ({userData,shoppingCart,loggedUser,completeUserData,emailShopCar
                         <input onKeyPress={enterKeyboard} type="number" autoComplete="nope" name="cvc" placeholder="Ej: 123" onChange={readInput} onFocus={(e)=>{setCardFields({...cardFields, focused: e.target.name})}}/>
                     </div>
                     <div class="finalizar">
-                        <button className="enviar" onClick={Validate}>Finalizar</button>
+                        <button className="enviar" onClick={Validate}>Guardar Datos</button>
                     </div>
                 </div>
             </div>
