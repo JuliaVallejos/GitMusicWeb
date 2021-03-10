@@ -36,7 +36,7 @@ const SingleProduct = (props) => {
         }else{
             setRating(0)
         }
-    }, [allProducts, thisProduct,loggedUser,id])
+    }, [thisProduct,allProducts,loggedUser])
 
     const setNumber = (e) => {
         const number = parseInt(e.target.value)
@@ -74,25 +74,29 @@ const SingleProduct = (props) => {
         }
     }
 
-    const rankProduct = (e) => {
+    const rankProduct = async e => {
+        let newRating=e.target.value
         // Alert.error("Debe estar registrado para rankear",3000)
         const editFilter = thisProduct.arrayRating.filter(value => value.idUser === loggedUser.userId)
-        //en primera vuelta el value llega null ver y corregir 
-        setRating(e.target.value)
+        //en primera vuelta el value llega null ver y corregir
+        
+       
+        console.log(newRating)
           if(editFilter.length !== 0){
             ratingProduct({
                 idProduct: thisProduct._id,
                 idUser: loggedUser.userId,
-                value: rating,
+                value: newRating,
                 edit: true
             })
         }else{
             ratingProduct({
                 idProduct: thisProduct._id,
                 idUser: loggedUser.userId,
-                value: rating,           
+                value: newRating,           
             })
         }
+     
         Alert.success('Calificaste con ' + e.target.value + ' estrellas!', 4000)
     }
 
@@ -112,12 +116,12 @@ const SingleProduct = (props) => {
                         )}
                     </div>
                     <div className="middleSection">
-                        <div style={{ backgroundImage: `url(${thisProduct.arrayPic[index]})`, backgroundPosition: 'center', backgroundSize: 'cover', borderRadius: '8px' }}></div>
+                        <div className="picContainer" style={{ backgroundImage: `url(${thisProduct.arrayPic[index]})`}}></div>
                         <div className="descriptionContainer">
                             <h5>Sobre este producto:</h5>
                             <div className="liDescription">
                                 {thisProduct.arrayDescription.map(desc => {
-                                    return <p className='description'><AiOutlineCheckCircle className='descriptionItem' />AiOutlineCheckCircle{desc}</p>
+                                    return <p className='description'><AiOutlineCheckCircle className='descriptionItem' />{desc}</p>
                                 })}
                             </div>
                         </div>
@@ -138,7 +142,7 @@ const SingleProduct = (props) => {
                     <div className="rightSection">
                         <p className="singleProductName">{thisProduct.name}</p>
                         <p className="singleTextBlue">Marca: {thisProduct.mark}</p>
-                        <p className="singleTextBlue">Hay {thisProduct.stock} {thisProduct.stock===1?"unidad":"unidades"} en stock!</p>
+                        <p className="singleTextBlue">Hay {thisProduct.stock} {thisProduct.stock===1?"unidad":"unidades"} en stock</p>
                         <p>Valoración:</p>
 
                         
@@ -163,24 +167,24 @@ const SingleProduct = (props) => {
                                 </label>
                             )
                         })}</div>}
-                        <p style={{}}>Garantía de {thisProduct.warranty} meses!</p>
+                        <p>¡Garantía de {thisProduct.warranty} meses!</p>
                         <p style={{ fontSize: '2vw', fontWeight: 'bolder', color: 'rgb(20 170 52)' }}>$ {thisProduct.price}</p>
                         <div className='numberInput'>
                             <input type='number' className='number' min='1' onChange={setNumber} value={quantity} />
                         </div>
                             <div className="inputDiv">
-                                <input type="text" name="content" onKeyDown={enterKey} placeholder={props.loggedUser ? 'Comenta aquí.' : 'Inicia seccion para comentar.'} className="commentInput" onChange={handleComments} value={newComment}  autoComplete="off" />
-                                {!props.loggedUser ? alert('logeate para comentar') : <MdSend className="commentIcon" onClick={sendComment}  />}
+                               
                                 
                         {thisProduct.arrayComments.length !== 0 ? <p className="singleSimpleText cursor" onClick={() => setVisible(!visible)}>{visible ? 'Ocultar comentarios' : 'Ver comentarios'} ({thisProduct.arrayComments.length})</p> : <p className="singleSimpleText">Aún no hay comentarios</p>}
                         {visible && (
                             <div>
+                                
                                 <div className="comments">
                                     {thisProduct.arrayComments.map(comment => <Comment idProduct={thisProduct._id} comment={comment} />)}
                                 </div>
-                                <div className="inputDiv">
-                                    <input type="text" name="content" onKeyDown={enterKey} placeholder={'condicionar el placeholder u ocultar el input'} className="commentInput" onChange={handleComments} value={newComment} autoComplete="off" />
-                                    <MdSend className="commentIcon" onClick={sendComment} />
+                                <div className="inputDiv" onClick={() => !loggedUser ? Alert.error('Ingresa a tu cuenta para comentar', 4000): '' }>
+                                    <input type="text" name="content" onKeyDown={enterKey} placeholder={!loggedUser ? 'Ingresa a tu cuenta para comentar' : 'Deja tu comentario.' } className="commentInput" onChange={handleComments} value={newComment} autoComplete="off" disabled={!loggedUser ? true : false} /> 
+                                   {loggedUser&& <MdSend className="commentIcon" onClick={sendComment} />}
                                 </div>
                             </div>
                         )}

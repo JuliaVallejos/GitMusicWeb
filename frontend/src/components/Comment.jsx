@@ -53,9 +53,9 @@ const [updatedComment, setUpdatedComment] = useState('')
         ) : (
             <>
               <div className="insideComment">
-                <div style={{display: 'flex', alignItems: 'center'}}>
-                  <p className="user">{comment.idUser.firstName}: </p>
-                  <p className="content">{comment.comment}</p>
+                <div className="textComment">
+                  <h6>{comment.idUser.firstName}: </h6>
+                  <p>{comment.comment}</p>
                 </div>
                 {loggedUser && loggedUser.userId === comment.idUser._id ? 
                 <div className="commentIcons">

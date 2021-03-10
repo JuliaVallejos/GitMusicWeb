@@ -23,8 +23,7 @@ const ProductsByCategory = (props) =>{
    useEffect(() => {
        getProm()
    }, [arrayCategory])
-   console.log(arrayCategory)
-   console.log(newOrder)
+   
     const getProm =() =>{
         if(arrayCategory.length!==0){
             let rating = 0
