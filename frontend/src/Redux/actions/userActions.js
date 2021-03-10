@@ -5,7 +5,7 @@ const userActions = {
     signUp: (fdNewUser) =>{
      return async (dispatch, getState) =>{
        try{
-        const response = await axios.post('https://gitmusicapp.herokuapp.com/api/user/signup', fdNewUser,{
+        const response = await axios.post('http://localhost:4000/api/user/signup', fdNewUser,{
           headers:{
             'Content-Type':'multipart/form-data'
           }
@@ -48,7 +48,7 @@ const userActions = {
    googleSignUp: (newUser) =>{
      return async (dispatch, getState) =>{
        try{
-         const response = await axios.post('https://gitmusicapp.herokuapp.com/api/user/signup', newUser)
+         const response = await axios.post('http://localhost:4000/api/user/signup', newUser)
          console.log(response)
          if(response.data.success===false){
            var errors=[]
@@ -98,7 +98,7 @@ const userActions = {
     const idUser=localStorage.getItem('idUser')
     return async (dispatch, getState) =>{
       try{
-        const response = await axios.post('https://gitmusicapp.herokuapp.com/api/user/ls', {token,idUser}, {
+        const response = await axios.post('http://localhost:4000/api/user/ls', {token,idUser}, {
           headers:{
             Authorization:`Bearer ${token}`
           }
@@ -133,13 +133,18 @@ const userActions = {
    modifyUser: (formData) => {
      console.log(formData)
     return async (dispatch, getState) => {
-        const response = await axios.post(`https://gitmusicapp.herokuapp.com/api/userDetails`, formData, {
+      try {
+        const response = await axios.post(`http://localhost:4000/api/userDetails`, formData, {
             headers: { 
                 'Content-Type': 'multipart/form-data' 
             }
         })
         dispatch({type: 'MODIFY_USER', payload: response.data})
         console.log(response.data)
+        return({success:true})
+      } catch (error) {
+        return({success:false,response:error})
+      }
     }
 },
     completeUserData:(property,newData) =>{
@@ -154,7 +159,7 @@ const userActions = {
      requestResetPass:(email) => {   
          return async (dispatch, getState) => {
      try{
-       const respuesta = await axios.post('https://gitmusicapp.herokuapp.com/api/user/requestresetpass',{email})
+       const respuesta = await axios.post('http://localhost:4000/api/user/requestresetpass',{email})
       console.log(respuesta)
        if (!respuesta.data.success) {
            Alert.error(`${respuesta.data.response}`,5000)
@@ -172,7 +177,7 @@ const userActions = {
    },
     validateResetPassword:(newPasswordData) => {
       return async (dispatch, getState) => {
-        const respuesta = await axios.post('https://gitmusicapp.herokuapp.com/api/user/resetpassword', newPasswordData)
+        const respuesta = await axios.post('http://localhost:4000/api/user/resetpassword', newPasswordData)
         if (!respuesta.data.success) {
           Alert.error(`${respuesta.data.response}`,5000)
         }else{
@@ -184,7 +189,7 @@ const userActions = {
     },
     validateResetUser:(token) => {
       return async (dispatch, getState) => {
-        const respuesta = await axios.post('https://gitmusicapp.herokuapp.com/api/user/requestresetuser', {token})
+        const respuesta = await axios.post('http://localhost:4000/api/user/requestresetuser', {token})
        
         if (respuesta.data.success===false){
           return respuesta.data

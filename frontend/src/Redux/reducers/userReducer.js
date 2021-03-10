@@ -24,6 +24,7 @@ const initState = {
         case "USER_LOG":
           localStorage.setItem('token', action.payload.token)
           localStorage.setItem('firstName', action.payload.firstName)
+          localStorage.setItem('lastName', action.payload.lastName)
           localStorage.setItem('pic', action.payload.pic)
           localStorage.setItem('userId', action.payload.userId)
           return{
@@ -33,6 +34,7 @@ const initState = {
         case "SIGN_OUT":
           localStorage.removeItem('token')
           localStorage.removeItem('firstName')
+          localStorage.removeItem('lastName')
           localStorage.removeItem('pic')
           localStorage.removeItem('userId')
           return{
@@ -44,7 +46,12 @@ const initState = {
            return{
              ...state,
             userData:[...newData,action.payload]
-           } 
+           }
+          case "MODIFY_USER":{
+            console.log(action.payload)
+          return {
+            ...state,
+          }}
 
         default :
             return state

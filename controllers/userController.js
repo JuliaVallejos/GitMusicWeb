@@ -3,6 +3,7 @@ const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const nodemailer = require("nodemailer");
 const path = require('path')
+const imgbbUploader = require("imgbb-uploader");
 
 const userController = {
   newUser: async(req, res) => {
@@ -24,10 +25,8 @@ const userController = {
           }
           const extPic=fileUrlPic.name.split('.',2)[1]
           ///../client/build/usersPics/
-          console.log(__dirname)
           fileUrlPic.mv(`${__dirname}/../frontend/public/assets/userPics/${newUser._id}.${extPic}`,error =>{
              if(error){
-              console.log("2")
                 return res.json({success:false,error:"Intente nuevamente..."})
              }
           })
@@ -36,13 +35,13 @@ const userController = {
         newUser.pic=pic
        }
         var newUserSaved = await newUser.save() //intentamos guardar en la db
-        console.log(newUserSaved)
         var token = jwt.sign({ ...newUserSaved }, process.env.SECRET_KEY, {}) 
           return res.json({
             success: true,
             response: {
               token,
               firstName: newUserSaved.firstName,
+              lastName: newUserSaved.lastName,
               email: newUserSaved.email,
               pic: newUserSaved.pic,
               userId: newUserSaved._id
@@ -70,6 +69,7 @@ logIn: async (req, res) => {
               success: true, response: {
                   token,
                   firstName: userExists.firstName,
+                  lastName: newUserSaved.lastName,
                   email: userExists.email,
                   userId: userExists._id,
                   pic:userExists.pic
@@ -80,35 +80,42 @@ logIn: async (req, res) => {
   }
 },
 
-modifyUser: (req, res) => {
-  console.log(req.files)
+modifyUser: async(req, res) => {
   const {id, email, firstName, lastName} = req.body
   const {pic} = req.files
   const extPic=pic.name.split('.',2)[1]
-  const url = `../assets/userPics/${id}.${extPic}`
-  pic.mv(`./frontend/public/assets/userPics/${id}.${extPic}`, errores=> {
-  if(errores) {
-      return res.json({
-          success: false,
-          errores:errores,
-          mensaje:'No se puede actualizar. Intente mas tarde'
-      })
+  const url = `${__dirname}/../frontend/public/assets/userPics/${id}.${extPic}`
+  var urlPhoto=''
+  try {
+    pic.mv(`${__dirname}/../frontend/public/assets/userPics/${id}.${extPic}`, errores=> {
+      if(errores) {
+        console.log("Error al subir la foto al servidor: "+errores);
+      }})
+  } catch (error) {
+    console.log("Error al subir la foto al servidor: "+error);
   }
-  })
-  User.findOneAndUpdate({_id: id},
-  {$set: {firstName, email, lastName, pic: url}},
-  {new: true})
-  .then(data => res.json({ success: true, response: data }))
-  .catch(error => res.json({ success: false, error }))
+    try {
+      const response= await imgbbUploader(process.env.IMGBB_KEY,url,)
+      urlPhoto=response.url
+    } catch (error) {
+      console.log("Error al subir la foto al servidor: "+error);
+    }
+    try {
+      const res=User.findOneAndUpdate({_id: id},
+        {$set: {firstName, email, lastName, pic: urlPhoto}},{new: true})
+      res.json({ success: true, response: data })
+    } catch (error) {
+      res.json({ success: false, error })
+    }
 },
 
 logFromLS: (req, res) => {
-  console.log(req.body, req.user)
   try {
     res.json({
       success: true, response: {
         token: req.body.token,
         firstName: req.user.firstName,
+        lastName: req.user.lastName,
         pic: req.user.pic,
         email: req.user.email,
         userId: req.user._id
