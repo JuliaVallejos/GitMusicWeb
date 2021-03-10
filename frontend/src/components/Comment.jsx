@@ -5,11 +5,12 @@ import { MdSend } from "react-icons/md";
 import { ImCancelCircle } from "react-icons/im";
 import { connect } from 'react-redux'
 import productActions from '../Redux/actions/productActions'
+import { Alert } from 'rsuite';
 
-const Comment = ({comment, idProduct, delComment, editComment}) => {
+const Comment = ({comment, idProduct, delComment, editComment, loggedUser}) => {
 const [visible, setVisible] = useState(false)
 const [updatedComment, setUpdatedComment] = useState('')
-
+console.log(comment, loggedUser)
     const sendUpdate = () =>{
         //action de editar comment
       editComment({
@@ -43,7 +44,7 @@ const [updatedComment, setUpdatedComment] = useState('')
         {visible ? (
           <>
             <div className="inputDiv update">
-              <ImCancelCircle className="cancelBtn" onClick={() => setVisible(!visible)} />
+              {<ImCancelCircle className="cancelBtn" onClick={() => setVisible(!visible)} />}
               <input type="text" name="content" placeholder='Write your comment here' className="commentInput update" onKeyDown={enterKey} onChange={handleInput} value={updatedComment} autoFocus autoComplete="off" />
               <MdSend className="updateIcon" onClick={sendUpdate} id={comment._id} />
             </div>
@@ -55,11 +56,15 @@ const [updatedComment, setUpdatedComment] = useState('')
                   <p className="user">{comment.idUser.firstName}: </p>
                   <p className="content">{comment.comment}</p>
                 </div>
+                {loggedUser && loggedUser.userId === comment.idUser._id ? 
                 <div className="commentIcons">
+                  
                       <BsPencilSquare onClick={updateComment} className="editComment" />
                       <BsTrash onClick={deleteComment} className="editComment trash" id={comment._id} />
+                    
                 </div>
-              
+                : ''
+                }
               </div>
             </>
           )}

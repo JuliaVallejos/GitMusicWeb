@@ -143,8 +143,9 @@ const SingleProduct = (props) => {
                             {thisProduct.arrayComments.map(comment => <Comment idProduct={thisProduct._id} comment={comment}/>)}
                         </div>
                             <div className="inputDiv">
-                                <input type="text" name="content" onKeyDown={enterKey} placeholder={'condicionar el placeholder u ocultar el input'} className="commentInput" onChange={handleComments} value={newComment}  autoComplete="off" />
-                                <MdSend className="commentIcon" onClick={sendComment}  />
+                                <input type="text" name="content" onKeyDown={enterKey} placeholder={props.loggedUser ? 'Comenta aquí.' : 'Inicia seccion para comentar.'} className="commentInput" onChange={handleComments} value={newComment}  autoComplete="off" />
+                                {!props.loggedUser ? alert('logeate para comentar') : <MdSend className="commentIcon" onClick={sendComment}  />}
+                                
                             </div>
                         </div>
                     )}
