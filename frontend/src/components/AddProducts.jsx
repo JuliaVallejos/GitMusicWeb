@@ -12,7 +12,7 @@ const AddProducts = (props) => {
 let history = useHistory();
 const {addProduct,categories } = props
 const [itemsDescription,setItemsDescription] = useState([])
-const [newItem,setNewItem] = useState()
+const [newItem,setNewItem] = useState('')
 
    
     const [product, setProduct] = useState({
@@ -74,7 +74,7 @@ const [newItem,setNewItem] = useState()
             return false
         }  
         var arrayFinal=[...itemsDescription]
-        if(newItem.trim()!==''&&itemsDescription.indexOf(newItem.trim())===-1){
+        if(newItem && newItem.trim()!==''&&itemsDescription.indexOf(newItem.trim())===-1){
            arrayFinal= [...itemsDescription,newItem.trim()]
         }
         console.log(arrayFinal)

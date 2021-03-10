@@ -36,9 +36,9 @@ const productActions = {
               'Content-Type':'multipart/form-data'
             }
           })
-          console.log(response)
           if(response.data.success){  
             dispatch({type: "NEW_PRODUCT",payload: response.data.response})}
+            console.log(response)
             return response.data
         }catch(error){
           return({success: false, response: error})
