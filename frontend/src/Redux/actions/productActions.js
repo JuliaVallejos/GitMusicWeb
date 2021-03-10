@@ -87,7 +87,7 @@ const productActions = {
     ratingProduct : (ratingObject) => {
       return async (dispatch,getstate) =>{
         try{
-          const respuesta = await axios.put(`http://localhost:4000/api/products/newrating`,{ratingObject})
+          const respuesta = await axios.put(`https://gitmusicapp.herokuapp.com/api/products/newrating`,{ratingObject})
           dispatch({
             type:"RATING",
             payload: respuesta.data

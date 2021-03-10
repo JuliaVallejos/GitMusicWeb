@@ -45,7 +45,7 @@ const UserDetails = (props) => {
     formData.append('firstName', firstnameValue.trim())
     formData.append('lastName', lastnameValue.trim())
     formData.append('pic', imageValue)
-    formData.append('id', props.loggedUser.id)
+    formData.append('id', props.loggedUser.userId)
 
     var filesExtension = ['.jpg', '.png', '.jpeg']
 
@@ -53,7 +53,6 @@ const UserDetails = (props) => {
       alert ('Verifique que todos los campos esten llenos')
     }else if(imageValue && filesExtension.some(file=>imageValue.name.includes(file))){
       props.modifyUser(formData)
-      alert ('listoooooo')
     }else{
       props.modifyUser(formData)
       alert ('formato de imagen no permitido')

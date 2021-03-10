@@ -154,7 +154,7 @@ const userActions = {
      requestResetPass:(email) => {   
          return async (dispatch, getState) => {
      try{
-       const respuesta = await axios.post('http://localhost:4000/api/user/requestresetpass',{email})
+       const respuesta = await axios.post('https://gitmusicapp.herokuapp.com/api/user/requestresetpass',{email})
       console.log(respuesta)
        if (!respuesta.data.success) {
            Alert.error(`${respuesta.data.response}`,5000)
@@ -172,7 +172,7 @@ const userActions = {
    },
     validateResetPassword:(newPasswordData) => {
       return async (dispatch, getState) => {
-        const respuesta = await axios.post('http://localhost:4000/api/user/resetpassword', newPasswordData)
+        const respuesta = await axios.post('https://gitmusicapp.herokuapp.com/api/user/resetpassword', newPasswordData)
         if (!respuesta.data.success) {
           Alert.error(`${respuesta.data.response}`,5000)
         }else{
@@ -184,7 +184,7 @@ const userActions = {
     },
     validateResetUser:(token) => {
       return async (dispatch, getState) => {
-        const respuesta = await axios.post('http://localhost:4000/api/user/requestresetuser', {token})
+        const respuesta = await axios.post('https://gitmusicapp.herokuapp.com/api/user/requestresetuser', {token})
        
         if (respuesta.data.success===false){
           return respuesta.data

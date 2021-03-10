@@ -73,7 +73,7 @@ const emailController = {
             <h2 class="total">Total $${total}</h2>
         </div>
         <div class="dataUser">${dataUser}</div>
-        <h3><a href="http://localhost:3000/">¡Haz click para ver más productos!</a></h3>
+        <h3><a href="https://gitmusicapp.herokuapp.com/">¡Haz click para ver más productos!</a></h3>
         <p class="firma">Tienda de instrumentos<br>Git Music Team</p>
         `
         const html= 
@@ -232,7 +232,7 @@ const emailController = {
         var to=`${userExist.email}`
         var subject= "Restablecimiento de contraseña"
         var message= `<p>Para Restablecer la <span>contraseña</span>, ingresa al siguiente link.</p>
-        <a href='http://localhost:3000/resetpassword/${tokenResetPassword}'>Restablecer la contraseña</a>
+        <a href='https://gitmusicapp.herokuapp.com/resetpassword/${tokenResetPassword}'>Restablecer la contraseña</a>
         <p class="firma">Tienda de instrumentos<br>Git Music Team</p>
        
         ` 
