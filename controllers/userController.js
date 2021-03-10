@@ -88,31 +88,30 @@ modifyUser: async(req, res) => {
   const {id, email, firstName, lastName} = req.body
   const {pic} = req.files
   const extPic=pic.name.split('.',2)[1]
-  const url = `${__dirname}/../frontend/public/assets/userPics/${id}.${extPic}`
+  const url = `${__dirname}/../client/build/userPics/${id}.${extPic}`
   var urlPhoto=''
   try {
-    console.log(`${__dirname}`)
-    /*pic.mv(`${__dirname}/../../client/build/userPics/${id}.${extPic}`, errores=> {
+    pic.mv(`${__dirname}/../client/build/userPics/${id}.${extPic}`, errores=> {
       if(errores) {
         console.log("Error al subir la foto al servidor: "+errores);
-      }})*/
+      }})
+      try {
+        const response= await imgbbUploader(process.env.IMGBB_KEY,url,)
+        urlPhoto=response.url
+        console.log(urlPhoto)
+        try {
+          const res=User.findOneAndUpdate({_id: id},
+            {$set: {firstName, email, lastName, pic: urlPhoto}},{new: true})
+          res.json({ success: true, response: data })
+        } catch (error) {
+          res.json({ success: false, error })
+        }
+      } catch (error) {
+        console.log("Error al subir la foto al servidor: "+error);
+      }
   } catch (error) {
     console.log("Error al subir la foto al servidor: "+error);
   }
-    /*try {
-      const response= await imgbbUploader(process.env.IMGBB_KEY,url,)
-      urlPhoto=response.url
-      console.log(urlPhoto)
-    } catch (error) {
-      console.log("Error al subir la foto al servidor: "+error);
-    }
-    try {
-      const res=User.findOneAndUpdate({_id: id},
-        {$set: {firstName, email, lastName, pic: urlPhoto}},{new: true})
-      res.json({ success: true, response: data })
-    } catch (error) {
-      res.json({ success: false, error })
-    }*/
 },
 
 logFromLS: (req, res) => {
