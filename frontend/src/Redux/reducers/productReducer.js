@@ -20,6 +20,8 @@ const productReducer = (state=initState,action) =>{
                 productDetail:action.payload
             }
         case 'NEW_PRODUCT':
+            console.log("reducer")
+            console.log(action.payload)
             return{
                 ...state,
                 allProducts:[...state.allProducts,action.payload]

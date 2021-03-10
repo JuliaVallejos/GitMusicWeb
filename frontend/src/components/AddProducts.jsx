@@ -5,7 +5,6 @@ import {  Alert, Message } from 'rsuite';
 import { useHistory } from "react-router-dom";
 import DropFiles from './DropFiles'
 import '../styles/addProducts.css' 
-
 import productActions from '../Redux/actions/productActions';
 
 
@@ -169,7 +168,7 @@ const [newItem,setNewItem] = useState()
             </div>
             <div className='buttons'>
                 <button onClick={addLine} className='btn'>Agregar otra descripción</button>
-                <button className="btn" onClick={Validate}>Confirmar producto</button>
+                <button className="btn" onClick={(e)=>Validate(e)}>Confirmar producto</button>
             </div>
             <Link to='/'>
             <button className='btn'>Volver al Inicio</button>

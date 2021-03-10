@@ -1,4 +1,5 @@
 const Product = require('../models/Product')
+const imgbbUploader = require("imgbb-uploader");
 
 const productController = {
   //obtener todos los productos//
@@ -13,6 +14,7 @@ const productController = {
     }
 },
 addProduct: async (req,res) =>{
+  console.log("controlador")
   const {name,category,type,mark,price,stock,warranty,urlReview,arrayRating,arrayComments,arrayDescription,arrayVisits,outstanding} = req.body
   const {arrayPic}=req.files
      const newProduct = new Product({name,category,type,mark,price,stock,warranty,urlReview,arrayPic,arrayRating,arrayComments,arrayDescription,arrayVisits,outstanding})
@@ -31,20 +33,30 @@ addProduct: async (req,res) =>{
         })
         newProduct.arrayPic=[...newProduct.arrayPic,`./assets/productsPics/${arrayPic.md5}.${extPic}`]
          }else{
-         arrayPic.map(pic =>{
+           console.log("else")
+         arrayPic.map(async(pic) =>{
          if(pic.mimetype.indexOf('image/jpg')!==0&&pic.mimetype.indexOf('image/png')!==0&&pic.mimetype.indexOf('image/bmp')!==0)
          {
             return res.json({success:false,error:"El formato de la imagen tiene que ser JPG,JPEG,BMP ó PNG."})
          }
          const extPic=pic.name.split('.',2)[1]
-         ///../client/build/usersPics/
-         pic.mv(`${__dirname}/../frontend/public/assets/productsPics/${pic.md5}.${extPic}`,error =>{
+         pic.mv(`${__dirname}/../client/build/userPics/${pic.md5}.${extPic}`,error =>{
             if(error){
               console.log(error)
                return res.json({success:false,error:"Intente nuevamente..."})
             }
          })
-         newProduct.arrayPic=[...newProduct.arrayPic,`./assets/productsPics/${pic.md5}.${extPic}`]
+         try {
+          const response= await imgbbUploader(process.env.IMGBB_KEY,`${__dirname}/../client/build/userPics/${pic.md5}.${extPic}`,)
+          urlPhoto=response.url
+          if(response){
+            newProduct.arrayPic=[...newProduct.arrayPic,urlPhoto]
+          }else{
+            return res.json({success:false, error:"Error al subir la foto al servidor"})
+          }
+         } catch (error) {
+            return res.json({success:false, error:"Error al subir la foto al servidor: "+error})
+         }
        })
       }
        const addedProduct = await newProduct.save()
