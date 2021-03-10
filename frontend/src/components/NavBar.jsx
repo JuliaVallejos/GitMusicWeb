@@ -43,9 +43,6 @@ const NavBar = ({ loggedUser, signOut }) => {
           <AiFillGithub className="navGithub" />
           <FaMusic className="navMusicIcon" />
         </div>
-        {/* <NavLink to='/singleproduct' className='navLinks'>
-            Product
-          </NavLink> */}
         <div className='links'>
           <NavLink to={loggedUser ? 'userdetails' : '/registerUser'} className='navLinks'>
             {!loggedUser ? <FaUserCircle className="iconUser" /> :

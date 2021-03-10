@@ -1,7 +1,8 @@
 .productSection{
 text-align: center;
-background-image: url('../assets/wp2.jpg');
+background-image: url('../assets/fondo.jpg');
 background-size: cover;
+background-position: bottom;
 color: rgb(250, 250, 250);
 background-attachment: fixed;
 }
@@ -112,8 +113,8 @@ background-attachment: fixed;
 	transition: 0.3s linear;
 	background: #202020;
 	border-radius: 0 0 0 5px;
-  position: relative;
-  overflow: hidden;
+	position: relative;
+	overflow: hidden;
 	cursor: pointer;
 	outline: none;
 	border: none;
@@ -167,7 +168,7 @@ background-attachment: fixed;
 	position: relative;
 	overflow: hidden;
 	height: 100%;
-  padding-right: 1vh;
+  	padding-right: 1vh;
 	/* width: 50%; */
 	
   

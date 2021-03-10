@@ -100,7 +100,7 @@ const SingleProduct = (props) => {
                     <div className="leftSection">
                         {thisProduct.arrayPic.map((pic, i) => {
                             return (
-                                <div className="lateralPic" onClick={() => setIndex(i)} style={{ width: '12vh', height: '12vh', backgroundImage: `url(${pic})`, backgroundPosition: 'center', backgroundSize: 'cover', borderRadius: '8px' }}>
+                                <div key={i} className="lateralPic" onClick={() => setIndex(i)} style={{ width: '12vh', height: '12vh', backgroundImage: `url(${pic})`, backgroundPosition: 'center', backgroundSize: 'cover', borderRadius: '8px' }}>
                                     {/* <img src={pic} className="lateralPic" alt='' onClick={()=>setIndex(i)}></img>  */}
                                 </div>
                             )
@@ -112,8 +112,8 @@ const SingleProduct = (props) => {
                         <div className="descriptionContainer">
                             <h5>Sobre este producto:</h5>
                             <div className="liDescription">
-                                {thisProduct.arrayDescription.map(desc => {
-                                    return <p className='description'><AiOutlineCheckCircle className='descriptionItem' />AiOutlineCheckCircle{desc}</p>
+                                {thisProduct.arrayDescription.map((desc,i) => {
+                                    return <p key={i} className='description'><AiOutlineCheckCircle key={i} className='descriptionItem' />AiOutlineCheckCircle{desc}</p>
                                 })}
                             </div>
                         </div>
@@ -158,13 +158,13 @@ const SingleProduct = (props) => {
                         </div>
                             <div className="inputDiv">
                                 <input type="text" name="content" onKeyDown={enterKey} placeholder={props.loggedUser ? 'Comenta aquí.' : 'Inicia seccion para comentar.'} className="commentInput" onChange={handleComments} value={newComment}  autoComplete="off" />
-                                {!props.loggedUser ? alert('logeate para comentar') : <MdSend className="commentIcon" onClick={sendComment}  />}
+                                {!props.loggedUser ? alert('logeate para comentar') : <MdSend className="commentIcon" onClick={sendComment} />}
                                 
                         {thisProduct.arrayComments.length !== 0 ? <p className="singleSimpleText cursor" onClick={() => setVisible(!visible)}>{visible ? 'Ocultar comentarios' : 'Ver comentarios'} ({thisProduct.arrayComments.length})</p> : <p className="singleSimpleText">Aún no hay comentarios</p>}
                         {visible && (
                             <div>
                                 <div className="comments">
-                                    {thisProduct.arrayComments.map(comment => <Comment idProduct={thisProduct._id} comment={comment} />)}
+                                    {thisProduct.arrayComments.map((comment,i) => <Comment key={i} idProduct={thisProduct._id} comment={comment} />)}
                                 </div>
                                 <div className="inputDiv">
                                     <input type="text" name="content" onKeyDown={enterKey} placeholder={'condicionar el placeholder u ocultar el input'} className="commentInput" onChange={handleComments} value={newComment} autoComplete="off" />
