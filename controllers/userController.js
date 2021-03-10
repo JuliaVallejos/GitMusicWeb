@@ -85,6 +85,7 @@ logIn: async (req, res) => {
 },
 
 modifyUser: async(req, res) => {
+  console.log(req.body)
   const {id, email, firstName, lastName} = req.body
   const {pic} = req.files
   const extPic=pic.name.split('.',2)[1]
@@ -100,7 +101,7 @@ modifyUser: async(req, res) => {
         urlPhoto=response.url
         console.log(urlPhoto)
         try {
-          const res=User.findOneAndUpdate({_id: id},
+          const res= await User.findOneAndUpdate({_id: id},
             {$set: {firstName, email, lastName, pic: urlPhoto}},{new: true})
           res.json({ success: true, response: data })
         } catch (error) {
