@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import "../styles/SingleProduct.css"
 import { Alert, Button, ButtonToolbar } from 'rsuite';
 import { connect } from 'react-redux';
@@ -21,6 +20,7 @@ const SingleProduct = (props) => {
     const [quantity, setquantity] = useState(1)
     const [rating, setRating] = useState(0)
     let history = useHistory();
+    const messageRef = useRef(null);
 
     useEffect(() => {
         const product = allProducts.filter(product => product._id === id)
@@ -53,6 +53,7 @@ const SingleProduct = (props) => {
         })
         ){
             setComment('')
+            // messageRef.current.scrollIntoView({ block: 'end', behavior: 'smooth' });
         }
 
         //mando comment
@@ -119,7 +120,7 @@ const SingleProduct = (props) => {
                             <h5>Sobre este producto:</h5>
                             <div className="liDescription">
                                 {thisProduct.arrayDescription.map(desc => {
-                                    return <p className='description'><AiOutlineCheckCircle className='descriptionItem' />AiOutlineCheckCircle{desc}</p>
+                                    return <p className='description'><AiOutlineCheckCircle className='descriptionItem' />{desc}</p>
                                 })}
                             </div>
                         </div>
@@ -167,8 +168,10 @@ const SingleProduct = (props) => {
                             {visible && (
                             <div>
                                 
-                                <div className="comments">
-                                    {thisProduct.arrayComments.map(comment => <Comment idProduct={thisProduct._id} comment={comment} />)}
+                                <div className="comments" >
+                                    {thisProduct.arrayComments.map(comment => 
+                                    <Comment idProduct={thisProduct._id} comment={comment}
+                                    /> )}
                                 </div>
                                 <div className="inputDiv" onClick={() => !loggedUser ? Alert.error('Ingresa a tu cuenta para comentar.', 4000): '' }>
                                     <input type="text" name="content" onKeyDown={enterKey} placeholder={!loggedUser ? 'Ingresa a tu cuenta para comentar.' : 'Deja tu comentario.' } className="commentInput" onChange={handleComments} value={newComment} autoComplete="off" disabled={!loggedUser ? true : false} /> 

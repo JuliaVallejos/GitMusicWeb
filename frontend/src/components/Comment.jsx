@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import productActions from '../Redux/actions/productActions'
 import { Alert } from 'rsuite';
 
-const Comment = ({comment, idProduct, delComment, editComment, loggedUser}) => {
+const Comment = ({comment, idProduct, delComment, editComment, loggedUser, messageRef}) => {
 const [visible, setVisible] = useState(false)
 const [updatedComment, setUpdatedComment] = useState('')
 
@@ -46,17 +46,17 @@ const [updatedComment, setUpdatedComment] = useState('')
           <>
             <div className="inputDiv update">
               {<ImCancelCircle className="cancelBtn" onClick={() => setVisible(!visible)} />}
-              <input type="text" name="content" placeholder='Write your comment here' className="commentInput update" onKeyDown={enterKey} onChange={handleInput} value={updatedComment} autoFocus autoComplete="off" />
+              <input type="text" name="content" placeholder='Edita tu comentario' className="commentInput update" onKeyDown={enterKey} onChange={handleInput} value={updatedComment} autoFocus autoComplete="off" />
               <MdSend className="updateIcon" onClick={sendUpdate} id={comment._id} />
             </div>
           </>
         ) : (
             <>
-              <div className="insideComment">
-                <div style={{display: 'flex', alignItems: 'center'}}>
-                  <p className="user">{comment.idUser.firstName}: </p>
-                  <p className="content">{comment.comment}</p>
-                </div>
+              <div className="insideComment" >
+                <div style={{display: 'flex', alignItems: 'center'}} >
+                <p className="user">{comment.idUser.firstName}: </p>
+                <p className="content">{comment.comment}</p>
+              </div> 
                 {loggedUser && loggedUser.userId === comment.idUser._id ? 
                 <div className="commentIcons">
                   

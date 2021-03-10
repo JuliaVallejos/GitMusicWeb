@@ -127,6 +127,7 @@
     margin:1vh ;
     padding:  1vh 0 1vh 0;
     overflow: auto;
+    min-height: 10vh;
     max-height: 24vh ;
     background-color: rgba(0, 0, 0, 0.137);
     border-radius: 8px;
