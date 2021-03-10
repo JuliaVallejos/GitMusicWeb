@@ -88,7 +88,7 @@ const [newItem,setNewItem] = useState('')
         fdNewProduct.append('stock', stock)
         fdNewProduct.append('category', category)
         arrayPic.map((pic,i) =>{
-            fdNewProduct.append('arrayPic',arrayPic[i])
+            fdNewProduct.append('arrayPics',arrayPic[i])
             return false
         })
         arrayFinal.map((item,i)=>{
