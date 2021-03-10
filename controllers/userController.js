@@ -9,7 +9,6 @@ const userController = {
   newUser: async(req, res) => {
     try {
       const { firstName, lastName, email, password, pic, rol, google } = req.body
-      console.log(google)
       const userExists = await User.findOne({ email: email})//buscamos coincidencia
       if (userExists) {
         let error = [{ path: ['useremailExist'] }] //si el email ya existe
@@ -46,6 +45,7 @@ const userController = {
           response: {
             token,
             firstName: newUserSaved.firstName,
+            lastName: newUserSaved.lastName,
             email: newUserSaved.email,
             pic: newUserSaved.pic,
             userId: newUserSaved._id
@@ -73,6 +73,7 @@ logIn: async (req, res) => {
               success: true, response: {
                   token,
                   firstName: userExists.firstName,
+                  lastName: newUserSaved.lastName,
                   email: userExists.email,
                   userId: userExists._id,
                   pic:userExists.pic
@@ -119,6 +120,7 @@ logFromLS: (req, res) => {
       success: true, response: {
         token: req.body.token,
         firstName: req.user.firstName,
+        lastName: req.user.lastName,
         pic: req.user.pic,
         email: req.user.email,
         userId: req.user._id
