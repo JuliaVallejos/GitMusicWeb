@@ -23,6 +23,7 @@ addProduct: async (req,res) =>{
          {
             return res.json({success:false,error:"El formato de la imagen tiene que ser JPG,JPEG,BMP ó PNG."})
          }
+         //../client/build/userPics
          const extPic=pic.name.split('.',2)[1]
          const pathLocal=`${__dirname}/../client/build/productPics/${pic.md5}.${extPic}`
          pic.mv(`${__dirname}/../client/build/productPics/${pic.md5}.${extPic}`,error =>{
@@ -34,8 +35,9 @@ addProduct: async (req,res) =>{
           const response= await imgbbUploader(process.env.IMGBB_KEY,pathLocal,)
           urlPhoto=response.url
           if(response){
-            const savePhoto=await newProduct.arrayPic.push(urlPhoto)
+            var savePhoto=await newProduct.arrayPic.push(urlPhoto)
             if(i===(arrayPics.length-1)&&savePhoto){
+              if(savePhoto){
               try {
                 const addedProduct = await newProduct.save()
                 if(addedProduct){
@@ -44,8 +46,8 @@ addProduct: async (req,res) =>{
                   return res.json({success:false,response:'Error in save'})
                 } 
               } catch (error) {
-                return res.json({success:false, error:"Error: "+error})
-              }
+                return res.json({success:false, error:"Erro: "+error})
+              }}
             }
           }
          } catch (error) {
