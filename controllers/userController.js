@@ -91,14 +91,15 @@ modifyUser: async(req, res) => {
   const url = `${__dirname}/../frontend/public/assets/userPics/${id}.${extPic}`
   var urlPhoto=''
   try {
-    pic.mv(`${__dirname}/../frontend/public/assets/userPics/${id}.${extPic}`, errores=> {
+    console.log(`${__dirname}`)
+    /*pic.mv(`${__dirname}/../../client/build/userPics/${id}.${extPic}`, errores=> {
       if(errores) {
         console.log("Error al subir la foto al servidor: "+errores);
-      }})
+      }})*/
   } catch (error) {
     console.log("Error al subir la foto al servidor: "+error);
   }
-    try {
+    /*try {
       const response= await imgbbUploader(process.env.IMGBB_KEY,url,)
       urlPhoto=response.url
       console.log(urlPhoto)
@@ -111,7 +112,7 @@ modifyUser: async(req, res) => {
       res.json({ success: true, response: data })
     } catch (error) {
       res.json({ success: false, error })
-    }
+    }*/
 },
 
 logFromLS: (req, res) => {
