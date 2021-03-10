@@ -138,8 +138,8 @@ const userActions = {
                 'Content-Type': 'multipart/form-data' 
             }
         })
-        dispatch({type: 'MODIFY_USER', payload: response})
-        console.log(response)
+        dispatch({type: 'MODIFY_USER', payload: response.data})
+        console.log(response.data)
         return({success:true})
       } catch (error) {
         return({success:false,response:error})

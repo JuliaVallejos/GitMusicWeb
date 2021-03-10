@@ -52,7 +52,7 @@ const userController = {
           }
         })
     } catch (error) {
-        res.json({ success: false, error })
+        return res.json({ success: false, error })
     }
 },
 
@@ -99,14 +99,10 @@ modifyUser: async(req, res) => {
       try {
         const response= await imgbbUploader(process.env.IMGBB_KEY,url,)
         urlPhoto=response.url
-        console.log(urlPhoto)
-        try {
-          const res= await User.findOneAndUpdate({_id: id},
-            {$set: {firstName, email, lastName, pic: urlPhoto}},{new: true})
-          res.json({ success: true, response: data })
-        } catch (error) {
-          res.json({ success: false, error })
-        }
+        await User.findOneAndUpdate({_id: id},
+          {$set: {firstName, email, lastName, pic: urlPhoto}},{new: true})
+        .then(res=>res.json({ success: true, response: res.data }))
+        .catch(error=>res.json({ success: false, error }))
       } catch (error) {
         console.log("Error al subir la foto al servidor: "+error);
       }
