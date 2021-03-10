@@ -29,10 +29,9 @@ const PaymentPanel = ({emailShopCart,loggedUser,userData,shoppingCart}) => {
     const finishPurchase= async () =>{
       const data= await emailShopCart(loggedUser.email,{userData,shoppingCart})
       console.log(data)
-           if(data.response){
-            Alert.success('Compra confirmada')
+           if(data.email){
+            Alert.success('Compra confirmada,revise su casilla de email')
             setNext(true)
-            console.log(step)
             onChange(step + 1)
            }else{
                Alert.error('Hubo un error, intente más tarde')
@@ -82,7 +81,6 @@ const PaymentPanel = ({emailShopCart,loggedUser,userData,shoppingCart}) => {
                   <div className="stateTimeLine" >
                     <img className="gif" src={gif} alt=""/>
                     <NavLink to="/" className="enviar navLink " style={{fontSize:'1.3vw',fontWeight:'bold'}}>Ver mas productos</NavLink>
-                    <h5>Recibirá un email con los datos de su compra</h5>
                   </div>
                   : 
                   <div className="stateTimeLine">
