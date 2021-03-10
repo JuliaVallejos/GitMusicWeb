@@ -124,6 +124,7 @@
   
   
   .comments{
+    align-self: center;
     margin:1vh ;
     padding:  1vh 0 1vh 0;
     overflow: auto;
@@ -136,6 +137,7 @@
     display: flex;
     width: 90%;
     justify-content: space-between;
+    align-items: center;
   }
   
   .comments::-webkit-scrollbar{

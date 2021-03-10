@@ -167,12 +167,18 @@ const SingleProduct = (props) => {
                             {thisProduct.arrayComments.length !== 0 ? <p className="singleSimpleText cursor" onClick={() => setVisible(!visible)}>{visible ? 'Ocultar comentarios' : 'Ver comentarios'} ({thisProduct.arrayComments.length})</p> : <p onClick={() => setVisible(!visible)} className="singleSimpleText">Aún no hay comentarios</p>}
                             {visible && (
                             <div>
-                                
+                            {thisProduct.arrayComments.length ? 
                                 <div className="comments" >
                                     {thisProduct.arrayComments.map(comment => 
-                                    <Comment idProduct={thisProduct._id} comment={comment}
-                                    /> )}
+                                        <Comment idProduct={thisProduct._id} comment={comment}/>
+                                    )}
                                 </div>
+                                :
+                                <div className="comments" style={{display: 'flex', alignItems: 'center',
+                                justifyContent: 'center'}}>
+                                    <h5>Sé el primero en comentar.</h5>
+                                </div>
+                                }
                                 <div className="inputDiv" onClick={() => !loggedUser ? Alert.error('Ingresa a tu cuenta para comentar.', 4000): '' }>
                                     <input type="text" name="content" onKeyDown={enterKey} placeholder={!loggedUser ? 'Ingresa a tu cuenta para comentar.' : 'Deja tu comentario.' } className="commentInput" onChange={handleComments} value={newComment} autoComplete="off" disabled={!loggedUser ? true : false} /> 
                                     <MdSend className="commentIcon" onClick={sendComment} />
