@@ -36,7 +36,7 @@ addProduct: async (req,res) =>{
           urlPhoto=response.url
           if(response){
             var savePhoto=await newProduct.arrayPic.push(urlPhoto)
-            if(savePhoto&&newProduct.arrayPic.length===3){
+            if(savePhoto&&newProduct.arrayPic.length>2){
               try {
                 const addedProduct = await newProduct.save()
                 if(addedProduct){
