@@ -49,7 +49,6 @@ const userActions = {
      return async (dispatch, getState) =>{
        try{
          const response = await axios.post('https://gitmusicapp.herokuapp.com/api/user/signup', newUser)
-         console.log(response)
          if(response.data.success===false){
            var errors=[]
            response.data.errores && response.data.errores.details.map(error=>{
@@ -139,8 +138,8 @@ const userActions = {
                 'Content-Type': 'multipart/form-data' 
             }
         })
-        dispatch({type: 'MODIFY_USER', payload: response.data})
-        console.log(response.data)
+        dispatch({type: 'MODIFY_USER', payload: response})
+        console.log(response)
         return({success:true})
       } catch (error) {
         return({success:false,response:error})

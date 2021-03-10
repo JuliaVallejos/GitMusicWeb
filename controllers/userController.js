@@ -101,6 +101,7 @@ modifyUser: async(req, res) => {
     try {
       const response= await imgbbUploader(process.env.IMGBB_KEY,url,)
       urlPhoto=response.url
+      console.log(urlPhoto)
     } catch (error) {
       console.log("Error al subir la foto al servidor: "+error);
     }
