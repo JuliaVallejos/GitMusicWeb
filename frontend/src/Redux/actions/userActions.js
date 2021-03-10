@@ -130,7 +130,6 @@ const userActions = {
 
 
    modifyUser: (formData) => {
-     console.log(formData)
     return async (dispatch, getState) => {
       try {
         const response = await axios.post(`https://gitmusicapp.herokuapp.com/api/userDetails`, formData, {
@@ -138,8 +137,7 @@ const userActions = {
                 'Content-Type': 'multipart/form-data' 
             }
         })
-        dispatch({type: 'MODIFY_USER', payload: response.data})
-        console.log(response.data)
+        dispatch({type: 'MODIFY_USER', payload: response.data.response})
         return({success:true})
       } catch (error) {
         return({success:false,response:error})
@@ -159,7 +157,6 @@ const userActions = {
          return async (dispatch, getState) => {
      try{
        const respuesta = await axios.post('https://gitmusicapp.herokuapp.com/api/user/requestresetpass',{email})
-      console.log(respuesta)
        if (!respuesta.data.success) {
            Alert.error(`${respuesta.data.response}`,5000)
            return respuesta

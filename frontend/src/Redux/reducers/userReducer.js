@@ -48,9 +48,19 @@ const initState = {
             userData:[...newData,action.payload]
            }
           case "MODIFY_USER":{
-            console.log(action.payload)
+            const newData={
+              'firstName':action.payload.firstName,
+              'lastName':action.payload.lastName,
+              'pic':action.payload.pic,
+              'userId':state.loggedUser.userId,
+              'token':state.loggedUser.token
+            }
+            localStorage.setItem('firstName', action.payload.firstName)
+            localStorage.setItem('lastName', action.payload.lastName)
+            localStorage.setItem('pic', action.payload.pic)
           return {
             ...state,
+            loggedUser:newData
           }}
 
         default :

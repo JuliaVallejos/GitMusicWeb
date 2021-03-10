@@ -25,7 +25,6 @@ const userController = {
         }
         const extPic=fileUrlPic.name.split('.',2)[1]
         ///../client/build/usersPics/
-        console.log(__dirname)
         fileUrlPic.mv(`${__dirname}/../frontend/public/assets/userPics/${newUser._id}.${extPic}`,error =>{
            if(error){
               return res.json({success:false,error:"Intente nuevamente..."})
@@ -33,12 +32,10 @@ const userController = {
         })
         newUser.pic=`./assets/userPics/${newUser._id}.${extPic}`
      }else{
-       console.log("google")
       newUser.pic=pic
       newUser.accountGoogle=true
      }
       var newUserSaved = await newUser.save() //intentamos guardar en la db
-      console.log(newUserSaved)
       var token = jwt.sign({ ...newUserSaved }, process.env.SECRET_KEY, {}) 
         return res.json({
           success: true,
@@ -73,7 +70,7 @@ logIn: async (req, res) => {
               success: true, response: {
                   token,
                   firstName: userExists.firstName,
-                  lastName: newUserSaved.lastName,
+                  lastName: userExists.lastName,
                   email: userExists.email,
                   userId: userExists._id,
                   pic:userExists.pic
@@ -85,7 +82,6 @@ logIn: async (req, res) => {
 },
 
 modifyUser: async(req, res) => {
-  console.log(req.body)
   const {id, email, firstName, lastName} = req.body
   const {pic} = req.files
   const extPic=pic.name.split('.',2)[1]
@@ -94,25 +90,30 @@ modifyUser: async(req, res) => {
   try {
     pic.mv(`${__dirname}/../client/build/userPics/${id}.${extPic}`, errores=> {
       if(errores) {
-        console.log("Error al subir la foto al servidor: "+errores);
+        return res.json({success:false, error:"Error al subir la foto al servidor"})
       }})
       try {
         const response= await imgbbUploader(process.env.IMGBB_KEY,url,)
         urlPhoto=response.url
-        await User.findOneAndUpdate({_id: id},
-          {$set: {firstName, email, lastName, pic: urlPhoto}},{new: true})
-        .then(res=>res.json({ success: true, response: res.data }))
-        .catch(error=>res.json({ success: false, error }))
+        if(response){
+          const saved=await User.findOneAndUpdate({_id: id},{$set: {firstName, email, lastName, pic: urlPhoto}},{new: true})
+          if(saved){
+            return res.json({success:true, response:saved})
+          }else{
+            return res.json({success:false, error:"Error al subir la foto al servidor"})
+          }
+      }else{
+        return res.json({success:false, error:"Error al subir la foto al servidor"})
+      }
       } catch (error) {
-        console.log("Error al subir la foto al servidor: "+error);
+        return res.json({success:false, error:"Error al subir la foto al servidor"})
       }
   } catch (error) {
-    console.log("Error al subir la foto al servidor: "+error);
+    return res.json({success:false, error:"Error al subir la foto al servidor"})
   }
 },
 
 logFromLS: (req, res) => {
-  console.log(req.body, req.user)
   try {
     res.json({
       success: true, response: {
