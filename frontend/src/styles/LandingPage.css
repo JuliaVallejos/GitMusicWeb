@@ -1,6 +1,7 @@
 .hero{
   background-image: url('../assets/herocolors3.png');
   background-size: cover;
+  background-position: center;
   height: 85vh;
   width: 100%;
   color: whitesmoke;

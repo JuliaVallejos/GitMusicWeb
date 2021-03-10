@@ -8,7 +8,9 @@ const emailController = {
 
     const {email,dataCart} =req.body
     const {userData,shoppingCart} = dataCart
-
+    const address = userData[0].newData
+    const billingAddress = userData[1].newData
+    const cardFields = userData[2].newData
     var total=0
     shoppingCart.map(product =>{
         total=total+(product.quantity*product.product.price)
@@ -50,13 +52,30 @@ const emailController = {
                   rejectedUnauthorized:false
                 } 
         })
+      
+        const dataUser=
+        `<div>
+            <h2>Datos de envío</h2>
+            <p>Dirección: ${address.calle} ${address.altura}</p>
+            <p>Recibe: ${address.encargadoDeRecibir}, Teléfono de contacto: ${address.contactoReceptor}</p>
+        </div>
+        <div>
+            <h2>Datos de facturación:</h2> 
+            <p>Nombre: ${billingAddress.nombre}</p>
+            <p>CUIT/CUIL/DNI ${billingAddress.cuitCuilDni}</p>
+            <p>Pagó con la tarjeta XXXX-XXXX-XXXX-${cardFields.number.slice(-4)}
+           
+        </div>`
         const message=`
 
-        <h1 style="margin:1% 2%;color:#0687c8">¡Hola ${userAwait.firstName}! Estos son los datos de tu compra</h1>
+        <h1 style="margin:1% 2%;color:#0687c8">¡Hola ${userAwait.firstName}! Estos son los detalles de tu compra</h1>
         <div class="products">${products}
-        <h2 class="total">Total $${total}</h2>
+            <h2 class="total">Total $${total}</h2>
         </div>
-        <p class="firma">Tienda de instrumentos<br>Git Music Team</p>`
+        <div class="dataUser">${dataUser}</div>
+        <h3><a href="https://gitmusicapp.herokuapp.com/">¡Haz click para ver más productos!</a></h3>
+        <p class="firma">Tienda de instrumentos<br>Git Music Team</p>
+        `
         const html= 
         `
         <html lang="es">
@@ -123,11 +142,22 @@ const emailController = {
                 padding:2%;
             }
             .total{
-                width:100%;
                 text-align:center;
                 background-color:rgb(12,12,12);
                 color:#0687c8;
-                padding:0.5%
+                padding:0.5%;
+                margin:auto
+            }
+            .dataUser{
+                display:flex;
+                width:100%;
+                padding:4%
+            }
+            .dataUser h2{
+                font-weight:bold
+            }
+            .dataUser div{
+                width:50%
             }
             .footer h2{
                 font-size:1.5vw
@@ -145,6 +175,7 @@ const emailController = {
                 <div><h1>Git Music</h1></div>
             </div>
         <div class="cuerpo">${message}</div>
+        
         <div class="footer">
             <h2>¡Gracias por elegirnos!</h2>
         </div>
@@ -158,15 +189,15 @@ const emailController = {
             subject:"¡Bienvenido a GitMusic! Gracias por su compra",
             html: html
         }
-        transporter.sendMail(mailOptions, (error, info) =>{
+       transporter.sendMail(mailOptions, (error, info) =>{
             if(error){
                 console.log(error)
                 res.status(500).send(error.message)
             }else {
                 console.log("Email enviado.")
-                res.status(200).json({respuesta:req.body})
+                res.status(200).json({response:req.body})
             }
-        })} 
+        }) } 
     
       
     }catch(error){
@@ -201,7 +232,7 @@ const emailController = {
         var to=`${userExist.email}`
         var subject= "Restablecimiento de contraseña"
         var message= `<p>Para Restablecer la <span>contraseña</span>, ingresa al siguiente link.</p>
-        <a href='http://localhost:3000/resetpassword/${tokenResetPassword}'>Restablecer la contraseña</a>
+        <a href='https://gitmusicapp.herokuapp.com/resetpassword/${tokenResetPassword}'>Restablecer la contraseña</a>
         <p class="firma">Tienda de instrumentos<br>Git Music Team</p>
        
         ` 

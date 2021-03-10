@@ -16,9 +16,13 @@ import ShippingAddress from './components/ShippingAddress'
 import BillingAddress from './components/BillingAddress'
 import Payment from './components/Payment'
 import PaymentPanel from './components/PaymentPanel'
+import CartList from './components/ListCart'
 import ForgotPassword from './components/ForgotPassword'
 import ResetPassword from './components/ResetPassword'
 import ListCartAndPaginate from './components/ListCartAndPaginate'
+
+
+
 
 function App(props) {
   if(props.loggedUser){
@@ -33,8 +37,11 @@ function App(props) {
         <Route path='/userdetails'component={UserDetails}/>
         <Route path='/shippingAddress'component={ShippingAddress}/>
         <Route path='/billingAddress'component={BillingAddress}/>
+        <Route exact path='/payment'component={Payment}/>
         <Route path='/payment'component={Payment}/>
+        <Route path='/addProducts' component={AddProducts}/>
         <Route path='/paymentPanel'component={PaymentPanel}/>
+        <Route path='/cartlist'component={ListCartAndPaginate}/> 
         <Route path='/product/:id' component={SingleProduct}/>
         <Redirect to ="/"/>
       </Switch>
@@ -64,7 +71,7 @@ function App(props) {
 <>
 <Router>
 <NavBar/>
-<ShowDrawer history={props}/>
+<ShowDrawer/>
   {links}
 </Router>
 <Footer/>

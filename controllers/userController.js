@@ -81,11 +81,12 @@ logIn: async (req, res) => {
 },
 
 modifyUser: (req, res) => {
+  console.log(req.files)
   const {id, email, firstName, lastName} = req.body
   const {pic} = req.files
-  const picUser = image.name.split('.')
-  const url = `../assets/${id}.${picUser[1]}`
-  image.mv(`./frontend/public/assets/${id}.${pic[1]}`, errores=> {
+  const extPic=pic.name.split('.',2)[1]
+  const url = `../assets/userPics/${id}.${extPic}`
+  pic.mv(`./frontend/public/assets/userPics/${id}.${extPic}`, errores=> {
   if(errores) {
       return res.json({
           success: false,

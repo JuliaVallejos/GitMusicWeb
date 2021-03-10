@@ -1,15 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect} from 'react'
 import {  Alert } from 'rsuite';
-import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import userActions from '../Redux/actions/userActions'
 import '../styles/ShippingAddress.css'
 import Cards from 'react-credit-cards'
 import 'react-credit-cards/es/styles-compiled.css';
 
-const Payment = ({userData,shoppingCart,loggedUser,completeUserData,emailShopCart}) => {
+const Payment = ({setNext,setFinish,completeUserData}) => {
     
-
     const [cardFields, setCardFields] = useState({
         cvc: '',
         expiry: '',
@@ -17,10 +15,14 @@ const Payment = ({userData,shoppingCart,loggedUser,completeUserData,emailShopCar
         number: '',
         focused:''
     })
-
+    useEffect(() => {
+        setNext(false)
+        setFinish(false)
+    }, [])
     const readInput = e => {
         var value = e.target.value
         const property = e.target.name
+  
         setCardFields({
             ...cardFields,
             [property]: value
@@ -40,14 +42,10 @@ const Payment = ({userData,shoppingCart,loggedUser,completeUserData,emailShopCar
             return false
         }
         const data = await completeUserData("cardFields",cardFields)
-       console.log(data)
        if(data.saved){
-           Alert.success('Compra confirmada')
-           const email= await emailShopCart(loggedUser.email,{userData,shoppingCart})
-           if(email){
-            Alert.success('Recibirá un mail con los datos de su compra')
-           }
-      
+        Alert.success('Datos guardados')
+        setFinish(true)
+       
        }
        
     }
@@ -70,22 +68,22 @@ const Payment = ({userData,shoppingCart,loggedUser,completeUserData,emailShopCar
         </div>
                     <div className="inputDiv">
                         <label>Numero</label>
-                        <input onKeyPress={enterKeyboard} type="number" autoComplete="nope" name="number" placeholder="Ej: 4912 1234 1234 1234" onChange={readInput} onFocus={(e)=>{setCardFields({...cardFields, focused: e.target.name})}} />
+                        <input onKeyPress={enterKeyboard} value={cardFields.number} type='tel' maxLength="16" pattern="\d*" autoComplete="nope" name="number" placeholder="Ej: 4912 1234 1234 1234" onChange={readInput} onFocus={(e)=>{setCardFields({...cardFields, focused: e.target.name})}} />
                     </div>
                     <div className="inputDiv">
                         <label>Nombre y Apellido</label>
-                        <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="name" placeholder="Ej: Fernando Biaus" onChange={readInput} onFocus={(e)=>{setCardFields({...cardFields, focused: e.target.name})}}/>
+                        <input onKeyPress={enterKeyboard} value={cardFields.name} type="text" autoComplete="nope" name="name" placeholder="Ej: Fernando Biaus" onChange={readInput} onFocus={(e)=>{setCardFields({...cardFields, focused: e.target.name})}}/>
                     </div>
                     <div className="inputDiv">
                     <label>Fecha de expiracion</label>
-                        <input onKeyPress={enterKeyboard} type="number" autoComplete="nope" name="expiry" placeholder="MM/AA" onChange={readInput} onFocus={(e)=>{setCardFields({...cardFields, focused: e.target.name})}}/>
+                        <input onKeyPress={enterKeyboard}  value={cardFields.expiry} type='tel' maxLength="4"autoComplete="nope" name="expiry" placeholder="MM/AA" onChange={readInput} onFocus={(e)=>{setCardFields({...cardFields, focused: e.target.name})}}/>
                     </div>
                     <div className="inputDiv">
                     <label>Codigo de seguridad</label>
-                        <input onKeyPress={enterKeyboard} type="number" autoComplete="nope" name="cvc" placeholder="Ej: 123" onChange={readInput} onFocus={(e)=>{setCardFields({...cardFields, focused: e.target.name})}}/>
+                        <input onKeyPress={enterKeyboard}  value={cardFields.cvc} type='tel' maxLength="3" autoComplete="nope" name="cvc" placeholder="Ej: 123" onChange={readInput} onFocus={(e)=>{setCardFields({...cardFields, focused: e.target.name})}}/>
                     </div>
-                    <div class="finalizar">
-                        <button className="enviar" onClick={Validate}>Finalizar</button>
+                    <div className="finalizar">
+                        <button className="enviar" onClick={Validate}>Guardar Datos</button>
                     </div>
                 </div>
             </div>
@@ -94,13 +92,10 @@ const Payment = ({userData,shoppingCart,loggedUser,completeUserData,emailShopCar
 }
 const mapStateToProps = state =>{
     return{
-        userData:state.userR.userData,
-        shoppingCart:state.shoppingR.shoppingCart,
-        loggedUser:state.userR.loggedUser
+        userData: state.userR.userData
     }
-}
+  }
 const mapDispatchToProps={
     completeUserData:userActions.completeUserData,
-    emailShopCart:userActions.emailShopCart
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Payment)

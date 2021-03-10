@@ -12,7 +12,7 @@ import { BsFillStarFill } from 'react-icons/bs'
 import { useHistory } from "react-router-dom";
 
 const SingleProduct = (props) => {
-    const { allProducts, addProductShoppingCart, shoppingCart } = props
+    const { allProducts, addProductShoppingCart, shoppingCart, ratingProduct, loggedUser } = props
     const id = props.match.params.id
     const [thisProduct, setThisProduct] = useState([])
     const [visible, setVisible] = useState(false)
@@ -21,19 +21,20 @@ const SingleProduct = (props) => {
     const [quantity, setquantity] = useState(1)
     const [rating, setRating] = useState(0)
     let history = useHistory();
-    
-    useEffect(()=>{
+
+    useEffect(() => {
         const product = allProducts.filter(product => product._id === id)
         setThisProduct(product[0])
-        if(thisProduct._id && thisProduct.arrayRating.length !== 0){
+        if (thisProduct._id && thisProduct.arrayRating.length !== 0) {
             const stars = Math.round(thisProduct.arrayRating.reduce((a, b) => (a.value + b.value)) / thisProduct.arrayRating.length)
             setRating(stars)
-        } 
-    },[allProducts, thisProduct, id])  
-    const setNumber = (e) =>{
+        }
+    }, [allProducts, thisProduct, id])
+
+    const setNumber = (e) => {
         const number = parseInt(e.target.value)
         setquantity(number)
-        if(e.target.value > thisProduct.stock){
+        if (e.target.value > thisProduct.stock) {
             setquantity(thisProduct.stock)
             Alert.error('El número de unidades no puede superar al stock')
         }
@@ -42,12 +43,12 @@ const SingleProduct = (props) => {
         setComment(e.target.value)
     }
 
-    const sendComment = e =>{
+    const sendComment = e => {
         e.preventDefault()
         props.commentProduct({
             comment: newComment,
             idProduct: thisProduct._id,
-            idUser: props.loggedUser.userId
+            idUser: loggedUser.userId
         })
         //mando comment
     }
@@ -56,117 +57,143 @@ const SingleProduct = (props) => {
             //action de mandar nuevo comment
         }
     }
-    const addToCart = async ()=>{
+    const addToCart = async () => {
         const filterProductCart = shoppingCart.filter(product => product.idProduct === thisProduct._id)
-        if(filterProductCart.length!==0 && (filterProductCart[0].product.stock<filterProductCart[0].quantity+1)){
-          Alert.warning(`No podes exceder el stock(${thisProduct.stock}) de este articulo.`,3000)
-        }else{
-          Alert.success('Agregado al carrito.',3500)
-          addProductShoppingCart({idProduct: id,quantity, product:thisProduct})
+        if (filterProductCart.length !== 0 && (filterProductCart[0].product.stock < filterProductCart[0].quantity + 1)) {
+            Alert.warning(`No podes exceder el stock(${thisProduct.stock}) de este articulo.`, 3000)
+        } else {
+            Alert.success('Agregado al carrito.', 3500)
+            addProductShoppingCart({ idProduct: id, quantity, product: thisProduct })
         }
     }
+
     const rankProduct = (e) => {
+        // Alert.error("Debe estar registrado para rankear",3000)
+        const editFilter = thisProduct.arrayRating.filter(value => value.idUser === loggedUser.userId)
+        //en primera vuelta el value llega null ver y corregir 
         setRating(e.target.value)
+          if(editFilter.length !== 0){
+            ratingProduct({
+                idProduct: thisProduct._id,
+                idUser: loggedUser.userId,
+                value: rating,
+                edit: true
+            })
+        }else{
+            ratingProduct({
+                idProduct: thisProduct._id,
+                idUser: loggedUser.userId,
+                value: rating,           
+            })
+        }
         Alert.success('Calificaste con ' + e.target.value + ' estrellas!', 4000)
     }
-    if(!thisProduct){
+    if (!thisProduct) {
         return <h1>Vas a tener q ir a donde hace el fetch</h1>
     }
 
-    if(thisProduct.length!==0){
-    return(
-        <div className="mainSingleProduct">
-            <Button onClick={() => history.goBack()} className="backNavButton" >{`Ir a ${thisProduct.category}`}</Button>
-            <div className="mainSingleContainer">
-                <div className="leftSection">
-                    {thisProduct.arrayPic.map((pic, i) => {
-                    return(
-                            <div className="lateralPic" onClick={()=>setIndex(i)} style={{width: '12vh', height: '12vh',backgroundImage: `url(${pic})`, backgroundPosition:'center', backgroundSize:'cover', borderRadius: '8px' }}>
-                                {/* <img src={pic} className="lateralPic" alt='' onClick={()=>setIndex(i)}></img>  */}
-                                 </div>
+    if (thisProduct.length !== 0) {
+        return (
+            <div className="mainSingleProduct">
+                <Button onClick={() => history.goBack()} className="backNavButton" >{`Ir a ${thisProduct.category}`}</Button>
+                <div className="mainSingleContainer">
+                    <div className="leftSection">
+                        {thisProduct.arrayPic.map((pic, i) => {
+                            return (
+                                <div className="lateralPic" onClick={() => setIndex(i)} style={{ width: '12vh', height: '12vh', backgroundImage: `url(${pic})`, backgroundPosition: 'center', backgroundSize: 'cover', borderRadius: '8px' }}>
+                                    {/* <img src={pic} className="lateralPic" alt='' onClick={()=>setIndex(i)}></img>  */}
+                                </div>
+                            )
+                        }
                         )}
-                    )}
-                </div>
-                <div className="middleSection">
-                    <div style={{backgroundImage: `url(${thisProduct.arrayPic[index]})`, backgroundPosition:'center', backgroundSize:'cover', borderRadius: '8px' }}></div>
-                    <div className="descriptionContainer">
-                    <h5>Sobre este producto:</h5>
-                        <div className="liDescription">
-                            {thisProduct.arrayDescription.map(desc =>{
-                                return <p className='description'><AiOutlineCheckCircle className='descriptionItem'/>AiOutlineCheckCircle{desc}</p>
-                            })}
-                        </div>
                     </div>
-                    {thisProduct.urlReview &&
-                    <div className="video-responsive">
-                            <iframe
-                            width="853"
-                            height="480"
-                            src={thisProduct.urlReview}
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                            title="Embedded youtube"
-                            />
-                        </div>
-                    }
-                </div>
-                <div className="rightSection">
-                    <p className="singleProductName">{thisProduct.name}</p>
-                    <p className="singleTextBlue">Marca: {thisProduct.mark}</p>
-                    <p className="singleTextBlue">Hay {thisProduct.stock} unidades disponibles!</p>
-                    <p>Valoración:</p>
-                    <div>{[...Array(5)].map((m, i) => {
-                                const ratingValue = i + 1
-                                return (
-                                    <label key={i}>
-                                        <input
-                                            className="starInput"
-                                            type="radio"
-                                            name="rating"
-                                            value={ratingValue}
-                                            onClick={rankProduct}
-                                        />
-                                        <BsFillStarFill className="star" color={(ratingValue <= rating) ? '#ffc107' : '#8C8C8C'} />
-                                    </label>
-                                )
-                            })}</div>
-                    <p style={{}}>Garantía de {thisProduct.warranty} meses!</p>
-                    <p style={{fontSize: '2vw', fontWeight: 'bolder' , color:'rgb(20 170 52)'}}>$ {thisProduct.price}</p>
-                    <div className='numberInput'>
-                        <input type='number'className='number' min='1' onChange={setNumber} value={quantity}/>
-                    </div>
-                    {thisProduct.arrayComments.length !== 0 ? <p className="singleSimpleText cursor" onClick={()=>setVisible(!visible)}>{visible ? 'Ocultar comentarios': 'Ver comentarios'} ({thisProduct.arrayComments.length})</p> : <p className="singleSimpleText">Aún no hay comentarios</p>}
-                    {visible &&(
-                        <div>
-                        <div className="comments">
-                            {thisProduct.arrayComments.map(comment => <Comment idProduct={thisProduct._id} comment={comment}/>)}
-                        </div>
-                            <div className="inputDiv">
-                                <input type="text" name="content" onKeyDown={enterKey} placeholder={'condicionar el placeholder u ocultar el input'} className="commentInput" onChange={handleComments} value={newComment}  autoComplete="off" />
-                                <MdSend className="commentIcon" onClick={sendComment}  />
+                    <div className="middleSection">
+                        <div style={{ backgroundImage: `url(${thisProduct.arrayPic[index]})`, backgroundPosition: 'center', backgroundSize: 'cover', borderRadius: '8px' }}></div>
+                        <div className="descriptionContainer">
+                            <h5>Sobre este producto:</h5>
+                            <div className="liDescription">
+                                {thisProduct.arrayDescription.map(desc => {
+                                    return <p className='description'><AiOutlineCheckCircle className='descriptionItem' />AiOutlineCheckCircle{desc}</p>
+                                })}
                             </div>
                         </div>
-                    )}
-                    <ButtonToolbar className="singleButtons">
-                        <Button color="cyan" className="singleButton" block onClick={addToCart}>Añadir al carrito</Button>
-                    </ButtonToolbar>
+                        {thisProduct.urlReview &&
+                            <div className="video-responsive">
+                                <iframe
+                                    width="853"
+                                    height="480"
+                                    src={thisProduct.urlReview}
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                    title="Embedded youtube"
+                                />
+                            </div>
+                        }
+                    </div>
+                    <div className="rightSection">
+                        <p className="singleProductName">{thisProduct.name}</p>
+                        <p className="singleTextBlue">Marca: {thisProduct.mark}</p>
+                        <p className="singleTextBlue">Hay {thisProduct.stock} unidades disponibles!</p>
+                        <p>Valoración:</p>
+                        <div>{[...Array(5)].map((m, i) => {
+                            const ratingValue = i + 1
+                            return (
+                                <label key={i}>
+                                    <input
+                                        className="starInput"
+                                        type="radio"
+                                        name="rating"
+                                        value={ratingValue}
+                                        onClick={rankProduct}
+                                    />
+                                    <BsFillStarFill className="star" color={(ratingValue <= rating) ? '#ffc107' : '#8C8C8C'} />
+                                </label>
+                            )
+                        })}</div>
+                        <p style={{}}>Garantía de {thisProduct.warranty} meses!</p>
+                        <p style={{ fontSize: '2vw', fontWeight: 'bolder', color: 'rgb(20 170 52)' }}>$ {thisProduct.price}</p>
+                        <div className='numberInput'>
+                            <input type='number' className='number' min='1' onChange={setNumber} value={quantity} />
+                        </div>
+                            <div className="inputDiv">
+                                <input type="text" name="content" onKeyDown={enterKey} placeholder={props.loggedUser ? 'Comenta aquí.' : 'Inicia seccion para comentar.'} className="commentInput" onChange={handleComments} value={newComment}  autoComplete="off" />
+                                {!props.loggedUser ? alert('logeate para comentar') : <MdSend className="commentIcon" onClick={sendComment}  />}
+                                
+                        {thisProduct.arrayComments.length !== 0 ? <p className="singleSimpleText cursor" onClick={() => setVisible(!visible)}>{visible ? 'Ocultar comentarios' : 'Ver comentarios'} ({thisProduct.arrayComments.length})</p> : <p className="singleSimpleText">Aún no hay comentarios</p>}
+                        {visible && (
+                            <div>
+                                <div className="comments">
+                                    {thisProduct.arrayComments.map(comment => <Comment idProduct={thisProduct._id} comment={comment} />)}
+                                </div>
+                                <div className="inputDiv">
+                                    <input type="text" name="content" onKeyDown={enterKey} placeholder={'condicionar el placeholder u ocultar el input'} className="commentInput" onChange={handleComments} value={newComment} autoComplete="off" />
+                                    <MdSend className="commentIcon" onClick={sendComment} />
+                                </div>
+                            </div>
+                        )}
+                        <ButtonToolbar className="singleButtons">
+                            <Button color="cyan" className="singleButton" block onClick={addToCart}>Añadir al carrito</Button>
+                        </ButtonToolbar>
+                    </div>
                 </div>
-            </div> 
-        </div>
-    )}else{
-        return(<h1>loading</h1>)
+            </div>
+            </div>
+        )
+    } else {
+        return (<h1>loading</h1>)
     }
 }
-const mapStateToProps = state =>{
-    return{
+const mapStateToProps = state => {
+    return {
         allProducts: state.product.allProducts,
-        shoppingCart:state.shoppingR.shoppingCart,
+        shoppingCart: state.shoppingR.shoppingCart,
         loggedUser: state.userR.loggedUser
     }
 }
-const mapDispatchToProps={
-    addProductShoppingCart:shoppingCartActions.addProductShoppingCart,
-    commentProduct: productActions.commentProduct
+const mapDispatchToProps = {
+    addProductShoppingCart: shoppingCartActions.addProductShoppingCart,
+    commentProduct: productActions.commentProduct,
+    ratingProduct: productActions.ratingProduct
 }
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct)
