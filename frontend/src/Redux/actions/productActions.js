@@ -30,7 +30,6 @@ const productActions = {
     addProduct: (fdNewProduct) =>{
       console.log("action")
       return async (dispatch, getState) =>{
-    
       try{
           const response = await axios.post('http://localhost:4000/api/products', fdNewProduct,{
             headers:{
