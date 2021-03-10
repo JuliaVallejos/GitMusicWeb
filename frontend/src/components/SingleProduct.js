@@ -14,7 +14,7 @@ import { useHistory } from "react-router-dom";
 const SingleProduct = (props) => {
     const { allProducts, addProductShoppingCart, shoppingCart, ratingProduct, loggedUser } = props
     const id = props.match.params.id
-    const [thisProduct, setThisProduct] = useState([])
+    const [thisProduct, setThisProduct] = useState()
     const [visible, setVisible] = useState(false)
     const [newComment, setComment] = useState('')
     const [index, setIndex] = useState(0)
@@ -25,11 +25,18 @@ const SingleProduct = (props) => {
     useEffect(() => {
         const product = allProducts.filter(product => product._id === id)
         setThisProduct(product[0])
-        if (thisProduct._id && thisProduct.arrayRating.length !== 0) {
-            const stars = Math.round(thisProduct.arrayRating.reduce((a, b) => (a.value + b.value)) / thisProduct.arrayRating.length)
-            setRating(stars)
+        if (thisProduct&& thisProduct._id && thisProduct.arrayRating.length !== 0) {
+            const stars =thisProduct.arrayRating.reduce((a,b) =>{  
+                return {
+                value: (a.value+ b.value)
+                }
+            }, {value: 0})
+
+        setRating(Math.round(stars.value/thisProduct.arrayRating.length))
+        }else{
+            setRating(0)
         }
-    }, [allProducts, thisProduct, id])
+    }, [allProducts, thisProduct,loggedUser,id])
 
     const setNumber = (e) => {
         const number = parseInt(e.target.value)
@@ -88,11 +95,8 @@ const SingleProduct = (props) => {
         }
         Alert.success('Calificaste con ' + e.target.value + ' estrellas!', 4000)
     }
-    if (!thisProduct) {
-        return <h1>Vas a tener q ir a donde hace el fetch</h1>
-    }
 
-    if (thisProduct.length !== 0) {
+    if (thisProduct) {
         return (
             <div className="mainSingleProduct">
                 <Button onClick={() => history.goBack()} className="backNavButton" >{`Ir a ${thisProduct.category}`}</Button>
@@ -134,8 +138,16 @@ const SingleProduct = (props) => {
                     <div className="rightSection">
                         <p className="singleProductName">{thisProduct.name}</p>
                         <p className="singleTextBlue">Marca: {thisProduct.mark}</p>
-                        <p className="singleTextBlue">Hay {thisProduct.stock} unidades disponibles!</p>
+                        <p className="singleTextBlue">Hay {thisProduct.stock} {thisProduct.stock===1?"unidad":"unidades"} en stock!</p>
                         <p>Valoración:</p>
+
+                        
+                        {!loggedUser ? <div>{[...Array(5)].map((m, i) => {
+                            const ratingValue = i + 1
+                            return (    
+                                    <BsFillStarFill className="star" style={{cursor:'default'}} color={(ratingValue <=rating) ? '#ffc107' : '#8C8C8C'} />
+                            )
+                        })}</div>:
                         <div>{[...Array(5)].map((m, i) => {
                             const ratingValue = i + 1
                             return (
@@ -150,7 +162,7 @@ const SingleProduct = (props) => {
                                     <BsFillStarFill className="star" color={(ratingValue <= rating) ? '#ffc107' : '#8C8C8C'} />
                                 </label>
                             )
-                        })}</div>
+                        })}</div>}
                         <p style={{}}>Garantía de {thisProduct.warranty} meses!</p>
                         <p style={{ fontSize: '2vw', fontWeight: 'bolder', color: 'rgb(20 170 52)' }}>$ {thisProduct.price}</p>
                         <div className='numberInput'>
@@ -181,7 +193,17 @@ const SingleProduct = (props) => {
             </div>
         )
     } else {
-        return (<h1>loading</h1>)
+       
+        return (
+            <div style={{display:'flex',flexDirection:'column',alignItems:'center'}} className="productsByCategory">
+                 <div>
+                    <h2>Por favor regrese a la Home</h2>
+                    <button onClick={()=>props.history.push('/')}>Volver</button>
+                </div>
+                
+            </div>
+            
+        )
     }
 }
 const mapStateToProps = state => {
