@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React, { useState, useEffect } from 'react'
-import { FaTrashAlt, FaShoppingCart} from 'react-icons/fa'
+import { FaTrashAlt, FaShoppingCart,FaArrowCircleDown,FaArrowCircleUp} from 'react-icons/fa'
 import '../styles/ListCard.css'
 import Pagination from "./Pagination"
 import shoppingCartActions from '../Redux/actions/shoppingCartActions'
@@ -51,13 +51,13 @@ const ListCart = ({shoppingCart,editProductCart,deleteProductCart,clearCart})=> 
                                 <div className="containerInfo">
                                     <h6>{productCart.product.name}</h6>
                                     <div className="containerPriceButton">
-                                        <button onClick={(e) =>manageQuantityForStock("subtract",productCart)}><h6>-</h6></button>
+                                        <FaArrowCircleDown className="arrow less" onClick={(e) =>manageQuantityForStock("subtract",productCart)}/>
                                         <h6 id={`act${productCart.product._id}`}>{productCart.quantity}</h6>
-                                        <button onClick={(e) =>manageQuantityForStock("add",productCart)}><h6>+</h6></button>
+                                        <FaArrowCircleUp className="arrow more" onClick={(e) =>manageQuantityForStock("add",productCart)}/>
                                         <h6>x</h6>
-                                        <h6>{productCart.product.price}</h6>
+                                        <h6>${productCart.product.price}</h6>
                                         <h6>=</h6>
-                                        <h6 style={{color:'rgb(65, 235, 22)'}}>${totalPrice}</h6>
+                                        <h6 style={{color:'rgb(255, 143, 38)'}}>${totalPrice}</h6>
                                     </div>
                                     <div style={{width:'100%',textAlign:'right'}}>
                                     <FaTrashAlt onClick={() => deleteProduct(productCart.idProduct)} className="bottonManage cartTrash"/>
@@ -70,7 +70,7 @@ const ListCart = ({shoppingCart,editProductCart,deleteProductCart,clearCart})=> 
                         <Button onClick={clearCart} className="button clearCart" appearance="subtle">
                             Vaciar <FaShoppingCart style={{paddingLeft:'.5vw',fontSize:'30px'}} />
                         </Button>
-                        <div style={{fontSize:'2vw',fontWeight:'bold',color:'white'}}>Total: <span style={{color:'rgb(65, 235, 22)',fontWeight:'bold'}}>${total}</span></div>
+                        <div style={{fontSize:'1.5vw',fontWeight:'bold',color:'white', backgroundColor:'black', padding:'1vh',borderRadius:'10px'}}>Total: <span style={{color:'rgb(255, 143, 38)',fontWeight:'bold'}}>${total}</span></div>
                     </div>
                 </div>
             </div>

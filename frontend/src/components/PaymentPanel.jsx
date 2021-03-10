@@ -33,7 +33,7 @@ const PaymentPanel = () => {
         <div>
           <div className="custom-timeline">
               {step && step === 1 ?
-                <div className="state1" >
+                <div className="stateTimeLine" >
                     <ShippingAddress/>
                     <div className="buttonNav" style={{marginTop:'4vh'}}>
                       <button className="enviar navLink" onClick={onPrevious}>Volver</button>
@@ -59,13 +59,13 @@ const PaymentPanel = () => {
                 :step && step === 4 ?
                   <div className="stateTimeLine" >
                     <img className="gif" src={gif} alt=""/>
-                    <NavLink to="/" className="enviar navLink ">Inicio</NavLink>
+                    <NavLink to="/" className="enviar navLink " style={{fontSize:'1.3vw',fontWeight:'bold'}}>Ver mas productos</NavLink>
                   </div>
                   : 
                   <div className="stateTimeLine">
                   <CartList/>
                   <div className="buttonNav" style={{marginTop:'4vh'}}>
-                    <button className="enviar navLink">Salir</button>
+                  <NavLink to="/" className="enviar navLink " style={{fontSize:'1vw',fontWeight:'bold'}}>Salir</NavLink>
                     <button onClick={onNext} className="enviar navLink ">Confirmar</button>
                   </div>
               </div>}
