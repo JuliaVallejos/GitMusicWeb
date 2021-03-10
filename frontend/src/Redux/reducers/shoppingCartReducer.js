@@ -69,6 +69,12 @@ const shoppingCartReducer= (state = initState, action) =>{
           shoppingCart: cartFiltered
         }
       };
+      case "EMAIL_SENT":{
+        return{
+          ...state,
+          shoppingCart:[]
+        }
+      }
       default :{
           return state}
       }

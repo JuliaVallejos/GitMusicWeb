@@ -1,6 +1,22 @@
 const initState = {
     loggedUser: null,
-    userData:[]
+    userData:[
+      {property:'address',newData:{
+        calle:'',
+        altura:'',
+        encargadoDeRecibir:'',
+        contactoReceptor:''
+      }},
+      {property:'billingAddress',newData:{
+        nombre:'',
+        cuitCuilDni:'',
+        contacto:'',
+        tipoFactura:''
+
+      }},
+      {property:'cardFields',newData:{
+
+      }}]
   }
   
   const userReducer = (state = initState, action) =>{

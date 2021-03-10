@@ -1,25 +1,45 @@
 import React, { useState } from 'react'
-import { NavLink, Link } from 'react-router-dom'
-import { Steps,Panel,Timeline,Icon } from 'rsuite';
+import { Steps,Alert } from 'rsuite';
+import {connect} from 'react-redux'
 import ShippingAddress from './ShippingAddress'
 import BillingAddress from './BillingAddress'
 import Payment from './Payment'
-import CartList from './ListCart'
+import ListCart from './ListCart'
 import '../styles/ListCard.css'
 import '../styles/ShippingAddress.css'
 import gif from '../assets/Graciasporsucompra.gif'
+import shoppingCartActions from '../Redux/actions/shoppingCartActions'
+import { NavLink } from 'react-router-dom';
 
 
-const PaymentPanel = () => {
+const PaymentPanel = ({emailShopCart,loggedUser,userData,shoppingCart}) => {
 
+
+  console.log(userData)
+    const [next,setNext] = useState(false)
+    const [finish,setFinish] = useState(false)
     const [step, setStep] = useState(0);
     const onChange = nextStep => {
       setStep(nextStep < 0 ? 0 : nextStep > 5 ? 5 : nextStep);
     };
 
-    const onNext = () => onChange(step + 1);
+    const onNext = () => next? onChange(step + 1): Alert.warning('Complete los datos y guarde')
     const onPrevious = () => onChange(step - 1);
 
+    const finishPurchase= async () =>{
+      const data= await emailShopCart(loggedUser.email,{userData,shoppingCart})
+      console.log(data)
+           if(data.response){
+            Alert.success('Compra confirmada')
+            setNext(true)
+            console.log(step)
+            onChange(step + 1)
+           }else{
+               Alert.error('Hubo un error, intente más tarde')
+            
+           }
+    }
+    console.log(finish)
    return (
        <>
     <div className="containerCartAndPagination">
@@ -34,7 +54,7 @@ const PaymentPanel = () => {
           <div className="custom-timeline">
               {step && step === 1 ?
                 <div className="stateTimeLine" >
-                    <ShippingAddress/>
+                    <ShippingAddress next={next} setNext={setNext}/>
                     <div className="buttonNav" style={{marginTop:'4vh'}}>
                       <button className="enviar navLink" onClick={onPrevious}>Volver</button>
                       <button onClick={onNext} className="enviar navLink ">Confirmar</button>
@@ -42,31 +62,36 @@ const PaymentPanel = () => {
                   </div> 
               : step && step === 2 ?
                   <div className="stateTimeLine">
-                    <BillingAddress/>
+                    <BillingAddress next={next} setNext={setNext}/>
                     <div className="buttonNav" style={{marginTop:'4vh'}}>
                       <button className="enviar navLink" onClick={onPrevious}>Volver</button>
                       <button onClick={onNext} className="enviar navLink ">Confirmar</button>
+                     
+                      
                     </div>
                   </div>
                   :step && step === 3 ?
                   <div className="stateTimeLine" >
-                    <Payment/>
+                    <Payment next={next} setNext={setNext} setFinish={setFinish} />
                     <div className="buttonNav" style={{marginTop:'4vh'}}>
                       <button className="enviar navLink" onClick={onPrevious}>Volver</button>
-                      <button onClick={onNext} className="enviar navLink ">Confirmar</button>
+                      <button onClick={!finish?onNext:finishPurchase} className="enviar navLink ">{!finish? 'Confirmar':'Finalizar compra'}</button>
                     </div>
                   </div>
                 :step && step === 4 ?
                   <div className="stateTimeLine" >
                     <img className="gif" src={gif} alt=""/>
                     <NavLink to="/" className="enviar navLink " style={{fontSize:'1.3vw',fontWeight:'bold'}}>Ver mas productos</NavLink>
+                    <h5>Recibirá un email con los datos de su compra</h5>
                   </div>
                   : 
                   <div className="stateTimeLine">
-                  <CartList/>
+                  <ListCart setNext={setNext} />
                   <div className="buttonNav" style={{marginTop:'4vh'}}>
                   <NavLink to="/" className="enviar navLink " style={{fontSize:'1vw',fontWeight:'bold'}}>Salir</NavLink>
                     <button onClick={onNext} className="enviar navLink ">Confirmar</button>
+                   
+                    
                   </div>
               </div>}
             </div>
@@ -75,5 +100,15 @@ const PaymentPanel = () => {
     </>
   );
 }
+const mapStateToProps = state =>{
+  return{
+      loggedUser: state.userR.loggedUser,
+      userData: state.userR.userData,
+      shoppingCart:state.shoppingR.shoppingCart
 
-export default PaymentPanel
+  }
+}
+const mapDispatchToProps= {
+emailShopCart:shoppingCartActions.emailShopCart
+}
+export default connect(mapStateToProps,mapDispatchToProps)(PaymentPanel)

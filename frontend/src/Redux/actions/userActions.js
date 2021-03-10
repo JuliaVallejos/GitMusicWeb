@@ -151,24 +151,6 @@ const userActions = {
         return data
       }
     },
-    emailShopCart:(email,dataCart)=>{
-    return async (dispatch,getstate)=>{
-      try{
-        const data = await axios.post('http://localhost:4000/api/confirmPurchase',{email,dataCart})
-        
-        if(data.data.success){
-          dispatch({type:'PURCHASE_CONFIRMATION', payload:data.data.response})
-          return data.data.response
-        }else{
-          return data.data
-        }
-      }catch(error){
-        const data ={errors:['An error occurred']}
-        return data
-      }
-
-    }
-  },
      requestResetPass:(email) => {   
          return async (dispatch, getState) => {
      try{

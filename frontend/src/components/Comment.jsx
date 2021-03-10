@@ -10,21 +10,27 @@ import { Alert } from 'rsuite';
 const Comment = ({comment, idProduct, delComment, editComment, loggedUser}) => {
 const [visible, setVisible] = useState(false)
 const [updatedComment, setUpdatedComment] = useState('')
+<<<<<<< HEAD
 console.log(comment, loggedUser)
     const sendUpdate = () =>{
+=======
+
+    const sendUpdate =async () =>{
+>>>>>>> 0ffb4eab91f6f2094161d43e783c628513e4ea9c
         //action de editar comment
-      editComment({
+      await editComment({
         comment: updatedComment,
         idComment: comment._id
       })
+      setVisible(false)
     }
 
     const updateComment = () =>{
         setVisible(true)
     }
-    const deleteComment = e =>{
+    const deleteComment = async e =>{
       e.preventDefault()
-      delComment({
+      await delComment({
         idProduct,
         idComment: comment._id
       })

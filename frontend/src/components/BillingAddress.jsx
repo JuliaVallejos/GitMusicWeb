@@ -1,19 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect} from 'react'
 import {  Alert } from 'rsuite';
-import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import userActions from '../Redux/actions/userActions'
 import '../styles/ShippingAddress.css'
 
 
-const BillingAddress = (props) => {
-    const [next,setNext] = useState(false)
-    const [billingAddress, setBillingAddress] = useState({
-        nombre:'',
-        tipoFactura:'',
-        cuitCuilDni:'',
-        contacto:''
-    })
+const BillingAddress = ({setNext,completeUserData,userData}) => {
+    const billingAddressRedux= userData.find(data => data.property==='billingAddress').newData
+    const [billingAddress, setBillingAddress] = useState(billingAddressRedux)
+    useEffect(() => {
+        setNext(false)
+    }, [])
 
     const readInput = e => {
         var value = e.target.value
@@ -36,7 +33,7 @@ const BillingAddress = (props) => {
              Alert.error('Todos los campos son requeridos')
             return false
          }
-        const data = await props.completeUserData("billingAdress",billingAddress)
+        const data = await completeUserData("billingAddress",billingAddress)
        console.log(data)
        if(data.saved){
         Alert.success('Datos guardados')
@@ -51,7 +48,7 @@ const BillingAddress = (props) => {
                 <div className="formularioAddress">
                     <h2 className="tittle">Datos de facturacion</h2>
                     <div className="inputDiv">
-                        <input onKeyPress={enterKeyboard} value={billingAddress.nombre} type="text" autoComplete="nope" name="nombre" placeholder="Nombre/Apellido" onChange={readInput} />
+                        <input onKeyPress={enterKeyboard}  value={billingAddress.nombre} type="text" autoComplete="nope" name="nombre" placeholder="Nombre/Apellido" onChange={readInput} />
                     </div>
                     <div className="inputDiv">
                         <input onKeyPress={enterKeyboard} value={billingAddress.cuitCuilDni} type="number" autoComplete="nope" name="cuitCuilDni" placeholder="CUIT/CUIL/DNI" onChange={readInput} />
@@ -60,8 +57,8 @@ const BillingAddress = (props) => {
                         <input onKeyPress={enterKeyboard} value={billingAddress.contacto} type="number" autoComplete="nope" name="contacto" placeholder="Telefono" onChange={readInput} />
                     </div>
                     <div className="inputDiv">
-                        <select name="tipoFactura" onChange={readInput} onKeyPress={enterKeyboard}>
-                            <option value='' selected disabled >Tipo de factura</option>
+                        <select defaultValue={billingAddress.tipoFactura} name="tipoFactura" onChange={readInput} onKeyPress={enterKeyboard}>
+                            <option value='' disabled >Tipo de factura</option>
                             <option value='facturaA'>Factura A</option>
                             <option value="facturaB">Factura B</option>
                         </select>
@@ -77,7 +74,12 @@ const BillingAddress = (props) => {
         </div>
     )
 }
+const mapStateToProps = state =>{
+    return{
+        userData: state.userR.userData
+    }
+  }
 const mapDispatchToProps={
     completeUserData:userActions.completeUserData
 }
-export default connect(null,mapDispatchToProps)(BillingAddress)
+export default connect(mapStateToProps,mapDispatchToProps)(BillingAddress)

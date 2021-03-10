@@ -14,7 +14,7 @@ let history = useHistory();
 const {addProduct,categories } = props
 const [itemsDescription,setItemsDescription] = useState([])
 const [newItem,setNewItem] = useState()
-    // const [arrayDescription,setArrayDescription] = useState([])
+
    
     const [product, setProduct] = useState({
         name:'',
@@ -36,7 +36,7 @@ const [newItem,setNewItem] = useState()
     useEffect(() => {
         
       
-    }, [])
+    },[])
     
     const readInput = e => {
         const value = e.target.value
@@ -57,6 +57,7 @@ const [newItem,setNewItem] = useState()
         if(newItem!==''){
             setItemsDescription([...itemsDescription,newItem.trim()])
             setNewItem('')
+      
         }else{
             alert('Escriba algo antes de agregar otro item')
         }

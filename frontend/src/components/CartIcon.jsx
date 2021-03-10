@@ -12,7 +12,7 @@ const [items, setItems] = useState(0)
   },[shoppingCart])
   
   return (
-    <Link >
+    <Link to='#'>
       <div className="cartLink">
         <div className='cartContainer'>
           <FaShoppingCart className='cartIcon' />
