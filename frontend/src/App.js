@@ -16,14 +16,11 @@ import ShippingAddress from './components/ShippingAddress'
 import BillingAddress from './components/BillingAddress'
 import Payment from './components/Payment'
 import PaymentPanel from './components/PaymentPanel'
-<<<<<<< HEAD
 import CartList from './components/ListCart'
-=======
 import ForgotPassword from './components/ForgotPassword'
 import ResetPassword from './components/ResetPassword'
 // import CartList from './components/ListCart'
 import ListCartAndPaginate from './components/ListCartAndPaginate'
->>>>>>> d138667ea11d988fc363897fc4f02053b672999a
 
 
 function App(props) {
@@ -39,7 +36,7 @@ function App(props) {
         <Route path='/userdetails'component={UserDetails}/>
         <Route path='/shippingAddress'component={ShippingAddress}/>
         <Route path='/billingAddress'component={BillingAddress}/>
-        <Route path='/payment'component={Payment}/>
+        <Route exact path='/payment'component={Payment}/>
         <Route path='/paymentPanel'component={PaymentPanel}/>
         <Route path='/cartlist'component={CartList}/> 
         <Route path='/product/:id' component={SingleProduct}/>
