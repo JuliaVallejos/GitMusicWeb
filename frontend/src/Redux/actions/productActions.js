@@ -31,7 +31,7 @@ const productActions = {
       console.log("action")
       return async (dispatch, getState) =>{
       try{
-          const response = await axios.post('http://localhost:4000/api/products', fdNewProduct,{
+          const response = await axios.post('https://gitmusicapp.herokuapp.com/api/products', fdNewProduct,{
             headers:{
               'Content-Type':'multipart/form-data'
             }

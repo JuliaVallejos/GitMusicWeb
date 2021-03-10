@@ -36,8 +36,7 @@ addProduct: async (req,res) =>{
           urlPhoto=response.url
           if(response){
             var savePhoto=await newProduct.arrayPic.push(urlPhoto)
-            if(i===(arrayPics.length-1)&&savePhoto){
-              if(savePhoto){
+            if(savePhoto&&newProduct.arrayPic.length===3){
               try {
                 const addedProduct = await newProduct.save()
                 if(addedProduct){
@@ -48,7 +47,6 @@ addProduct: async (req,res) =>{
               } catch (error) {
                 return res.json({success:false, error:"Erro: "+error})
               }}
-            }
           }
          } catch (error) {
             return res.json({success:false, error:"Error al subir la foto al servidor: "+error})
