@@ -80,6 +80,19 @@ const productActions = {
           return({success: false, response: error})
         }
       }
+    },
+    ratingProduct : (ratingObject) => {
+      return async (dispatch,getstate) =>{
+        try{
+          const respuesta = await axios.put(`http://localhost:4000/api/products/newrating`,{ratingObject})
+          dispatch({
+            type:"RATING",
+            payload: respuesta.data
+          })
+        }catch (error){
+          return({succes:false, response:error})
+        }
+      }
     }
   }
    

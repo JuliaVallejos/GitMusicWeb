@@ -86,7 +86,7 @@ addProduct: async (req,res) =>{
     }
   },
   addRating:async(req,res) =>{
-    const {idProduct,idUser,value,edit}=req.body
+    const {idProduct,idUser,value,edit}=req.body.ratingObject
     try {
       if(edit){
         const editRating=await Product.findOneAndUpdate(
