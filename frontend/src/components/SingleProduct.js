@@ -45,13 +45,19 @@ const SingleProduct = (props) => {
 
     const sendComment = e => {
         e.preventDefault()
+        if(
         props.commentProduct({
             comment: newComment,
             idProduct: thisProduct._id,
             idUser: loggedUser.userId
         })
+        ){
+            setComment('')
+        }
+
         //mando comment
     }
+
     const enterKey = (e) => {
         if (e.key === 'Enter') {
             //action de mandar nuevo comment
@@ -157,17 +163,15 @@ const SingleProduct = (props) => {
                             <input type='number' className='number' min='1' onChange={setNumber} value={quantity} />
                         </div>
                             <div className="inputDiv">
-                                <input type="text" name="content" onKeyDown={enterKey} placeholder={props.loggedUser ? 'Comenta aquí.' : 'Inicia seccion para comentar.'} className="commentInput" onChange={handleComments} value={newComment}  autoComplete="off" />
-                                {!props.loggedUser ? alert('logeate para comentar') : <MdSend className="commentIcon" onClick={sendComment}  />}
-                                
-                        {thisProduct.arrayComments.length !== 0 ? <p className="singleSimpleText cursor" onClick={() => setVisible(!visible)}>{visible ? 'Ocultar comentarios' : 'Ver comentarios'} ({thisProduct.arrayComments.length})</p> : <p className="singleSimpleText">Aún no hay comentarios</p>}
-                        {visible && (
+                            {thisProduct.arrayComments.length !== 0 ? <p className="singleSimpleText cursor" onClick={() => setVisible(!visible)}>{visible ? 'Ocultar comentarios' : 'Ver comentarios'} ({thisProduct.arrayComments.length})</p> : <p onClick={() => setVisible(!visible)} className="singleSimpleText">Aún no hay comentarios</p>}
+                            {visible && (
                             <div>
+                                
                                 <div className="comments">
                                     {thisProduct.arrayComments.map(comment => <Comment idProduct={thisProduct._id} comment={comment} />)}
                                 </div>
-                                <div className="inputDiv">
-                                    <input type="text" name="content" onKeyDown={enterKey} placeholder={'condicionar el placeholder u ocultar el input'} className="commentInput" onChange={handleComments} value={newComment} autoComplete="off" />
+                                <div className="inputDiv" onClick={() => !loggedUser ? Alert.error('Ingresa a tu cuenta para comentar.', 4000): '' }>
+                                    <input type="text" name="content" onKeyDown={enterKey} placeholder={!loggedUser ? 'Ingresa a tu cuenta para comentar.' : 'Deja tu comentario.' } className="commentInput" onChange={handleComments} value={newComment} autoComplete="off" disabled={!loggedUser ? true : false} /> 
                                     <MdSend className="commentIcon" onClick={sendComment} />
                                 </div>
                             </div>
