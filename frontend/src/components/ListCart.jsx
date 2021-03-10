@@ -6,7 +6,11 @@ import Pagination from "./Pagination"
 import shoppingCartActions from '../Redux/actions/shoppingCartActions'
 import {Alert, Button} from 'rsuite'
 
-const ListCart = ({shoppingCart,editProductCart,deleteProductCart,clearCart})=> {
+const ListCart = ({setNext,shoppingCart,editProductCart,deleteProductCart,clearCart})=> {
+
+    useEffect(() => {
+       setNext(true)
+    }, [])
     const [currentPage, setCurrentPage] = useState(1)
     const [postPerPage] = useState(3)
     const indexOfLastPost = currentPage * postPerPage;
@@ -43,10 +47,11 @@ const ListCart = ({shoppingCart,editProductCart,deleteProductCart,clearCart})=> 
             <div className="containerCart ">
                 <div className="containerImgInfo">
                     {currentPost.map(productCart =>{
+                      
                         total+=(productCart.quantity*productCart.product.price)
                         const totalPrice=productCart.product.price*productCart.quantity
                         return (
-                            <div className="containerProduct">
+                            <div  key={productCart.idProduct} className="containerProduct">
                                 <div className="productImg" style={{backgroundImage: `url(${productCart.product.arrayPic[0]})`}}></div>
                                 <div className="containerInfo">
                                     <h6>{productCart.product.name}</h6>
@@ -96,4 +101,4 @@ const mapDispatchToProps={
     deleteProductCart:shoppingCartActions.deleteProductCart,
     clearCart:shoppingCartActions.clearCart
 }
-export default connect (mapStateToProps,mapDispatchToProps) (ListCart)
+export default connect(mapStateToProps,mapDispatchToProps)(ListCart)

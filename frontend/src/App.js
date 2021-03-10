@@ -19,7 +19,7 @@ import PaymentPanel from './components/PaymentPanel'
 import ForgotPassword from './components/ForgotPassword'
 import ResetPassword from './components/ResetPassword'
 import ListCartAndPaginate from './components/ListCartAndPaginate'
-import CartList from './components/ListCart'
+
 
 
 
@@ -69,7 +69,7 @@ function App(props) {
 <>
 <Router>
 <NavBar/>
-<ShowDrawer history={props}/>
+<ShowDrawer/>
   {links}
 </Router>
 <Footer/>

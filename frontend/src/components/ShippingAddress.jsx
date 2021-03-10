@@ -1,22 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect} from 'react'
 import {Alert } from 'rsuite';
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
 import '../styles/ShippingAddress.css'
 import userActions from '../Redux/actions/userActions'
 
 
-const ShippingAddress = ({next,setNext,completeUserData}) => {
-
-
-    const [address, setaddress] = useState({
-        calle:'',
-        altura:'',
-        barrio:'',
-        pisoDpto:'',
-        encargadoDeRecibir:'',
-        contactoReceptor:''
-    })
+const ShippingAddress = ({setNext,completeUserData,userData}) => {
+    const addressRedux= userData.find(data => data.property==='address').newData
+    
+    
+    const [address, setaddress] = useState(addressRedux)
+    useEffect(() => {
+        setNext(false)
+    }, [])
 
     const readInput = e => {
         var value = e.target.value
@@ -39,7 +35,7 @@ const ShippingAddress = ({next,setNext,completeUserData}) => {
             Alert.error('Complete los campos requeridos(*)')
             return false
         }
-       const data = await completeUserData("adress",address)
+       const data = await completeUserData("address",address)
        console.log(data)
        if(data.saved){
            Alert.success('Datos guardados')
@@ -54,22 +50,22 @@ const ShippingAddress = ({next,setNext,completeUserData}) => {
                 <div className="formularioAddress">
                     <h2 className="tittleShipping">Datos de envio</h2>
                     <div className="inputDiv">
-                        <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="calle" placeholder="Calle*" onChange={readInput} />
+                        <input onKeyPress={enterKeyboard} type="text" value={address.calle} autoComplete="nope" name="calle" placeholder="Calle*" onChange={readInput} />
                     </div>
                     <div className="inputDiv">
-                        <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="altura" placeholder="Altura*" onChange={readInput} />
+                        <input onKeyPress={enterKeyboard} type="text" value={address.altura} autoComplete="nope" name="altura" placeholder="Altura*" onChange={readInput} />
                     </div>
                     <div className="inputDiv">
-                        <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="barrio" placeholder="Barrio" onChange={readInput} />
+                        <input onKeyPress={enterKeyboard} type="text" value={address.barrio} autoComplete="nope" name="barrio" placeholder="Barrio" onChange={readInput} />
                     </div>
                     <div className="inputDiv">
-                        <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="pisoDpto" placeholder="Piso/Dpto" onChange={readInput} />
+                        <input onKeyPress={enterKeyboard} type="text" value={address.pisoDpto} autoComplete="nope" name="pisoDpto" placeholder="Piso/Dpto" onChange={readInput} />
                     </div>
                     <div className="inputDiv">
-                        <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="encargadoDeRecibir" placeholder="¿Quien lo recibe?*" onChange={readInput} />
+                        <input onKeyPress={enterKeyboard} type="text" value={address.encargadoDeRecibir} autoComplete="nope" name="encargadoDeRecibir" placeholder="¿Quien lo recibe?*" onChange={readInput} />
                     </div>
                     <div className="inputDiv">
-                        <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="contactoReceptor" placeholder="Teléfono de quien recibe*" onChange={readInput} />
+                        <input onKeyPress={enterKeyboard} type="text" value={address.contactoReceptor} autoComplete="nope" name="contactoReceptor" placeholder="Teléfono de quien recibe*" onChange={readInput} />
                     </div>
                     <div className="botonShippin">
                         <button className="enviar" onClick={Validate}>Guardar datos</button>
@@ -79,7 +75,12 @@ const ShippingAddress = ({next,setNext,completeUserData}) => {
         </div>
     )
 }
+const mapStateToProps = state =>{
+    return{
+        userData: state.userR.userData
+    }
+  }
 const mapDispatchToProps={
     completeUserData:userActions.completeUserData
 }
-export default connect(null,mapDispatchToProps)(ShippingAddress)
+export default connect(mapStateToProps,mapDispatchToProps)(ShippingAddress)

@@ -167,4 +167,11 @@ box-shadow: 5px 5px 12px rgba(255, 213, 77, 0.507);
     justify-content: center;
     align-items: center;
     margin-right: 30vw;
+   
+}
+.stateTimeLine h5{
+    color:whitesmoke;
+    margin-right: 4vw;
+    padding-bottom: 2vh;
+
 }

@@ -48,7 +48,8 @@ const DrawerContent = ({shoppingCart,editProductCart,deleteProductCart}) => {
     return (
         <>
             {shoppingCart.length !== 0 ? shoppingCart.map(product => 
-                <div className="drawerProductContainer" >
+            
+                <div key={product.idProduct} className="drawerProductContainer" >
                     <div className="descriptionProduct">
                         <p className="textProduct"><strong>Producto:</strong> {product.product.name}</p>
                         <p className="textProduct"><strong>Marca:</strong> {product.product.mark}</p>
@@ -56,7 +57,7 @@ const DrawerContent = ({shoppingCart,editProductCart,deleteProductCart}) => {
                         <div className="manageProduct">
                             <div className="manageQuantityProduct">
                                 <FaMinus onClick={(e) =>manageQuantityForStock("subtract",product)} className="bottonManage arrow minus"/>
-                                <span><Input id={`input${product.idProduct}`} class="quantityValue" onChange={(value,e)=>inputModifyQuantity(value,e,product)} defaultValue={product.quantity}/></span>
+                                <span><Input id={`input${product.idProduct}`} className="quantityValue" onChange={(value,e)=>inputModifyQuantity(value,e,product)} defaultValue={product.quantity}/></span>
                                 <FaPlus onClick={(e) =>manageQuantityForStock("add",product)} className="bottonManage arrow plus"/>
                             </div>
                             <FaTrashAlt onClick={() => deleteProduct(product.idProduct)} className="bottonManage delete"/>
