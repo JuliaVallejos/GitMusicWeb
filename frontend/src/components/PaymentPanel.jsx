@@ -8,6 +8,7 @@ import ListCart from './ListCart'
 import '../styles/ListCard.css'
 import '../styles/ShippingAddress.css'
 import gif from '../assets/Graciasporsucompra.gif'
+import gifCarrito from '../assets/cart.gif'
 import shoppingCartActions from '../Redux/actions/shoppingCartActions'
 import { NavLink } from 'react-router-dom';
 
@@ -66,8 +67,6 @@ const PaymentPanel = ({emailShopCart,loggedUser,userData,shoppingCart}) => {
                     <div className="buttonNav" style={{marginTop:'4vh'}}>
                       <button className="enviar navLink" onClick={onPrevious}>Volver</button>
                       <button onClick={onNext} className="enviar navLink ">Confirmar</button>
-                     
-                      
                     </div>
                   </div>
                   :step && step === 3 ?
@@ -86,13 +85,20 @@ const PaymentPanel = ({emailShopCart,loggedUser,userData,shoppingCart}) => {
                   </div>
                   : 
                   <div className="stateTimeLine">
-                  <ListCart setNext={setNext} />
-                  <div className="buttonNav" style={{marginTop:'4vh'}}>
-                  <NavLink to="/" className="enviar navLink " style={{fontSize:'1vw',fontWeight:'bold'}}>Salir</NavLink>
-                    <button onClick={onNext} className="enviar navLink ">Confirmar</button>
-                   
-                    
-                  </div>
+                    {shoppingCart.length !== 0 ?
+                    <div>
+                    <ListCart setNext={setNext} />
+                    <div className="buttonNav" style={{marginTop:'4vh'}}>
+                    <NavLink to="/" className="enviar navLink " style={{fontSize:'1vw',fontWeight:'bold'}}>Salir</NavLink>
+                      <button onClick={onNext} className="enviar navLink ">Confirmar</button>
+                    </div>
+                    </div>
+                    : <div className="productNone">
+                      <h2>Carrito vacío.</h2>
+                      <img className="gif" src={gifCarrito} alt=""/>
+                      <NavLink to="/" className="enviar navLink " style={{fontSize:'1.3vw',fontWeight:'bold'}}>Comenzar a Comprar</NavLink>
+                    </div>  }
+
               </div>}
             </div>
         </div>

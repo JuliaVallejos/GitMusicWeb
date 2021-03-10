@@ -1,6 +1,6 @@
 
 .sectionBody{
-    min-height: 100vh;
+    min-height: 50vh;
     width: 100%;
 }
 .containerCartAndPagination {
@@ -185,16 +185,20 @@
     background-color: rgba(6, 134, 200, 0.863);
 }
 
-.ProductNone {
+.productNone {
     color: rgb(5, 5, 5);
-    background-color: rgb(255, 255, 255);
-    height:50%;
-    width:60%;
+    height:100vh;
+    width:100%;
     text-align: center;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     border-radius: 25px;
+}
+
+.productNone h2 {
+    color: white;
+    margin-bottom: 5vh;
 }
 
 .bottonManage.cartTrash:hover{
@@ -236,6 +240,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    min-height: 70vh;
 }
 
 .gif {
