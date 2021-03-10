@@ -32,7 +32,7 @@ addProduct: async (req,res) =>{
         newProduct.arrayPic=[...newProduct.arrayPic,`./assets/productsPics/${arrayPic.md5}.${extPic}`]
          }else{
          arrayPic.map(async(pic) =>{
-         if(pic.mimetype.indexOf('image/jpg')!==0&&arrayPic.mimetype.indexOf('image/jpeg')!==0&&pic.mimetype.indexOf('image/png')!==0&&pic.mimetype.indexOf('image/bmp')!==0)
+         if(pic.mimetype.indexOf('image/jpg')!==0&&pic.mimetype.indexOf('image/jpeg')!==0&&pic.mimetype.indexOf('image/png')!==0&&pic.mimetype.indexOf('image/bmp')!==0)
          {
             return res.json({success:false,error:"El formato de la imagen tiene que ser JPG,JPEG,BMP ó PNG."})
          }
