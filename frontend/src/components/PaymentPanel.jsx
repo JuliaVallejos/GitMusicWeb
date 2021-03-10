@@ -7,6 +7,7 @@ import Payment from './Payment'
 import CartList from './ListCart'
 import '../styles/ListCard.css'
 import '../styles/ShippingAddress.css'
+import gif from '../assets/Graciasporsucompra.gif'
 
 
 const PaymentPanel = () => {
@@ -30,44 +31,45 @@ const PaymentPanel = () => {
             <Steps.Item />
         </Steps>
         <div>
-          <Timeline className="custom-timeline">
-               {step && step === 1 ?
-                  <Timeline.Item className="stateTimeLine" >
-                     <ShippingAddress/>
-                     <div className="buttonNav" style={{marginTop:'4vh'}}>
+          <div className="custom-timeline">
+              {step && step === 1 ?
+                <div className="stateTimeLine" >
+                    <ShippingAddress/>
+                    <div className="buttonNav" style={{marginTop:'4vh'}}>
                       <button className="enviar navLink" onClick={onPrevious}>Volver</button>
                       <button onClick={onNext} className="enviar navLink ">Confirmar</button>
                     </div>
-                  </Timeline.Item> 
-               : step && step === 2 ?
-                  <Timeline.Item className="stateTimeLine">
-                     <BillingAddress/>
-                     <div className="buttonNav" style={{marginTop:'4vh'}}>
+                  </div> 
+              : step && step === 2 ?
+                  <div className="stateTimeLine">
+                    <BillingAddress/>
+                    <div className="buttonNav" style={{marginTop:'4vh'}}>
                       <button className="enviar navLink" onClick={onPrevious}>Volver</button>
                       <button onClick={onNext} className="enviar navLink ">Confirmar</button>
                     </div>
-                  </Timeline.Item>
+                  </div>
                   :step && step === 3 ?
-                  <Timeline.Item className="stateTimeLine" >
-                     <Payment/>
-                     <div className="buttonNav" style={{marginTop:'4vh'}}>
+                  <div className="stateTimeLine" >
+                    <Payment/>
+                    <div className="buttonNav" style={{marginTop:'4vh'}}>
                       <button className="enviar navLink" onClick={onPrevious}>Volver</button>
                       <button onClick={onNext} className="enviar navLink ">Confirmar</button>
                     </div>
-                  </Timeline.Item>
+                  </div>
                 :step && step === 4 ?
-                  <Timeline.Item className="stateTimeLine" >
-                     <h4>listo</h4>
-                  </Timeline.Item>
+                  <div className="stateTimeLine" >
+                    <img className="gif" src={gif} alt=""/>
+                    <NavLink to="/" className="enviar navLink " style={{fontSize:'1.3vw',fontWeight:'bold'}}>Ver mas productos</NavLink>
+                  </div>
                   : 
-                  <Timeline.Item className="stateTimeLine">
+                  <div className="stateTimeLine">
                   <CartList/>
                   <div className="buttonNav" style={{marginTop:'4vh'}}>
-                    <button className="enviar navLink">Salir</button>
+                  <NavLink to="/" className="enviar navLink " style={{fontSize:'1vw',fontWeight:'bold'}}>Salir</NavLink>
                     <button onClick={onNext} className="enviar navLink ">Confirmar</button>
                   </div>
-               </Timeline.Item>}
-            </Timeline>
+              </div>}
+            </div>
         </div>
     </div>
     </>

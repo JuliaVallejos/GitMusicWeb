@@ -1,6 +1,7 @@
 
 .sectionBody{
-    min-height: 61vh;
+    min-height: 100vh;
+    width: 100%;
 }
 .containerCartAndPagination {
     background-image: url('../assets/descarga.jpg');
@@ -42,6 +43,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-left: 9vw;
 }
 
 .containerProduct {
@@ -140,14 +142,15 @@
     }
 
 .navPagination {
-    width:90% ;
+    width:100% ;
+    margin-left: 45%;
 }
 
 .pagination{
-    width: 40%;
+    width: 45%;
     display: flex;
     justify-content: space-evenly;
-    margin-left: 20vw;
+    align-items: center;
 }
 
 .pagination li {
@@ -158,7 +161,7 @@
 
 .pagination li a {
     text-decoration: none;
-
+    color: white;
 }
 
 .enviarPagination {
@@ -179,6 +182,7 @@
     color:rgb(250, 250, 250);
     font-weight: bold;
     border: solid 2px rgba(6, 134, 200, 0.863);
+    background-color: rgba(6, 134, 200, 0.863);
 }
 
 .ProductNone {
@@ -233,4 +237,41 @@
     justify-content: center;
     align-items: center;
 }
+
+.gif {
+    width: 50%;
+    height: 40%;
+    border-radius:30px;
+    margin-bottom: 5vh;
+    box-shadow: 5px 5px 20px rgb(146, 146, 146);
+ 
+}
+
+.containerInfo h6 {
+    font-size: 2.5vh;
+}
+
+.arrow {
+    font-size: 3vh;
+    color: rgb(255, 143, 38);
+}
+
+.arrow.less:hover {
+    color: rgb(255, 42, 42);
+}
+
+.arrow.more:hover {
+    color: rgb(148, 233, 51);
+}
+
+.rs-steps-item-status-finish .rs-steps-item-icon-wrapper:not(.rs-steps-item-custom-icon) .rs-steps-item-icon::before {
+    background-color: rgb(22, 177, 2) !important;
+    color: white !important;
+    border-radius: 100%;
+    border: solid 1px  rgb(22, 177, 2) !important;
+    width: 99%;
+    height: 99%;
+}
+
+
 
