@@ -47,18 +47,20 @@ const SingleProduct = (props) => {
         }
     }
     const handleComments = (e) => {
+        e.preventDefault()
         setComment(e.target.value)
     }
 
     const sendComment = e => {
         e.preventDefault()
-        if(
-        props.commentProduct({
-            comment: newComment,
-            idProduct: thisProduct._id,
-            idUser: loggedUser.userId
-        })
-        ){
+        if(newComment.length === 0){
+            Alert.error('Escribe un comentario', 3000)
+        } else {
+            props.commentProduct({
+                comment: newComment,
+                idProduct: thisProduct._id,
+                idUser: loggedUser.userId
+            })
             setComment('')
             // messageRef.current.scrollIntoView({ block: 'end', behavior: 'smooth' });
         }
