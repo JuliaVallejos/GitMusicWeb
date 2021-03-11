@@ -65,8 +65,10 @@ const [newItem,setNewItem] = useState('')
 
     const Validate = async e => {
         e.preventDefault()
-        const {name,mark,price,stock,category,arrayPic} = product
-        if(name===''||mark===''||price===''||stock===''||category===''||arrayPic.length===0){
+        product.outstanding=Boolean(product.outstanding)
+        console.log(product)
+        const {name,mark,price,stock,category,arrayPic,outstanding} = product
+       if(name===''||mark===''||price===''||stock===''||category===''||arrayPic.length===0){
             setErrores(['Debe completar todos los campos'])
             return false
         }  
@@ -96,12 +98,12 @@ const [newItem,setNewItem] = useState('')
             return false
         })
 
-        const response = await addProduct(fdNewProduct)
+      /*   const response = await addProduct(fdNewProduct)
         if (response && !response.success) {
             setErrores(response.message)
         } else {
             Alert.success('Producto almacenado exitosamente')
-        }
+        } */
 
 
     }
