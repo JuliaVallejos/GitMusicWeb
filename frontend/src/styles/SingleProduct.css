@@ -351,11 +351,20 @@
 .descriptionContainer{
   overflow: auto;
 }
+<<<<<<< HEAD
 .navLinksWhatsapp p {
   color: green;
   font-size: 2vw;
 }
 
+=======
+.redirectSingleProduct {
+  cursor: pointer;
+}
+.btnRedirect {
+  border-radius: none; 
+}
+>>>>>>> 1ace33444b8ab7c40cdb2394e834e868dad62e6c
 }
 @media only screen and (max-width:600px) {
 /* .mainSingleProduct{

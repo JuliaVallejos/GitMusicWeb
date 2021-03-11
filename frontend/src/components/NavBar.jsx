@@ -25,7 +25,7 @@ const NavBar = ({ loggedUser, signOut }) => {
       <div className={nav ? "navMenu" : "navMenu activeNav"}>
         <div className="header">
           <NavLink onClick={openNav} exact to='/' className='navLinks'>
-            Home
+            Inicio
           </NavLink>
           <NavLink onClick={openNav} exact to='/addProducts' className='navLinks'>
             Agregar Productos
@@ -43,9 +43,6 @@ const NavBar = ({ loggedUser, signOut }) => {
           <AiFillGithub className="navGithub" />
           <FaMusic className="navMusicIcon" />
         </div>
-        {/* <NavLink to='/singleproduct' className='navLinks'>
-            Product
-          </NavLink> */}
         <div className='links'>
           <NavLink to={loggedUser ? 'userdetails' : '/registerUser'} className='navLinks'>
             {!loggedUser ? <FaUserCircle className="iconUser" /> :

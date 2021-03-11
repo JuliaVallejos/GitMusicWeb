@@ -1,9 +1,11 @@
 .productSection{
-text-align: center;
-background-image: url('../assets/wp2.jpg');
-background-size: cover;
-color: rgb(250, 250, 250);
-background-attachment: fixed;
+	text-align: center;
+	background-image: url('../assets/fondo.jpg');
+	background-size: cover;
+	background-position: bottom;
+	color: rgb(12,12,12);
+	background-attachment: fixed;
+	min-height: 80vh;
 }
 .productSection h2{
   font-size: 2.3rem;
@@ -18,8 +20,7 @@ background-attachment: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  
+  flex-wrap: wrap; 
 }
 .containerCard{
 	box-shadow: 0 15px 30px 1px rgba(128, 128, 128, 0.31);
@@ -28,7 +29,7 @@ background-attachment: fixed;
 	border-radius: 5px;
 	overflow: hidden;
 	margin:1vw;
-	height: 280px;
+	height: 230px;
 	width: 30vw;
 	min-width: 300px;
 }
@@ -48,9 +49,11 @@ background-attachment: fixed;
 .containerCard .product-details h1{
 	display: inline-block;
 	position: relative;
-	font-size: 1.3rem;
+	font-size: 1rem;
 	color: #344055;
 	margin: 0;
+	line-height: 40px!important;
+	min-height: 15vh;
 	
 }
 
@@ -90,11 +93,9 @@ background-attachment: fixed;
 
 
 /* The most important information about the product */
-.containerCard .product-details > p {
-	
+.containerCard .product-details > p {	
 	font-size: 16px;
-	color: #7d7d7d;
-	
+	color: #7d7d7d;	
 }
 
 /* control */
@@ -103,7 +104,7 @@ background-attachment: fixed;
 	position: absolute;
 	bottom: 0;
 	left: 0;
-  width: 100%;
+  	width: 100%;
 	
 }
 /* the Button */
@@ -112,8 +113,8 @@ background-attachment: fixed;
 	transition: 0.3s linear;
 	background: #202020;
 	border-radius: 0 0 0 5px;
-  position: relative;
-  overflow: hidden;
+	position: relative;
+	overflow: hidden;
 	cursor: pointer;
 	outline: none;
 	border: none;
@@ -125,9 +126,9 @@ background-attachment: fixed;
 
 
 .btnCard span {
-	transition: transform 0.3s;
+	transition: transform 0.8s;
 	display: inline-block;
-  padding: 10px 20px;
+ 	padding: 10px 20px;
 	font-size: .8rem;
 	margin:0;
 	
@@ -137,18 +138,18 @@ background-attachment: fixed;
 	background: #333;
 	border: 0;
 	margin: 0;
-  width: 100%;
+  	width: 100%;
 }
 
 
 /* the Icon */
 .btnCard .shopping-cart {
 	transform: translateX(-100%);
-  position: absolute;
+  	position: absolute;
 	background: #333;
 	z-index: 1;
-  left: 0;
-  top: 0;
+	left: 0;
+	top: 0;
 }
 
 /* buy */
@@ -166,8 +167,8 @@ background-attachment: fixed;
 	display: flex;
 	position: relative;
 	overflow: hidden;
-	height: 100%;
-  padding-right: 1vh;
+	height: 80%;
+  	padding-right: 1vh;
 	/* width: 50%; */
 	
   
@@ -176,6 +177,7 @@ background-attachment: fixed;
   object-fit: contain;
   object-position: center;
   width: 100%;
+  /* margin-bottom: 15vh; */
 }
 
 
