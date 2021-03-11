@@ -69,7 +69,7 @@ const NavBar = ({ loggedUser, signOut }) => {
           </Link>
         </div>
         <div className='links'>
-          <NavLink style={{textDecoration:'none'}} to={loggedUser ? 'userdetails' : '/registerUser'} className='navLinks navUser'>
+          <NavLink to={loggedUser ? 'userdetails' : '/registerUser'} className='navLinks navUser'>
             {!loggedUser ? <FaUserCircle className="iconUser" /> :
               (
               <div style={{cursor:'pointer'}} className="userLoggedNav">
