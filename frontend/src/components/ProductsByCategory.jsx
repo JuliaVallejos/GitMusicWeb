@@ -4,27 +4,34 @@ import {useState,useEffect} from 'react'
 import Product from './Product'
 import productActions from '../Redux/actions/productActions'
 import { useHistory } from "react-router-dom";
-import { SelectPicker } from 'rsuite'
+import { SelectPicker,Loader } from 'rsuite'
 
 
 const ProductsByCategory = (props) =>{
     const {allProducts,shoppingCart, getProducts} =props
-    let history = useHistory();
+    const [loader,setLoader] = useState(true)
     const [arrayAll,setArrayAll] = useState([])
     const [newOrder,setNewOrder]= useState([])
     const category = props.match.params.category
     const [arrayCategory,setArrayCategory] = useState([])
+    
     useEffect(()=>{
-        console.log(props)
-        getProducts()
-        setArrayCategory(allProducts.filter(product => product.category === category))
-        
+        getData()
     },[category])
 
    useEffect(() => {
        getProm()
    }, [arrayCategory])
-   
+
+   const getData=async()=>{
+    setArrayCategory((await getProducts()).filter(product => product.category === category))
+    setLoader(false)
+   }
+    
+   useEffect(() => {
+       getProm()
+   }, [arrayCategory])
+   console.log(loader)
     const getProm =() =>{
         if(arrayCategory.length!==0){
             let rating = 0
@@ -59,7 +66,7 @@ const ProductsByCategory = (props) =>{
                 newOrder=[...arrayCategory.sort((a,b) => a.price - b.price)]
                 break
             default:  
-                newOrder=[...arrayCategory]
+                newOrder=allProducts.filter(product => product.category === category)
             }
     setNewOrder(newOrder)
     }
@@ -71,7 +78,7 @@ const ProductsByCategory = (props) =>{
         { value:'less_price', label:'Menor precio'}
     ]
 
-   
+  
     return(
         <div className='productsByCategory'>
             <div className='categoryHeader'>
@@ -82,10 +89,11 @@ const ProductsByCategory = (props) =>{
               
             </div>
             <div className='productsList'>
-                {arrayCategory.length===0&& <div className='noResults'>
+            {loader?<Loader  vertical size='lg' speed='slow' content={<span style={{color:'white',fontWeight:'bold'}}>Cargando...</span>}/>:
+                (arrayCategory.length===0&&!loader)?<div className='noResults'>
                     <p>No hay productos en esta categoría</p>
-                    </div>}
-        {
+                    </div>:
+            
             (newOrder.length!==0?newOrder:arrayCategory).map((product, i) =>{
                 return (
                     <Product key={i}product={product}/>
