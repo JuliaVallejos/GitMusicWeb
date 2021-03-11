@@ -44,8 +44,8 @@ const emailController = {
             port: 465,
             host: 'smtp.gmail.com',
             auth: {
-                user: process.env.MAIL_USER,//gitmusic.team@gmail.com
-                pass: process.env.MAIL_PASS //gitmusic2021
+                user:'gitmusic.team@gmail.com' /* process.env.MAIL_USER */,
+                pass:'gitmusic2021'/*  process.env.MAIL_PASS // */
                
             },
             tls: {

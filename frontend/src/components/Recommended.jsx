@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Card from './Card'
 import {connect} from 'react-redux'
 import '../styles/Card.css'

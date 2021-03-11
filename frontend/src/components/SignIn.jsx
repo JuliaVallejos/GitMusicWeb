@@ -6,11 +6,11 @@ import { Link} from 'react-router-dom'
 import { Alert, Message } from 'rsuite';
 import userActions from '../Redux/actions/userActions'
 import '../styles/signIn.css'
-import { useHistory } from "react-router-dom";
-import { Button } from 'rsuite'
+
+
 
 const SignIn = (props) => {
-    let history = useHistory();
+  
     const {  signIn } = props
     const [user, setUser] = useState({})
     const [errores, setErrores] = useState('')
@@ -34,12 +34,12 @@ const SignIn = (props) => {
     const Validate = async e => {
         setErrores('')
         if (!user.email || !user.password) {
-            setErrores('Todos los campos son requeridos')
+            Alert.error('Todos los campos son requeridos')
         } else {
             const response = await signIn(user)
             if (response && !response.success) {
-                setErrores(response.message)
-        }
+                    Alert.error('El email y/o la contraseña es erróneo')
+            }
 
         }
     }
@@ -68,7 +68,6 @@ const SignIn = (props) => {
                     <h4>Iniciá sesión con tu cuenta</h4>
                 </div>
 
-                {errores !== '' && <Message type='info' description={errores} style={{ marginBottom: '2vh' }} />}
                 <div className="inputDiv">
                     <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="email" placeholder="Ingrese su dirección de correo electrónico" onChange={readInput} />
                 </div>

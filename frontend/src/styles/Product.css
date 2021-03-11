@@ -25,11 +25,7 @@
     align-self: flex-end;
     width:15vw;
     margin-right: 5vw;
-   
-    
- 
 }
-
 .productContainer{
     position:relative;
    border: 2px solid rgba(6, 135, 200, 0.801);
@@ -64,7 +60,56 @@
     height: 60%;
     border-radius: 8px 8px 0px 0px;
     background-color: white;
+    position: relative;
 }
+
+.overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	transition: .5s ease;
+	background-color: #f3f3f3c0;
+  }
+  
+  .productPic:hover .overlay {
+	opacity: 1;
+  }
+  
+  .lupa {
+	background-image: url(../assets/lupa.png);
+	width: 6vw;
+	height: 12.1vh;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	text-align: center;
+  }
+
+  .lupa:hover {
+	background-image: url(../assets/lupa.png);
+	width: 7vw;
+	height: 14vh;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	text-align: center;
+    transition: .3s ease;
+  }
 .productPrice{
     width:100%;
     display:flex;
@@ -110,31 +155,33 @@
     opacity:1!important
 }
 .noResults{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color:white;
     border: 2px solid rgba(6, 135, 200, 0.801);
     border-radius: 8px;
-    padding:6%;
-    margin:auto;
+    /* margin:auto; */
     margin-top: 6%;
- /*    background-image:url("../assets/bata.jpg"); */
+    background-image:url("../assets/musicoBata.jpg");
     background-size:cover;
     background-position: center;
     background-repeat: no-repeat;
-    width:60vw;
-    height:30vh;
-
-
+    width:50vw;
+    height:35vh;
 }
 .noResults p{
-    background-color:rgb(12,12,12);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:rgba(12, 12, 12, 0.637);
     width: 100%;
     color: white;
     font-weight: bold;
     text-align: center;
-
-
+    height: 10vh;
+    font-size: 1rem;
 }
-
 .cardBottom{
     min-width: 100%;
     background-color: rgba(0, 0, 0, 0.705);
@@ -142,9 +189,6 @@
     color: white;
     min-height: 40%;
 }
-
-
-
 /* .backBtnCategory{
     width: 12.5vw;
     background-color: #1572b4;
@@ -153,6 +197,8 @@
     box-shadow: 5px 5px 20px rgba(6, 135, 200, 0.801);
     border: 2px solid rgba(6, 135, 200, 0.801);
 } */
+
+
 /*RESPONSIVE*/
 @media only screen and (max-width:600px) {
      .productsList{
@@ -199,19 +245,15 @@
         font-size: 0.8em;
         padding: 1% 2%;
         width:18vw
-     
-    
-    }
+     }
     .noResults{
         border-radius: 8px;
         padding:6%;
         margin-top: 6%;
-    
     }
     .cardBottom{
         width: 100%;
         padding: 1vh 1vw;
         height: 40%;
     }
-
   }

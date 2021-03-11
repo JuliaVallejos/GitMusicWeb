@@ -3,28 +3,39 @@ import {connect} from 'react-redux'
 import {useState,useEffect} from 'react'
 import Product from './Product'
 import productActions from '../Redux/actions/productActions'
-import { useHistory } from "react-router-dom";
-import { SelectPicker } from 'rsuite'
+import { SelectPicker,Loader } from 'rsuite'
 
 
 const ProductsByCategory = (props) =>{
-    const {allProducts,shoppingCart, getProducts} =props
-    let history = useHistory();
-    const [arrayAll,setArrayAll] = useState([])
+    const {allProducts,getProducts} =props
+    const [loader,setLoader] = useState(true)
     const [newOrder,setNewOrder]= useState([])
     const category = props.match.params.category
     const [arrayCategory,setArrayCategory] = useState([])
+    
     useEffect(()=>{
-        console.log(props)
-        getProducts()
-        setArrayCategory(allProducts.filter(product => product.category === category))
-        
+        getData()
     },[category])
 
    useEffect(() => {
+    window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      })
+       getProm()
+   }, [allProducts])
+
+   const getData=async()=>{
+    setArrayCategory((await getProducts()).filter(product => product.category === category))
+ 
+    setLoader(false)
+   }
+    
+   useEffect(() => {
        getProm()
    }, [arrayCategory])
-   
+
     const getProm =() =>{
         if(arrayCategory.length!==0){
             let rating = 0
@@ -45,6 +56,9 @@ const ProductsByCategory = (props) =>{
     const sortArray = (value) =>{    
         let newOrder=[]
         const order=value
+        if(!order){
+            newOrder=[...arrayCategory.sort((a,b) => b.name- a.name)]
+        }
         switch(order){
             case 'most_rating':
                 newOrder = [...arrayCategory.sort((a,b) => b.rating - a.rating)]
@@ -59,19 +73,19 @@ const ProductsByCategory = (props) =>{
                 newOrder=[...arrayCategory.sort((a,b) => a.price - b.price)]
                 break
             default:  
-                newOrder=[...arrayCategory]
+               newOrder=[...arrayCategory]
             }
+           
     setNewOrder(newOrder)
     }
     const options =[
-        {value:'', label:'Más recientes'},
         { value:'most_rating', label:'Mayor valoración'},
         { value:'less_rating', label:'Menor valoración'},
         { value:'most_price', label:'Mayor precio'},
         { value:'less_price', label:'Menor precio'}
     ]
 
-   
+  
     return(
         <div className='productsByCategory'>
             <div className='categoryHeader'>
@@ -82,10 +96,11 @@ const ProductsByCategory = (props) =>{
               
             </div>
             <div className='productsList'>
-                {arrayCategory.length===0&& <div className='noResults'>
+            {loader?<Loader  vertical size='lg' speed='slow' content={<span style={{color:'white',fontWeight:'bold'}}>Cargando...</span>}/>:
+                (arrayCategory.length===0&&!loader)?<div className='noResults'>
                     <p>No hay productos en esta categoría</p>
-                    </div>}
-        {
+                    </div>:
+            
             (newOrder.length!==0?newOrder:arrayCategory).map((product, i) =>{
                 return (
                     <Product key={i}product={product}/>

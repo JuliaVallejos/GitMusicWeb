@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Alert, Message } from 'rsuite';
-import { useHistory } from "react-router-dom";
 import DropFiles from './DropFiles'
 import '../styles/addProducts.css'
 
@@ -10,10 +9,10 @@ import productActions from '../Redux/actions/productActions';
 
 
 const AddProducts = (props) => {
-let history = useHistory();
-const {addProduct,categories } = props
-const [itemsDescription,setItemsDescription] = useState([])
-const [newItem,setNewItem] = useState('')
+   
+    const {addProduct,categories } = props
+    const [itemsDescription,setItemsDescription] = useState([])
+    const [newItem,setNewItem] = useState('')
 
     const [product, setProduct] = useState({
         name:'',
@@ -21,18 +20,10 @@ const [newItem,setNewItem] = useState('')
         price:'',
         stock:'',
         category:'',
-        outstanding:false,
         arrayPic:[],
         arrayDescription:[]
     })
-    const [errores, setErrores] = useState('')
-    // const [fileNames, setFileNames] = useState([]);
-
-
-    useEffect(() => {
-
-
-    }, [])
+    const [errores, setErrores] = useState([])
 
     const readInput = e => {
         const value = e.target.value
@@ -57,15 +48,13 @@ const [newItem,setNewItem] = useState('')
         } else {
             alert('Escriba algo antes de agregar otro item')
         }
-
-
-
     }
-
 
     const Validate = async e => {
         e.preventDefault()
+        setErrores([])
         const {name,mark,price,stock,category,arrayPic} = product
+        
         if(name===''||mark===''||price===''||stock===''||category===''||arrayPic.length===0){
             setErrores(['Debe completar todos los campos'])
             return false
@@ -86,6 +75,10 @@ const [newItem,setNewItem] = useState('')
             fdNewProduct.append('urlReview',product.urlReview)
         }
         fdNewProduct.append('stock', stock)
+
+        if(product.outstanding){
+            fdNewProduct.append('outstanding', product.outstanding )
+        }
         fdNewProduct.append('category', category)
         arrayPic.map((pic,i) =>{
             fdNewProduct.append('arrayPics',arrayPic[i])
@@ -95,22 +88,23 @@ const [newItem,setNewItem] = useState('')
             fdNewProduct.append('arrayDescription', arrayFinal[i])
             return false
         })
+    
 
-        const response = await addProduct(fdNewProduct)
+        if(errores.length===0){
+         const response = await addProduct(fdNewProduct)
+         console.log(response)
         if (response && !response.success) {
-            setErrores(response.message)
+            Alert.error('Hubo un error en la carga, intente más tarde')
         } else {
             Alert.success('Producto almacenado exitosamente')
-        }
-
-
+        } }
     }
 
     return (
         <div className="containerAddProducts">
             <div className="formularioProd">
                 <h2>Cargue sus productos</h2>
-                {errores !== '' && <Message type='info' description={errores} style={{ marginBottom: '2vh' }} />}
+               {/*  {errores !== '' && <Message type='info' description={errores} style={{ marginBottom: '2vh' }} />} */}
                 <div className="inputDiv addProductInput">
                     <input type="text" name="name" placeholder="Nombre del producto" onChange={readInput} />
                 </div>
@@ -127,7 +121,7 @@ const [newItem,setNewItem] = useState('')
                     <input type="number" name="stock" placeholder="Cantidad en stock" onChange={readInput} />
                 </div>
                 <select onChange={readInput} label='category' name='category'>
-                    <option value='' name='category' selected >Selecciona categoría</option>
+                    <option value='' name='category' >Selecciona categoría</option>
                     {categories.length !== 0 && categories.map(category => {
                         return (
                             <option value={category.category} name='category' key={category.category}>{category.category}</option>
