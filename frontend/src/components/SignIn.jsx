@@ -6,11 +6,11 @@ import { Link} from 'react-router-dom'
 import { Alert, Message } from 'rsuite';
 import userActions from '../Redux/actions/userActions'
 import '../styles/signIn.css'
-import { useHistory } from "react-router-dom";
-import { Button } from 'rsuite'
+
+
 
 const SignIn = (props) => {
-    let history = useHistory();
+  
     const {  signIn } = props
     const [user, setUser] = useState({})
     const [errores, setErrores] = useState('')

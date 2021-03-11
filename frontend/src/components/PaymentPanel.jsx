@@ -26,6 +26,7 @@ const PaymentPanel = ({emailShopCart,loggedUser,userData,shoppingCart}) => {
 
     const finishPurchase= async () =>{
       const data= await emailShopCart(loggedUser.email,{userData,shoppingCart})
+      console.log(data)
            if(data.email){
              if(data.response){
                 Alert.success('Compra confirmada,revise su casilla de email')
