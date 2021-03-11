@@ -131,7 +131,7 @@ const SingleProduct = (props) => {
                             <h5>Sobre este producto:</h5>
                             <div className="liDescription">
                                 {thisProduct.arrayDescription.map((desc, i) => {
-                                    return <p key={i} className='description'><AiOutlineCheckCircle key={i} className='descriptionItem' />AiOutlineCheckCircle{desc}</p>
+                                    return <p key={i} className='description'><AiOutlineCheckCircle key={i} className='descriptionItem' />{desc}</p>
                                 })}
                             </div>
                         </div>

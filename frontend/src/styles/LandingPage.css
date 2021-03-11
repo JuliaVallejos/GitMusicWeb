@@ -63,7 +63,7 @@
   .hero h1{
     font-size: 3.5em;
     margin-top: 35vh;
-    margin-left: 5vw;
+   
   }
 }
 @media only screen and (max-width:600px) {

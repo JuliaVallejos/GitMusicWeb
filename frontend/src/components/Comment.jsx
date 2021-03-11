@@ -10,7 +10,7 @@ import { Alert } from 'rsuite';
 
 const Comment = ({comment, idProduct, delComment, editComment, loggedUser, messageRef}) => {
 const [visible, setVisible] = useState(false)
-const [updatedComment, setUpdatedComment] = useState('')
+const [updatedComment, setUpdatedComment] = useState(comment.comment)
 
     const sendUpdate =async () =>{
         //action de editar comment

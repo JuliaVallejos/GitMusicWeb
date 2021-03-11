@@ -8,18 +8,19 @@ import { SelectPicker } from 'rsuite'
 
 
 const ProductsByCategory = (props) =>{
-    const {allProducts,shoppingCart} =props
+    const {allProducts,shoppingCart, getProducts} =props
     let history = useHistory();
     const [arrayAll,setArrayAll] = useState([])
     const [newOrder,setNewOrder]= useState([])
     const category = props.match.params.category
     const [arrayCategory,setArrayCategory] = useState([])
     useEffect(()=>{
-        props.getProducts()
-        .then(setArrayAll(allProducts))
+        console.log(props)
+        getProducts()
         setArrayCategory(allProducts.filter(product => product.category === category))
         
     },[category])
+
    useEffect(() => {
        getProm()
    }, [arrayCategory])
