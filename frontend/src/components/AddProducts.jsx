@@ -24,13 +24,6 @@ const AddProducts = (props) => {
         arrayDescription:[]
     })
     const [errores, setErrores] = useState('')
-    // const [fileNames, setFileNames] = useState([]);
-
-
-    useEffect(() => {
-
-
-    }, [])
 
     const readInput = e => {
         const value = e.target.value
@@ -55,11 +48,7 @@ const AddProducts = (props) => {
         } else {
             alert('Escriba algo antes de agregar otro item')
         }
-
-
-
     }
-
 
     const Validate = async e => {
         e.preventDefault()
