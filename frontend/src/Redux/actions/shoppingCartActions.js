@@ -86,7 +86,7 @@ const shoppingCartActions={
           return data.data.response
 
         }else{
-        
+          Alert.error('Hubo un error, intente más tarde')
           return data.data
         }
       }catch(error){

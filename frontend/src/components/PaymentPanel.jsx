@@ -26,18 +26,18 @@ const PaymentPanel = ({emailShopCart,loggedUser,userData,shoppingCart}) => {
 
     const finishPurchase= async () =>{
       const data= await emailShopCart(loggedUser.email,{userData,shoppingCart})
-      console.log(data)
+
            if(data.email){
-             if(data.response){
+           
                 Alert.success('Compra confirmada,revise su casilla de email')
                setNext(true)
                onChange(step + 1)
-            }else{
+           }else{
                Alert.error('Hubo un error, intente más tarde')
             
            }
-    }}
-    console.log(finish)
+  }
+
    return (
        <>
     <div className="containerCartAndPagination">
