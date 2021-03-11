@@ -15,11 +15,12 @@ const ProductsByCategory = (props) =>{
     const category = props.match.params.category
     const [arrayCategory,setArrayCategory] = useState([])
     useEffect(()=>{
+        console.log(props)
         props.getProducts()
-        .then(setArrayAll(allProducts))
         setArrayCategory(allProducts.filter(product => product.category === category))
         
     },[category])
+
    useEffect(() => {
        getProm()
    }, [arrayCategory])
