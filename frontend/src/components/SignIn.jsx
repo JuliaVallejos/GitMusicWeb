@@ -61,7 +61,6 @@ const SignIn = (props) => {
 
     return (
         <>
-        <Button onClick={() => history.goBack()} className="backBtnSignIn">Ir al Inicio</Button>
         <div className="registro">
             <div className="formularioSignIn">
                 <h2>Acceder</h2>

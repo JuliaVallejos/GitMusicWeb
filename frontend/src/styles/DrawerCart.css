@@ -1,11 +1,10 @@
 .showDrawerContainer .rs-drawer-content{ /* panel del drawer */
-  background: linear-gradient(to bottom, rgba(0,0,0,.80), rgba(20, 149, 172, 0.788));
-  box-shadow: 5px 5px 80px rgb(6 135 200 / 80%);
-  border-radius: 2vw;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.788));
+  box-shadow: 5px 5px 80px rgba(182, 182, 182, 0.76);
+
 }
 
 .showDrawerContainer{
-  padding: 3vw;
   background-color: rgba(0, 0, 0, 0.932);
   box-shadow: 2px 5px 20px rgb(0, 0, 0);
 }
@@ -55,9 +54,11 @@ background: rgb(78, 114, 119);
   background-color: rgba(0, 0, 0, 0.45);
   color: white;
   margin: 2vh;
-  padding: 1vw;
+  /* padding: 1vw; */
   border-radius: 0.8vh;
-  box-shadow: 1px 2px 15px 2px rgba(6, 135, 200, 0.801);
+  border: 1px rgba(255, 145, 0, 0.801) solid;
+  box-shadow: 1px 2px 15px 2px rgba(255, 145, 0, 0.637);
+  margin-bottom: 5vh;
 }
 .showDrawerContainer .footerShoppingCart{
   display: flex;
@@ -82,14 +83,14 @@ background: rgb(78, 114, 119);
 }
 
 .showDrawerContainer .totalPrice{
-  color: rgb(65, 235, 22);
+  color: rgb(243, 147, 21) ;
   font-weight: bold;
   padding-left: 1vw;
 }
 
 .showDrawerContainer .descriptionProduct{
-  max-width: 55%;
-  padding: .5vw;
+  min-width: 55%;
+  padding: 0.5vw;
 }
 
 .showDrawerContainer .textProduct{
@@ -103,7 +104,8 @@ background: rgb(78, 114, 119);
   background-position: center;
   width: 45%;
   min-height: 25vh;
-  border-radius:.8vw;
+  padding: 0.5vh;
+  /* border-radius:.8vw; */
 }
 
 .showDrawerContainer .rs-drawer-footer button{
@@ -117,13 +119,14 @@ background: rgb(78, 114, 119);
   transition: 1s ease;
 }
 .showDrawerContainer .rs-drawer-footer .success{
-  background-color: rgb(10, 94, 4) !important;
+  background-color: rgb(0, 143, 179) !important;
   padding: 1.5vh;
   font-size: 1vw;
 }
 .showDrawerContainer .rs-drawer-footer .success:hover{
-  background-color: green !important;
-  transition: 1s ease;
+  background-color: transparent !important;
+  transition: 0.5s ease;
+  border: solid 1px rgb(0, 143, 179);
 }
 /*------------- CategoryDrawer ------------*/
 

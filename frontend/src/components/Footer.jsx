@@ -1,5 +1,9 @@
 import React from 'react'
 import '../styles/Footer.css'
+import { NavLink } from 'react-router-dom';
+import {IoLogoWhatsapp} from 'react-icons/io'
+
+
 
 const Footer = () => {
   return (
@@ -15,7 +19,6 @@ const Footer = () => {
           <AiFillInstagram  className="ico"/>
           <FaFacebookSquare className="ico"/>
         </div> */}
-        
       </div>
     // </div>
   )

@@ -85,7 +85,7 @@ const ListCart = ({setNext,shoppingCart,editProductCart,deleteProductCart,clearC
         </div>
         : (
             <div>
-                <div className="ProductNone"><h4>Aún no tenés productos en el carrito</h4></div>
+                <div className="ProductNone"></div>
             </div>
         )}
     </div>
