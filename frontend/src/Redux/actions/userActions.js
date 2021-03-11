@@ -119,6 +119,7 @@ const userActions = {
   logIn: (user) => {
        return async (dispatch, getState) => {
            const respuesta = await axios.post('https://gitmusicapp.herokuapp.com/api/user/login',user)
+           console.log(respuesta)
            if (!respuesta.data.success) {
              
                return respuesta.data

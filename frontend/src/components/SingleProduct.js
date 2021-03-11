@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import "../styles/SingleProduct.css"
 import { Alert, Button, ButtonToolbar } from 'rsuite';
 import { connect } from 'react-redux';
@@ -14,22 +13,31 @@ import { useHistory } from "react-router-dom";
 const SingleProduct = (props) => {
     const { allProducts, addProductShoppingCart, shoppingCart, ratingProduct, loggedUser } = props
     const id = props.match.params.id
-    const [thisProduct, setThisProduct] = useState([])
+    const [thisProduct, setThisProduct] = useState()
     const [visible, setVisible] = useState(false)
     const [newComment, setComment] = useState('')
     const [index, setIndex] = useState(0)
     const [quantity, setquantity] = useState(1)
     const [rating, setRating] = useState(0)
     let history = useHistory();
+    const messageRef = useRef(null);
 
     useEffect(() => {
+        allProducts.length === 0 && props.history.push('/')
         const product = allProducts.filter(product => product._id === id)
         setThisProduct(product[0])
-        if (thisProduct._id && thisProduct.arrayRating.length !== 0) {
-            const stars = Math.round(thisProduct.arrayRating.reduce((a, b) => (a.value + b.value)) / thisProduct.arrayRating.length)
-            setRating(stars)
+        if (thisProduct && thisProduct._id && thisProduct.arrayRating.length !== 0) {
+            const stars = thisProduct.arrayRating.reduce((a, b) => {
+                return {
+                    value: (a.value + b.value)
+                }
+            }, { value: 0 })
+
+            setRating(Math.round(stars.value / thisProduct.arrayRating.length))
+        } else {
+            setRating(0)
         }
-    }, [allProducts, thisProduct, id])
+    }, [allProducts, thisProduct, loggedUser, id])
 
     const setNumber = (e) => {
         const number = parseInt(e.target.value)
@@ -40,18 +48,27 @@ const SingleProduct = (props) => {
         }
     }
     const handleComments = (e) => {
+        e.preventDefault()
         setComment(e.target.value)
     }
 
     const sendComment = e => {
         e.preventDefault()
-        props.commentProduct({
-            comment: newComment,
-            idProduct: thisProduct._id,
-            idUser: loggedUser.userId
-        })
+        if(newComment.length === 0){
+            Alert.error('Escribe un comentario', 3000)
+        } else {
+            props.commentProduct({
+                comment: newComment,
+                idProduct: thisProduct._id,
+                idUser: loggedUser.userId
+            })
+            setComment('')
+            // messageRef.current.scrollIntoView({ block: 'end', behavior: 'smooth' });
+        }
+
         //mando comment
     }
+
     const enterKey = (e) => {
         if (e.key === 'Enter') {
             //action de mandar nuevo comment
@@ -67,32 +84,33 @@ const SingleProduct = (props) => {
         }
     }
 
-    const rankProduct = (e) => {
+    const rankProduct =  e => {
+        let newRating=e.target.value
+        setRating(e.target.value)
         // Alert.error("Debe estar registrado para rankear",3000)
         const editFilter = thisProduct.arrayRating.filter(value => value.idUser === loggedUser.userId)
-        //en primera vuelta el value llega null ver y corregir 
-        setRating(e.target.value)
+        //en primera vuelta el value llega null ver y corregir
+        
+       
+        console.log(newRating)
           if(editFilter.length !== 0){
             ratingProduct({
                 idProduct: thisProduct._id,
                 idUser: loggedUser.userId,
-                value: rating,
+                value: newRating,
                 edit: true
             })
-        }else{
+        } else {
             ratingProduct({
                 idProduct: thisProduct._id,
                 idUser: loggedUser.userId,
-                value: rating,           
+                value: newRating,           
             })
         }
+     
         Alert.success('Calificaste con ' + e.target.value + ' estrellas!', 4000)
     }
-    if (!thisProduct) {
-        return <h1>Vas a tener q ir a donde hace el fetch</h1>
-    }
-
-    if (thisProduct.length !== 0) {
+    if (thisProduct) {
         return (
             <div className="mainSingleProduct">
                 <Button onClick={() => history.goBack()} className="backNavButton" >{`Ir a ${thisProduct.category}`}</Button>
@@ -100,7 +118,7 @@ const SingleProduct = (props) => {
                     <div className="leftSection">
                         {thisProduct.arrayPic.map((pic, i) => {
                             return (
-                                <div className="lateralPic" onClick={() => setIndex(i)} style={{ width: '12vh', height: '12vh', backgroundImage: `url(${pic})`, backgroundPosition: 'center', backgroundSize: 'cover', borderRadius: '8px' }}>
+                                <div key={i} className="lateralPic" onClick={() => setIndex(i)} style={{ width: '12vh', height: '12vh', backgroundImage: `url(${pic})`, backgroundPosition: 'center', backgroundSize: 'cover', borderRadius: '8px' }}>
                                     {/* <img src={pic} className="lateralPic" alt='' onClick={()=>setIndex(i)}></img>  */}
                                 </div>
                             )
@@ -108,12 +126,12 @@ const SingleProduct = (props) => {
                         )}
                     </div>
                     <div className="middleSection">
-                        <div style={{ backgroundImage: `url(${thisProduct.arrayPic[index]})`, backgroundPosition: 'center', backgroundSize: 'cover', borderRadius: '8px' }}></div>
+                        <div className="picContainer" style={{ backgroundImage: `url(${thisProduct.arrayPic[index]})`}}></div>
                         <div className="descriptionContainer">
                             <h5>Sobre este producto:</h5>
                             <div className="liDescription">
-                                {thisProduct.arrayDescription.map(desc => {
-                                    return <p className='description'><AiOutlineCheckCircle className='descriptionItem' />AiOutlineCheckCircle{desc}</p>
+                                {thisProduct.arrayDescription.map((desc, i) => {
+                                    return <p key={i} className='description'><AiOutlineCheckCircle key={i} className='descriptionItem' />{desc}</p>
                                 })}
                             </div>
                         </div>
@@ -134,54 +152,79 @@ const SingleProduct = (props) => {
                     <div className="rightSection">
                         <p className="singleProductName">{thisProduct.name}</p>
                         <p className="singleTextBlue">Marca: {thisProduct.mark}</p>
-                        <p className="singleTextBlue">Hay {thisProduct.stock} unidades disponibles!</p>
+                        <p className="singleTextBlue">Hay {thisProduct.stock} {thisProduct.stock === 1 ? "unidad" : "unidades"} en stock!</p>
                         <p>Valoración:</p>
-                        <div>{[...Array(5)].map((m, i) => {
+
+
+                        {!loggedUser ? <div>{[...Array(5)].map((m, i) => {
                             const ratingValue = i + 1
                             return (
-                                <label key={i}>
-                                    <input
-                                        className="starInput"
-                                        type="radio"
-                                        name="rating"
-                                        value={ratingValue}
-                                        onClick={rankProduct}
-                                    />
-                                    <BsFillStarFill className="star" color={(ratingValue <= rating) ? '#ffc107' : '#8C8C8C'} />
-                                </label>
+                                <BsFillStarFill className="star" style={{ cursor: 'default' }} color={(ratingValue <= rating) ? '#ffc107' : '#8C8C8C'} />
                             )
-                        })}</div>
+                        })}</div> :
+                            <div>{[...Array(5)].map((m, i) => {
+                                const ratingValue = i + 1
+                                return (
+                                    <label key={i}>
+                                        <input
+                                            className="starInput"
+                                            type="radio"
+                                            name="rating"
+                                            value={ratingValue}
+                                            onClick={rankProduct}
+                                        />
+                                        <BsFillStarFill className="star" color={(ratingValue <= rating) ? '#ffc107' : '#8C8C8C'} />
+                                    </label>
+                                )
+                            })}</div>}
                         <p style={{}}>Garantía de {thisProduct.warranty} meses!</p>
                         <p style={{ fontSize: '2vw', fontWeight: 'bolder', color: 'rgb(20 170 52)' }}>$ {thisProduct.price}</p>
                         <div className='numberInput'>
                             <input type='number' className='number' min='1' onChange={setNumber} value={quantity} />
                         </div>
-                            <div className="inputDiv">
-                                <input type="text" name="content" onKeyDown={enterKey} placeholder={props.loggedUser ? 'Comenta aquí.' : 'Inicia seccion para comentar.'} className="commentInput" onChange={handleComments} value={newComment}  autoComplete="off" />
-                                {!props.loggedUser ? alert('logeate para comentar') : <MdSend className="commentIcon" onClick={sendComment}  />}
-                                
-                        {thisProduct.arrayComments.length !== 0 ? <p className="singleSimpleText cursor" onClick={() => setVisible(!visible)}>{visible ? 'Ocultar comentarios' : 'Ver comentarios'} ({thisProduct.arrayComments.length})</p> : <p className="singleSimpleText">Aún no hay comentarios</p>}
-                        {visible && (
+                        <div className="inputDiv">
+                            {thisProduct.arrayComments.length !== 0 ? <p className="singleSimpleText cursor" onClick={() => setVisible(!visible)}>{visible ? 'Ocultar comentarios' : 'Ver comentarios'} ({thisProduct.arrayComments.length})</p> : <p onClick={() => setVisible(!visible)} className="singleSimpleText">Aún no hay comentarios</p>}
+                            {visible && (
                             <div>
-                                <div className="comments">
-                                    {thisProduct.arrayComments.map(comment => <Comment idProduct={thisProduct._id} comment={comment} />)}
+                            {thisProduct.arrayComments.length ? 
+                                <div className="comments" >
+                                    {thisProduct.arrayComments.map(comment => 
+                                        <Comment idProduct={thisProduct._id} comment={comment}/>
+                                    )}
                                 </div>
-                                <div className="inputDiv">
-                                    <input type="text" name="content" onKeyDown={enterKey} placeholder={'condicionar el placeholder u ocultar el input'} className="commentInput" onChange={handleComments} value={newComment} autoComplete="off" />
+                                :
+                                <div className="comments" style={{display: 'flex', alignItems: 'center',
+                                justifyContent: 'center'}}>
+                                    <h5>Sé el primero en comentar.</h5>
+                                </div>
+                                }
+                                <div className="inputDiv" onClick={() => !loggedUser ? Alert.error('Ingresa a tu cuenta para comentar.', 4000): '' }>
+                                    <input type="text" name="content" onKeyDown={enterKey} placeholder={!loggedUser ? 'Ingresa a tu cuenta para comentar.' : 'Deja tu comentario.' } className="commentInput" onChange={handleComments} value={newComment} autoComplete="off" disabled={!loggedUser ? true : false} /> 
                                     <MdSend className="commentIcon" onClick={sendComment} />
                                 </div>
                             </div>
                         )}
-                        <ButtonToolbar className="singleButtons">
-                            <Button color="cyan" className="singleButton" block onClick={addToCart}>Añadir al carrito</Button>
-                        </ButtonToolbar>
+                            <ButtonToolbar className="singleButtons">
+                                <Button color="cyan" className="singleButton" block onClick={addToCart}>Añadir al carrito</Button>
+                            </ButtonToolbar>
+                        </div>
+                    </div>
+                    <div className="whatsapp">
+                        <a href='https://api.whatsapp.com/send?phone=+5493584403782' className='navLinksWhatsapp'>
+                            <div className="imgWhatsapp"></div>
+                            <p>Alguna pregunta? Estamos para ayudarte.</p>
+                        </a>
                     </div>
                 </div>
             </div>
-            </div>
         )
-    } else {
-        return (<h1>loading</h1>)
+    }
+    else {
+
+        return (
+            <h1>Somos la mejor elección!</h1>
+
+        )
     }
 }
 const mapStateToProps = state => {

@@ -50,7 +50,7 @@ const UserDetails = (props) => {
     }else if(imageValue && filesExtension.some(file=>imageValue.name.includes(file))){
       const response=await props.modifyUser(formData)
     }else{
-      props.modifyUser(formData)
+     props.modifyUser(formData)
       alert ('formato de imagen no permitido')
     }
 }

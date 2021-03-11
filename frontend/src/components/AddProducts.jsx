@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import {Link} from 'react-router-dom'
-import {  Alert, Message } from 'rsuite';
+import { Link } from 'react-router-dom'
+import { Alert, Message } from 'rsuite';
 import { useHistory } from "react-router-dom";
 import DropFiles from './DropFiles'
-import '../styles/addProducts.css' 
+import '../styles/addProducts.css'
+
 import productActions from '../Redux/actions/productActions';
 
 
@@ -14,7 +15,6 @@ const {addProduct,categories } = props
 const [itemsDescription,setItemsDescription] = useState([])
 const [newItem,setNewItem] = useState('')
 
-   
     const [product, setProduct] = useState({
         name:'',
         mark:'',
@@ -27,13 +27,13 @@ const [newItem,setNewItem] = useState('')
     })
     const [errores, setErrores] = useState('')
     // const [fileNames, setFileNames] = useState([]);
-    
+
 
     useEffect(() => {
-        
-      
-    },[])
-    
+
+
+    }, [])
+
     const readInput = e => {
         const value = e.target.value
         const property = e.target.name
@@ -43,23 +43,23 @@ const [newItem,setNewItem] = useState('')
         })
     }
 
-    const addItemDescription = (e) =>{
-        const value=e.target.value
-            setNewItem(value)
+    const addItemDescription = (e) => {
+        const value = e.target.value
+        setNewItem(value)
     }
-  
-    const addLine = () =>{
-        
-        if(newItem!==''){
-            setItemsDescription([...itemsDescription,newItem.trim()])
+
+    const addLine = () => {
+
+        if (newItem !== '') {
+            setItemsDescription([...itemsDescription, newItem.trim()])
             setNewItem('')
-      
-        }else{
+
+        } else {
             alert('Escriba algo antes de agregar otro item')
         }
-       
-      
-        
+
+
+
     }
 
 
@@ -91,24 +91,23 @@ const [newItem,setNewItem] = useState('')
             fdNewProduct.append('arrayPics',arrayPic[i])
             return false
         })
-        arrayFinal.map((item,i)=>{
-            fdNewProduct.append('arrayDescription',arrayFinal[i])
+        arrayFinal.map((item, i) => {
+            fdNewProduct.append('arrayDescription', arrayFinal[i])
             return false
         })
-        
+
         const response = await addProduct(fdNewProduct)
         if (response && !response.success) {
-                setErrores(response.message)
-        }else{
+            setErrores(response.message)
+        } else {
             Alert.success('Producto almacenado exitosamente')
         }
- 
-        
+
+
     }
- 
+
     return (
         <div className="containerAddProducts">
-            <button onClick={() => history.goBack()} className="backBtnCategory">Volver al Inicio</button>
             <div className="formularioProd">
                 <h2>Cargue sus productos</h2>
                 {errores !== '' && <Message type='info' description={errores} style={{ marginBottom: '2vh' }} />}
@@ -127,26 +126,26 @@ const [newItem,setNewItem] = useState('')
                 <div className="inputDiv addProductInput">
                     <input type="number" name="stock" placeholder="Cantidad en stock" onChange={readInput} />
                 </div>
-               <select  onChange={readInput} label='category' name='category'>
-                <option value='' name='category' selected >Selecciona categoría</option>
-                   {categories.length !== 0 && categories.map(category =>{
-                       return( 
-                           <option value={category.category} name='category' key={category.category}>{category.category}</option>
-                       )
-                   })}
-               </select>
-               <label className='outstanding' onChange={readInput} name='outstanding'>¿Es producto destacado?
+                <select onChange={readInput} label='category' name='category'>
+                    <option value='' name='category' selected >Selecciona categoría</option>
+                    {categories.length !== 0 && categories.map(category => {
+                        return (
+                            <option value={category.category} name='category' key={category.category}>{category.category}</option>
+                        )
+                    })}
+                </select>
+                <label className='outstanding' onChange={readInput} name='outstanding'>¿Es producto destacado?
                    <div className='radios'>
-                       <div className="inputRadio"><input name='outstanding' type='radio' value={true}/>Si</div>
-                        <div className="inputRadio"><input name='outstanding' type='radio' value={false}/>No</div>
-                   </div>
-                
+                        <div className="inputRadio"><input name='outstanding' type='radio' value={true} />Si</div>
+                        <div className="inputRadio"><input name='outstanding' type='radio' value={false} />No</div>
+                    </div>
+
                 </label>
                 <div className="inputDiv addProductInput">
                     <input type="uri" name="urlReview" placeholder="Ingrese un link de alguna reseña o video relacionado(opcional)" onChange={readInput} />
                 </div>
-                   <DropFiles product={product} setProduct={setProduct}/>
-                
+                <DropFiles product={product} setProduct={setProduct} />
+
                 <div className="inputDiv">
                     <h3 style={{color:'white'}}>Descripción</h3>
             
@@ -176,7 +175,7 @@ const [newItem,setNewItem] = useState('')
                 {errores&& errores.map((error, i) =>{
                     return <p key={i+'e'}>{error}</p>
                 })}
-                
+
 
             </div>
         </div>
@@ -185,11 +184,11 @@ const [newItem,setNewItem] = useState('')
 
 const mapStateToProps = state => {
     return {
-        categories:state.product.categories
+        categories: state.product.categories
     }
 }
 const mapDispatchToProps = {
-    addProduct:productActions.addProduct
+    addProduct: productActions.addProduct
 }
-export default connect(mapStateToProps,mapDispatchToProps)(AddProducts)
+export default connect(mapStateToProps, mapDispatchToProps)(AddProducts)
 

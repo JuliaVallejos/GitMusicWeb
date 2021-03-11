@@ -20,11 +20,14 @@ import CartList from './components/ListCart'
 import ForgotPassword from './components/ForgotPassword'
 import ResetPassword from './components/ResetPassword'
 import ListCartAndPaginate from './components/ListCartAndPaginate'
+import SearchPage from './components/SearchPage'
 
 
 
 
 function App(props) {
+
+
   if(props.loggedUser){
     if(localStorage.getItem('shoppingCart')){
       props.preservedShoppingCart(localStorage.getItem('shoppingCart'))
@@ -33,7 +36,7 @@ function App(props) {
     <>
       <Switch>
         <Route exact path='/' component={LandingPage}/>
-        <Route path='/products/:category' component={ProductsByCategory}/>
+        <Route exact path='/products/:category' component={ProductsByCategory}/>
         <Route path='/userdetails'component={UserDetails}/>
         <Route path='/shippingAddress'component={ShippingAddress}/>
         <Route path='/billingAddress'component={BillingAddress}/>
@@ -43,6 +46,8 @@ function App(props) {
         <Route path='/paymentPanel'component={PaymentPanel}/>
         <Route path='/cartlist'component={ListCartAndPaginate}/> 
         <Route path='/product/:id' component={SingleProduct}/>
+        <Route path='/products/searchProducts/:search' component={SearchPage}/>
+        
         <Redirect to ="/"/>
       </Switch>
     </>
@@ -56,12 +61,13 @@ function App(props) {
     <>
         <Switch>
           <Route exact path='/' component={LandingPage}/>
-          <Route path='/products/:category' component={ProductsByCategory}/>
+          <Route exact path='/products/:category' component={ProductsByCategory}/>
           <Route path='/registerUser' component={RegisterUser}/>
           <Route path='/addProducts' component={AddProducts}/>
           <Route path='/product/:id' component={SingleProduct}/>
           <Route path='/forgotpassword' component={ForgotPassword}/>
           <Route path='/resetpassword/:token' component={ResetPassword}/>
+          <Route path='/products/searchProducts/:search' component={SearchPage}/>
 
           <Redirect to="/"/>
         </Switch>

@@ -1,15 +1,17 @@
 import '../styles/NavBar.css'
-import { NavLink } from 'react-router-dom'
+import { NavLink,Link } from 'react-router-dom'
 import { AiFillGithub } from 'react-icons/ai'
 import { FaUserCircle } from 'react-icons/fa'
 import { FaMusic } from 'react-icons/fa'
 import ViewCategoryDrawer from './ViewCategoryDrawer'
 import { connect } from 'react-redux'
 import userActions from '../Redux/actions/userActions'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { FiMenu } from 'react-icons/fi';
+import {Input,InputGroup,Icon,Alert} from 'rsuite'
 
 const NavBar = ({ loggedUser, signOut }) => {
+  const [search,setSearch] = useState('')
   const [nav, setNav] = useState(true)
 
   const openNav = () => {
@@ -22,10 +24,22 @@ const NavBar = ({ loggedUser, signOut }) => {
   return (
     <nav className="navHeader">
       <FiMenu className="burger" onClick={openNav} />
+      
       <div className={nav ? "navMenu" : "navMenu activeNav"}>
+        
         <div className="header">
+          <div className='contactTel'>¡Contactanos! (+54) 9 3584 40-3782 <Icon  icon="whatsapp" /></div>
+        <InputGroup className="searchInput">
+            <Input onChange={(value)=>setSearch(value)} placeholder='Búsqueda por nombre'/>
+            <InputGroup.Addon onClick={()=>setSearch('')}  >
+              <Link to={search!==''?`/products/searchProducts/${search}`:'#'}>
+                <Icon  icon="search" />
+              </Link>
+            </InputGroup.Addon>
+        </InputGroup>
+        <div className='linksHeader'>
           <NavLink onClick={openNav} exact to='/' className='navLinks'>
-            Home
+            Inicio
           </NavLink>
           <NavLink onClick={openNav} exact to='/addProducts' className='navLinks'>
             Agregar Productos
@@ -34,23 +48,31 @@ const NavBar = ({ loggedUser, signOut }) => {
             Mi cuenta
           </NavLink>
           {loggedUser && <p className='navLinks signOut' onClick={byeBye}>Cerrar sesión</p>}
-
+          </div>
         </div>
       </div>
+      <InputGroup className="searchInputResponsive">
+            <Input onChange={(value)=>setSearch(value)} placeholder='Búsqueda por nombre'/>
+            <InputGroup.Addon onClick={()=>setSearch('')}  >
+              <Link to={search!==''?`/products/searchProducts/${search}`:'#'}>
+                <Icon  icon="search" />
+              </Link>
+            </InputGroup.Addon>
+        </InputGroup>
       <div className="navBar">
+    
         <div className='navBarLogo'>
           <ViewCategoryDrawer />
-          <AiFillGithub className="navGithub" />
+          <Link to='/'>
+          <AiFillGithub style={{color:"white"}} className="navGithub" />
           <FaMusic className="navMusicIcon" />
+          </Link>
         </div>
-        {/* <NavLink to='/singleproduct' className='navLinks'>
-            Product
-          </NavLink> */}
         <div className='links'>
-          <NavLink to={loggedUser ? 'userdetails' : '/registerUser'} className='navLinks'>
+          <NavLink to={loggedUser ? 'userdetails' : '/registerUser'} className='navLinks navUser'>
             {!loggedUser ? <FaUserCircle className="iconUser" /> :
               (
-              <div className="userLoggedNav">
+              <div style={{cursor:'pointer'}} className="userLoggedNav">
                 <div className="userPic" style={{ backgroundImage: `url(${loggedUser.pic})`, backgroundPosition: 'center', backgroundSize: 'cover' ,borderRadius:'50px'}}>
                 </div>
                 <span style={{color:'white',textDecoration:'none'}}>{loggedUser.firstName} {loggedUser.lastName}</span>

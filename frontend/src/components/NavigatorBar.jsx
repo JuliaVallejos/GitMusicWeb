@@ -17,11 +17,10 @@ const [visible, setVisible] =useState(false)
              )}
             
             </div>
-                   {visible && (<div className="dropdown-content">Click para saber más!</div>)}
+                {visible && (<div className="dropdown-content">Click para saber más!</div>)}
         </nav>
     )
 }
-
 const mapStateToProps = state =>{
        return{
            categories:state.product.categories

@@ -8,6 +8,7 @@ import ListCart from './ListCart'
 import '../styles/ListCard.css'
 import '../styles/ShippingAddress.css'
 import gif from '../assets/Graciasporsucompra.gif'
+import gifCarrito from '../assets/cart.gif'
 import shoppingCartActions from '../Redux/actions/shoppingCartActions'
 import { NavLink } from 'react-router-dom';
 
@@ -25,15 +26,16 @@ const PaymentPanel = ({emailShopCart,loggedUser,userData,shoppingCart}) => {
 
     const finishPurchase= async () =>{
       const data= await emailShopCart(loggedUser.email,{userData,shoppingCart})
-           if(data.response){
-            Alert.success('Compra confirmada')
-            setNext(true)
-            onChange(step + 1)
-           }else{
+           if(data.email){
+             if(data.response){
+                Alert.success('Compra confirmada,revise su casilla de email')
+               setNext(true)
+               onChange(step + 1)
+            }else{
                Alert.error('Hubo un error, intente más tarde')
             
            }
-    }
+    }}
     console.log(finish)
    return (
        <>
@@ -61,8 +63,6 @@ const PaymentPanel = ({emailShopCart,loggedUser,userData,shoppingCart}) => {
                     <div className="buttonNav" style={{marginTop:'4vh'}}>
                       <button className="enviar navLink" onClick={onPrevious}>Volver</button>
                       <button onClick={onNext} className="enviar navLink ">Confirmar</button>
-                     
-                      
                     </div>
                   </div>
                   :step && step === 3 ?
@@ -77,17 +77,23 @@ const PaymentPanel = ({emailShopCart,loggedUser,userData,shoppingCart}) => {
                   <div className="stateTimeLine" >
                     <img className="gif" src={gif} alt=""/>
                     <NavLink to="/" className="enviar navLink " style={{fontSize:'1.3vw',fontWeight:'bold'}}>Ver mas productos</NavLink>
-                    <h5>Recibirá un email con los datos de su compra</h5>
                   </div>
                   : 
                   <div className="stateTimeLine">
-                  <ListCart setNext={setNext} />
-                  <div className="buttonNav" style={{marginTop:'4vh'}}>
-                  <NavLink to="/" className="enviar navLink " style={{fontSize:'1vw',fontWeight:'bold'}}>Salir</NavLink>
-                    <button onClick={onNext} className="enviar navLink ">Confirmar</button>
-                   
-                    
-                  </div>
+                    {shoppingCart.length !== 0 ?
+                    <div>
+                    <ListCart setNext={setNext} />
+                    <div className="buttonNav" style={{marginTop:'4vh'}}>
+                    <NavLink to="/" className="enviar navLink " style={{fontSize:'1vw',fontWeight:'bold'}}>Salir</NavLink>
+                      <button onClick={onNext} className="enviar navLink ">Confirmar</button>
+                    </div>
+                    </div>
+                    : <div className="productNone">
+                      <h2>Carrito vacío.</h2>
+                      <img className="gif" src={gifCarrito} alt=""/>
+                      <NavLink to="/" className="enviar navLink " style={{fontSize:'1.3vw',fontWeight:'bold'}}>Comenzar a Comprar</NavLink>
+                    </div>  }
+
               </div>}
             </div>
         </div>
@@ -104,6 +110,7 @@ const mapStateToProps = state =>{
   }
 }
 const mapDispatchToProps= {
-emailShopCart:shoppingCartActions.emailShopCart
+      emailShopCart:shoppingCartActions.emailShopCart
 }
+
 export default connect(mapStateToProps,mapDispatchToProps)(PaymentPanel)

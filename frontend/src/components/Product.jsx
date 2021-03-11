@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 import shoppingCartActions from '../Redux/actions/shoppingCartActions'
 import {Alert} from 'rsuite'
 import { useHistory } from "react-router-dom";
+import { BsFillStarFill } from 'react-icons/bs'
 
 const Product = ({product,addProductShoppingCart,shoppingCart}) =>{
 
@@ -29,14 +30,27 @@ const Product = ({product,addProductShoppingCart,shoppingCart}) =>{
         </Link>
           {/* -- Price View */}
         <div className="cardBottom">
-          <h4 className='productTitle'>{product.name}</h4>            
+          <div className='productTitle'>
+            <h5>{product.name}</h5>
+          </div>
           <div className='productPrice'>
-              <h6>{`$${product.price}`}</h6>
-              <div onMouseOver={()=>setAdd(true)} onMouseOut={()=>setAdd(false)} onClick={()=>addProductCart(product)} className='iconCart'>
-                <FaShoppingCart/>
-                {/* {add&&<div className='toolTip'><p className='add'>Agregar al carrito</p></div>} */}
+            <div className='priceContainer'>
+                <h6>{`$${product.price}`}</h6>
+                <div onMouseOver={()=>setAdd(true)} onMouseOut={()=>setAdd(false)} onClick={()=>addProductCart(product)} className='iconCart'>
+                  <FaShoppingCart/>
+                  {/* {add&&<div className='toolTip'><p className='add'>Agregar al carrito</p></div>} */}
+              </div>
             </div>
-            <div>{add&&<p className='add'>Agregar al carrito</p>}</div>
+            <div className='addContainer'>{add&&<p className='add'>Agregar al carrito</p>}</div>
+           
+          </div>
+          <div >{[...Array(5)].map((m, i) => {
+                            const ratingValue = i + 1
+                          
+                            return (    
+                                    <BsFillStarFill  color={(ratingValue <= product.rating) ? '#ffc107' : '#8C8C8C'} />
+                            )
+              })}
           </div>
         </div>
       </div>
