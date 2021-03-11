@@ -44,7 +44,7 @@ const NavBar = ({ loggedUser, signOut }) => {
           <FaMusic className="navMusicIcon" />
         </div>
         <div className='links'>
-          <NavLink to={loggedUser ? 'userdetails' : '/registerUser'} className='navLinks'>
+          <NavLink to={loggedUser ? 'userdetails' : '/registerUser'} className='navLinks navUser'>
             {!loggedUser ? <FaUserCircle className="iconUser" /> :
               (
               <div className="userLoggedNav">
