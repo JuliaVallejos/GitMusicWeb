@@ -115,7 +115,7 @@ addProduct: async (req,res) =>{
       const addComment=await Product.findOneAndUpdate(
         {_id:idProduct},
         { $push: {'arrayComments': {idUser:idUser,comment:comment}}},{new:true}).populate('arrayComments.idUser')
-      if(addComment){
+        if(addComment){
         res.json({success:true, response:addComment})
       }else{
         res.json({success:false, error:"Error while modifying in database."})
