@@ -64,7 +64,56 @@
     height: 60%;
     border-radius: 8px 8px 0px 0px;
     background-color: white;
+    position: relative;
 }
+
+.overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	transition: .5s ease;
+	background-color: #f3f3f3c0;
+  }
+  
+  .productPic:hover .overlay {
+	opacity: 1;
+  }
+  
+  .lupa {
+	background-image: url(../assets/lupa.png);
+	width: 6vw;
+	height: 12.1vh;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	text-align: center;
+  }
+
+  .lupa:hover {
+	background-image: url(../assets/lupa.png);
+	width: 7vw;
+	height: 14vh;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	text-align: center;
+    transition: .3s ease;
+  }
 .productPrice{
     width:100%;
     display:flex;
