@@ -115,6 +115,22 @@
     padding:6%;
     margin:auto;
     margin-top: 6%;
+    background-image:url("../assets/bata.jpg");
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width:60vw;
+    height:30vh;
+
+
+}
+.noResults p{
+    background-color:rgb(12,12,12);
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+
 
 }
 .cardBottom{
@@ -126,14 +142,15 @@
 }
 
 
-.backBtnCategory{
+
+/* .backBtnCategory{
     width: 12.5vw;
     background-color: #1572b4;
     color: whitesmoke;
     margin: 0.2vw;
     box-shadow: 5px 5px 20px rgba(6, 135, 200, 0.801);
     border: 2px solid rgba(6, 135, 200, 0.801);
-}
+} */
 /*RESPONSIVE*/
 @media only screen and (max-width:600px) {
      .productsList{

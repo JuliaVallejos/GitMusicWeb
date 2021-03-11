@@ -23,20 +23,21 @@ const SingleProduct = (props) => {
     let history = useHistory();
 
     useEffect(() => {
+        allProducts.length === 0 && props.history.push('/')
         const product = allProducts.filter(product => product._id === id)
         setThisProduct(product[0])
-        if (thisProduct&& thisProduct._id && thisProduct.arrayRating.length !== 0) {
-            const stars =thisProduct.arrayRating.reduce((a,b) =>{  
+        if (thisProduct && thisProduct._id && thisProduct.arrayRating.length !== 0) {
+            const stars = thisProduct.arrayRating.reduce((a, b) => {
                 return {
-                value: (a.value+ b.value)
+                    value: (a.value + b.value)
                 }
-            }, {value: 0})
+            }, { value: 0 })
 
-        setRating(Math.round(stars.value/thisProduct.arrayRating.length))
-        }else{
+            setRating(Math.round(stars.value / thisProduct.arrayRating.length))
+        } else {
             setRating(0)
         }
-    }, [allProducts, thisProduct,loggedUser,id])
+    }, [allProducts, thisProduct, loggedUser, id])
 
     const setNumber = (e) => {
         const number = parseInt(e.target.value)
@@ -73,29 +74,27 @@ const SingleProduct = (props) => {
             addProductShoppingCart({ idProduct: id, quantity, product: thisProduct })
         }
     }
-
     const rankProduct = (e) => {
         // Alert.error("Debe estar registrado para rankear",3000)
         const editFilter = thisProduct.arrayRating.filter(value => value.idUser === loggedUser.userId)
         //en primera vuelta el value llega null ver y corregir 
         setRating(e.target.value)
-          if(editFilter.length !== 0){
+        if (editFilter.length !== 0) {
             ratingProduct({
                 idProduct: thisProduct._id,
                 idUser: loggedUser.userId,
                 value: rating,
                 edit: true
             })
-        }else{
+        } else {
             ratingProduct({
                 idProduct: thisProduct._id,
                 idUser: loggedUser.userId,
-                value: rating,           
+                value: rating,
             })
         }
         Alert.success('Calificaste con ' + e.target.value + ' estrellas!', 4000)
     }
-
     if (thisProduct) {
         return (
             <div className="mainSingleProduct">
@@ -116,7 +115,7 @@ const SingleProduct = (props) => {
                         <div className="descriptionContainer">
                             <h5>Sobre este producto:</h5>
                             <div className="liDescription">
-                                {thisProduct.arrayDescription.map((desc,i) => {
+                                {thisProduct.arrayDescription.map((desc, i) => {
                                     return <p key={i} className='description'><AiOutlineCheckCircle key={i} className='descriptionItem' />AiOutlineCheckCircle{desc}</p>
                                 })}
                             </div>
@@ -138,71 +137,66 @@ const SingleProduct = (props) => {
                     <div className="rightSection">
                         <p className="singleProductName">{thisProduct.name}</p>
                         <p className="singleTextBlue">Marca: {thisProduct.mark}</p>
-                        <p className="singleTextBlue">Hay {thisProduct.stock} {thisProduct.stock===1?"unidad":"unidades"} en stock!</p>
+                        <p className="singleTextBlue">Hay {thisProduct.stock} {thisProduct.stock === 1 ? "unidad" : "unidades"} en stock!</p>
                         <p>Valoración:</p>
 
-                        
+
                         {!loggedUser ? <div>{[...Array(5)].map((m, i) => {
                             const ratingValue = i + 1
-                            return (    
-                                    <BsFillStarFill className="star" style={{cursor:'default'}} color={(ratingValue <=rating) ? '#ffc107' : '#8C8C8C'} />
-                            )
-                        })}</div>:
-                        <div>{[...Array(5)].map((m, i) => {
-                            const ratingValue = i + 1
                             return (
-                                <label key={i}>
-                                    <input
-                                        className="starInput"
-                                        type="radio"
-                                        name="rating"
-                                        value={ratingValue}
-                                        onClick={rankProduct}
-                                    />
-                                    <BsFillStarFill className="star" color={(ratingValue <= rating) ? '#ffc107' : '#8C8C8C'} />
-                                </label>
+                                <BsFillStarFill className="star" style={{ cursor: 'default' }} color={(ratingValue <= rating) ? '#ffc107' : '#8C8C8C'} />
                             )
-                        })}</div>}
+                        })}</div> :
+                            <div>{[...Array(5)].map((m, i) => {
+                                const ratingValue = i + 1
+                                return (
+                                    <label key={i}>
+                                        <input
+                                            className="starInput"
+                                            type="radio"
+                                            name="rating"
+                                            value={ratingValue}
+                                            onClick={rankProduct}
+                                        />
+                                        <BsFillStarFill className="star" color={(ratingValue <= rating) ? '#ffc107' : '#8C8C8C'} />
+                                    </label>
+                                )
+                            })}</div>}
                         <p style={{}}>Garantía de {thisProduct.warranty} meses!</p>
                         <p style={{ fontSize: '2vw', fontWeight: 'bolder', color: 'rgb(20 170 52)' }}>$ {thisProduct.price}</p>
                         <div className='numberInput'>
                             <input type='number' className='number' min='1' onChange={setNumber} value={quantity} />
                         </div>
-                            <div className="inputDiv">
-                                <input type="text" name="content" onKeyDown={enterKey} placeholder={props.loggedUser ? 'Comenta aquí.' : 'Inicia seccion para comentar.'} className="commentInput" onChange={handleComments} value={newComment}  autoComplete="off" />
-                                {!props.loggedUser ? alert('logeate para comentar') : <MdSend className="commentIcon" onClick={sendComment} />}
-                                
-                        {thisProduct.arrayComments.length !== 0 ? <p className="singleSimpleText cursor" onClick={() => setVisible(!visible)}>{visible ? 'Ocultar comentarios' : 'Ver comentarios'} ({thisProduct.arrayComments.length})</p> : <p className="singleSimpleText">Aún no hay comentarios</p>}
-                        {visible && (
-                            <div>
-                                <div className="comments">
-                                    {thisProduct.arrayComments.map((comment,i) => <Comment key={i} idProduct={thisProduct._id} comment={comment} />)}
+                        <div className="inputDiv">
+                            <input type="text" name="content" onKeyDown={enterKey} placeholder={props.loggedUser ? 'Dejanos tu comentario' : 'Inicia sesión para comentar.'} className="commentInput" onChange={handleComments} value={newComment} autoComplete="off" />
+                            {!props.loggedUser ? alert('Inicia sesión para comentar') : <MdSend className="commentIcon" onClick={sendComment} />}
+
+                            {thisProduct.arrayComments.length !== 0 ? <p className="singleSimpleText cursor" onClick={() => setVisible(!visible)}>{visible ? 'Ocultar comentarios' : 'Ver comentarios'} ({thisProduct.arrayComments.length})</p> : <p className="singleSimpleText">Aún no hay comentarios</p>}
+                            {visible && (
+                                <div>
+                                    <div className="comments">
+                                        {thisProduct.arrayComments.map((comment, i) => <Comment key={i} idProduct={thisProduct._id} comment={comment} />)}
+                                    </div>
+                                    <div className="inputDiv">
+                                        <input type="text" name="content" onKeyDown={enterKey} placeholder={'condicionar el placeholder u ocultar el input'} className="commentInput" onChange={handleComments} value={newComment} autoComplete="off" />
+                                        <MdSend className="commentIcon" onClick={sendComment} />
+                                    </div>
                                 </div>
-                                <div className="inputDiv">
-                                    <input type="text" name="content" onKeyDown={enterKey} placeholder={'condicionar el placeholder u ocultar el input'} className="commentInput" onChange={handleComments} value={newComment} autoComplete="off" />
-                                    <MdSend className="commentIcon" onClick={sendComment} />
-                                </div>
-                            </div>
-                        )}
-                        <ButtonToolbar className="singleButtons">
-                            <Button color="cyan" className="singleButton" block onClick={addToCart}>Añadir al carrito</Button>
-                        </ButtonToolbar>
+                            )}
+                            <ButtonToolbar className="singleButtons">
+                                <Button color="cyan" className="singleButton" block onClick={addToCart}>Añadir al carrito</Button>
+                            </ButtonToolbar>
+                        </div>
                     </div>
                 </div>
             </div>
-            </div>
         )
-    } else {
-       
+    }
+    else {
+
         return (
-            <div style={{display:'flex',flexDirection:'column',alignItems:'center'}} className="productsByCategory">
-                 <div>
-                    <h2>Por favor regrese a la Home</h2>
-                    <button onClick={()=>props.history.push('/')}>Volver</button>
-                </div>
-                
-            </div>
-            
+            <h1>Somos la mejor elección!</h1>
+
         )
     }
 }

@@ -25,7 +25,7 @@ const NavBar = ({ loggedUser, signOut }) => {
       <div className={nav ? "navMenu" : "navMenu activeNav"}>
         <div className="header">
           <NavLink onClick={openNav} exact to='/' className='navLinks'>
-            Home
+            Inicio
           </NavLink>
           <NavLink onClick={openNav} exact to='/addProducts' className='navLinks'>
             Agregar Productos

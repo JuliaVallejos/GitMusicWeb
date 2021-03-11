@@ -75,14 +75,16 @@ const ProductsByCategory = (props) =>{
     return(
         <div className='productsByCategory'>
             <div className='categoryHeader'>
-                <h4 className='categoryTitle'>{category}</h4>
+                <h4 className='categoryTitle'>{category.toUpperCase()}</h4>
                 <SelectPicker  className='order' placeholder='Ordenar Por' searchable={false} data={options} onChange={(value) =>sortArray(value)} >
 
                 </SelectPicker>
               
             </div>
             <div className='productsList'>
-                {arrayCategory.length===0&& <div className='noResults'><h6>No hay productos en esta categoría</h6></div>}
+                {arrayCategory.length===0&& <div className='noResults'>
+                    <p>No hay productos en esta categoría</p>
+                    </div>}
         {
             (newOrder.length!==0?newOrder:arrayCategory).map((product, i) =>{
                 return (

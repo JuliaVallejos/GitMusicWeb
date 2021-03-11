@@ -310,6 +310,12 @@
 .descriptionContainer{
   overflow: auto;
 }
+.redirectSingleProduct {
+  cursor: pointer;
+}
+.btnRedirect {
+  border-radius: none; 
+}
 }
 @media only screen and (max-width:600px) {
 /* .mainSingleProduct{
