@@ -28,8 +28,13 @@ const NavBar = ({ loggedUser, signOut }) => {
       <div className={nav ? "navMenu" : "navMenu activeNav"}>
         
         <div className="header">
-          <div className='contactTel'>¡Contactanos! (+54) 9 3584 40-3782 <Icon  icon="whatsapp" /></div>
-        <InputGroup className="searchInput">
+        <div className="contactTel">
+                        <a href='https://api.whatsapp.com/send?phone=+5493584403782'>
+                            <p className="contactP">¡Contactanos! (+54) 9 3584 40-3782 </p>
+                            <div className="imgWhatsappHeader"></div>
+                        </a>
+                    </div>
+          <InputGroup className="searchInput">
             <Input onChange={(value)=>setSearch(value)} placeholder='Búsqueda por nombre'/>
             <InputGroup.Addon onClick={()=>setSearch('')}  >
               <Link to={search!==''?`/products/searchProducts/${search}`:'#'}>
@@ -38,13 +43,13 @@ const NavBar = ({ loggedUser, signOut }) => {
             </InputGroup.Addon>
         </InputGroup>
         <div className='linksHeader'>
-          <NavLink onClick={openNav} exact to='/' className='navLinks'>
+          <NavLink onClick={openNav} exact to='/' className='navLinks' style={{ textDecoration: 'none' }}>
             Inicio
           </NavLink>
-          <NavLink onClick={openNav} exact to='/addProducts' className='navLinks'>
+          <NavLink onClick={openNav} exact to='/addProducts' className='navLinks'style={{ textDecoration: 'none' }}>
             Agregar Productos
           </NavLink>
-          <NavLink onClick={openNav} to={loggedUser ? '/userdetails' : '/registerUser'} className='navLinks'>
+          <NavLink onClick={openNav} to={loggedUser ? '/userdetails' : '/registerUser'} className='navLinks' style={{ textDecoration: 'none' }}>
             Mi cuenta
           </NavLink>
           {loggedUser && <p className='navLinks signOut' onClick={byeBye}>Cerrar sesión</p>}
@@ -55,7 +60,7 @@ const NavBar = ({ loggedUser, signOut }) => {
             <Input onChange={(value)=>setSearch(value)} placeholder='Búsqueda por nombre'/>
             <InputGroup.Addon onClick={()=>setSearch('')}  >
               <Link to={search!==''?`/products/searchProducts/${search}`:'#'}>
-                <Icon  icon="search" />
+                <Icon clasName="iconSearch" icon="search" />
               </Link>
             </InputGroup.Addon>
         </InputGroup>
