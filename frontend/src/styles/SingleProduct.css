@@ -246,6 +246,34 @@
     height: 0;
     border-radius: 12px;
   }
+
+  .navLinksWhatsapp {
+    display: flex;
+    width: 81%;
+    height: 10vh;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2vw;
+    border: solid 2px green;
+    text-decoration: none !important;
+    border-radius: 5px;
+    padding: 0.5vw;
+  }
+
+  .navLinksWhatsapp p {
+    color: green;
+    font-size: 1.2vw;
+  }
+
+  .imgWhatsapp {
+    background-image: url('../assets/whatsapp.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: 8vh;
+    width: 4vw;
+  }
+
   
   .video-responsive iframe {
     left: 0;
@@ -310,6 +338,11 @@
 .descriptionContainer{
   overflow: auto;
 }
+.navLinksWhatsapp p {
+  color: green;
+  font-size: 2vw;
+}
+
 }
 @media only screen and (max-width:600px) {
 /* .mainSingleProduct{
@@ -321,6 +354,12 @@
 .mainSingleContainer{
   align-items: center;
 }
+
+.navLinksWhatsapp p {
+  color: green;
+  font-size: 2.5vw;
+}
+
 }
 
 

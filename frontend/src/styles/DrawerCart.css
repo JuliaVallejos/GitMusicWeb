@@ -1,7 +1,7 @@
 .showDrawerContainer .rs-drawer-content{ /* panel del drawer */
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.788));
   box-shadow: 5px 5px 80px rgba(182, 182, 182, 0.76);
-  /* border: solid 2px rgb(255, 115, 0); */
+
 }
 
 .showDrawerContainer{
@@ -89,8 +89,8 @@ background: rgb(78, 114, 119);
 }
 
 .showDrawerContainer .descriptionProduct{
-  max-width: 55%;
-  padding: .5vw;
+  min-width: 55%;
+  padding: 0.5vw;
 }
 
 .showDrawerContainer .textProduct{
