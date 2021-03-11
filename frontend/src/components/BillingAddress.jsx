@@ -34,7 +34,6 @@ const BillingAddress = ({setNext,completeUserData,userData}) => {
             return false
          }
         const data = await completeUserData("billingAddress",billingAddress)
-       console.log(data)
        if(data.saved){
         Alert.success('Datos guardados')
         setNext(true)

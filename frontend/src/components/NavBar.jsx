@@ -46,7 +46,11 @@ const NavBar = ({ loggedUser, signOut }) => {
         <div className='links'>
           <NavLink to={loggedUser ? 'userdetails' : '/registerUser'} className='navLinks'>
             {!loggedUser ? <FaUserCircle className="iconUser" /> :
-              (<div className="userPic" style={{ backgroundImage: `url(.${loggedUser.pic})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
+              (
+              <div className="userLoggedNav">
+                <div className="userPic" style={{ backgroundImage: `url(${loggedUser.pic})`, backgroundPosition: 'center', backgroundSize: 'cover' ,borderRadius:'50px'}}>
+                </div>
+                <span style={{color:'white',textDecoration:'none'}}>{loggedUser.firstName} {loggedUser.lastName}</span>
               </div>
               )}
           </NavLink>

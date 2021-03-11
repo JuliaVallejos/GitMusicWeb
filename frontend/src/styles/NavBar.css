@@ -61,11 +61,17 @@
   height: 7vh;
 }
 .userPic{
-  width: 5vw;
-  height: 7vh;
+  min-width: 50px;
+  min-height: 50px;
 }
 .signOut{
   cursor: pointer;
+}
+.userLoggedNav{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: default;
 }
 @media only screen and (max-width:600px) {
   .hero{
@@ -118,7 +124,7 @@
   .hero h1{
     font-size: 1.5em;
   }
-
+  .userLoggedNav{
+    display: none;
+  }
 }
-
-

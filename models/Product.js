@@ -17,7 +17,7 @@ const ProductSchema = new mongoose.Schema({
   price:{type: Number, required:true},
   stock:{type: Number, required:true},
   warranty:{type: Number, required:false, default:1},
-  urlReview:{type: String, required:true, default:'https://www.youtube.com/embed/-e_3Cg9GZFU'},
+  urlReview:{type: String, required:false, default:'https://www.youtube.com/embed/Mm9Z3pvjS0E'},
   arrayPic:[String],
   arrayRating:[ratingSchema],
   arrayComments:[commentSchema],

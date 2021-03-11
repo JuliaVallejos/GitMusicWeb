@@ -14,9 +14,6 @@ import { NavLink } from 'react-router-dom';
 
 
 const PaymentPanel = ({emailShopCart,loggedUser,userData,shoppingCart}) => {
-
-
-  console.log(userData)
     const [next,setNext] = useState(false)
     const [finish,setFinish] = useState(false)
     const [step, setStep] = useState(0);
@@ -30,14 +27,15 @@ const PaymentPanel = ({emailShopCart,loggedUser,userData,shoppingCart}) => {
     const finishPurchase= async () =>{
       const data= await emailShopCart(loggedUser.email,{userData,shoppingCart})
            if(data.email){
-            Alert.success('Compra confirmada,revise su casilla de email')
-            setNext(true)
-            onChange(step + 1)
-           }else{
+             if(data.response){
+                Alert.success('Compra confirmada,revise su casilla de email')
+               setNext(true)
+               onChange(step + 1)
+            }else{
                Alert.error('Hubo un error, intente más tarde')
             
            }
-    }
+    }}
     console.log(finish)
    return (
        <>
@@ -112,6 +110,7 @@ const mapStateToProps = state =>{
   }
 }
 const mapDispatchToProps= {
-emailShopCart:shoppingCartActions.emailShopCart
+      emailShopCart:shoppingCartActions.emailShopCart
 }
+
 export default connect(mapStateToProps,mapDispatchToProps)(PaymentPanel)

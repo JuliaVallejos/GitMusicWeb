@@ -61,10 +61,6 @@ const SignIn = (props) => {
 
     return (
         <>
-<<<<<<< HEAD
-=======
-     
->>>>>>> f1eb8a268e9e2f57946f4d5d9f56b557eafec706
         <div className="registro">
             <div className="formularioSignIn">
                 <h2>Acceder</h2>

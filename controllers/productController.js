@@ -1,4 +1,5 @@
 const Product = require('../models/Product')
+const imgbbUploader = require("imgbb-uploader");
 
 const productController = {
   //obtener todos los productos//
@@ -14,47 +15,45 @@ const productController = {
 },
 addProduct: async (req,res) =>{
   const {name,category,type,mark,price,stock,warranty,urlReview,arrayRating,arrayComments,arrayDescription,arrayVisits,outstanding} = req.body
-  const {arrayPic}=req.files
-     const newProduct = new Product({name,category,type,mark,price,stock,warranty,urlReview,arrayPic,arrayRating,arrayComments,arrayDescription,arrayVisits,outstanding})
+  const {arrayPics}=req.files
+     const newProduct = new Product({name,category,type,mark,price,stock,warranty,urlReview,arrayPic:[],arrayRating,arrayComments,arrayDescription,arrayVisits,outstanding})
      try{
-         if(arrayPic.name){
-           if(arrayPic.mimetype.indexOf('image/jpg')!==0&&arrayPic.mimetype.indexOf('image/jpeg')!==0&&arrayPic.mimetype.indexOf('image/png')!==0&&arrayPic.mimetype.indexOf('image/bmp')!==0)
+          arrayPics.map(async(pic,i) =>{
+         if(pic.mimetype.indexOf('image/jpg')!==0&&pic.mimetype.indexOf('image/jpeg')!==0&&pic.mimetype.indexOf('image/png')!==0&&pic.mimetype.indexOf('image/bmp')!==0)
          {
             return res.json({success:false,error:"El formato de la imagen tiene que ser JPG,JPEG,BMP ó PNG."})
          }
-         const extPic=arrayPic.name.split('.',2)[1]
-         arrayPic.mv(`${__dirname}/../frontend/public/assets/productsPics/${arrayPic.md5}.${extPic}`,error =>{
-           if(error){
-             console.log(error)
-              return res.json({success:false,error:"Intente nuevamente..."})
-           }
-        })
-        newProduct.arrayPic=[...newProduct.arrayPic,`./assets/productsPics/${arrayPic.md5}.${extPic}`]
-         }else{
-         arrayPic.map(pic =>{
-         if(pic.mimetype.indexOf('image/jpg')!==0&&pic.mimetype.indexOf('image/png')!==0&&pic.mimetype.indexOf('image/bmp')!==0)
-         {
-            return res.json({success:false,error:"El formato de la imagen tiene que ser JPG,JPEG,BMP ó PNG."})
-         }
+         //../client/build/userPics
          const extPic=pic.name.split('.',2)[1]
-         ///../client/build/usersPics/
-         pic.mv(`${__dirname}/../frontend/public/assets/productsPics/${pic.md5}.${extPic}`,error =>{
+         const pathLocal=`${__dirname}/../client/build/productPics/${pic.md5}.${extPic}`
+         pic.mv(`${__dirname}/../client/build/productPics/${pic.md5}.${extPic}`,error =>{
             if(error){
-              console.log(error)
                return res.json({success:false,error:"Intente nuevamente..."})
             }
          })
-         newProduct.arrayPic=[...newProduct.arrayPic,`./assets/productsPics/${pic.md5}.${extPic}`]
-       })
-      }
-       const addedProduct = await newProduct.save()
-       if(addedProduct){
-         res.json({success:true, response: addedProduct})
-       }else{
-         res.json({success:false,response:'Error in save'})
-       } 
+         try {
+          const response= await imgbbUploader(process.env.IMGBB_KEY,pathLocal,)
+          urlPhoto=response.url
+          if(response){
+            var savePhoto=await newProduct.arrayPic.push(urlPhoto)
+            if(savePhoto&&newProduct.arrayPic.length>2){
+              try {
+                const addedProduct = await newProduct.save()
+                if(addedProduct){
+                  return res.json({success:true, response: addedProduct})
+                }else{
+                  return res.json({success:false,response:'Error in save'})
+                } 
+              } catch (error) {
+                return res.json({success:false, error:"Erro: "+error})
+              }}
+          }
+         } catch (error) {
+            return res.json({success:false, error:"Error al subir la foto al servidor: "+error})
+         }
+        })
      }catch(error){ 
-       res.json({success:false,error})} 
+        return res.json({success:false,error:"catch :"+error})} 
    },
   //agregar producto//
   addProductAdmin: async (req,res) =>{
@@ -68,7 +67,6 @@ addProduct: async (req,res) =>{
         res.json({success:false,response:'Error in save'})
       } 
     }catch(error){ 
-      console.log(error) 
       res.json({success:false,error})} 
   },
   // borrar producto //
@@ -116,7 +114,7 @@ addProduct: async (req,res) =>{
     try {
       const addComment=await Product.findOneAndUpdate(
         {_id:idProduct},
-        { $push: {'arrayComments': {idUser:idUser,comment:comment}}},{new:true})
+        { $push: {'arrayComments': {idUser:idUser,comment:comment}}},{new:true}).populate('arrayComments.idUser')
       if(addComment){
         res.json({success:true, response:addComment})
       }else{
@@ -131,7 +129,7 @@ addProduct: async (req,res) =>{
     try {
       const delComment=await Product.findOneAndUpdate(
         {_id:idProduct},
-        { $pull: {'arrayComments': {_id:idComment}}},{new:true})
+        { $pull: {'arrayComments': {_id:idComment}}},{new:true}).populate('arrayComments.idUser')
       if(delComment){
         res.json({success:true, response:delComment})
       }else{
@@ -144,9 +142,9 @@ addProduct: async (req,res) =>{
   editComment:async(req,res)=>{
     const {idComment,comment}=req.body
     try {
-      const editComment=await Product.updateOne(
+      const editComment=await Product.findOneAndUpdate(
         {'arrayComments._id':idComment},
-        { '$set': {'arrayComments.$.comment':comment}},{new:true})
+        { '$set': {'arrayComments.$.comment':comment}},{new:true}).populate('arrayComments.idUser')
       if(editComment){
         res.json({success:true, response:editComment})
       }else{

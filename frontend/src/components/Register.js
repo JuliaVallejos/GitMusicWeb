@@ -30,7 +30,6 @@ const Register = (props) => {
         })
     }
     const Validate = async () => {
-        console.log(newUser)
 
         if (newUser.firstName === '' || newUser.lastName === '' || newUser.email === '' || newUser.password === '' || newUser.country === '') {
             Alert.error('Todos los campos son requeridos')
@@ -46,7 +45,6 @@ const Register = (props) => {
         fdNewUser.append('google', newUser.google)
 
         const res = await signUp(fdNewUser)
-        console.log(res)
         if (res && !res.success) {
             res.response.map(error => {
                 failedInputs[error.label] = error.message
@@ -67,7 +65,6 @@ const Register = (props) => {
                 password: `Aa${response.profileObj.googleId}`,
                 google: 'true'
             })
-          
         }
     }
     

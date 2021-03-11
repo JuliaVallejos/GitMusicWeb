@@ -10,24 +10,20 @@ import productActions from '../Redux/actions/productActions';
 
 
 const AddProducts = (props) => {
-    let history = useHistory();
-    const { addProduct, categories } = props
-    const [itemsDescription, setItemsDescription] = useState([])
-    const [newItem, setNewItem] = useState()
-
+let history = useHistory();
+const {addProduct,categories } = props
+const [itemsDescription,setItemsDescription] = useState([])
+const [newItem,setNewItem] = useState('')
 
     const [product, setProduct] = useState({
-        name: '',
-        mark: '',
-        price: '',
-        warranty: '',
-        stock: '',
-        category: '',
-        urlReview: '',
-        outstanding: false,
-        arrayPic: [],
-        arrayDescription: []
-
+        name:'',
+        mark:'',
+        price:'',
+        stock:'',
+        category:'',
+        outstanding:false,
+        arrayPic:[],
+        arrayDescription:[]
     })
     const [errores, setErrores] = useState('')
     // const [fileNames, setFileNames] = useState([]);
@@ -69,27 +65,30 @@ const AddProducts = (props) => {
 
     const Validate = async e => {
         e.preventDefault()
-        const { name, mark, price, warranty, urlReview, stock, category, arrayPic } = product
-        if (name === '' || mark === '' || price === '' || warranty === '' || stock === '' || category === '' || arrayPic.length === 0) {
+        const {name,mark,price,stock,category,arrayPic} = product
+        if(name===''||mark===''||price===''||stock===''||category===''||arrayPic.length===0){
             setErrores(['Debe completar todos los campos'])
             return false
+        }  
+        var arrayFinal=[...itemsDescription]
+        if(newItem && newItem.trim()!==''&&itemsDescription.indexOf(newItem.trim())===-1){
+           arrayFinal= [...itemsDescription,newItem.trim()]
         }
-        var arrayFinal = [...itemsDescription]
-        if (newItem.trim() !== '' && itemsDescription.indexOf(newItem.trim()) === -1) {
-            arrayFinal = [...itemsDescription, newItem.trim()]
-        }
-        console.log(arrayFinal)
-
+    
         const fdNewProduct = new FormData()
         fdNewProduct.append('name', name)
         fdNewProduct.append('mark', mark)
         fdNewProduct.append('price', price)
-        fdNewProduct.append('warranty', warranty)
-        fdNewProduct.append('urlReview', urlReview)
+        if(product.warranty && product.warranty!==''){
+            fdNewProduct.append('warranty', product.warranty)
+        }
+        if(product.urlReview && product.urlReview!==''){
+            fdNewProduct.append('urlReview',product.urlReview)
+        }
         fdNewProduct.append('stock', stock)
         fdNewProduct.append('category', category)
-        arrayPic.map((pic, i) => {
-            fdNewProduct.append('arrayPic', arrayPic[i])
+        arrayPic.map((pic,i) =>{
+            fdNewProduct.append('arrayPics',arrayPic[i])
             return false
         })
         arrayFinal.map((item, i) => {
@@ -98,7 +97,6 @@ const AddProducts = (props) => {
         })
 
         const response = await addProduct(fdNewProduct)
-        console.log(response)
         if (response && !response.success) {
             setErrores(response.message)
         } else {
@@ -149,33 +147,33 @@ const AddProducts = (props) => {
                 <DropFiles product={product} setProduct={setProduct} />
 
                 <div className="inputDiv">
-                    <h3 style={{ color: 'white' }}>Descripción</h3>
-
-                    <div className='addDescription'>
-                        <input type="text" value={newItem} name='description' placeholder="Descripción(una oración por línea)" onChange={addItemDescription} />
-                    </div>
-                    {itemsDescription.map(item => {
-                        return (
-                            <div className='itemsDescription'>
-                                <div>
-                                    <h5>{item}</h5>
-                                </div>
-                                <button className='removeLine' name={item} onClick={(e) => setItemsDescription(itemsDescription.filter(item => item !== e.target.name))}>Borrar</button>
-                            </div>)
-                    })
-                    }
-
-                </div>
-                <div className='buttons'>
-                    <button onClick={addLine} className='btn'>Agregar otra descripción</button>
-                    <button className="btn" onClick={Validate}>Confirmar producto</button>
-                </div>
-                <Link to='/'>
-                    <button className='btn'>Volver al Inicio</button>
-                </Link>
-
-                {errores && errores.map((error, i) => {
-                    return <p key={i + 'e'}>{error}</p>
+                    <h3 style={{color:'white'}}>Descripción</h3>
+            
+                <div className='addDescription'>
+                 <input type="text" value={newItem} name='description' placeholder="Descripción(una oración por línea)" onChange={addItemDescription}/>
+                 </div>
+            {itemsDescription.map(item =>{
+                   return( 
+                   <div className='itemsDescription'>
+                       <div>
+                       <h5>{item}</h5>
+                       </div>
+                       <button className='removeLine' name={item} onClick={(e)=>setItemsDescription(itemsDescription.filter(item=> item!==e.target.name))}>Borrar</button>
+                       </div>)
+                })
+            }
+                
+            </div>
+            <div className='buttons'>
+                <button onClick={addLine} className='btn'>Agregar otra descripción</button>
+                <button className="btn" onClick={(e)=>Validate(e)}>Confirmar producto</button>
+            </div>
+            <Link to='/'>
+            <button className='btn'>Volver al Inicio</button>
+            </Link>
+           
+                {errores&& errores.map((error, i) =>{
+                    return <p key={i+'e'}>{error}</p>
                 })}
 
 

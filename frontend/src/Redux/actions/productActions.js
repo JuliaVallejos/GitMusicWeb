@@ -29,14 +29,12 @@ const productActions = {
   },
     addProduct: (fdNewProduct) =>{
       return async (dispatch, getState) =>{
-    
       try{
           const response = await axios.post('https://gitmusicapp.herokuapp.com/api/products', fdNewProduct,{
             headers:{
               'Content-Type':'multipart/form-data'
             }
           })
-          console.log(response)
           if(response.data.success){  
             dispatch({type: "NEW_PRODUCT",payload: response.data.response})}
             return response.data
@@ -70,7 +68,6 @@ const productActions = {
       }
     },
     updateComment: update => {
-      console.log(update)
       const {idComment, comment} = update
       return async (dispatch, getState) => {
         try{

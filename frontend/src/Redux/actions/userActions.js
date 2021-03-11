@@ -49,7 +49,6 @@ const userActions = {
      return async (dispatch, getState) =>{
        try{
          const response = await axios.post('https://gitmusicapp.herokuapp.com/api/user/signup', newUser)
-         console.log(response)
          if(response.data.success===false){
            var errors=[]
            response.data.errores && response.data.errores.details.map(error=>{
@@ -132,15 +131,18 @@ const userActions = {
 
 
    modifyUser: (formData) => {
-     console.log(formData)
     return async (dispatch, getState) => {
+      try {
         const response = await axios.post(`https://gitmusicapp.herokuapp.com/api/userDetails`, formData, {
             headers: { 
                 'Content-Type': 'multipart/form-data' 
             }
         })
-        dispatch({type: 'MODIFY_USER', payload: response.data})
-        console.log(response.data)
+        dispatch({type: 'MODIFY_USER', payload: response.data.response})
+        return({success:true})
+      } catch (error) {
+        return({success:false,response:error})
+      }
     }
 },
     completeUserData:(property,newData) =>{
@@ -156,7 +158,6 @@ const userActions = {
          return async (dispatch, getState) => {
      try{
        const respuesta = await axios.post('https://gitmusicapp.herokuapp.com/api/user/requestresetpass',{email})
-      console.log(respuesta)
        if (!respuesta.data.success) {
            Alert.error(`${respuesta.data.response}`,5000)
            return respuesta
@@ -194,9 +195,6 @@ const userActions = {
        }      
       }
    },
-
-
-   
  }
  
  export default userActions
