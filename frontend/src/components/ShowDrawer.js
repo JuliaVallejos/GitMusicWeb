@@ -60,22 +60,23 @@ class ShowDrawer extends Component {
             </Drawer.Body>
             <Drawer.Footer>
               <div className="footerShoppingCart">
-                <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:'70%'}}>
+                <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:'100%'}}>
                   {
                     this.props.shoppingCart.length!==0 && this.props.shoppingCart.map((product)=>{
                       total+=(product.quantity*product.product.price)
                     })
                   }
-                  <Button onClick={this.props.clearCart} className="button clearCart" appearance="subtle">
+                  <Button onClick={this.props.clearCart} >
                   Vaciar <FaShoppingCart style={{paddingLeft:'.5vw',fontSize:'30px'}} />
                   </Button>
                   <span className="totalCart">Total:<span className="totalPrice">${total}</span></span>
-                </div>
-                <div>
-                  <Link onClick={goToCart} to='/paymentPanel'>
-                    <Button className="button success" appearance="primary">Comprar</Button>
+                  <div>
+                  <Link style={{textDecoration:'none'}} onClick={goToCart} to='/paymentPanel'>
+                    <Button >Comprar</Button>
                   </Link>
                 </div>
+                </div>
+                
               </div>
             </Drawer.Footer>
           </Drawer>
