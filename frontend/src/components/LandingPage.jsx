@@ -10,6 +10,11 @@ import productActions from '../Redux/actions/productActions'
 const LandingPage = ({ getProducts, loggedUser }) => {
 
   useEffect(() => {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    })
     getProducts()
   }, [])
 

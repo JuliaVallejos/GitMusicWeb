@@ -88,7 +88,7 @@ const AddProducts = (props) => {
             fdNewProduct.append('arrayDescription', arrayFinal[i])
             return false
         })
-        console.log(errores)
+    
 
         if(errores.length===0){
          const response = await addProduct(fdNewProduct)

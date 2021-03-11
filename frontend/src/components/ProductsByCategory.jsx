@@ -3,14 +3,12 @@ import {connect} from 'react-redux'
 import {useState,useEffect} from 'react'
 import Product from './Product'
 import productActions from '../Redux/actions/productActions'
-import { useHistory } from "react-router-dom";
 import { SelectPicker,Loader } from 'rsuite'
 
 
 const ProductsByCategory = (props) =>{
-    const {allProducts,shoppingCart, getProducts} =props
+    const {allProducts,getProducts} =props
     const [loader,setLoader] = useState(true)
-    const [arrayAll,setArrayAll] = useState([])
     const [newOrder,setNewOrder]= useState([])
     const category = props.match.params.category
     const [arrayCategory,setArrayCategory] = useState([])
@@ -20,18 +18,24 @@ const ProductsByCategory = (props) =>{
     },[category])
 
    useEffect(() => {
+    window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      })
        getProm()
-   }, [arrayCategory])
+   }, [allProducts])
 
    const getData=async()=>{
     setArrayCategory((await getProducts()).filter(product => product.category === category))
+ 
     setLoader(false)
    }
     
    useEffect(() => {
        getProm()
    }, [arrayCategory])
-   console.log(loader)
+
     const getProm =() =>{
         if(arrayCategory.length!==0){
             let rating = 0
@@ -52,6 +56,9 @@ const ProductsByCategory = (props) =>{
     const sortArray = (value) =>{    
         let newOrder=[]
         const order=value
+        if(!order){
+            newOrder=[...arrayCategory.sort((a,b) => b.name- a.name)]
+        }
         switch(order){
             case 'most_rating':
                 newOrder = [...arrayCategory.sort((a,b) => b.rating - a.rating)]
@@ -66,12 +73,12 @@ const ProductsByCategory = (props) =>{
                 newOrder=[...arrayCategory.sort((a,b) => a.price - b.price)]
                 break
             default:  
-                newOrder=allProducts.filter(product => product.category === category)
+               newOrder=[...arrayCategory]
             }
+           
     setNewOrder(newOrder)
     }
     const options =[
-        {value:'', label:'Más recientes'},
         { value:'most_rating', label:'Mayor valoración'},
         { value:'less_rating', label:'Menor valoración'},
         { value:'most_price', label:'Mayor precio'},

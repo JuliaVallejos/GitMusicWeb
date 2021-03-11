@@ -3,18 +3,15 @@ import {connect} from 'react-redux'
 import {useState,useEffect} from 'react'
 import Product from './Product'
 import productActions from '../Redux/actions/productActions'
-import { useHistory } from "react-router-dom";
 import {Loader,SelectPicker} from 'rsuite'
 
 
 const SearchPage = (props) =>{
-     const [loader,setLoader] = useState(true)
+    
     const search = props.match.params.search
     const {allProducts,getProducts} =props
-    let history = useHistory();
-    const [arrayAll,setArrayAll] = useState([])
+    const [loader,setLoader] = useState(true)
     const [newOrder,setNewOrder]= useState([])
-    const category = props.match.params.category
     const [arrayFilter,setArrayFilter] = useState([])
 
     useEffect(()=>{
@@ -22,11 +19,9 @@ const SearchPage = (props) =>{
     },[search])
 
    const getData=async()=>{
-       if(allProducts.length!==0){
-        setArrayFilter(allProducts.filter(product=> product.name.toUpperCase().trim().indexOf(search.toUpperCase())!==-1))
-       }else{
+      
     setArrayFilter((await getProducts()).filter(product=> product.name.toUpperCase().trim().indexOf(search.toUpperCase())!==-1))
-       }setLoader(false)
+       setLoader(false)
    }
 
    useEffect(() => {
@@ -52,7 +47,10 @@ const SearchPage = (props) =>{
     const sortArray = (value) =>{    
         let newOrder=[]
         const order=value
-        console.log(order)
+        if(!order){
+            newOrder=[...arrayFilter.sort((a,b) => a.name- b.name)]    
+        }
+        console.log(newOrder)
         switch(order){
             case 'most_rating':
                 newOrder = [...arrayFilter.sort((a,b) => b.rating - a.rating)]
@@ -68,13 +66,13 @@ const SearchPage = (props) =>{
                 break
 
             default:  
-                newOrder=allProducts.filter(product=> product.name.toUpperCase().trim().indexOf(search.toUpperCase())!==-1)
+                newOrder=[...arrayFilter]
             }
-        
+ 
     setNewOrder(newOrder)
     }
     const options =[
-        {value:'', label:'Más recientes'},
+      
         { value:'most_rating', label:'Mayor valoración'},
         { value:'less_rating', label:'Menor valoración'},
         { value:'most_price', label:'Mayor precio'},
