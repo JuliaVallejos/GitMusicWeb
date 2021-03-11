@@ -39,6 +39,7 @@
   top: 0;
   color: rgb(47, 140, 187); 
 }
+
 .links {
   display: flex;
   justify-content: center;
@@ -47,6 +48,7 @@
   font-size: 1.1rem;
 }
 .header{
+  padding:0 2%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -56,6 +58,19 @@
   height: 5vh;
   border-bottom: solid 2px rgba(245, 245, 245, 0.349);
 }
+
+.searchInput{
+  width:25vw!important;
+  height:4vh;
+  margin: 0 auto;
+  border-radius: 7px!important;
+ 
+
+}
+.searchInputResponsive{
+  display: none!important;
+  justify-self: flex-start;
+  }
 .iconUser {
   width: 5vw;
   height: 7vh;
@@ -84,12 +99,17 @@
   #root{
     overflow-x: hidden;
   }
+  .productsByCategory{
+    padding-top: 5vh;
+  }
   .burger {
-    display: block;
+    display: flex;
+    height: 100%;
     font-size: 2rem;
     /* margin: 3px 0; */
     position: absolute;
-    top: 35%;
+    align-self: center;
+   
     right: 3rem;
     color:white;
     cursor:pointer
@@ -115,20 +135,43 @@
   }
   .navMenu div{
     flex-direction: column-reverse;
+    height: fit-content;
+    margin-top: 5vh;
   }
   .activeNav{
     transform: translateX(0%);
   }
- .header{
+ div.header{
+   display: flex;
+   flex-direction: column-reverse;
   /* flex-direction: row!important; */
   justify-content: center;
   height: 20vh;
   width: auto;
+  
   }
   .hero h1{
     font-size: 1.5em;
   }
+  .links{
+    display: none;
+  }
+  .linksHeader{
+    display: flex;
+    flex-direction: column-reverse;
+  }
   .userLoggedNav{
     display: none;
+  }
+  .searchInput{
+  display: none!important;
+   
+  }
+  .contactTel{
+    display:none
+  }
+  .searchInputResponsive{
+    display:block;
+  
   }
 }
