@@ -9,7 +9,12 @@ import '../styles/signIn.css'
 
 const Register = (props) => {
     const { signUp,googleSignUp } = props
-    const [newUser, setNewUser] = useState({google: 'false'})
+    const [newUser, setNewUser] = useState({
+        firstName:'',
+        lastName:'',
+        email:'',
+        password:'',
+        google: 'false'})
     const [errorObj, setErrorObj] = useState({})
     const [hidden, setHidden] = useState(true)
 
@@ -17,7 +22,8 @@ const Register = (props) => {
         firstName: null,
         lastName: null,
         email: null,
-        password: null
+        password: null,
+        useremailExist:null
     }
 
     const readInput = e => {
@@ -46,6 +52,7 @@ const Register = (props) => {
 
         const res = await signUp(fdNewUser)
         if (res && !res.success) {
+            console.log(res)
             res.response.map(error => {
                 failedInputs[error.label] = error.message
                 return false
@@ -80,25 +87,25 @@ const Register = (props) => {
                 <h2>Registrarse</h2>
                 <h4>Creá una nueva cuenta hoy para tener los beneficios de una experiencia de compra personalizada.</h4>
                 <div className="inputDiv">
-                    <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="firstName" placeholder="Ingrese su nombre" onChange={readInput} />
                     <small>{errorObj.firstName}</small>
+                    <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="firstName" placeholder="Ingrese su nombre" onChange={readInput} />
                 </div>
                 <div className="inputDiv">
-                    <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="lastName" placeholder="Ingrese su apellido" onChange={readInput} />
                     <small>{errorObj.lastName}</small>
+                    <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="lastName" placeholder="Ingrese su apellido" onChange={readInput} />
                 </div>
                 <div className="inputDiv">
+                    <small>{errorObj.email || errorObj.useremailExist}</small>
                     <input onKeyPress={enterKeyboard} type="text" autoComplete="nope" name="email" placeholder="Ingrese su dirección de correo electrónico" onChange={readInput} />
-                    <small>{errorObj.email}</small>
                 </div>
                 <div className="inputDiv"> 
-                <small>Url de foto de perfil</small>
+                    <small>Url de foto de perfil</small>
                     <input name='fileUrlPic' type='file' placeholder='Url de foto de perfil' onChange={readInput} />
                 </div>
                 <div className="inputDiv">
+                    <small>{errorObj.password}</small>
                     <input onKeyPress={enterKeyboard} type={hidden ? "password" : " text"} name="password" placeholder="Ingrese su contraseña" onChange={readInput} />
                     < FaEye className="eye" onClick={() => setHidden(!hidden)} />
-                    <small>{errorObj.password}</small>
                 </div>
                 <button className="enviar" onClick={Validate}>Registrarse</button>
                 <GoogleLogin

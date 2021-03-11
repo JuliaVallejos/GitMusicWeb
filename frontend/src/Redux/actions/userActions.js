@@ -68,6 +68,9 @@ const userActions = {
                case 'country':
                  errors.push({label:error.context.label,message:"Debes seleccionar algun país."})
                  break;
+              case 'useremailExist':
+                  errors.push({label:error.context.label,message:"La derección de mail ya está registrada"})
+                 break;
                 default:
                 return false
              }

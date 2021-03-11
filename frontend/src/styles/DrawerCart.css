@@ -1,7 +1,11 @@
 .showDrawerContainer .rs-drawer-content{ /* panel del drawer */
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.788));
+  background: rgba(0, 0, 0, 0.561);
   box-shadow: 5px 5px 80px rgba(182, 182, 182, 0.76);
 
+}
+
+.rs-drawer-content {
+  background: rgba(0, 0, 0, 0.561);
 }
 
 .showDrawerContainer{
@@ -56,8 +60,8 @@ background: rgb(78, 114, 119);
   margin: 2vh;
   /* padding: 1vw; */
   border-radius: 0.8vh;
-  border: 1px rgba(255, 145, 0, 0.801) solid;
-  box-shadow: 1px 2px 15px 2px rgba(255, 145, 0, 0.637);
+  border: 2.5px rgba(255, 145, 0, 0.801) solid;
+  box-shadow: 1px 2px 15px 2px rgba(224, 224, 224, 0.459);
   margin-bottom: 5vh;
 }
 .showDrawerContainer .footerShoppingCart{
@@ -206,4 +210,44 @@ background: rgb(78, 114, 119);
 .showDrawerContainer .clearCart:hover{
   background-color: rgb(163, 17, 17) !important;
   transition: .5s ease;
+}
+
+@media only screen and (max-width:600px) {
+.rs-drawer-left.rs-drawer-sm, .rs-drawer-right.rs-drawer-sm {
+  width: 90% !important;
+}
+
+.showDrawerContainer .rs-drawer-content{ /* panel del drawer */
+  background: rgba(0, 0, 0, 0.561);
+  box-shadow: 5px 5px 80px rgba(182, 182, 182, 0.76);
+  width: 100%;
+
+}
+.rs-input .quantityValue{
+  background-color: red;
+  padding:0
+}
+
+.showDrawerContainer .manageQuantityProduct span .rs-input{
+
+  font-size: 1em;
+}
+.showDrawerContainer .textProduct {
+  color: whitesmoke;
+  font-size: 0.7em;
+}
+.drawerProductImg{
+  width:200px!important
+}
+.footerShoppingCart{
+  font-size: 0.8em;
+
+}
+.footerShoppingCart button{
+  color: red!important;
+
+}
+.footerShoppingCart .rs-btn-primary{
+  font-size: 0.8em!important;
+}
 }

@@ -27,6 +27,9 @@ const Product = ({product,addProductShoppingCart,shoppingCart}) =>{
       <div className='productContainer'>
         <Link to={'/product/'+ product._id} className='productPic' style={{backgroundImage:`url(${product.arrayPic[0]})`}}>
             {/* Product Image View */}
+          <div class="overlay">
+            <div class="lupa"></div>
+          </div>
         </Link>
           {/* -- Price View */}
         <div className="cardBottom">

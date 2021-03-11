@@ -28,7 +28,6 @@ const PaymentPanel = ({emailShopCart,loggedUser,userData,shoppingCart}) => {
       const data= await emailShopCart(loggedUser.email,{userData,shoppingCart})
 
            if(data.email){
-           
                 Alert.success('Compra confirmada,revise su casilla de email')
                setNext(true)
                onChange(step + 1)
@@ -36,8 +35,8 @@ const PaymentPanel = ({emailShopCart,loggedUser,userData,shoppingCart}) => {
                Alert.error('Hubo un error, intente más tarde')
             
            }
-  }
-
+    }
+ 
    return (
        <>
     <div className="containerCartAndPagination">
@@ -84,7 +83,7 @@ const PaymentPanel = ({emailShopCart,loggedUser,userData,shoppingCart}) => {
                     {shoppingCart.length !== 0 ?
                     <div>
                     <ListCart setNext={setNext} />
-                    <div className="buttonNav" style={{marginTop:'4vh'}}>
+                    <div className="buttonNaav" style={{marginTop:'4vh'}}>
                     <NavLink to="/" className="enviar navLink " style={{fontSize:'1vw',fontWeight:'bold'}}>Salir</NavLink>
                       <button onClick={onNext} className="enviar navLink ">Confirmar</button>
                     </div>

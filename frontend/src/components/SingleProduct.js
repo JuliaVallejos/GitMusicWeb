@@ -213,12 +213,12 @@ const SingleProduct = (props) => {
                                 <Button color="cyan" className="singleButton" block onClick={addToCart}>Añadir al carrito</Button>
                             </ButtonToolbar>
                         </div>
-                    </div>
-                    <div className="whatsapp">
+                        <div className="whatsapp">
                         <a href='https://api.whatsapp.com/send?phone=+5493584403782' className='navLinksWhatsapp'>
                             <div className="imgWhatsapp"></div>
                             <p>Alguna pregunta? Estamos para ayudarte.</p>
                         </a>
+                    </div>
                     </div>
                 </div>
             </div>
