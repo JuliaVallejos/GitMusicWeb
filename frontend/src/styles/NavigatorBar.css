@@ -18,6 +18,9 @@
     /* border-right: solid 0.5px rgb(65, 166, 216); 
     border-left: solid 0.5px rgb(65, 166, 216);  */
  }
+ .dropBtn:hover {
+    color:rgb(255, 123, 0);
+ }
 .dropBtn{
     padding: 1em;
     background-color: transparent;
@@ -29,14 +32,14 @@
     height: auto;
     max-width: 10vw;  
  }
-.dropdown-content{
+/* .dropdown-content{
     position:absolute;
     right: 550px;
     min-width: 160px;
     z-index: 1;
     color: rgb(255, 123, 0);
     font-size: 0.8em;
-}
+} */
 /*RESPONSIVE*/
 @media only screen and (max-width:920px){
     .containerNavigator{

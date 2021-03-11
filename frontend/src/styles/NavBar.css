@@ -13,8 +13,14 @@
 
 .navLinks{
   color: whitesmoke;
-  margin: 2vw;
+  margin: 1vw;
   text-decoration: none;
+  display: flex;
+  display: inline;
+}
+.navLinks:hover{
+  color: rgb(255, 123, 0);
+
 }
 .rs-btn-toolbar{
   margin-right: 12px;
@@ -42,34 +48,70 @@
 
 .links {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   font-weight: bold;
   font-size: 1.1rem;
 }
 .header{
-  padding:0 2%;
+  /* padding:0 2%; */
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-around;
   align-items: center;
   font-weight: bold;
   font-size: 0.9rem;
-  background-color:rgba(12, 12, 12) ;
-  height: 5vh;
+  background-color:rgba(12, 12, 12);
+  min-height: 7vh;
   border-bottom: solid 2px rgba(245, 245, 245, 0.349);
+  cursor: pointer;
 }
 
 .searchInput{
   width:25vw!important;
-  height:4vh;
-  margin: 0 auto;
+  height:4.5vh;
   border-radius: 7px!important;
- 
+  border-color: rgb(255, 123, 0)!important;
+  }
+.rs-input-group-addon {
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1;
+  text-align: center;
+  background-color: rgb(12,12,12)!important;
+  border: 1px solid rgb(255, 123, 0)!important;
+  border-radius: 4px;
 
 }
 .searchInputResponsive{
   display: none!important;
   justify-self: flex-start;
+  }
+.contactTel a{
+    display: flex;
+    width: 100%;
+    /* height: 10vh; */
+    justify-content: center;
+    align-items: center;
+    /* margin-left: 2vw; */
+    /* border: solid 1px green; */
+    text-decoration: none !important;
+    border-radius: 5px;
+    /* padding: 0.5vw; */
+
+  }
+  .imgWhatsappHeader{
+    background-image: url('../assets/whatsapp.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: 3vh;
+    width: 4vw;
+  }
+  .contactP{
+    color: rgb(154, 158, 154)!important;
+    font-size: 1.2vw;
+    background-color: transparent;
   }
 .iconUser {
   width: 5vw;
@@ -83,7 +125,7 @@
   min-width: 50px;
   min-height: 50px;
 }
-.signOut{
+.navLinks .signOut{
   cursor: pointer;
 }
 .userLoggedNav{

@@ -25,11 +25,7 @@
     align-self: flex-end;
     width:15vw;
     margin-right: 5vw;
-   
-    
- 
 }
-
 .productContainer{
     position:relative;
    border: 2px solid rgba(6, 135, 200, 0.801);
@@ -110,31 +106,33 @@
     opacity:1!important
 }
 .noResults{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color:white;
     border: 2px solid rgba(6, 135, 200, 0.801);
     border-radius: 8px;
-    padding:6%;
-    margin:auto;
+    /* margin:auto; */
     margin-top: 6%;
-    background-image:url("../assets/bata.jpg");
+    background-image:url("../assets/musicoBata.jpg");
     background-size:cover;
     background-position: center;
     background-repeat: no-repeat;
-    width:60vw;
-    height:30vh;
-
-
+    width:50vw;
+    height:35vh;
 }
 .noResults p{
-    background-color:rgb(12,12,12);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:rgba(12, 12, 12, 0.637);
     width: 100%;
     color: white;
     font-weight: bold;
     text-align: center;
-
-
+    height: 10vh;
+    font-size: 1rem;
 }
-
 .cardBottom{
     min-width: 100%;
     background-color: rgba(0, 0, 0, 0.705);
@@ -142,9 +140,6 @@
     color: white;
     min-height: 40%;
 }
-
-
-
 /* .backBtnCategory{
     width: 12.5vw;
     background-color: #1572b4;
@@ -201,19 +196,15 @@
         font-size: 0.8em;
         padding: 1% 2%;
         width:18vw
-     
-    
-    }
+     }
     .noResults{
         border-radius: 8px;
         padding:6%;
         margin-top: 6%;
-    
     }
     .cardBottom{
         width: 100%;
         padding: 1vh 1vw;
         height: 40%;
     }
-
   }
