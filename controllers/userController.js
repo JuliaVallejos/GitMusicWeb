@@ -24,13 +24,23 @@ const userController = {
            return res.json({success:false,error:"El formato de la imagen tiene que ser JPG,JPEG,BMP ó PNG."})
         }
         const extPic=fileUrlPic.name.split('.',2)[1]
+        const url=`${__dirname}/../client/build/userPics/${newUser._id}.${extPic}`
         ///../client/build/usersPics/
-        fileUrlPic.mv(`${__dirname}/../frontend/public/assets/userPics/${newUser._id}.${extPic}`,error =>{
-           if(error){
-              return res.json({success:false,error:"Intente nuevamente..."})
-           }
-        })
-        newUser.pic=`./assets/userPics/${newUser._id}.${extPic}`
+        fileUrlPic.mv(url,error =>{
+          if(error){
+            return res.json({success:false,error:"Intente nuevamente..."})
+          }})
+        try {
+          const response= await imgbbUploader(process.env.IMGBB_KEY,url,)
+          urlPhoto=response.url
+          if(response){
+            newUser.pic=urlPhoto
+        }else{
+          return res.json({success:false, error:"Error al subir la foto al servidor"})
+        }
+        } catch (error) {
+          return res.json({success:false, error:"Error al subir la foto al servidor"})
+        }
      }else{
       newUser.pic=pic
       newUser.accountGoogle=true
