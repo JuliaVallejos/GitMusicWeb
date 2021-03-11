@@ -151,8 +151,8 @@
   }
   .textComment{
     display: flex;
- 
   }
+
   .textComment p{
     margin:0;
     padding-left: 5%;
@@ -391,8 +391,9 @@
 
 }
 .backNavButton{
-  width:25vw
+  width:25vw;
 }
+
 .lateralPic{
   display: none;
 }

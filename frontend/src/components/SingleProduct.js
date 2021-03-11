@@ -84,8 +84,9 @@ const SingleProduct = (props) => {
         }
     }
 
-    const rankProduct = async e => {
+    const rankProduct =  e => {
         let newRating=e.target.value
+        setRating(e.target.value)
         // Alert.error("Debe estar registrado para rankear",3000)
         const editFilter = thisProduct.arrayRating.filter(value => value.idUser === loggedUser.userId)
         //en primera vuelta el value llega null ver y corregir
@@ -182,21 +183,27 @@ const SingleProduct = (props) => {
                             <input type='number' className='number' min='1' onChange={setNumber} value={quantity} />
                         </div>
                         <div className="inputDiv">
-                            <input type="text" name="content" onKeyDown={enterKey} placeholder={props.loggedUser ? 'Dejanos tu comentario' : 'Inicia sesión para comentar.'} className="commentInput" onChange={handleComments} value={newComment} autoComplete="off" />
-                            {!props.loggedUser ? alert('Inicia sesión para comentar') : <MdSend className="commentIcon" onClick={sendComment} />}
-
-                            {thisProduct.arrayComments.length !== 0 ? <p className="singleSimpleText cursor" onClick={() => setVisible(!visible)}>{visible ? 'Ocultar comentarios' : 'Ver comentarios'} ({thisProduct.arrayComments.length})</p> : <p className="singleSimpleText">Aún no hay comentarios</p>}
+                            {thisProduct.arrayComments.length !== 0 ? <p className="singleSimpleText cursor" onClick={() => setVisible(!visible)}>{visible ? 'Ocultar comentarios' : 'Ver comentarios'} ({thisProduct.arrayComments.length})</p> : <p onClick={() => setVisible(!visible)} className="singleSimpleText">Aún no hay comentarios</p>}
                             {visible && (
-                                <div>
-                                    <div className="comments">
-                                        {thisProduct.arrayComments.map((comment, i) => <Comment key={i} idProduct={thisProduct._id} comment={comment} />)}
-                                    </div>
-                                    <div className="inputDiv">
-                                        <input type="text" name="content" onKeyDown={enterKey} placeholder={'condicionar el placeholder u ocultar el input'} className="commentInput" onChange={handleComments} value={newComment} autoComplete="off" />
-                                        <MdSend className="commentIcon" onClick={sendComment} />
-                                    </div>
+                            <div>
+                            {thisProduct.arrayComments.length ? 
+                                <div className="comments" >
+                                    {thisProduct.arrayComments.map(comment => 
+                                        <Comment idProduct={thisProduct._id} comment={comment}/>
+                                    )}
                                 </div>
-                            )}
+                                :
+                                <div className="comments" style={{display: 'flex', alignItems: 'center',
+                                justifyContent: 'center'}}>
+                                    <h5>Sé el primero en comentar.</h5>
+                                </div>
+                                }
+                                <div className="inputDiv" onClick={() => !loggedUser ? Alert.error('Ingresa a tu cuenta para comentar.', 4000): '' }>
+                                    <input type="text" name="content" onKeyDown={enterKey} placeholder={!loggedUser ? 'Ingresa a tu cuenta para comentar.' : 'Deja tu comentario.' } className="commentInput" onChange={handleComments} value={newComment} autoComplete="off" disabled={!loggedUser ? true : false} /> 
+                                    <MdSend className="commentIcon" onClick={sendComment} />
+                                </div>
+                            </div>
+                        )}
                             <ButtonToolbar className="singleButtons">
                                 <Button color="cyan" className="singleButton" block onClick={addToCart}>Añadir al carrito</Button>
                             </ButtonToolbar>

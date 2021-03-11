@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import productActions from '../Redux/actions/productActions'
 import { Alert } from 'rsuite';
 
+
 const Comment = ({comment, idProduct, delComment, editComment, loggedUser, messageRef}) => {
 const [visible, setVisible] = useState(false)
 const [updatedComment, setUpdatedComment] = useState('')
@@ -54,8 +55,8 @@ const [updatedComment, setUpdatedComment] = useState('')
             <>
               <div className="insideComment" >
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}} >
-                <p className="user">{comment.idUser.firstName}: </p>
-                <p className="content">{comment.comment}</p>
+                <p className="user" style={{fontWeight: 'bold'}}>{comment.idUser.firstName}: </p>
+                <p className="content" style={{marginTop: 0, marginLeft: 6}}>{comment.comment}</p>
                 </div> 
                 {loggedUser && loggedUser.userId === comment.idUser._id ? 
                 <div className="commentIcons">
