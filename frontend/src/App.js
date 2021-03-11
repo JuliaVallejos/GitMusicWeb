@@ -61,12 +61,13 @@ function App(props) {
     <>
         <Switch>
           <Route exact path='/' component={LandingPage}/>
-          <Route path='/products/:category' component={ProductsByCategory}/>
+          <Route exact path='/products/:category' component={ProductsByCategory}/>
           <Route path='/registerUser' component={RegisterUser}/>
           <Route path='/addProducts' component={AddProducts}/>
           <Route path='/product/:id' component={SingleProduct}/>
           <Route path='/forgotpassword' component={ForgotPassword}/>
           <Route path='/resetpassword/:token' component={ResetPassword}/>
+          <Route path='/products/searchProducts/:search' component={SearchPage}/>
 
           <Redirect to="/"/>
         </Switch>
