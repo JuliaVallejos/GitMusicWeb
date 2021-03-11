@@ -1,5 +1,5 @@
 .rs-drawer-content{ /* panel del drawer */
-    background-color: rgb(155, 177, 182) !important;
+    background-color: rgba(0, 0, 0, 0.746) !important;
 }
 
 .rs-btn-primary{ /* boton primario */
@@ -71,16 +71,18 @@
     padding: 2vh;
     margin: 1vh 1vh;
     border-radius: 8px;
-    box-shadow: -6px -6px 18px rgba(0, 0, 0, 0.342);
+    box-shadow: -6px -6px 18px rgba(112, 112, 112, 0.342);
     transition: all ease 0.3s;
     transform: scale(0.9);
+    background-color: rgba(0, 0, 0, 0.911);
+    border: 1px solid #1675e0;
 }
 .navLinksCategory:hover{
     transform: scale(1);
 }
 .textLinksCategory{
-    color: black;
-    font-size: 1em;
+    color: rgb(255, 255, 255);
+    font-size: 1.5em;
     padding: 1vh;
     margin-left: 1vw;
 }
@@ -125,4 +127,8 @@
 }
 .bottonManage.delete{
     color: #d62915;
+}
+
+.rs-drawer-header h4 {
+    color: whitesmoke !important;
 }

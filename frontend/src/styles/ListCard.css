@@ -141,6 +141,15 @@
         width: 90%;
     }
 
+    
+    .buttonNaav {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 90%;
+        margin-left: 4.5vw;
+    }
+
 .navPagination {
     width:100% ;
     margin-left: 45%;

@@ -36,9 +36,12 @@ const Card = ({ product,addProductShoppingCart,shoppingCart }) => {
           </button>
         </div>
       </div>
-      <NavLink to={`/product/${product._id}`}>
+      <NavLink className="imagNav" to={`/product/${product._id}`}>
         <div className="product-image">
           <img src={product.arrayPic[0]} alt="" />
+          <div class="overlay">
+            <div class="lupa"></div>
+          </div>
           {/* <div className="info">
             <h2>Descripción</h2>
             <ul>

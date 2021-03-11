@@ -8,12 +8,16 @@
 	min-height: 80vh;
 }
 .productSection h2{
+background-color: rgba(0, 0, 0, 0.794);
+color: white;
   font-size: 2.3rem;
   padding: 4vh;
 }
 .productSection h4{
+	color: rgb(0, 0, 0);
   font-size: 1.6rem;
   margin-bottom: 2vh;
+  padding: 1vh;
   
 }
 .cardContainer{
@@ -23,15 +27,31 @@
   flex-wrap: wrap; 
 }
 .containerCard{
-	box-shadow: 0 15px 30px 1px rgba(128, 128, 128, 0.31);
-	background: rgba(255, 255, 255, 0.90);
+	box-shadow: 0 15px 30px 1px rgba(0, 0, 0, 0.527);
+	background: rgba(0, 0, 0, 0.808);
 	text-align: center;
 	border-radius: 5px;
 	overflow: hidden;
 	margin:1vw;
-	height: 230px;
+	height: 270px;
 	width: 30vw;
 	min-width: 300px;
+	border: 2.5px solid #1675e0;
+	
+}
+
+.containerCard:hover{
+	box-shadow: 0 15px 30px 1px rgba(0, 0, 0, 0.438);
+	background: rgba(0, 0, 0, 0.808);
+	text-align: center;
+	border-radius: 5px;
+	overflow: hidden;
+	margin:1vw;
+	height: 280px;
+	width: 31vw;
+	min-width: 300px;
+	border: 2.5px solid rgb(255, 123, 0);
+	transition: 0.15s linear;
 }
 /* 	Product details  */
 .product-details {
@@ -50,10 +70,10 @@
 	display: inline-block;
 	position: relative;
 	font-size: 1rem;
-	color: #344055;
+	color: #fafafa;
 	margin: 0;
 	line-height: 40px!important;
-	min-height: 15vh;
+	min-height: 12vh;
 	
 }
 
@@ -95,7 +115,7 @@
 /* The most important information about the product */
 .containerCard .product-details > p {	
 	font-size: 16px;
-	color: #7d7d7d;	
+	color: #e6e6e6;	
 }
 
 /* control */
@@ -121,7 +141,7 @@
 	color: #eee;
 	padding: 0;
 	margin: 0;
-
+	width: 100%;
 }
 
 
@@ -129,16 +149,17 @@
 	transition: transform 0.8s;
 	display: inline-block;
  	padding: 10px 20px;
-	font-size: .8rem;
+	font-size: 1.2rem;
 	margin:0;
 	
 }
 /* shopping cart icon */
 .btnCard .price, .shopping-cart{
-	background: #333;
+	background: #1675e0;
 	border: 0;
 	margin: 0;
   	width: 100%;
+	  font-size: 2vh;
 }
 
 
@@ -146,14 +167,16 @@
 .btnCard .shopping-cart {
 	transform: translateX(-100%);
   	position: absolute;
-	background: #333;
+	background: rgb(255, 123, 0);
 	z-index: 1;
 	left: 0;
 	top: 0;
 }
 
 /* buy */
-.btnCard .buy {z-index: 3; font-weight: bolder;}
+.btnCard .buy {z-index: 3; font-weight: bolder; font-size: 2vh;}
+
+.btnCard .buy:hover {z-index: 3; font-weight: bolder; font-size: 2.3vh;color: rgb(255, 123, 0);}
 
 .btnCard:hover .price {transform: translateX(-110%);}
 
@@ -167,18 +190,61 @@
 	display: flex;
 	position: relative;
 	overflow: hidden;
-	height: 80%;
-  	padding-right: 1vh;
+	height: 100%;
+	width: 40%;
+	position: relative;
 	/* width: 50%; */
 	
   
 }
+
+.overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	transition: .5s ease;
+	background-color: #f3f3f3c0;
+  }
+  
+  .product-image:hover .overlay {
+	opacity: 1;
+  }
+  
+  .lupa {
+	background-image: url(../assets/lupa.png);
+	width: 6vw;
+	height: 12.1vh;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	text-align: center;
+  }
 .product-image img{
   object-fit: contain;
   object-position: center;
   width: 100%;
+  background-color: white;
   /* margin-bottom: 15vh; */
 }
+
+.product-image img ::before{
+	object-fit: contain;
+	object-position: center;
+	width: 100%;
+	background-color: white;
+	position: absolute;
+	/* margin-bottom: 15vh; */
+  }
 
 
 .info {
@@ -214,3 +280,7 @@
 
 .product-image:hover img {transition: all 0.3s ease-out;}
 .product-image:hover img {transform: scale(1.2, 1.2);}
+
+.imagNav {
+	background-color: white;
+}

@@ -1,7 +1,11 @@
 .showDrawerContainer .rs-drawer-content{ /* panel del drawer */
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.788));
+  background: rgba(0, 0, 0, 0.561);
   box-shadow: 5px 5px 80px rgba(182, 182, 182, 0.76);
 
+}
+
+.rs-drawer-content {
+  background: rgba(0, 0, 0, 0.561);
 }
 
 .showDrawerContainer{
@@ -56,8 +60,8 @@ background: rgb(78, 114, 119);
   margin: 2vh;
   /* padding: 1vw; */
   border-radius: 0.8vh;
-  border: 1px rgba(255, 145, 0, 0.801) solid;
-  box-shadow: 1px 2px 15px 2px rgba(255, 145, 0, 0.637);
+  border: 2.5px rgba(255, 145, 0, 0.801) solid;
+  box-shadow: 1px 2px 15px 2px rgba(224, 224, 224, 0.459);
   margin-bottom: 5vh;
 }
 .showDrawerContainer .footerShoppingCart{
