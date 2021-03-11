@@ -12,11 +12,7 @@ const ProductsByCategory = (props) =>{
     const [newOrder,setNewOrder]= useState([])
     const category = props.match.params.category
     const [arrayCategory,setArrayCategory] = useState([])
-<<<<<<< HEAD
-    console.log(arrayCategory)
-=======
     
->>>>>>> 3fe9ad4bc2f3f9f0f3a0d93f102929b64bc3520c
     useEffect(()=>{
         getData()
     },[category])
