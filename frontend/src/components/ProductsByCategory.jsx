@@ -8,7 +8,7 @@ import { SelectPicker } from 'rsuite'
 
 
 const ProductsByCategory = (props) =>{
-    const {allProducts,shoppingCart} =props
+    const {allProducts,shoppingCart, getProducts} =props
     let history = useHistory();
     const [arrayAll,setArrayAll] = useState([])
     const [newOrder,setNewOrder]= useState([])
@@ -16,11 +16,10 @@ const ProductsByCategory = (props) =>{
     const [arrayCategory,setArrayCategory] = useState([])
     console.log(arrayCategory)
     useEffect(()=>{
-        props.getProducts()
-        .then(setArrayAll(allProducts))
+        getProducts()
         setArrayCategory(allProducts.filter(product => product.category === category))
-        
     },[category])
+
    useEffect(() => {
        getProm()
    }, [arrayCategory])
