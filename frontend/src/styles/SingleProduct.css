@@ -5,16 +5,20 @@
 
 .backNavButton{
   width: 12.5vw;
-  background-color: #1572b4;
-  color: whitesmoke;
-  margin: 0.2vw;
-  box-shadow: 1px 1px 1px 1px rgba(6, 135, 200, 0.801);
-  border: 1px solid rgba(6, 135, 200, 0.801);
-}
+  background-color:rgb(250, 250, 250);
+  color:rgb(12,12,12);
+  border-radius:0!important;
 
+}
+.backNavButton:hover{
+  background-color:rgb(250, 250, 250);
+  color:rgb(34, 21, 148);
+  border-radius:0!important;
+
+}
 .mainSingleContainer{
-    background-color: white;
-    border-radius: 4px;
+    background-color: rgb(250, 250, 250);
+    border-radius:0 4px 4px 4px;
     display: flex;
     width: 100%;
     height: 80%;
@@ -309,6 +313,22 @@
 .starInput{
   display: none;
 }
+@media only screen and (max-width:1080px){
+  .lateralPic{
+    display: none;
+  }
+ 
+  .descriptionContainer{
+    overflow: auto;
+  }
+  .rightSection{
+    width:56%;
+    padding:1vw;
+    min-width: 300px;
+    margin-left:12vw
+  
+  }
+}
 @media only screen and (max-width:780px) {
   .lateralPic{
   display: none;
@@ -322,15 +342,35 @@
 }
 }
 @media only screen and (max-width:600px) {
-/* .mainSingleProduct{
+.mainSingleContainer{
   display: flex;
   flex-direction: column;
-  align-items: center; 
-}*/
+  align-items: center;
 
+}
+.backNavButton{
+  width:25vw
+}
+.lateralPic{
+  display: none;
+}
+.middleSection div{
+  width: 100%;
+  height: 50vh;
+}
+.descriptionContainer{
+  overflow: auto;
+}
+.rightSection{
+margin: 3% 0 
+}
+.rightSection p{
+  font-size: 1.1em;
+}
 .mainSingleContainer{
   align-items: center;
 }
+
 }
 
 

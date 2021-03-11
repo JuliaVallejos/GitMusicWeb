@@ -110,7 +110,6 @@ const [newItem,setNewItem] = useState()
  
     return (
         <div className="containerAddProducts">
-            <button onClick={() => history.goBack()} className="backBtnCategory">Volver al Inicio</button>
             <div className="formularioProd">
                 <h2>Cargue sus productos</h2>
                 {errores !== '' && <Message type='info' description={errores} style={{ marginBottom: '2vh' }} />}
