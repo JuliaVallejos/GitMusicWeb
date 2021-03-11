@@ -28,7 +28,6 @@ const PaymentPanel = ({emailShopCart,loggedUser,userData,shoppingCart}) => {
       const data= await emailShopCart(loggedUser.email,{userData,shoppingCart})
       console.log(data)
            if(data.email){
-             if(data.response){
                 Alert.success('Compra confirmada,revise su casilla de email')
                setNext(true)
                onChange(step + 1)
@@ -36,7 +35,7 @@ const PaymentPanel = ({emailShopCart,loggedUser,userData,shoppingCart}) => {
                Alert.error('Hubo un error, intente más tarde')
             
            }
-    }}
+    }
     console.log(finish)
    return (
        <>
