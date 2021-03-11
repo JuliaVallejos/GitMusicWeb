@@ -25,6 +25,8 @@ import ListCartAndPaginate from './components/ListCartAndPaginate'
 
 
 function App(props) {
+
+
   if(props.loggedUser){
     if(localStorage.getItem('shoppingCart')){
       props.preservedShoppingCart(localStorage.getItem('shoppingCart'))
