@@ -19,14 +19,11 @@ const [newItem,setNewItem] = useState('')
         name:'',
         mark:'',
         price:'',
-        warranty:'',
         stock:'',
         category:'',
-        urlReview:'',
         outstanding:false,
         arrayPic:[],
         arrayDescription:[]
-
     })
     const [errores, setErrores] = useState('')
     // const [fileNames, setFileNames] = useState([]);
@@ -68,8 +65,8 @@ const [newItem,setNewItem] = useState('')
 
     const Validate = async e => {
         e.preventDefault()
-        const {name,mark,price,warranty,urlReview,stock,category,arrayPic} = product
-        if(name===''||mark===''||price===''||warranty===''||stock===''||category===''||arrayPic.length===0){
+        const {name,mark,price,stock,category,arrayPic} = product
+        if(name===''||mark===''||price===''||stock===''||category===''||arrayPic.length===0){
             setErrores(['Debe completar todos los campos'])
             return false
         }  
@@ -77,14 +74,17 @@ const [newItem,setNewItem] = useState('')
         if(newItem && newItem.trim()!==''&&itemsDescription.indexOf(newItem.trim())===-1){
            arrayFinal= [...itemsDescription,newItem.trim()]
         }
-        console.log(arrayFinal)
     
         const fdNewProduct = new FormData()
         fdNewProduct.append('name', name)
         fdNewProduct.append('mark', mark)
         fdNewProduct.append('price', price)
-        fdNewProduct.append('warranty', warranty)
-        fdNewProduct.append('urlReview',urlReview)
+        if(product.warranty && product.warranty!==''){
+            fdNewProduct.append('warranty', product.warranty)
+        }
+        if(product.urlReview && product.urlReview!==''){
+            fdNewProduct.append('urlReview',product.urlReview)
+        }
         fdNewProduct.append('stock', stock)
         fdNewProduct.append('category', category)
         arrayPic.map((pic,i) =>{
@@ -97,7 +97,6 @@ const [newItem,setNewItem] = useState('')
         })
         
         const response = await addProduct(fdNewProduct)
-         console.log(response)
         if (response && !response.success) {
                 setErrores(response.message)
         }else{

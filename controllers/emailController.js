@@ -194,7 +194,6 @@ const emailController = {
                 console.log(error)
                 res.status(500).send(error.message)
             }else {
-                console.log("Email enviado.")
                 res.status(200).json({response:req.body})
             }
         }) } 

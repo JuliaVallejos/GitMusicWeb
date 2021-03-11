@@ -67,7 +67,6 @@ addProduct: async (req,res) =>{
         res.json({success:false,response:'Error in save'})
       } 
     }catch(error){ 
-      console.log(error) 
       res.json({success:false,error})} 
   },
   // borrar producto //

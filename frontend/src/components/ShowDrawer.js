@@ -32,7 +32,6 @@ class ShowDrawer extends Component {
   const goToCart =()=>{
       if(!this.props.loggedUser){
         Alert.error('Debes iniciar sesión para terminar tu compra')
-        console.log(this.props)
       }else{
         this.close()
       }

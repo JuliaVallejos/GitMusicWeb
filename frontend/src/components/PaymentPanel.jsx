@@ -13,9 +13,6 @@ import { NavLink } from 'react-router-dom';
 
 
 const PaymentPanel = ({emailShopCart,loggedUser,userData,shoppingCart}) => {
-
-
-  console.log(userData)
     const [next,setNext] = useState(false)
     const [finish,setFinish] = useState(false)
     const [step, setStep] = useState(0);
@@ -28,11 +25,9 @@ const PaymentPanel = ({emailShopCart,loggedUser,userData,shoppingCart}) => {
 
     const finishPurchase= async () =>{
       const data= await emailShopCart(loggedUser.email,{userData,shoppingCart})
-      console.log(data)
            if(data.response){
             Alert.success('Compra confirmada')
             setNext(true)
-            console.log(step)
             onChange(step + 1)
            }else{
                Alert.error('Hubo un error, intente más tarde')

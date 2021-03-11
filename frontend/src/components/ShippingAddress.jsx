@@ -36,7 +36,6 @@ const ShippingAddress = ({setNext,completeUserData,userData}) => {
             return false
         }
        const data = await completeUserData("address",address)
-       console.log(data)
        if(data.saved){
            Alert.success('Datos guardados')
         setNext(true) 

@@ -49,7 +49,6 @@ const UserDetails = (props) => {
       alert ('Verifique que todos los campos esten llenos')
     }else if(imageValue && filesExtension.some(file=>imageValue.name.includes(file))){
       const response=await props.modifyUser(formData)
-      console.log(response)
     }else{
       props.modifyUser(formData)
       alert ('formato de imagen no permitido')

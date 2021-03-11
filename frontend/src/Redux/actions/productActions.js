@@ -28,7 +28,6 @@ const productActions = {
     }
   },
     addProduct: (fdNewProduct) =>{
-      console.log("action")
       return async (dispatch, getState) =>{
       try{
           const response = await axios.post('https://gitmusicapp.herokuapp.com/api/products', fdNewProduct,{
@@ -38,7 +37,6 @@ const productActions = {
           })
           if(response.data.success){  
             dispatch({type: "NEW_PRODUCT",payload: response.data.response})}
-            console.log(response)
             return response.data
         }catch(error){
           return({success: false, response: error})
@@ -70,7 +68,6 @@ const productActions = {
       }
     },
     updateComment: update => {
-      console.log(update)
       const {idComment, comment} = update
       return async (dispatch, getState) => {
         try{
