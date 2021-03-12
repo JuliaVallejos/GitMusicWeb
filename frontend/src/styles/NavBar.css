@@ -9,14 +9,15 @@
   color: whitesmoke;
   border-bottom: solid 2px rgba(245, 245, 245, 0.349);
   background-color: rgb(12, 12, 12);
+  padding: 4vw;
 }
 
 .navLinks{
   color: whitesmoke;
-  margin: 1vw;
   text-decoration: none;
   display: flex;
   display: inline;
+  margin: 1vw;
 }
 .navLinks:hover{
   color: rgb(255, 123, 0);
@@ -30,7 +31,6 @@
   width: 1.4rem;
 }
 .navBarLogo{
-  margin-left: 4vw;
   position: relative;
   display: flex;
   align-items: center;
@@ -116,10 +116,14 @@
 .iconUser {
   width: 5vw;
   height: 7vh;
+  min-width: 50px;
+  min-height: 50px;
 }
 .navUser{
   cursor: pointer!important;
   text-decoration: none!important;
+  margin: 0 !important;
+  color:white !important
 }
 .userPic{
   min-width: 50px;

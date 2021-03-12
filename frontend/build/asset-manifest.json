@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.1d777d1a.chunk.css",
-    "main.js": "/static/js/main.93660855.chunk.js",
-    "main.js.map": "/static/js/main.93660855.chunk.js.map",
+    "main.css": "/static/css/main.b68ae784.chunk.css",
+    "main.js": "/static/js/main.8b664db5.chunk.js",
+    "main.js.map": "/static/js/main.8b664db5.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.248907bc.js",
     "runtime-main.js.map": "/static/js/runtime-main.248907bc.js.map",
     "static/css/2.45c292ed.chunk.css": "/static/css/2.45c292ed.chunk.css",
@@ -10,7 +10,7 @@
     "static/js/2.67a37f8f.chunk.js.map": "/static/js/2.67a37f8f.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.45c292ed.chunk.css.map": "/static/css/2.45c292ed.chunk.css.map",
-    "static/css/main.1d777d1a.chunk.css.map": "/static/css/main.1d777d1a.chunk.css.map",
+    "static/css/main.b68ae784.chunk.css.map": "/static/css/main.b68ae784.chunk.css.map",
     "static/js/2.67a37f8f.chunk.js.LICENSE.txt": "/static/js/2.67a37f8f.chunk.js.LICENSE.txt",
     "static/media/Graciasporsucompra.7379ee8b.gif": "/static/media/Graciasporsucompra.7379ee8b.gif",
     "static/media/Footer.css": "/static/media/Grupo.90bac5ce.png",
@@ -27,7 +27,7 @@
     "static/js/runtime-main.248907bc.js",
     "static/css/2.45c292ed.chunk.css",
     "static/js/2.67a37f8f.chunk.js",
-    "static/css/main.1d777d1a.chunk.css",
-    "static/js/main.93660855.chunk.js"
+    "static/css/main.b68ae784.chunk.css",
+    "static/js/main.8b664db5.chunk.js"
   ]
 }
