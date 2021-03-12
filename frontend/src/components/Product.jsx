@@ -23,7 +23,6 @@ let history = useHistory();
     }
   }
   if(product) {
-    console.log(product)
        return(
       <div className='productContainer'>
         <Link to={'/product/'+ product._id} className='productPic' style={{backgroundImage:`url(${product.arrayPic[0]})`}}>

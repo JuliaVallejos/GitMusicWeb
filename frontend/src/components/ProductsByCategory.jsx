@@ -27,13 +27,11 @@ const ProductsByCategory = (props) =>{
    }, [allProducts])
 
    const getData=async()=>{
-    setLoader(false)
-    if(allProducts.length===0){
+        setLoader(false)
         const res=await getProducts()
         if(res){
             setArrayCategory(allProducts.filter(product => product.category === category))
         }
-    }  
    }
 
     const sortArray = (value) =>{    

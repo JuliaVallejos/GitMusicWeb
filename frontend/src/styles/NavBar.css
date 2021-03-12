@@ -45,7 +45,18 @@
   top: 0;
   color: rgb(47, 140, 187); 
 }
-
+.contactTel,.linksHeader{
+  display: flex;
+  width: 30%;
+}
+.contactTel{
+  justify-content: flex-start;
+  padding-left:4vw;
+}
+.linksHeader{
+  justify-content: flex-end;
+  padding-right: 4vw;
+}
 .links {
   display: flex;
   justify-content: flex-end;
@@ -56,7 +67,7 @@
 .header{
   /* padding:0 2%; */
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   font-weight: bold;
   font-size: 0.9rem;

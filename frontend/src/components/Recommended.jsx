@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 import '../styles/Card.css'
 
 const Recommended = ({allProducts}) => {
-  console.log(allProducts)
   return (
     <div className='productSection'>
       <h2>Productos en Oferta!</h2>
