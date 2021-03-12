@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/static/css/main.1d777d1a.chunk.css",
+    "main.js": "/static/js/main.93660855.chunk.js",
+    "main.js.map": "/static/js/main.93660855.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.248907bc.js",
+    "runtime-main.js.map": "/static/js/runtime-main.248907bc.js.map",
+    "static/css/2.45c292ed.chunk.css": "/static/css/2.45c292ed.chunk.css",
+    "static/js/2.67a37f8f.chunk.js": "/static/js/2.67a37f8f.chunk.js",
+    "static/js/2.67a37f8f.chunk.js.map": "/static/js/2.67a37f8f.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.45c292ed.chunk.css.map": "/static/css/2.45c292ed.chunk.css.map",
+    "static/css/main.1d777d1a.chunk.css.map": "/static/css/main.1d777d1a.chunk.css.map",
+    "static/js/2.67a37f8f.chunk.js.LICENSE.txt": "/static/js/2.67a37f8f.chunk.js.LICENSE.txt",
+    "static/media/Graciasporsucompra.7379ee8b.gif": "/static/media/Graciasporsucompra.7379ee8b.gif",
+    "static/media/Footer.css": "/static/media/Grupo.90bac5ce.png",
+    "static/media/cart.0a8af4d3.gif": "/static/media/cart.0a8af4d3.gif",
+    "static/media/ListCard.css": "/static/media/descarga.4098303a.jpg",
+    "static/media/addProducts.css": "/static/media/fondo.1c2ed5ed.jpeg",
+    "static/media/Card.css": "/static/media/lupa.69ae2e05.png",
+    "static/media/NavBar.css": "/static/media/guithoriz.b895b5fb.jpg",
+    "static/media/LandingPage.css": "/static/media/herocolors3.5950e0a9.png",
+    "static/media/ShippingAddress.css": "/static/media/tarjeta.3a5b3498.png",
+    "static/media/Product.css": "/static/media/musicoBata.20610c21.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.248907bc.js",
+    "static/css/2.45c292ed.chunk.css",
+    "static/js/2.67a37f8f.chunk.js",
+    "static/css/main.1d777d1a.chunk.css",
+    "static/js/main.93660855.chunk.js"
+  ]
+}
