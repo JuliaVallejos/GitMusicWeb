@@ -54,7 +54,7 @@ const [updatedComment, setUpdatedComment] = useState(comment.comment)
         ) : (
             <>
               <div className="insideComment" >
-                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}} >
+                <div style={{display: 'flex', alignItems: 'flex-start', justifyContent: 'center'}} >
                 <p className="user" style={{fontWeight: 'bold'}}>{comment.idUser.firstName}: </p>
                 <p className="content" style={{marginTop: 0, marginLeft: 6}}>{comment.comment}</p>
                 </div> 

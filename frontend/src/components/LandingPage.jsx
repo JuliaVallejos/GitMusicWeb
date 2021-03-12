@@ -17,7 +17,6 @@ const LandingPage = ({ getProducts}) => {
     })
     getProducts()
   }, [])
-
   return (
     <>
           <Navigator/>   

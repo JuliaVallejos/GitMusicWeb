@@ -52,7 +52,6 @@ const Register = (props) => {
 
         const res = await signUp(fdNewUser)
         if (res && !res.success) {
-            console.log(res)
             res.response.map(error => {
                 failedInputs[error.label] = error.message
                 return false

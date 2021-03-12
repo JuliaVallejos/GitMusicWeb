@@ -92,7 +92,6 @@ const AddProducts = (props) => {
 
         if(errores.length===0){
          const response = await addProduct(fdNewProduct)
-         console.log(response)
         if (response && !response.success) {
             Alert.error('Hubo un error en la carga, intente más tarde')
         } else {

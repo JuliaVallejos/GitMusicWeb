@@ -191,7 +191,6 @@ const emailController = {
         }
        transporter.sendMail(mailOptions, (error, info) =>{
             if(error){
-                console.log(error)
                 res.status(500).send(error.message)
             }else {
                 res.status(200).json({response:req.body})
@@ -200,8 +199,6 @@ const emailController = {
     
       
     }catch(error){
-        console.log('error')
-        console.log(error)
         res.json({success:false,error})
     } 
 },

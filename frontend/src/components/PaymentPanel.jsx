@@ -76,7 +76,7 @@ const PaymentPanel = ({emailShopCart,loggedUser,userData,shoppingCart}) => {
                 :step && step === 4 ?
                   <div className="stateTimeLine" >
                     <img className="gif" src={gif} alt=""/>
-                    <NavLink to="/" className="enviar navLink " style={{fontSize:'1.3vw',fontWeight:'bold'}}>Ver mas productos</NavLink>
+                    <NavLink to="/" className="enviar navLink " style={{fontSize:'16px',fontWeight:'bold'}}>Ver mas productos</NavLink>
                   </div>
                   : 
                   <div className="stateTimeLine">
@@ -84,14 +84,14 @@ const PaymentPanel = ({emailShopCart,loggedUser,userData,shoppingCart}) => {
                     <div>
                     <ListCart setNext={setNext} />
                     <div className="buttonNaav" style={{marginTop:'4vh'}}>
-                    <NavLink to="/" className="enviar navLink " style={{fontSize:'1vw',fontWeight:'bold'}}>Salir</NavLink>
+                    <NavLink to="/" className="enviar navLink " style={{fontSize:'14px',fontWeight:'bold'}}>Salir</NavLink>
                       <button onClick={onNext} className="enviar navLink ">Confirmar</button>
                     </div>
                     </div>
                     : <div className="productNone">
                       <h2>Carrito vacío.</h2>
                       <img className="gif" src={gifCarrito} alt=""/>
-                      <NavLink to="/" className="enviar navLink " style={{fontSize:'1.3vw',fontWeight:'bold'}}>Comenzar a Comprar</NavLink>
+                      <NavLink to="/" className="enviar navLink " style={{fontSize:'16px',fontWeight:'bold'}}>Comenzar a Comprar</NavLink>
                     </div>  }
 
               </div>}

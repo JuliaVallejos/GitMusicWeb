@@ -30,18 +30,18 @@ const NavBar = ({ loggedUser, signOut }) => {
         
         <div className="header">
         <div className="contactTel">
-                        <a href='https://api.whatsapp.com/send?phone=+5493584403782'>
-                            <p className="contactP">¡Contactanos! (+54) 9 3584 40-3782 </p>
-                            <div className="imgWhatsappHeader"></div>
-                        </a>
-                    </div>
+          <Link target='_blank' to={{pathname:'https://api.whatsapp.com/send?phone=+5493584403782'}} >
+              <p className="contactP">¡Contactanos! (+54) 9 3584 40-3782 </p>
+              <div className="imgWhatsappHeader"></div>
+          </Link>
+        </div>
           <InputGroup className="searchInput">
             <Input onChange={(value)=>setSearch(value)} value={search} placeholder='Búsqueda por nombre'/>
-            <InputGroup.Addon onClick={()=>setSearch('')}  >
-              <Link to={search!==''?`/products/searchProducts/${search}`:'#'}>
+            <Link style={{textDecoration:'none'}} to={search!==''?`/products/searchProducts/${search}`:'#'}>
+              <InputGroup.Addon onClick={()=>setSearch('')}  >
                 <Icon  icon="search" />
-              </Link>
-            </InputGroup.Addon>
+              </InputGroup.Addon>
+            </Link>
         </InputGroup>
         <div className='linksHeader'>
           <NavLink onClick={openNav} exact to='/' className='navLinks' style={{ textDecoration: 'none' }}>
@@ -51,7 +51,7 @@ const NavBar = ({ loggedUser, signOut }) => {
             Agregar Productos
           </NavLink>}
           <NavLink onClick={openNav} to={loggedUser ? '/userdetails' : '/registerUser'} className='navLinks' style={{ textDecoration: 'none' }}>
-            Mi cuenta
+          {loggedUser ? 'Mi cuenta' : 'Iniciar sesión'}
           </NavLink>
           {loggedUser && <p className='navLinks signOut' onClick={byeBye}>Cerrar sesión</p>}
           </div>
@@ -68,7 +68,7 @@ const NavBar = ({ loggedUser, signOut }) => {
           </Link>
         </div>
         <div className='links'>
-          <NavLink to={loggedUser ? 'userdetails' : '/registerUser'} className='navLinks navUser'>
+          <NavLink to={loggedUser ? '/userdetails' : '/registerUser'} className='navLinks navUser'>
             {!loggedUser ? <FaUserCircle className="iconUser" /> :
               (
               <div style={{cursor:'pointer'}} className="userLoggedNav">

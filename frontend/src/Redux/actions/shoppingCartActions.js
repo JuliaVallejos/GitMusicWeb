@@ -6,11 +6,6 @@ const shoppingCartActions={
     return async (dispatch, getState)=>{
       try {
         const response= await axios.post('https://gitmusicapp.herokuapp.com/api/products/shoppingcart',shoppingCart)
-        if(response){
-          console.log("Se guardo correctamente")
-        }else{
-          console.log("error al guardar")
-        }
         dispatch({
           type: "SHOPPING_SAVE",
           payload: response.data.response
@@ -80,7 +75,6 @@ const shoppingCartActions={
     return async (dispatch,getstate)=>{
       try{
         const data = await axios.post('https://gitmusicapp.herokuapp.com/api/confirmPurchase',{email,dataCart})
-        console.log(data)
         if(data.status===200&& data.data.response){
           dispatch({type: "EMAIL_SENT",payload:''})
           return data.data.response

@@ -87,6 +87,8 @@
 }
 
 .drawerCategoryImg{
+    min-width: 50px;
+    min-height: 50px;
     width: 4vw;
     height: 4vw;
     border-radius: 50%;

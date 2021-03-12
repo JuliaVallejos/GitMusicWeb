@@ -75,7 +75,7 @@ const ListCart = ({setNext,shoppingCart,editProductCart,deleteProductCart,clearC
                         <Button onClick={clearCart} className="button clearCart" appearance="subtle">
                             Vaciar <FaShoppingCart style={{paddingLeft:'.5vw',fontSize:'30px'}} />
                         </Button>
-                        <div style={{fontSize:'1.5vw',fontWeight:'bold',color:'white', backgroundColor:'black', padding:'1vh',borderRadius:'10px'}}>Total: <span style={{color:'rgb(255, 143, 38)',fontWeight:'bold'}}>${total}</span></div>
+                        <div style={{fontSize:'16px',fontWeight:'bold',color:'white', backgroundColor:'black', padding:'1vh',borderRadius:'10px'}}>Total: <span style={{color:'rgb(255, 143, 38)',fontWeight:'bold'}}>${total}</span></div>
                     </div>
                 </div>
             </div>

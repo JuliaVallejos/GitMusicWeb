@@ -8,7 +8,7 @@ import shoppingCartActions from '../Redux/actions/shoppingCartActions';
 import productActions from '../Redux/actions/productActions'
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { BsFillStarFill } from 'react-icons/bs'
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 const SingleProduct = (props) => {
     const { allProducts, addProductShoppingCart, shoppingCart, ratingProduct, loggedUser } = props
@@ -18,7 +18,7 @@ const SingleProduct = (props) => {
     const [newComment, setComment] = useState('')
     const [index, setIndex] = useState(0)
     const [quantity, setquantity] = useState(1)
-    const [rating, setRating] = useState(0)
+    const [rating, setRating] = useState(3)
     let history = useHistory();
     const messageRef = useRef(null);
 
@@ -36,7 +36,7 @@ const SingleProduct = (props) => {
 
             setRating(Math.round(stars.value / thisProduct.arrayRating.length))
         } else {
-            setRating(0)
+            setRating(3)
         }
     }, [allProducts, thisProduct, loggedUser, id])
     useEffect(()=>{
@@ -98,8 +98,6 @@ const SingleProduct = (props) => {
         const editFilter = thisProduct.arrayRating.filter(value => value.idUser === loggedUser.userId)
         //en primera vuelta el value llega null ver y corregir
         
-       
-        console.log(newRating)
           if(editFilter.length !== 0){
             ratingProduct({
                 idProduct: thisProduct._id,
@@ -166,7 +164,7 @@ const SingleProduct = (props) => {
                         {!loggedUser ? <div>{[...Array(5)].map((m, i) => {
                             const ratingValue = i + 1
                             return (
-                                <BsFillStarFill className="star" style={{ cursor: 'default' }} color={(ratingValue <= rating) ? '#ffc107' : '#8C8C8C'} />
+                                <BsFillStarFill onClick={()=>{Alert.warning("Tenés que iniciar sesión.")}} className="star" style={{ cursor: 'default' }} color={(ratingValue <= rating) ? '#ffc107' : '#8C8C8C'} />
                             )
                         })}</div> :
                             <div>{[...Array(5)].map((m, i) => {
@@ -215,10 +213,10 @@ const SingleProduct = (props) => {
                                 <Button color="cyan" className="singleButton" block onClick={addToCart}>Añadir al carrito</Button>
                             </ButtonToolbar>
                             <div className="whatsapp">
-                        <a href='https://api.whatsapp.com/send?phone=+5493584403782' className='navLinksWhatsapp'>
+                        <Link target='_blank' to={{pathname:'https://api.whatsapp.com/send?phone=+5493584403782'}} className='navLinksWhatsapp'>
                             <div className="imgWhatsapp"></div>
                             <p>Alguna pregunta? Estamos para ayudarte.</p>
-                        </a>
+                        </Link>
                     </div>
                         </div>
                         

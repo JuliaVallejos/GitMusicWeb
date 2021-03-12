@@ -13,6 +13,7 @@ const ProductsByCategory = (props) =>{
     const category = props.match.params.category
     const [arrayCategory,setArrayCategory] = useState([])
     
+    
     useEffect(()=>{
         getData()
     },[category])
@@ -23,35 +24,17 @@ const ProductsByCategory = (props) =>{
         left: 0,
         behavior: 'smooth',
       })
-       getProm()
    }, [allProducts])
 
    const getData=async()=>{
-    setArrayCategory((await getProducts()).filter(product => product.category === category))
- 
     setLoader(false)
+    if(allProducts.length===0){
+        const res=await getProducts()
+        if(res){
+            setArrayCategory(allProducts.filter(product => product.category === category))
+        }
+    }  
    }
-    
-   useEffect(() => {
-       getProm()
-   }, [arrayCategory])
-
-    const getProm =() =>{
-        if(arrayCategory.length!==0){
-            let rating = 0
-            arrayCategory.map((thisProduct,idx) =>{
-                 const stars =thisProduct.arrayRating.reduce((a,b) =>{  
-                          return {
-                          value: (a.value+ b.value)
-                          }
-                      }, {value: 0})
-
-                 rating = Math.round(thisProduct.arrayRating.length===0? 0 : stars.value/thisProduct.arrayRating.length)
-                 thisProduct= {...thisProduct,rating:rating}
-                 arrayCategory[idx]=thisProduct
-                 return arrayCategory               
-            })
-    }}
 
     const sortArray = (value) =>{    
         let newOrder=[]
@@ -85,7 +68,6 @@ const ProductsByCategory = (props) =>{
         { value:'less_price', label:'Menor precio'}
     ]
 
-  
     return(
         <div className='productsByCategory'>
             <div className='categoryHeader'>
@@ -97,11 +79,11 @@ const ProductsByCategory = (props) =>{
             </div>
             <div className='productsList'>
             {loader?<Loader  vertical size='lg' speed='slow' content={<span style={{color:'white',fontWeight:'bold'}}>Cargando...</span>}/>:
-                (arrayCategory.length===0&&!loader)?<div className='noResults'>
+                (allProducts.filter(product => product.category === category).length===0&&!loader)?<div className='noResults'>
                     <p>No hay productos en esta categoría</p>
                     </div>:
             
-            (newOrder.length!==0?newOrder:arrayCategory).map((product, i) =>{
+            (newOrder.length!==0?newOrder:allProducts.filter(product => product.category === category)).map((product, i) =>{
                 return (
                     <Product key={i}product={product}/>
                 )

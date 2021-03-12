@@ -10,7 +10,7 @@ import { BsFillStarFill } from 'react-icons/bs'
 
 const Product = ({product,addProductShoppingCart,shoppingCart}) =>{
 
-  let history = useHistory();
+let history = useHistory();
  const [add,setAdd]= useState(false)
     
  const addProductCart = async(product) =>{
@@ -23,6 +23,7 @@ const Product = ({product,addProductShoppingCart,shoppingCart}) =>{
     }
   }
   if(product) {
+    console.log(product)
        return(
       <div className='productContainer'>
         <Link to={'/product/'+ product._id} className='productPic' style={{backgroundImage:`url(${product.arrayPic[0]})`}}>

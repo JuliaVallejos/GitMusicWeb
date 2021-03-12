@@ -58,6 +58,7 @@
     box-shadow: 5px 5px 20px rgba(87, 87, 87, 0.952);
     transition: all ease 0.3s;
     height: 25vh;
+    min-width: 400px;
 }
 
 .productImg {
@@ -68,6 +69,7 @@
     height: 100%;
     background-color: white;
     border-radius:9px ;
+    min-width: 140px;
 }
 
 .containerInfo {
@@ -285,6 +287,78 @@
     border: solid 1px  rgb(22, 177, 2) !important;
     width: 99%;
     height: 99%;
+}
+
+@media only screen and (max-width:600px) {
+    .state-timeline{
+        margin:0
+    }
+    #root > div.containerCartAndPagination > div:nth-child(2){
+        margin:auto;
+        display:flex;
+        align-items: center;
+    }
+    .custom-timeline{
+        display:flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .containerProduct{
+        width:90%
+    }
+   div.productImg{
+       width:50%
+   }
+    .rs-steps-horizontal{
+        width:200px
+    }
+        #root > div.containerCartAndPagination > div:nth-child(2) > div > div > div > div.sectionBody > div > div.containerCart > div > div:nth-child(4) > div{
+            font-size: 1.2em!important;
+        }
+        .stateTimeLine{
+            margin:0
+        }
+        .containerCartAndPagination{
+            padding:0;
+        }
+    .CartAndPagination{
+        height:auto;
+        width:100%;
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+        align-items: center;
+    }
+    .containerProduct {
+        position:relative;
+        background-color:rgba(0, 0, 0, 0.699);
+        border: solid 2px rgba(6, 135, 200, 0.801);
+        border-radius: 8px;
+        width:100%;
+        margin:2%;
+        display:flex;
+        align-items: center;
+        box-shadow: 5px 5px 20px rgba(87, 87, 87, 0.952);
+        transition: all ease 0.3s;
+        height: 25vh;
+        }
+    .containerCart {
+        height:90%;
+        width:100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        }
+    .containerImgInfo {
+        margin:auto;
+        min-width:200px;
+        width: 100%;
+        height: 80%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }
 
 
