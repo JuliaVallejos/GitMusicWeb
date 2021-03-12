@@ -46,9 +46,6 @@ color: white;
 	text-align: center;
 	border-radius: 5px;
 	overflow: hidden;
-	margin:1vw;
-	height: 280px;
-	width: 31vw;
 	min-width: 300px;
 	border: 2.5px solid rgb(255, 123, 0);
 	transition: 0.15s linear;
@@ -214,7 +211,6 @@ color: white;
   .product-image:hover .overlay {
 	opacity: 1;
   }
-  
   .lupa {
 	background-image: url(../assets/lupa.png);
 	width: 6vw;
@@ -283,4 +279,25 @@ color: white;
 
 .imagNav {
 	background-color: white;
+}
+
+
+@media only screen and (max-width:600px){
+	.productSection h2{
+		font-size: 2em;
+	  }
+ .lupa {
+	 width:20px;
+	background-image: url(../assets/lupa.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+ 	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%); 
+	text-align: center;
+  }
+
 }

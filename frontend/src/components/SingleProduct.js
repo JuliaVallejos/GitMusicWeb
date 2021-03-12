@@ -23,11 +23,7 @@ const SingleProduct = (props) => {
     const messageRef = useRef(null);
 
     useEffect(() => {
-        window.scroll({
-            top: 0,
-            left: 0,
-            behavior: 'smooth',
-          })
+     
         allProducts.length === 0 && props.history.push('/')
         const product = allProducts.filter(product => product._id === id)
         setThisProduct(product[0])
@@ -43,7 +39,13 @@ const SingleProduct = (props) => {
             setRating(0)
         }
     }, [allProducts, thisProduct, loggedUser, id])
-
+    useEffect(()=>{
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+          })
+    },[])
     const setNumber = (e) => {
         const number = parseInt(e.target.value)
         setquantity(number)
@@ -188,7 +190,7 @@ const SingleProduct = (props) => {
                             <input type='number' className='number' min='1' onChange={setNumber} value={quantity} />
                         </div>
                         <div className="inputDiv">
-                            {thisProduct.arrayComments.length !== 0 ? <p className="singleSimpleText cursor" onClick={() => setVisible(!visible)}>{visible ? 'Ocultar comentarios' : 'Ver comentarios'} ({thisProduct.arrayComments.length})</p> : <p onClick={() => setVisible(!visible)} className="singleSimpleText">Aún no hay comentarios</p>}
+                            {thisProduct.arrayComments.length !== 0 ? <p className="singleSimpleText cursor" style={{cursor:'pointer'}} onClick={() => setVisible(!visible)}>{visible ? 'Ocultar comentarios' : 'Ver comentarios'} ({thisProduct.arrayComments.length})</p> : <p onClick={() => setVisible(!visible)} className="singleSimpleText">Aún no hay comentarios</p>}
                             {visible && (
                             <div>
                             {thisProduct.arrayComments.length ? 
@@ -212,13 +214,14 @@ const SingleProduct = (props) => {
                             <ButtonToolbar className="singleButtons">
                                 <Button color="cyan" className="singleButton" block onClick={addToCart}>Añadir al carrito</Button>
                             </ButtonToolbar>
-                        </div>
-                        <div className="whatsapp">
+                            <div className="whatsapp">
                         <a href='https://api.whatsapp.com/send?phone=+5493584403782' className='navLinksWhatsapp'>
                             <div className="imgWhatsapp"></div>
                             <p>Alguna pregunta? Estamos para ayudarte.</p>
                         </a>
                     </div>
+                        </div>
+                        
                     </div>
                 </div>
             </div>

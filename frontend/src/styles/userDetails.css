@@ -115,12 +115,22 @@ button:focus {
   margin-bottom: 4vh;
 }
 /*RESPONSIVE*/
+@media only screen and (max-width:988px) {
+  .formDetailsUser h4{
+    width:fit-content;
+    padding:0
+  }
+}
 @media only screen and (max-width:600px) {
 .formDetailsUser {
   width:70vw;
   max-height: 100vh;
   padding: 2.5px;
 
+}
+.formDetailsUser h4{
+  width:fit-content;
+  padding:0
 }
 .label-input input{
   width: 90%;

@@ -23,14 +23,14 @@
 }
 .order{
     align-self: flex-end;
-    width:15vw;
+    min-width:15vw;
     margin-right: 5vw;
 }
 .productContainer{
     position:relative;
    border: 2px solid rgba(6, 135, 200, 0.801);
    border-radius: 8px;
-   width:18vw;
+   width:250px;
    margin:2%;
    display:flex;
    flex-direction: column;
@@ -257,3 +257,30 @@
         height: 40%;
     }
   }
+  @media only screen and (max-width:600px){
+    .lupa {
+        width:20px;
+       background-image: url(../assets/lupa.png);
+       background-repeat: no-repeat;
+       background-size: cover;
+       position: absolute;
+       top: 50%;
+       left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+       -ms-transform: translate(-50%, -50%);
+       transform: translate(-50%, -50%); 
+       text-align: center;
+     }
+     .categoryTitle{
+         font-size: 2.3em;
+     }
+     .productContainer{
+         width: 80%;
+     }
+     .productsList{
+         padding-bottom: 5%;
+     }
+     
+   
+
+   }

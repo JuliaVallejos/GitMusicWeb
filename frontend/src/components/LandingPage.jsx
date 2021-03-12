@@ -7,7 +7,7 @@ import Navigator from "./NavigatorBar"
 import productActions from '../Redux/actions/productActions'
 
 
-const LandingPage = ({ getProducts, loggedUser }) => {
+const LandingPage = ({ getProducts}) => {
 
   useEffect(() => {
     window.scroll({

@@ -21,6 +21,7 @@ const NavBar = ({ loggedUser, signOut }) => {
   const byeBye = () => {
     signOut()
   }
+
   return (
     <nav className="navHeader">
       <FiMenu className="burger" onClick={openNav} />
@@ -35,7 +36,7 @@ const NavBar = ({ loggedUser, signOut }) => {
                         </a>
                     </div>
           <InputGroup className="searchInput">
-            <Input onChange={(value)=>setSearch(value)} placeholder='Búsqueda por nombre'/>
+            <Input onChange={(value)=>setSearch(value)} value={search} placeholder='Búsqueda por nombre'/>
             <InputGroup.Addon onClick={()=>setSearch('')}  >
               <Link to={search!==''?`/products/searchProducts/${search}`:'#'}>
                 <Icon  icon="search" />
@@ -56,14 +57,7 @@ const NavBar = ({ loggedUser, signOut }) => {
           </div>
         </div>
       </div>
-      <InputGroup className="searchInputResponsive">
-            <Input onChange={(value)=>setSearch(value)} placeholder='Búsqueda por nombre'/>
-            <InputGroup.Addon onClick={()=>setSearch('')}  >
-              <Link to={search!==''?`/products/searchProducts/${search}`:'#'}>
-                <Icon clasName="iconSearch" icon="search" />
-              </Link>
-            </InputGroup.Addon>
-        </InputGroup>
+      
       <div className="navBar">
     
         <div className='navBarLogo'>
