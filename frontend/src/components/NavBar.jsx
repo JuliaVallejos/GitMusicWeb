@@ -37,10 +37,8 @@ const NavBar = ({ loggedUser, signOut }) => {
         </div>
           <InputGroup className="searchInput">
             <Input onChange={(value)=>setSearch(value)} value={search} placeholder='Búsqueda por nombre'/>
-            <Link style={{textDecoration:'none'}} to={search!==''?`/products/searchProducts/${search}`:'#'}>
-              <InputGroup.Addon onClick={()=>setSearch('')}  >
-                <Icon  icon="search" />
-              </InputGroup.Addon>
+            <Link onClick={()=>setSearch('')}  style={{display:'flex',justifyContent:'center',alignItems:'center',textDecoration:'none',color:'rgb(255, 123, 0)'}} to={search!==''?`/products/searchProducts/${search}`:'#'}>
+                <Icon icon="search" style={{padding:'1vw'}} />
             </Link>
         </InputGroup>
         <div className='linksHeader'>
